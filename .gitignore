@@ -6,6 +6,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .ipynb_checkpoints/
+.venv/
 # large / binary artefacts anywhere, including under results/
 *.ckpt
 *.pt
