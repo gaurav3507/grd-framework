@@ -7,6 +7,7 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 .venv/
+.venv-recover/
 # large / binary artefacts anywhere, including under results/
 *.ckpt
 *.pt
