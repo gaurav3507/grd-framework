@@ -39,19 +39,27 @@ def precision_signal(Y_env, Y_obs):
     return float(np.max(np.linalg.eigvalsh(Pe - P0)))
 
 
-def null_threshold(Y_obs, alpha=0.05, B=500, rng=None):
+def null_threshold(Y_obs, alpha=0.05, B=500, rng=None, n_env=None):
     """(1 - alpha) quantile of the precision signal under the null of no
     interventional effect, estimated by comparing two independent bootstrap
     resamples of the observational data. alpha and B are the LFC test's settings.
+
+    n_env sets the resample size (Lesson 2): the null's per-sample covariance noise
+    must match the sample size of the environment being tested, because
+    precision_signal grows as the covariance is estimated from fewer rows. When
+    n_env is None the resample size is len(Y_obs), reproducing the earlier behaviour
+    exactly (used when the environment and Y_obs are the same size). n_env is a
+    sample size, not a tuning knob.
     """
     if rng is None:
         raise ValueError("null_threshold needs an explicit rng (no global seeding)")
     Y_obs = np.asarray(Y_obs)
     n = Y_obs.shape[0]
+    m = n if n_env is None else int(n_env)
     vals = np.empty(B)
     for b in range(B):
-        i1 = rng.integers(0, n, n)
-        i2 = rng.integers(0, n, n)
+        i1 = rng.integers(0, n, m)
+        i2 = rng.integers(0, n, m)
         vals[b] = precision_signal(Y_obs[i1], Y_obs[i2])
     return float(np.quantile(vals, 1.0 - alpha))
 
@@ -69,11 +77,23 @@ def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None):
     """
     if rng is None:
         raise ValueError("count_recoverable needs an explicit rng")
-    crit = null_threshold(Y_obs, alpha=alpha, B=B, rng=rng)
-    signals = [precision_signal(Y, Y_obs) for Y in Y_int_list]
-    detect = [bool(s > crit) for s in signals]
-    ratios = [float(s / crit) if crit > 0 else float("inf") for s in signals]
-    return dict(count=int(sum(detect)), threshold=float(crit),
-                signals=[float(s) for s in signals], detect=detect,
+    signals, thresholds, detect, ratios = [], [], [], []
+    for Y in Y_int_list:
+        Y = np.asarray(Y)
+        # Size-matched null (Lesson 2): the null resamples at THIS environment's size,
+        # so a smaller perturbation environment is not scored against a tighter
+        # full-size null. Equal-size environments reduce to the prior behaviour.
+        crit = null_threshold(Y_obs, alpha=alpha, B=B, rng=rng, n_env=Y.shape[0])
+        s = precision_signal(Y, Y_obs)
+        signals.append(float(s))
+        thresholds.append(float(crit))
+        detect.append(bool(s > crit))
+        ratios.append(float(s / crit) if crit > 0 else float("inf"))
+    # Backward-compat scalar 'threshold' = the MAX per-environment threshold (the most
+    # conservative one); per-environment thresholds are in 'thresholds'.
+    scalar_threshold = float(max(thresholds)) if thresholds else 0.0
+    return dict(count=int(sum(detect)), threshold=scalar_threshold,
+                thresholds=thresholds,
+                signals=signals, detect=detect,
                 ratios=[round(r, 2) for r in ratios],
                 alpha=float(alpha), B=int(B))
