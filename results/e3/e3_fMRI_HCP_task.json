@@ -1,0 +1,26 @@
+{
+  "dataset": "fMRI_HCP_task",
+  "grouping": "task (MECHANISM shift)",
+  "feature": "per-subject functional connectivity (upper-tri corr), projected",
+  "sample_unit": "subject",
+  "d_proj": 10,
+  "baseline": "WM",
+  "n_environments": 6,
+  "env_subjects": [
+    99,
+    99,
+    94,
+    94,
+    93,
+    93
+  ],
+  "negative_control": "0/50",
+  "negative_control_rate": 0.0,
+  "structured_split_rate": 0.4,
+  "n_detectable": 5,
+  "frac_detectable": 0.8333,
+  "ratio_median": 1.996,
+  "ratio_p90": 2.467,
+  "confound_align_top2_mean": 0.318,
+  "confound_align_top2_median": 0.377
+}

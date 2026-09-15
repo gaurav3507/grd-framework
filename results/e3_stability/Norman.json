@@ -1,0 +1,24 @@
+{
+  "frac_detectable_mean": 0.0713,
+  "frac_detectable_sd": 0.004,
+  "negative_control_rate_mean": 0.016,
+  "negative_control_rate_sd": 0.015,
+  "confound_align_median_mean": 0.2235,
+  "confound_align_median_sd": 0.0066,
+  "n_perts": 101,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "dataset": "Norman",
+  "per_seed_detect": [
+    0.0792,
+    0.0693,
+    0.0693,
+    0.0693,
+    0.0693
+  ]
+}

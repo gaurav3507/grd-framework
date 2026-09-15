@@ -1,0 +1,16 @@
+{
+  "dataset": "fMRI_HCP_task",
+  "frac_detectable_mean": 0.8333,
+  "frac_detectable_sd": 0.0,
+  "negative_control_mean": 0.008,
+  "negative_control_sd": 0.0098,
+  "confound_align_mean": 0.3772,
+  "confound_align_sd": 0.0,
+  "per_seed_detect": [
+    0.8333,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.8333
+  ]
+}

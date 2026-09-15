@@ -1,0 +1,24 @@
+{
+  "frac_detectable_mean": 0.3671,
+  "frac_detectable_sd": 0.007,
+  "negative_control_rate_mean": 0.0,
+  "negative_control_rate_sd": 0.0,
+  "confound_align_median_mean": 0.7185,
+  "confound_align_median_sd": 0.0023,
+  "n_perts": 146,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "dataset": "RPE1",
+  "per_seed_detect": [
+    0.3767,
+    0.3562,
+    0.3699,
+    0.363,
+    0.3699
+  ]
+}

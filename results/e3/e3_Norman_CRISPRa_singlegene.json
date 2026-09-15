@@ -1,0 +1,22 @@
+{
+  "dataset": "Norman_CRISPRa_singlegene",
+  "n_cells": 108497,
+  "n_genes": 5000,
+  "control_label": "''",
+  "n_control": 8907,
+  "single_gene_only": true,
+  "d_proj": 10,
+  "nmin": 200,
+  "n_powered_perts": 101,
+  "negative_control": "0/50",
+  "negative_control_rate": 0.0,
+  "structured_split_detect": "19/20",
+  "structured_split_rate": 0.95,
+  "n_detectable": 8,
+  "frac_detectable": 0.0792,
+  "ratio_median": 0.535,
+  "ratio_p90": 0.935,
+  "frac_gt_2": 0.0099,
+  "confound_align_top2_mean": 0.317,
+  "confound_align_top2_median": 0.237
+}

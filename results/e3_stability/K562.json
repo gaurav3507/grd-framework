@@ -1,0 +1,24 @@
+{
+  "frac_detectable_mean": 0.1278,
+  "frac_detectable_sd": 0.0053,
+  "negative_control_rate_mean": 0.028,
+  "negative_control_rate_sd": 0.0204,
+  "confound_align_median_mean": 0.2852,
+  "confound_align_median_sd": 0.0299,
+  "n_perts": 385,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "dataset": "K562",
+  "per_seed_detect": [
+    0.1299,
+    0.1351,
+    0.1195,
+    0.1299,
+    0.1247
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "dataset": "fMRI_ABIDE_site",
+  "grouping": "site (MEASUREMENT shift)",
+  "feature": "per-subject functional connectivity, NaN-cols dropped, projected",
+  "sample_unit": "subject",
+  "d_proj": 10,
+  "baseline": "NYU",
+  "n_environments": 13,
+  "env_subjects": [
+    35,
+    39,
+    30,
+    41,
+    44,
+    33,
+    36,
+    44,
+    54,
+    81,
+    30,
+    60,
+    46
+  ],
+  "negative_control": "1/50",
+  "negative_control_rate": 0.02,
+  "structured_split_rate": 0.75,
+  "n_detectable": 12,
+  "frac_detectable": 0.9231,
+  "ratio_median": 2.068,
+  "ratio_p90": 3.621,
+  "confound_align_top2_mean": 0.356,
+  "confound_align_top2_median": 0.347
+}

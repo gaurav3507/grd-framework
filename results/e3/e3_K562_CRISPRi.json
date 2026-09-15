@@ -1,0 +1,22 @@
+{
+  "dataset": "K562_CRISPRi",
+  "n_cells": 240148,
+  "n_genes": 1158,
+  "control_label": "''",
+  "n_control": 10691,
+  "single_gene_only": false,
+  "d_proj": 10,
+  "nmin": 200,
+  "n_powered_perts": 385,
+  "negative_control": "2/50",
+  "negative_control_rate": 0.04,
+  "structured_split_detect": "18/20",
+  "structured_split_rate": 0.9,
+  "n_detectable": 50,
+  "frac_detectable": 0.1299,
+  "ratio_median": 0.704,
+  "ratio_p90": 1.029,
+  "frac_gt_2": 0.0,
+  "confound_align_top2_mean": 0.333,
+  "confound_align_top2_median": 0.3
+}

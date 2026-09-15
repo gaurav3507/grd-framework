@@ -1,0 +1,17 @@
+{
+  "dataset": "causalbench_rpe1",
+  "control_label": "''",
+  "n_control": 11485,
+  "n_powered_perts": 146,
+  "d_proj": 10,
+  "nmin": 200,
+  "null": "SIZE-MATCHED (Lesson-2 fix)",
+  "negative_control": "0/50",
+  "negative_control_rate": 0.0,
+  "n_detectable": 55,
+  "frac_detectable": 0.3767,
+  "ratio_median": 0.908,
+  "ratio_p90": 1.442,
+  "frac_gt_2": 0.0205,
+  "timestamp": "2026-09-14T03:53:52Z"
+}

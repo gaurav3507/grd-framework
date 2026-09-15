@@ -1,0 +1,75 @@
+{
+  "experiment": "FAITHFUL positive control: shared-SCM reduced-variance interventions mixed into 1158-dim gene space + real K562 noise, full E1 pipeline (fit PCA on basis, project, gate)",
+  "d_latent": 10,
+  "d_gene": 1158,
+  "d_proj": 10,
+  "planted_rank": 3,
+  "cells_per_env": 200,
+  "iv_scale": 0.1,
+  "scale": "single scalar (signal total var = snr x real bg total var, gene space)",
+  "null": "basis vs obs (independent un-intervened draws), projected identically, size-matched",
+  "note": "snr=0 is a null sanity check, not a reproduction of the E3 real-data verdict",
+  "real_bg_var_total": 230.841,
+  "dose_response": [
+    {
+      "snr": 0.0,
+      "certified": 0,
+      "planted": 3,
+      "ratios": [
+        0.24,
+        0.25,
+        0.25
+      ],
+      "neg": "0/30",
+      "neg_rate": 0.0
+    },
+    {
+      "snr": 0.5,
+      "certified": 0,
+      "planted": 3,
+      "ratios": [
+        0.73,
+        0.4,
+        0.72
+      ],
+      "neg": "0/30",
+      "neg_rate": 0.0
+    },
+    {
+      "snr": 1.0,
+      "certified": 0,
+      "planted": 3,
+      "ratios": [
+        0.75,
+        0.72,
+        0.68
+      ],
+      "neg": "0/30",
+      "neg_rate": 0.0
+    },
+    {
+      "snr": 2.0,
+      "certified": 0,
+      "planted": 3,
+      "ratios": [
+        0.44,
+        0.66,
+        0.59
+      ],
+      "neg": "0/30",
+      "neg_rate": 0.0
+    },
+    {
+      "snr": 4.0,
+      "certified": 1,
+      "planted": 3,
+      "ratios": [
+        1.62,
+        0.88,
+        0.83
+      ],
+      "neg": "5/30",
+      "neg_rate": 0.167
+    }
+  ]
+}
