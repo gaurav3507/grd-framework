@@ -53,35 +53,46 @@ B_NULL = 50
 
 
 # ------------------------------------------------------------ iLCS (Chen 2024 Alg 1)
-ICA_MAX_ITER = 2000
+ICA_MAX_ITER = 10000
+ICA_TOL = 1e-3
 
 
 def _ica_rows(Y, seed):
-    """FastICA on one environment (already in D=10). Returns the psi-sorted unmixing
-    rows M (D x D), a unit-variance-ok flag, and a converged flag (n_iter_ did not hit
-    ICA_MAX_ITER).
+    """FastICA on one environment (already in D=10). Fit with the default 'parallel'
+    algorithm at a looser tol; if it stalls (n_iter_ hits ICA_MAX_ITER, common on
+    ill-conditioned real gene-expression PCs), retry the fit ONCE with 'deflation'.
+    Returns the psi-sorted unmixing rows M (D x D), a unit-variance-ok flag, a converged
+    flag (final fit's n_iter_ < ICA_MAX_ITER), and the algorithm that produced the fit.
     """
-    ica = FastICA(n_components=D, whiten='unit-variance', max_iter=ICA_MAX_ITER, tol=1e-4,
-                  random_state=seed)
+    Y = np.asarray(Y)
+    algo = "parallel"
+    ica = FastICA(n_components=D, algorithm=algo, whiten='unit-variance',
+                  max_iter=ICA_MAX_ITER, tol=ICA_TOL, random_state=seed)
     S = ica.fit_transform(Y)
+    if int(getattr(ica, "n_iter_", ICA_MAX_ITER)) >= ICA_MAX_ITER:
+        algo = "deflation"
+        ica = FastICA(n_components=D, algorithm=algo, whiten='unit-variance',
+                      max_iter=ICA_MAX_ITER, tol=ICA_TOL, random_state=seed)
+        S = ica.fit_transform(Y)
     M = ica.components_                       # D x D here (sources by projected dims)
     unit_ok = bool(np.allclose(S.var(0), 1.0, atol=0.1))
     converged = bool(int(getattr(ica, "n_iter_", ICA_MAX_ITER)) < ICA_MAX_ITER)
     psi = np.array([np.mean(np.abs(S[:, i]) <= 1.0) for i in range(S.shape[1])])
     order = np.argsort(psi)                   # ascending psi: least-Gaussian-ish first
-    return M[order], unit_ok, converged
+    return M[order], unit_ok, converged, algo
 
 
 def ilcs_L(Y_ctrl, Y_env, seed):
     """Length-D iLCS shift vector L between control and one environment (K=2).
     L_i = sum|abs(M_ctrl[i]) - abs(M_env[i])| / (sum|M_ctrl[i]| + sum|M_env[i]|).
-    Returns (L, unit_var_ok, converged). The L statistic and psi-sort are unchanged.
+    Returns (L, unit_var_ok, converged, used_deflation). The L statistic and psi-sort
+    are unchanged.
     """
-    Mc, okc, cc = _ica_rows(np.asarray(Y_ctrl), seed)
-    Me, oke, ce = _ica_rows(np.asarray(Y_env), seed)
+    Mc, okc, cc, ac = _ica_rows(np.asarray(Y_ctrl), seed)
+    Me, oke, ce, ae = _ica_rows(np.asarray(Y_env), seed)
     num = np.abs(np.abs(Mc) - np.abs(Me)).sum(1)
     den = np.abs(Mc).sum(1) + np.abs(Me).sum(1) + 1e-12
-    return num / den, bool(okc and oke), bool(cc and ce)
+    return num / den, bool(okc and oke), bool(cc and ce), bool("deflation" in (ac, ae))
 
 
 def ilcs_fires(L, alpha):
@@ -100,13 +111,13 @@ def calib_alpha_env(proj, Xc, Yobs_full, n_env, B, rng):
     maxL = np.empty(B)
     for b in range(B):
         idx = rng.choice(N, n_env if n_env < N else N, replace=False)   # size-matched to the env
-        Lb, _, _ = ilcs_L(Yobs_full, proj(Xc[idx]), SEED + b)
+        Lb, _, _, _ = ilcs_L(Yobs_full, proj(Xc[idx]), SEED + b)
         maxL[b] = float(Lb.max())
     return float(np.percentile(maxL, 95))
 
 
 def _eval_env(Y_env, Yobs, proj, Xc, n_cells, rng, B, alpha_cache, env_id, kind):
-    L, unit_ok, converged = ilcs_L(Yobs, Y_env, SEED)
+    L, unit_ok, converged, used_deflation = ilcs_L(Yobs, Y_env, SEED)
     naive = ilcs_fires(L, NAIVE_ALPHA)
     if n_cells not in alpha_cache:
         alpha_cache[n_cells] = calib_alpha_env(proj, Xc, Yobs, n_cells, B, rng)
@@ -117,7 +128,7 @@ def _eval_env(Y_env, Yobs, proj, Xc, n_cells, rng, B, alpha_cache, env_id, kind)
                 L_max=round(float(L.max()), 5),
                 naive_fires=naive, alpha_env=round(alpha_env, 5),
                 calibrated_fires=calibrated, ica_unit_var_ok=unit_ok,
-                ica_converged=converged)
+                ica_converged=converged, ica_used_deflation=used_deflation)
 
 
 # ------------------------------------------------------------------ per dataset run
@@ -189,13 +200,14 @@ def run_dataset(name, path, ctrl, single, smoke):
 
     unit_warn = int(sum(1 for r in records if not r["ica_unit_var_ok"]))
     nonconv = int(sum(1 for r in records if not r["ica_converged"]))
+    defl = int(sum(1 for r in records if r["ica_used_deflation"]))
     per_dataset = dict(dataset=name, control_label=repr(ctrl), single_gene_only=single,
                        d_proj=D, nmin=NMIN, n_control=int(len(Xc)),
                        n_powered_perts=len(perts), naive_alpha=NAIVE_ALPHA, B_null=B,
                        kurtosis=[round(float(x), 4) for x in kurt],
                        n_dims_near_gaussian=n_near_gaussian,
                        ica_unit_var_warn=unit_warn, ica_nonconverged_count=nonconv,
-                       records=records)
+                       ica_deflation_count=defl, records=records)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
 
@@ -207,7 +219,7 @@ def run_dataset(name, path, ctrl, single, smoke):
         naive_pert_rate=rate("pert", "naive_fires"), calib_pert_rate=rate("pert", "calibrated_fires"),
         jaccard_calib_vs_gate=jaccard, jaccard_note=jreason,
         n_dims_near_gaussian=n_near_gaussian, ica_unit_var_warn=unit_warn,
-        ica_nonconverged_count=nonconv)
+        ica_nonconverged_count=nonconv, ica_deflation_count=defl)
     print(json.dumps(summary, indent=2), flush=True)
     return summary
 
