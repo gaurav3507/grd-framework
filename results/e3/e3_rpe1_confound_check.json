@@ -1,0 +1,8 @@
+{
+  "dataset": "causalbench_rpe1",
+  "random_split_detect": "0/20",
+  "structured_split_detect": "20/20",
+  "n_detected_perts": 52,
+  "top2_energy_mean": 0.609,
+  "top2_energy_median": 0.729
+}
