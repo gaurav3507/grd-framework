@@ -16,6 +16,14 @@ splits), and on real perturbations. Two arms per environment:
 Reuses, verbatim, the E3 panel's pr-loader and control-projection recipe and the
 e3_rpe1_confound_check structured-split construction. Modifies no existing e3 script.
 
+Cost note: the control-side ICA of the full control set Yobs is identical across every
+environment and every null draw, so it is computed ONCE per dataset (control_rows) and
+reused via ilcs_L_given_ctrl. The calibrated null is computed per SIZE BUCKET (6
+log-spaced buckets over the powered-pert sizes), not per distinct cell count, so the
+null costs <= 6 * B small-matrix fits per dataset rather than one null per environment.
+These two changes only remove redundant ICA solves; the L statistic, psi-sort, the
+Yobs-vs-n_env geometry, and the null seeding are unchanged.
+
 Data lives on the A100 (/workspace/external/...), not the Mac; run --smoke only where
 the K562 h5ad is reachable. anndata is imported lazily inside the loader so the iLCS
 functions can be exercised without it.
@@ -50,6 +58,7 @@ GATE_JSON = {
 OUT = Path("results/ilcs_baseline")
 NAIVE_ALPHA = 0.2
 B_NULL = 20
+N_BUCKETS = 6
 
 
 # ------------------------------------------------------------ iLCS (Chen 2024 Alg 1)
@@ -82,48 +91,77 @@ def _ica_rows(Y, seed):
     return M[order], unit_ok, converged, algo
 
 
+def _L_from_rows(Mc, Me):
+    """The iLCS empirical L statistic (Chen 2024 Sec 5.1) between two psi-sorted
+    unmixing-row matrices. Unchanged from the original ilcs_L body.
+    """
+    num = np.abs(np.abs(Mc) - np.abs(Me)).sum(1)
+    den = np.abs(Mc).sum(1) + np.abs(Me).sum(1) + 1e-12
+    return num / den
+
+
 def ilcs_L(Y_ctrl, Y_env, seed):
-    """Length-D iLCS shift vector L between control and one environment (K=2).
-    L_i = sum|abs(M_ctrl[i]) - abs(M_env[i])| / (sum|M_ctrl[i]| + sum|M_env[i]|).
-    Returns (L, unit_var_ok, converged, used_deflation). The L statistic and psi-sort
-    are unchanged.
+    """Length-D iLCS shift vector L between control and one environment (K=2), fitting
+    ICA on BOTH arms. Retained for the standalone self-test; dataset work uses
+    ilcs_L_given_ctrl with a precomputed control side.
+    Returns (L, unit_var_ok, converged, used_deflation).
     """
     Mc, okc, cc, ac = _ica_rows(np.asarray(Y_ctrl), seed)
     Me, oke, ce, ae = _ica_rows(np.asarray(Y_env), seed)
-    num = np.abs(np.abs(Mc) - np.abs(Me)).sum(1)
-    den = np.abs(Mc).sum(1) + np.abs(Me).sum(1) + 1e-12
-    return num / den, bool(okc and oke), bool(cc and ce), bool("deflation" in (ac, ae))
+    return _L_from_rows(Mc, Me), bool(okc and oke), bool(cc and ce), bool("deflation" in (ac, ae))
+
+
+def ilcs_L_given_ctrl(control_rows, Y_env, seed):
+    """iLCS L between a PRECOMPUTED control-row matrix and one environment. The control
+    side (full Yobs) is identical across every environment and null draw, so it is fit
+    once per dataset and passed in here. Only the environment arm is fit. This changes
+    nothing in the statistic; it removes the redundant re-fit of the full control ICA.
+    Returns (L, env_unit_ok, env_converged, used_deflation).
+    """
+    Mc, okc, cc, ac = control_rows
+    Me, oke, ce, ae = _ica_rows(np.asarray(Y_env), seed)
+    return _L_from_rows(Mc, Me), bool(okc and oke), bool(cc and ce), bool("deflation" in (ac, ae))
 
 
 def ilcs_fires(L, alpha):
     return bool(np.any(np.asarray(L) > alpha))
 
 
-# ------------------------------------------------------------ calibrated alpha_env
-def calib_alpha_env(proj, Xc, Yobs_full, n_env, B, rng):
-    """95th percentile of max_i L over B size-matched null draws that mirror the REAL
-    test geometry: the first arm is fixed at the full control projection Yobs_full (the
-    same first arm as ilcs_L(Yobs, Yp)), the second arm is a control subsample of size
-    n_env. Each draw uses a per-draw ICA seed SEED+b so the null carries ICA-init
-    variation. Same size-matching principle as pr.null_threshold (Lesson 2).
+# ------------------------------------------------------------ calibrated alpha per bucket
+def calib_alpha_bucket(proj, Xc, control_rows, rep_size, B, rng):
+    """95th percentile of max_i L over B size-matched null draws for one size bucket.
+    Mirrors the real-test geometry: control side fixed at control_rows (from full Yobs),
+    env side a control subsample of the bucket's representative size rep_size. Each draw
+    uses a per-draw ICA seed SEED+b so the null carries ICA-init variation. Same
+    size-matching principle as pr.null_threshold (Lesson 2).
     """
     N = len(Xc)
+    m = rep_size if rep_size < N else N
     maxL = np.empty(B)
     for b in range(B):
-        idx = rng.choice(N, n_env if n_env < N else N, replace=False)   # size-matched to the env
-        Lb, _, _, _ = ilcs_L(Yobs_full, proj(Xc[idx]), SEED + b)
+        idx = rng.choice(N, m, replace=False)
+        Lb, _, _, _ = ilcs_L_given_ctrl(control_rows, proj(Xc[idx]), SEED + b)
         maxL[b] = float(Lb.max())
     return float(np.percentile(maxL, 95))
 
 
-def _eval_env(Y_env, Yobs, proj, Xc, n_cells, rng, B, alpha_cache, env_id, kind):
-    L, unit_ok, converged, used_deflation = ilcs_L(Yobs, Y_env, SEED)
+def _bucket_index(n_cells, edges):
+    """Bucket index for a cell count given the log-spaced bucket edges (len N_BUCKETS+1).
+    np.digitize with the interior edges; clipped to [0, N_BUCKETS-1].
+    """
+    return int(np.clip(np.digitize(n_cells, edges[1:-1]), 0, N_BUCKETS - 1))
+
+
+def _eval_env(Y_env, control_rows, proj, Xc, n_cells, rng, B, alpha_cache,
+              edges, rep_sizes, env_id, kind):
+    L, unit_ok, converged, used_deflation = ilcs_L_given_ctrl(control_rows, Y_env, SEED)
     naive = ilcs_fires(L, NAIVE_ALPHA)
-    if n_cells not in alpha_cache:
-        alpha_cache[n_cells] = calib_alpha_env(proj, Xc, Yobs, n_cells, B, rng)
-    alpha_env = alpha_cache[n_cells]
+    bi = _bucket_index(n_cells, edges)
+    if bi not in alpha_cache:
+        alpha_cache[bi] = calib_alpha_bucket(proj, Xc, control_rows, rep_sizes[bi], B, rng)
+    alpha_env = alpha_cache[bi]
     calibrated = bool(float(L.max()) > alpha_env)
-    return dict(kind=kind, id=env_id, n_cells=int(n_cells),
+    return dict(kind=kind, id=env_id, n_cells=int(n_cells), bucket=bi,
                 L=[round(float(x), 5) for x in L],
                 L_max=round(float(L.max()), 5),
                 naive_fires=naive, alpha_env=round(alpha_env, 5),
@@ -156,6 +194,18 @@ def run_dataset(name, path, ctrl, single, smoke):
     if smoke:
         n_fake, n_rand, n_pert, B = (5, 5, 20, 10)
 
+    # Control-side ICA, computed ONCE and reused for every environment and null draw.
+    control_rows = _ica_rows(Yobs, SEED)
+
+    # Size buckets: N_BUCKETS log-spaced edges over the powered-pert sizes. One null per
+    # bucket, evaluated at the bucket's geometric-mean representative size.
+    smin, smax = int(min(sizes)), int(max(sizes))
+    edges = np.unique(np.geomspace(smin, max(smax, smin + 1), N_BUCKETS + 1).astype(int))
+    while len(edges) < N_BUCKETS + 1:                       # guard tiny/degenerate ranges
+        edges = np.unique(np.append(edges, edges[-1] + 1))
+    edges = edges[:N_BUCKETS + 1]
+    rep_sizes = [int(round(np.sqrt(edges[i] * edges[i + 1]))) for i in range(N_BUCKETS)]
+
     # control-projection kurtosis (ICA needs at most one near-Gaussian component)
     kurt = kurtosis(Zc, axis=0, fisher=True)
     n_near_gaussian = int(np.sum(np.abs(kurt) < 0.5))
@@ -167,13 +217,15 @@ def run_dataset(name, path, ctrl, single, smoke):
     for f in range(n_fake):
         n = int(rng.choice(sizes))
         sub = proj(Xc[rng.choice(len(Xc), n, replace=False)])
-        records.append(_eval_env(sub, Yobs, proj, Xc, n, rng, B, alpha_cache, f, "fake"))
+        records.append(_eval_env(sub, control_rows, proj, Xc, n, rng, B, alpha_cache,
+                                 edges, rep_sizes, f, "fake"))
 
     # (ii) random control splits
     for r in range(n_rand):
         n = int(rng.choice(sizes))
         idx = rng.choice(len(Xc), n, replace=False)
-        records.append(_eval_env(proj(Xc[idx]), Yobs, proj, Xc, n, rng, B, alpha_cache, r, "random"))
+        records.append(_eval_env(proj(Xc[idx]), control_rows, proj, Xc, n, rng, B,
+                                 alpha_cache, edges, rep_sizes, r, "random"))
 
     # (iii) structured control splits along top control PCs (verbatim from confound check)
     pc = Zc - Zc.mean(0); msz = int(np.median(sizes)); struct = []
@@ -182,14 +234,15 @@ def run_dataset(name, path, ctrl, single, smoke):
     if smoke:
         struct = struct[:5]
     for si, sub_idx in enumerate(struct):
-        records.append(_eval_env(proj(Xc[sub_idx]), Yobs, proj, Xc, len(sub_idx), rng, B,
-                                 alpha_cache, si, "struct"))
+        records.append(_eval_env(proj(Xc[sub_idx]), control_rows, proj, Xc, len(sub_idx),
+                                 rng, B, alpha_cache, edges, rep_sizes, si, "struct"))
 
     # (iv) powered real perturbations
     pert_list = perts[:n_pert] if smoke else perts
     for p in pert_list:
         Yp = proj(X[g == p]); n = len(Yp)
-        records.append(_eval_env(Yp, Yobs, proj, Xc, n, rng, B, alpha_cache, p, "pert"))
+        records.append(_eval_env(Yp, control_rows, proj, Xc, n, rng, B, alpha_cache,
+                                 edges, rep_sizes, p, "pert"))
 
     def rate(kind, key):
         rows = [r for r in records if r["kind"] == kind]
@@ -201,18 +254,24 @@ def run_dataset(name, path, ctrl, single, smoke):
     unit_warn = int(sum(1 for r in records if not r["ica_unit_var_ok"]))
     nonconv = int(sum(1 for r in records if not r["ica_converged"]))
     defl = int(sum(1 for r in records if r["ica_used_deflation"]))
-    # non-convergence is now an intended measurement, not a failure. Denominator counts
-    # the env+ctrl fit of each record (2 per record); null-draw fits are not tracked.
-    total_ica_fits = len(records) * 2
-    nonconv_frac = round(nonconv / total_ica_fits, 4) if total_ica_fits else 0.0
+    # non-convergence is an intended measurement. control_rows is fit once; the env fit
+    # of each record is one solve, so the tracked denominator is 1 per record plus the
+    # single control fit. Null-draw fits are not tracked.
+    ctrl_converged = bool(control_rows[2])
+    total_ica_fits = len(records) + 1
+    nonconv_total = nonconv + (0 if ctrl_converged else 1)
+    nonconv_frac = round(nonconv_total / total_ica_fits, 4) if total_ica_fits else 0.0
     per_dataset = dict(dataset=name, control_label=repr(ctrl), single_gene_only=single,
                        d_proj=D, nmin=NMIN, n_control=int(len(Xc)),
                        n_powered_perts=len(perts), naive_alpha=NAIVE_ALPHA, B_null=B,
+                       n_buckets=N_BUCKETS, bucket_edges=[int(x) for x in edges],
+                       bucket_rep_sizes=rep_sizes,
+                       control_ica_converged=ctrl_converged,
                        kurtosis=[round(float(x), 4) for x in kurt],
                        n_dims_near_gaussian=n_near_gaussian,
-                       ica_unit_var_warn=unit_warn, ica_nonconverged_count=nonconv,
+                       ica_unit_var_warn=unit_warn, ica_nonconverged_count=nonconv_total,
                        ica_nonconverged_frac=nonconv_frac, total_ica_fits=total_ica_fits,
-                       ica_nonconverged_frac_note="denominator = len(records)*2, env+ctrl fits only (null-draw fits not counted)",
+                       ica_nonconverged_frac_note="denominator = len(records) env fits + 1 control fit (null-draw fits not counted)",
                        ica_deflation_count=defl, records=records)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
@@ -225,7 +284,7 @@ def run_dataset(name, path, ctrl, single, smoke):
         naive_pert_rate=rate("pert", "naive_fires"), calib_pert_rate=rate("pert", "calibrated_fires"),
         jaccard_calib_vs_gate=jaccard, jaccard_note=jreason,
         n_dims_near_gaussian=n_near_gaussian, ica_unit_var_warn=unit_warn,
-        ica_nonconverged_count=nonconv, ica_nonconverged_frac=nonconv_frac,
+        ica_nonconverged_count=nonconv_total, ica_nonconverged_frac=nonconv_frac,
         total_ica_fits=total_ica_fits, ica_deflation_count=defl)
     print(json.dumps(summary, indent=2), flush=True)
     return summary
