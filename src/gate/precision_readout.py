@@ -97,3 +97,89 @@ def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None):
                 signals=signals, detect=detect,
                 ratios=[round(r, 2) for r in ratios],
                 alpha=float(alpha), B=int(B))
+
+
+# ------------------------------------------------------------------ Subspace attribution (P3)
+# Additive readout for the mechanism-vs-measurement verdict (Section X.5, Proposition 3).
+# Unlike the precision statistic above, these operate on the FULL observed space (not the
+# control-fit projection): a per-environment measurement gain rotates the signal subspace
+# OUT of the projected basis, so the rotation is only visible before projection. Same
+# size-matched-null principle as null_threshold (Lesson 2).
+
+def _top_subspace(X, d):
+    """Orthonormal basis (D, d) of the top-d principal subspace of centered X."""
+    X = np.asarray(X)
+    Xc = X - X.mean(0)
+    _, _, Vt = np.linalg.svd(Xc, full_matrices=False)
+    return Vt[:d].T
+
+
+def subspace_angle(X_env, X_obs, d):
+    """Largest principal angle (radians) between the top-d signal subspaces of the
+    environment and the control, in the full observed space. 0 means the environment
+    preserved the control's signal subspace (consistent with shared mixing and a
+    mechanism shift, Prop 3(i)); a large angle means the subspace rotated (the
+    signature of a diagonal measurement gain, Prop 3(ii)).
+    """
+    U0 = _top_subspace(X_obs, d)
+    Ue = _top_subspace(X_env, d)
+    s = np.linalg.svd(U0.T @ Ue, compute_uv=False)
+    return float(np.arccos(np.clip(s.min(), -1.0, 1.0)))
+
+
+def subspace_null(X_obs, d, alpha=0.05, B=500, rng=None, n_env=None):
+    """(1 - alpha) quantile of the largest principal angle between two independent
+    size-n_env bootstrap resamples of the control, i.e. the angle attributable to
+    sampling alone at this environment's sample size. Same Lesson-2 size matching as
+    null_threshold: a smaller environment tolerates a larger sampling angle.
+    """
+    if rng is None:
+        raise ValueError("subspace_null needs an explicit rng")
+    X_obs = np.asarray(X_obs)
+    n = X_obs.shape[0]
+    m = n if n_env is None else int(n_env)
+    vals = np.empty(B)
+    for b in range(B):
+        i1 = rng.integers(0, n, m)
+        i2 = rng.integers(0, n, m)
+        vals[b] = subspace_angle(X_obs[i1], X_obs[i2], d)
+    return float(np.quantile(vals, 1.0 - alpha))
+
+
+def attribute_environment(X_env, X_obs, d, detected, alpha=0.05, B=500, rng=None,
+                          subspace_crit=None):
+    """Three-way verdict for one environment (Section X.6).
+
+    detected : bool, whether the precision screen fired on this environment (computed
+               separately in the projected space via precision_signal/null_threshold).
+    subspace_crit : optional precomputed size-matched subspace null (radians) for this
+               environment's sample size, e.g. cached when many environments share one
+               control and one sample size. When None it is computed here. This is a
+               precomputed value of the same statistic, not a tuning constant.
+    Returns dict with the verdict label, the measured subspace angle, its size-matched
+    null, and the raw fired flag. Requires the FULL-D X_env / X_obs.
+
+      NO_DETECTABLE_SHIFT         precision screen did not fire.
+      MECHANISM_SUPPORTED         fired AND subspace angle within its null (subspace
+                                  preserved: consistent with a mechanism shift under
+                                  shared mixing).
+      DETECTABLE_BUT_UNATTRIBUTED fired AND subspace angle exceeds its null (subspace
+                                  rotated: the change could be a measurement gain, so
+                                  detectability does not license a mechanism claim).
+    """
+    if rng is None and subspace_crit is None:
+        raise ValueError("attribute_environment needs an explicit rng (or a precomputed subspace_crit)")
+    if not detected:
+        return dict(verdict="NO_DETECTABLE_SHIFT", detected=False,
+                    subspace_angle_deg=None, subspace_null_deg=None,
+                    subspace_rotated=None)
+    n_env = np.asarray(X_env).shape[0]
+    ang = subspace_angle(X_env, X_obs, d)
+    crit = subspace_crit if subspace_crit is not None else subspace_null(
+        X_obs, d, alpha=alpha, B=B, rng=rng, n_env=n_env)
+    rotated = bool(ang > crit)
+    verdict = "DETECTABLE_BUT_UNATTRIBUTED" if rotated else "MECHANISM_SUPPORTED"
+    return dict(verdict=verdict, detected=True,
+                subspace_angle_deg=round(float(np.degrees(ang)), 3),
+                subspace_null_deg=round(float(np.degrees(crit)), 3),
+                subspace_rotated=rotated)
