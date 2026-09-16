@@ -43,7 +43,7 @@ from scipy.stats import kurtosis
 spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
 pr = importlib.util.module_from_spec(spec); spec.loader.exec_module(pr)
 
-D = 10; NMIN = 200; SEED = 0
+D = 10; NMIN = 200; SEED = 0   # SEED is overridden by --seed in main()
 
 # The three dataset invocations, taken verbatim from experiments/e3_stability_perturbseq.py
 # run(name, path, ctrl, single). ctrl is the control guide label ('' = control).
@@ -58,6 +58,10 @@ GATE_JSON = {
     "Norman": "results/e3/e3_Norman_CRISPRa_singlegene.json",
 }
 OUT = Path("results/ilcs_baseline")
+
+def seed_out(seed):
+    """Per-seed output directory so multiple seeds never overwrite each other."""
+    return OUT / f"seed{seed}"
 NAIVE_ALPHA = 0.2
 B_NULL = 20
 N_BUCKETS = 6
@@ -177,7 +181,7 @@ def _eval_env(Y_env, control_rows, proj, Xc, n_cells, rng, B, alpha_cache,
 
 
 # ------------------------------------------------------------------ per dataset run
-def run_dataset(name, path, ctrl, single, smoke):
+def run_dataset(name, path, ctrl, single, smoke, outdir):
     import anndata as ad                      # lazy: only needed for the real run
     rng = np.random.default_rng(SEED)
     _log(name, f"loading {path}")
@@ -302,9 +306,9 @@ def run_dataset(name, path, ctrl, single, smoke):
         ica_nonconverged_count=nonconv_total, ica_nonconverged_frac=nonconv_frac,
         total_ica_fits=total_ica_fits, ica_deflation_count=defl)
     per_dataset["summary"] = summary
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
-    _log(name, "written " + str(OUT / f"{name}.json"))
+    outdir.mkdir(parents=True, exist_ok=True)
+    (outdir / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
+    _log(name, "written " + str(outdir / f"{name}.json"))
     print(json.dumps(summary, indent=2), flush=True)
     return summary
 
@@ -356,22 +360,22 @@ def _summary_from_perdataset(pd):
         total_ica_fits=pd.get("total_ica_fits"), ica_deflation_count=pd.get("ica_deflation_count"))
 
 
-def write_summary(mode):
+def write_summary(mode, outdir, seed):
     """Assemble summary.json from every per-dataset JSON currently on disk, plus any
     error files. Called at the end of every invocation, so a run of one dataset never
     discards the results of another.
     """
-    OUT.mkdir(parents=True, exist_ok=True)
+    outdir.mkdir(parents=True, exist_ok=True)
     per, errors = {}, {}
     for name, _, _, _ in DATASETS:
-        pj = OUT / f"{name}.json"
-        ej = OUT / f"{name}.error.txt"
+        pj = outdir / f"{name}.json"
+        ej = outdir / f"{name}.error.txt"
         if pj.exists():
             per[name] = _summary_from_perdataset(json.loads(pj.read_text()))
         if ej.exists():
             errors[name] = ej.read_text()[-2000:]
-    (OUT / "summary.json").write_text(json.dumps(dict(
-        mode=mode, seed=SEED,
+    (outdir / "summary.json").write_text(json.dumps(dict(
+        mode=mode, seed=seed,
         datasets_complete=sorted(per.keys()),
         datasets_failed=sorted(errors.keys()),
         imported_from="experiments/e3_perturbseq_panel.py (pr-loader, proj recipe), "
@@ -383,14 +387,61 @@ def write_summary(mode):
     return per, errors
 
 
+def aggregate_seeds():
+    """Read every results/ilcs_baseline/seed*/summary.json and write an aggregate with
+    mean and SD of each rate across seeds, matching how the E3 panel reports stability.
+    """
+    seed_dirs = sorted(OUT.glob("seed*"))
+    seeds = [int(p.name[4:]) for p in seed_dirs if (p / "summary.json").exists()]
+    if not seeds:
+        sys.exit("no per-seed summaries found under results/ilcs_baseline/seed*/")
+    keys = ["naive_fake_rate","calib_fake_rate","naive_random_rate","calib_random_rate",
+            "naive_struct_rate","calib_struct_rate","naive_pert_rate","calib_pert_rate",
+            "ica_nonconverged_frac"]
+    names = [d[0] for d in DATASETS]
+    agg = {}
+    for name in names:
+        per_key = {k: [] for k in keys}
+        n_present = 0
+        for p in seed_dirs:
+            sj = p / "summary.json"
+            if not sj.exists():
+                continue
+            s = json.loads(sj.read_text())["per_dataset"].get(name)
+            if s is None:
+                continue
+            n_present += 1
+            for k in keys:
+                v = s.get(k)
+                if v is not None:
+                    per_key[k].append(float(v))
+        agg[name] = {k: (round(float(np.mean(v)), 4), round(float(np.std(v)), 4), len(v))
+                     for k, v in per_key.items() if v}
+        agg[name]["n_seeds"] = n_present
+    out = dict(seeds=sorted(seeds), note="each entry is [mean, sd, n_seeds]", per_dataset=agg)
+    (OUT / "aggregate.json").write_text(json.dumps(out, indent=2))
+    print(json.dumps(out, indent=2), flush=True)
+
+
 def main():
+    global SEED
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", default="all",
-                    help="K562 | RPE1 | Norman | all (default). Each dataset writes its own JSON; "
-                         "summary.json is rebuilt from whatever is on disk.")
+                    help="K562 | RPE1 | Norman | all (default). Each writes its own JSON.")
     ap.add_argument("--smoke", action="store_true", help="K562 only, reduced counts")
+    ap.add_argument("--seed", type=int, default=0,
+                    help="random seed; output goes to results/ilcs_baseline/seed<SEED>/")
+    ap.add_argument("--aggregate", action="store_true",
+                    help="read all seed*/ summaries and write aggregate.json (mean/SD across seeds)")
     args = ap.parse_args()
+
+    if args.aggregate:
+        aggregate_seeds()
+        return
+
+    SEED = args.seed
     mode = "smoke" if args.smoke else "full"
+    outdir = seed_out(SEED)
 
     if args.smoke:
         todo = [DATASETS[0]]
@@ -401,20 +452,20 @@ def main():
         if not todo:
             sys.exit(f"unknown --dataset {args.dataset}; choose from {[d[0] for d in DATASETS]}")
 
-    OUT.mkdir(parents=True, exist_ok=True)
+    outdir.mkdir(parents=True, exist_ok=True)
     for (name, path, ctrl, single) in todo:
-        err = OUT / f"{name}.error.txt"
+        err = outdir / f"{name}.error.txt"
         if err.exists():
             err.unlink()
         try:
-            run_dataset(name, path, ctrl, single, args.smoke)
+            run_dataset(name, path, ctrl, single, args.smoke, outdir)
         except Exception:
             tb = traceback.format_exc()
             err.write_text(tb)
             _log(name, "FAILED, traceback written to " + str(err))
             print(tb, flush=True)
-    per, errors = write_summary(mode)
-    _log("done", f"complete={sorted(per.keys())} failed={sorted(errors.keys())}")
+    per, errors = write_summary(mode, outdir, SEED)
+    _log("done", f"seed={SEED} complete={sorted(per.keys())} failed={sorted(errors.keys())}")
 
 
 if __name__ == "__main__":
