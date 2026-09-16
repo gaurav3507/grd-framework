@@ -53,7 +53,7 @@ B_NULL = 20
 
 
 # ------------------------------------------------------------ iLCS (Chen 2024 Alg 1)
-ICA_MAX_ITER = 2500
+ICA_MAX_ITER = 500
 ICA_TOL = 1e-3
 
 
@@ -201,12 +201,18 @@ def run_dataset(name, path, ctrl, single, smoke):
     unit_warn = int(sum(1 for r in records if not r["ica_unit_var_ok"]))
     nonconv = int(sum(1 for r in records if not r["ica_converged"]))
     defl = int(sum(1 for r in records if r["ica_used_deflation"]))
+    # non-convergence is now an intended measurement, not a failure. Denominator counts
+    # the env+ctrl fit of each record (2 per record); null-draw fits are not tracked.
+    total_ica_fits = len(records) * 2
+    nonconv_frac = round(nonconv / total_ica_fits, 4) if total_ica_fits else 0.0
     per_dataset = dict(dataset=name, control_label=repr(ctrl), single_gene_only=single,
                        d_proj=D, nmin=NMIN, n_control=int(len(Xc)),
                        n_powered_perts=len(perts), naive_alpha=NAIVE_ALPHA, B_null=B,
                        kurtosis=[round(float(x), 4) for x in kurt],
                        n_dims_near_gaussian=n_near_gaussian,
                        ica_unit_var_warn=unit_warn, ica_nonconverged_count=nonconv,
+                       ica_nonconverged_frac=nonconv_frac, total_ica_fits=total_ica_fits,
+                       ica_nonconverged_frac_note="denominator = len(records)*2, env+ctrl fits only (null-draw fits not counted)",
                        ica_deflation_count=defl, records=records)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
@@ -219,7 +225,8 @@ def run_dataset(name, path, ctrl, single, smoke):
         naive_pert_rate=rate("pert", "naive_fires"), calib_pert_rate=rate("pert", "calibrated_fires"),
         jaccard_calib_vs_gate=jaccard, jaccard_note=jreason,
         n_dims_near_gaussian=n_near_gaussian, ica_unit_var_warn=unit_warn,
-        ica_nonconverged_count=nonconv, ica_deflation_count=defl)
+        ica_nonconverged_count=nonconv, ica_nonconverged_frac=nonconv_frac,
+        total_ica_fits=total_ica_fits, ica_deflation_count=defl)
     print(json.dumps(summary, indent=2), flush=True)
     return summary
 
