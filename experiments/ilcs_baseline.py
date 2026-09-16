@@ -49,11 +49,11 @@ GATE_JSON = {
 }
 OUT = Path("results/ilcs_baseline")
 NAIVE_ALPHA = 0.2
-B_NULL = 50
+B_NULL = 20
 
 
 # ------------------------------------------------------------ iLCS (Chen 2024 Alg 1)
-ICA_MAX_ITER = 10000
+ICA_MAX_ITER = 2500
 ICA_TOL = 1e-3
 
 
