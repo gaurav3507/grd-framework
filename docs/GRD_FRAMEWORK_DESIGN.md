@@ -1,7 +1,7 @@
 # Gate-Recover-Discover (GRD): A Precondition-Gated Framework for Causal Representation Learning and Causal Discovery
 
 Design document v0.1, 1 Sep 2026.
-Author: Gaurav Goyal (TIET, reg. 902503013). Status: DESIGN ONLY, no code exists yet.
+Author: Gaurav Goyal (TIET, reg. 902503013). Status: IMPLEMENTED. Framework built and validated (E0-E3 + iLCS baseline); see README.md and notes/TRACK_SHEET.md.
 Repo (to be created): github.com/gaurav3507/grd-framework. Do NOT reuse ccrl-newidea2.
 
 Style rule: no em dashes anywhere in this project (papers, code, comments, docs).
