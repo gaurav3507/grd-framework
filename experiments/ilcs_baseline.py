@@ -30,6 +30,8 @@ functions can be exercised without it.
 """
 import sys
 import json
+import argparse
+import traceback
 import importlib.util
 from pathlib import Path
 
@@ -59,6 +61,11 @@ OUT = Path("results/ilcs_baseline")
 NAIVE_ALPHA = 0.2
 B_NULL = 20
 N_BUCKETS = 6
+
+
+def _log(name, msg):
+    """Progress line, flushed immediately so the log shows where a run is at all times."""
+    print(f"[{name}] {msg}", flush=True)
 
 
 # ------------------------------------------------------------ iLCS (Chen 2024 Alg 1)
@@ -173,10 +180,12 @@ def _eval_env(Y_env, control_rows, proj, Xc, n_cells, rng, B, alpha_cache,
 def run_dataset(name, path, ctrl, single, smoke):
     import anndata as ad                      # lazy: only needed for the real run
     rng = np.random.default_rng(SEED)
+    _log(name, f"loading {path}")
     A = ad.read_h5ad(path)
     X = A.X.toarray().astype(np.float64) if hasattr(A.X, "toarray") else np.asarray(A.X, np.float64)
     g = A.obs['guide_ids'].astype(str).values
     del A
+    _log(name, f"loaded X {X.shape}, {len(np.unique(g))} guide labels")
     if single:
         is_single = lambda s: s != ctrl and s != "" and "," not in s and "+" not in s and "_" not in s
         cand = sorted({s for s in np.unique(g) if is_single(s)})
@@ -189,13 +198,18 @@ def run_dataset(name, path, ctrl, single, smoke):
     Yobs = proj(Xc); Zc = Yobs
     perts = [p for p in cand if (g == p).sum() >= NMIN]
     sizes = [int((g == p).sum()) for p in perts]
+    _log(name, f"control {len(Xc)} cells | powered perts {len(perts)} | sizes {min(sizes) if sizes else None}..{max(sizes) if sizes else None}")
+    if not perts:
+        raise RuntimeError(f"{name}: no powered perturbations at NMIN={NMIN}; cannot build size buckets")
 
     n_fake, n_rand, n_pert, B = (50, 20, len(perts), B_NULL)
     if smoke:
         n_fake, n_rand, n_pert, B = (5, 5, 20, 10)
 
     # Control-side ICA, computed ONCE and reused for every environment and null draw.
+    _log(name, "fitting control ICA once")
     control_rows = _ica_rows(Yobs, SEED)
+    _log(name, f"control ICA done (converged={control_rows[2]}, algo={control_rows[3]})")
 
     # Size buckets: N_BUCKETS log-spaced edges over the powered-pert sizes. One null per
     # bucket, evaluated at the bucket's geometric-mean representative size.
@@ -214,6 +228,7 @@ def run_dataset(name, path, ctrl, single, smoke):
     records = []
 
     # (i) size-matched pure-control fakes (size drawn from powered-pert sizes)
+    _log(name, f"fakes x{n_fake}")
     for f in range(n_fake):
         n = int(rng.choice(sizes))
         sub = proj(Xc[rng.choice(len(Xc), n, replace=False)])
@@ -221,6 +236,7 @@ def run_dataset(name, path, ctrl, single, smoke):
                                  edges, rep_sizes, f, "fake"))
 
     # (ii) random control splits
+    _log(name, f"random splits x{n_rand}")
     for r in range(n_rand):
         n = int(rng.choice(sizes))
         idx = rng.choice(len(Xc), n, replace=False)
@@ -233,12 +249,14 @@ def run_dataset(name, path, ctrl, single, smoke):
         o = np.argsort(pc[:, j]); struct += [o[:msz], o[-msz:]]
     if smoke:
         struct = struct[:5]
+    _log(name, f"structured splits x{len(struct)}")
     for si, sub_idx in enumerate(struct):
         records.append(_eval_env(proj(Xc[sub_idx]), control_rows, proj, Xc, len(sub_idx),
                                  rng, B, alpha_cache, edges, rep_sizes, si, "struct"))
 
     # (iv) powered real perturbations
     pert_list = perts[:n_pert] if smoke else perts
+    _log(name, f"real perts x{len(pert_list)}")
     for p in pert_list:
         Yp = proj(X[g == p]); n = len(Yp)
         records.append(_eval_env(Yp, control_rows, proj, Xc, n, rng, B, alpha_cache,
@@ -273,9 +291,6 @@ def run_dataset(name, path, ctrl, single, smoke):
                        ica_nonconverged_frac=nonconv_frac, total_ica_fits=total_ica_fits,
                        ica_nonconverged_frac_note="denominator = len(records) env fits + 1 control fit (null-draw fits not counted)",
                        ica_deflation_count=defl, records=records)
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
-
     summary = dict(
         dataset=name,
         naive_fake_rate=rate("fake", "naive_fires"), calib_fake_rate=rate("fake", "calibrated_fires"),
@@ -286,6 +301,10 @@ def run_dataset(name, path, ctrl, single, smoke):
         n_dims_near_gaussian=n_near_gaussian, ica_unit_var_warn=unit_warn,
         ica_nonconverged_count=nonconv_total, ica_nonconverged_frac=nonconv_frac,
         total_ica_fits=total_ica_fits, ica_deflation_count=defl)
+    per_dataset["summary"] = summary
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / f"{name}.json").write_text(json.dumps(per_dataset, indent=2))
+    _log(name, "written " + str(OUT / f"{name}.json"))
     print(json.dumps(summary, indent=2), flush=True)
     return summary
 
@@ -314,23 +333,88 @@ def _jaccard_vs_gate(name, calib_ids):
     return (round(len(calib_ids & gate_ids) / len(union), 4) if union else 0.0), "per-pert detect dict"
 
 
-def main():
-    smoke = "--smoke" in sys.argv
-    import shutil
-    shutil.rmtree(OUT, ignore_errors=True)
-    datasets = [DATASETS[0]] if smoke else DATASETS
-    summaries = {}
-    for (name, path, ctrl, single) in datasets:
-        summaries[name] = run_dataset(name, path, ctrl, single, smoke)
+def _summary_from_perdataset(pd):
+    """Rebuild a dataset's summary from its per-dataset JSON. Uses the stored "summary"
+    key when present; otherwise recomputes the rates from the records (this handles a
+    per-dataset file written by an earlier version that lacked the key).
+    """
+    if "summary" in pd:
+        return pd["summary"]
+    recs = pd["records"]
+    def rate(kind, key):
+        rows = [r for r in recs if r["kind"] == kind]
+        return round(float(np.mean([r[key] for r in rows])), 4) if rows else None
+    return dict(
+        dataset=pd["dataset"],
+        naive_fake_rate=rate("fake", "naive_fires"), calib_fake_rate=rate("fake", "calibrated_fires"),
+        naive_random_rate=rate("random", "naive_fires"), calib_random_rate=rate("random", "calibrated_fires"),
+        naive_struct_rate=rate("struct", "naive_fires"), calib_struct_rate=rate("struct", "calibrated_fires"),
+        naive_pert_rate=rate("pert", "naive_fires"), calib_pert_rate=rate("pert", "calibrated_fires"),
+        jaccard_calib_vs_gate=None, jaccard_note="rebuilt from per-dataset file",
+        n_dims_near_gaussian=pd.get("n_dims_near_gaussian"), ica_unit_var_warn=pd.get("ica_unit_var_warn"),
+        ica_nonconverged_count=pd.get("ica_nonconverged_count"), ica_nonconverged_frac=pd.get("ica_nonconverged_frac"),
+        total_ica_fits=pd.get("total_ica_fits"), ica_deflation_count=pd.get("ica_deflation_count"))
+
+
+def write_summary(mode):
+    """Assemble summary.json from every per-dataset JSON currently on disk, plus any
+    error files. Called at the end of every invocation, so a run of one dataset never
+    discards the results of another.
+    """
     OUT.mkdir(parents=True, exist_ok=True)
+    per, errors = {}, {}
+    for name, _, _, _ in DATASETS:
+        pj = OUT / f"{name}.json"
+        ej = OUT / f"{name}.error.txt"
+        if pj.exists():
+            per[name] = _summary_from_perdataset(json.loads(pj.read_text()))
+        if ej.exists():
+            errors[name] = ej.read_text()[-2000:]
     (OUT / "summary.json").write_text(json.dumps(dict(
-        mode="smoke" if smoke else "full", seed=SEED,
+        mode=mode, seed=SEED,
+        datasets_complete=sorted(per.keys()),
+        datasets_failed=sorted(errors.keys()),
         imported_from="experiments/e3_perturbseq_panel.py (pr-loader, proj recipe), "
                       "experiments/e3_rpe1_confound_check.py (structured splits), "
                       "experiments/e3_stability_perturbseq.py (dataset tuples)",
         ilcs="reimplemented from Chen et al. 2024 (arXiv 2410.24059) Algorithm 1; "
              "original repo github.com/TianyuCodings/iLCS is unavailable (404)",
-        per_dataset=summaries), indent=2))
+        per_dataset=per, errors=errors), indent=2))
+    return per, errors
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dataset", default="all",
+                    help="K562 | RPE1 | Norman | all (default). Each dataset writes its own JSON; "
+                         "summary.json is rebuilt from whatever is on disk.")
+    ap.add_argument("--smoke", action="store_true", help="K562 only, reduced counts")
+    args = ap.parse_args()
+    mode = "smoke" if args.smoke else "full"
+
+    if args.smoke:
+        todo = [DATASETS[0]]
+    elif args.dataset == "all":
+        todo = DATASETS
+    else:
+        todo = [d for d in DATASETS if d[0] == args.dataset]
+        if not todo:
+            sys.exit(f"unknown --dataset {args.dataset}; choose from {[d[0] for d in DATASETS]}")
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    for (name, path, ctrl, single) in todo:
+        err = OUT / f"{name}.error.txt"
+        if err.exists():
+            err.unlink()
+        try:
+            run_dataset(name, path, ctrl, single, args.smoke)
+        except Exception:
+            tb = traceback.format_exc()
+            err.write_text(tb)
+            _log(name, "FAILED, traceback written to " + str(err))
+            print(tb, flush=True)
+    per, errors = write_summary(mode)
+    _log("done", f"complete={sorted(per.keys())} failed={sorted(errors.keys())}")
 
 
 if __name__ == "__main__":
