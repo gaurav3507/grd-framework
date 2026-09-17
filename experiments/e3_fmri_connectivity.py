@@ -1,100 +1,175 @@
-import sys, numpy as np, importlib.util, json, glob, os
+"""E3 fMRI connectivity panel with historical-vs-corrected gate decisions."""
+
+import glob
+import importlib.util
+import json
+import os
+import sys
 from pathlib import Path
-spec=importlib.util.spec_from_file_location("pr","src/gate/precision_readout.py")
-pr=importlib.util.module_from_spec(spec); spec.loader.exec_module(pr)
-mode=sys.argv[1]; SEED=0; rng=np.random.default_rng(SEED)
+
+import numpy as np
+
+from e3_gate_compare import (compare_geometries, comparison_summary,
+                             decision_records, shift_alignment)
+
+
+spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
+pr = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(pr)
+
+SEED = 0
+ALPHA = 0.05
+Q = 0.05
+B_BOOT = 500
+
 
 def subject_connectivity(ts):
-    # ts: (T, R) time series. Return upper-triangle of the RxR correlation matrix.
-    C=np.corrcoef(ts, rowvar=False)          # (R,R) functional connectivity
-    iu=np.triu_indices(C.shape[0], k=1)
-    return C[iu]                               # length R*(R-1)/2
+    C = np.corrcoef(ts, rowvar=False)
+    iu = np.triu_indices(C.shape[0], k=1)
+    return C[iu]
 
-def build_subject_vectors():
-    """Return dict {group_label: (n_subjects, F) connectivity matrix} and the baseline label."""
-    if mode=="abide":
-        z=np.load("/workspace/ranktest-diagnostics/data/abide_harmonized.npz", allow_pickle=True)
-        X=z['X'].astype(float); grp=z['site_ids']            # X:(subj,T,R)
-        feats={}
+
+def build_subject_vectors(mode):
+    """Return group connectivity matrices, baseline label, and group type."""
+    if mode == "abide":
+        z = np.load("/workspace/ranktest-diagnostics/data/abide_harmonized.npz",
+                    allow_pickle=True)
+        X = z["X"].astype(float)
+        group_ids = z["site_ids"]
+        features = {}
         for i in range(len(X)):
-            feats.setdefault(str(grp[i]), []).append(subject_connectivity(X[i]))
-        groups={k:np.array(v) for k,v in feats.items()}
-        baseline=max(groups, key=lambda k: len(groups[k]))   # largest site
-        gtype="site (MEASUREMENT shift)"
-    else:  # hcp
-        TS="/workspace/meridian-identifiability/hcp/ts"
-        TASKS=["WM","GAMBLING","MOTOR","LANGUAGE","SOCIAL","RELATIONAL","EMOTION"]
-        subs=sorted({os.path.basename(f).split("_")[0] for f in glob.glob(f"{TS}/*.npy")})
-        groups={}
-        for t in TASKS:
-            vs=[]
-            for s in subs:
-                # one connectivity per subject per task: concat LR+RL timepoints, then corr
-                arrs=[np.load(f"{TS}/{s}_{t}_{e}.npy").astype(float) for e in ("LR","RL")
-                      if os.path.exists(f"{TS}/{s}_{t}_{e}.npy")]
-                if arrs: vs.append(subject_connectivity(np.concatenate(arrs,0)))
-            if vs: groups[t]=np.array(vs)
-        baseline=max(groups, key=lambda k: len(groups[k]))   # largest task as reference
-        gtype="task (MECHANISM shift)"
-    return groups, baseline, gtype
+            features.setdefault(str(group_ids[i]), []).append(
+                subject_connectivity(X[i]))
+        groups = {label: np.asarray(values) for label, values in features.items()}
+        baseline = max(groups, key=lambda label: len(groups[label]))
+        group_type = "site (measurement shift)"
+    elif mode == "hcp":
+        ts_root = "/workspace/meridian-identifiability/hcp/ts"
+        tasks = ["WM", "GAMBLING", "MOTOR", "LANGUAGE", "SOCIAL",
+                 "RELATIONAL", "EMOTION"]
+        subjects = sorted({os.path.basename(f).split("_")[0]
+                           for f in glob.glob(f"{ts_root}/*.npy")})
+        groups = {}
+        for task in tasks:
+            values = []
+            for subject in subjects:
+                arrays = [
+                    np.load(f"{ts_root}/{subject}_{task}_{encoding}.npy").astype(float)
+                    for encoding in ("LR", "RL")
+                    if os.path.exists(f"{ts_root}/{subject}_{task}_{encoding}.npy")
+                ]
+                if arrays:
+                    values.append(subject_connectivity(np.concatenate(arrays, 0)))
+            if values:
+                groups[task] = np.asarray(values)
+        baseline = max(groups, key=lambda label: len(groups[label]))
+        group_type = "task (mechanism shift)"
+    else:
+        raise SystemExit(f"unknown mode: {mode}")
 
-groups, baseline, gtype = build_subject_vectors()
-sizes={k:len(v) for k,v in groups.items()}
-print(f"{mode}: {len(groups)} groups, baseline={baseline}")
-print("subjects per group:", sizes)
+    n_features_raw = next(iter(groups.values())).shape[1]
+    finite = np.ones(n_features_raw, dtype=bool)
+    for values in groups.values():
+        finite &= np.all(np.isfinite(values), axis=0)
+    groups = {label: values[:, finite] for label, values in groups.items()}
+    return groups, baseline, group_type, n_features_raw, int(finite.sum())
 
-# D must be well below the smallest group; connectivity is high-dim so project on baseline
-D=min(10, min(sizes.values())-2)
-if D < 3: raise SystemExit(f"[stop] smallest group {min(sizes.values())} too small for a gate")
-print(f"projection D={D} (min group size {min(sizes.values())})")
 
-Yb=groups[baseline]
-mu=Yb.mean(0); _,_,Vt=np.linalg.svd(Yb-mu, full_matrices=False); Bp=Vt[:D].T
-proj=lambda M:(M-mu)@Bp
-Yobs=proj(Yb); Zc=Yobs
-envs={k:v for k,v in groups.items() if k!=baseline}
-env_sizes=[len(v) for v in envs.values()]
+def main():
+    mode = sys.argv[1]
+    groups, baseline, group_type, n_features_raw, n_features_used = (
+        build_subject_vectors(mode))
+    sizes = {label: len(values) for label, values in groups.items()}
+    print(f"{mode}: {len(groups)} groups, baseline={baseline}")
+    print("subjects per group:", sizes)
 
-detect={};ratios={};shifts=[]
-for k,v in envs.items():
-    Yp=proj(v); n=len(Yp)
-    crit=pr.null_threshold(Yobs,alpha=0.05,B=500,rng=rng,n_env=n)
-    s=pr.precision_signal(Yp,Yobs); detect[k]=bool(s>crit); ratios[k]=float(s/crit)
-    if s>crit:
-        sh=Yp.mean(0)-Yobs.mean(0); shifts.append(sh/(np.linalg.norm(sh)+1e-12))
-n_det=sum(detect.values()); rr=np.array(list(ratios.values()))
+    D = min(10, min(sizes.values()) - 2)
+    if D < 3:
+        raise SystemExit(
+            f"[stop] smallest group {min(sizes.values())} too small for a gate")
+    print(f"projection D={D} (min group size {min(sizes.values())})")
 
-# negative control: random splits of the BASELINE subjects, size-matched
-nfake=50; fdet=0
-for _ in range(nfake):
-    n=int(rng.choice(env_sizes)); 
-    if n>len(Yb): n=len(Yb)//2
-    sub=proj(Yb[rng.choice(len(Yb),n,replace=False)])
-    crit=pr.null_threshold(Yobs,alpha=0.05,B=500,rng=rng,n_env=n)
-    if pr.precision_signal(sub,Yobs)>crit: fdet+=1
+    Yb = groups[baseline]
+    mu = Yb.mean(0)
+    _, _, Vt = np.linalg.svd(Yb - mu, full_matrices=False)
+    Bp = Vt[:D].T
+    proj = lambda M: (M - mu) @ Bp
+    Yobs = proj(Yb)
+    labels = [label for label in groups if label != baseline]
+    Yenvs = [proj(groups[label]) for label in labels]
+    env_sizes = [len(Y) for Y in Yenvs]
 
-# structured-split confound control on baseline subjects
-m=int(np.median(env_sizes)); m=min(m,len(Yb)//2); struct=[]
-for j in range(D):
-    o=np.argsort(Zc[:,j]); struct+=[o[:m],o[-m:]]
-sdet=0
-for sub in struct:
-    crit=pr.null_threshold(Yobs,alpha=0.05,B=500,rng=rng,n_env=len(sub))
-    if pr.precision_signal(proj(Yb[sub]),Yobs)>crit: sdet+=1
+    env_cmp = compare_geometries(
+        pr, Yenvs, Yobs, seed=SEED, alpha=ALPHA, B=B_BOOT, q=Q)
 
-if shifts:
-    M=np.array(shifts); t2=(M[:,:2]**2).sum(1); am,amd=float(t2.mean()),float(np.median(t2))
-else: am=amd=None
+    selection_rng = np.random.default_rng(SEED)
+    nfake = 50
+    Yfake = []
+    for _ in range(nfake):
+        n = min(int(selection_rng.choice(env_sizes)), len(Yb) // 2)
+        idx = selection_rng.choice(len(Yb), n, replace=False)
+        Yfake.append(proj(Yb[idx]))
+    fake_labels = [f"random_control_{i:02d}" for i in range(nfake)]
+    fake_cmp = compare_geometries(
+        pr, Yfake, Yobs, seed=10_000 + SEED, alpha=ALPHA, B=B_BOOT, q=Q)
 
-rep=dict(dataset=("fMRI_ABIDE_site" if mode=="abide" else "fMRI_HCP_task"),
-  grouping=gtype, feature="per-subject functional connectivity (upper-tri corr), projected",
-  sample_unit="subject", d_proj=D, baseline=str(baseline),
-  n_environments=len(envs), env_subjects=env_sizes,
-  negative_control=f"{fdet}/{nfake}", negative_control_rate=round(fdet/nfake,4),
-  structured_split_rate=round(sdet/len(struct),4),
-  n_detectable=n_det, frac_detectable=round(n_det/len(envs),4),
-  ratio_median=round(float(np.median(rr)),3), ratio_p90=round(float(np.quantile(rr,.9)),3),
-  confound_align_top2_mean=None if am is None else round(am,3),
-  confound_align_top2_median=None if amd is None else round(amd,3))
-Path(f"results/e3/e3_{rep['dataset']}.json").write_text(json.dumps(rep,indent=2))
-print(json.dumps(rep,indent=2))
+    m = min(int(np.median(env_sizes)), len(Yb) // 2)
+    struct_labels, Ystruct = [], []
+    for j in range(D):
+        order = np.argsort(Yobs[:, j])
+        struct_labels.extend([f"pc{j}_low", f"pc{j}_high"])
+        Ystruct.extend([proj(Yb[order[:m]]), proj(Yb[order[-m:]])])
+    struct_cmp = compare_geometries(
+        pr, Ystruct, Yobs, seed=20_000 + SEED, alpha=ALPHA, B=B_BOOT, q=Q)
+
+    align = {}
+    for geometry, result in env_cmp.items():
+        align[f"{geometry}_raw"] = shift_alignment(
+            Yenvs, Yobs, result["raw_detect"])
+        align[f"{geometry}_bh"] = shift_alignment(
+            Yenvs, Yobs, result["bh_detect"])
+
+    corrected = env_cmp["corrected_disjoint"]
+    dataset = "fMRI_ABIDE_site" if mode == "abide" else "fMRI_HCP_task"
+    report = dict(
+        dataset=dataset,
+        grouping=group_type,
+        feature="per-subject functional connectivity (upper-triangle correlation)",
+        sample_unit="subject",
+        d_proj=D,
+        baseline=str(baseline),
+        n_features_raw=n_features_raw,
+        n_features_used=n_features_used,
+        n_environments=len(Yenvs),
+        environment_subjects={str(label): int(len(Y))
+                              for label, Y in zip(labels, Yenvs)},
+        alpha=ALPHA,
+        q=Q,
+        B=B_BOOT,
+        primary_decision="corrected_disjoint BH-FDR at q=0.05",
+        bh_families=(
+            "BH applied separately to observed environments, random controls, "
+            "and structured controls"),
+        n_detectable=int(corrected["bh_count"]),
+        frac_detectable=round(corrected["bh_count"] / len(Yenvs), 6),
+        environment_screen=comparison_summary(env_cmp),
+        negative_control_screen=comparison_summary(fake_cmp),
+        structured_control_screen=comparison_summary(struct_cmp),
+        confound_alignment=align,
+        per_environment=decision_records(labels, Yenvs, env_cmp),
+        negative_control_records=decision_records(fake_labels, Yfake, fake_cmp),
+        structured_control_records=decision_records(
+            struct_labels, Ystruct, struct_cmp),
+    )
+    out = Path(f"results/e3/e3_{dataset}.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(report, indent=2))
+    print(json.dumps({k: report[k] for k in (
+        "dataset", "baseline", "n_environments", "primary_decision",
+        "n_detectable", "frac_detectable", "environment_screen",
+        "negative_control_screen", "structured_control_screen",
+        "confound_alignment")}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

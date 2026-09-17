@@ -1,61 +1,143 @@
-import sys, numpy as np, anndata as ad, importlib.util, json
+"""E3 Perturb-seq panel with historical-vs-corrected gate decisions.
+
+Usage:
+    python experiments/e3_perturbseq_panel.py NAME H5AD CONTROL SINGLE_GENE_ONLY
+
+Use CONTROL=EMPTY for the empty-string control label and SINGLE_GENE_ONLY=1 for
+the Norman single-gene screen. The output includes raw alpha-level and BH-FDR
+decisions for both null geometries, plus per-perturbation audit records.
+"""
+
+import importlib.util
+import json
+import sys
 from pathlib import Path
-spec=importlib.util.spec_from_file_location("pr","src/gate/precision_readout.py")
-pr=importlib.util.module_from_spec(spec); spec.loader.exec_module(pr)
-D=10; NMIN=200; SEED=0
-name,path,ctrl,single=sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4]=="1"
-if ctrl=="EMPTY": ctrl=""
-rng=np.random.default_rng(SEED)
-A=ad.read_h5ad(path)
-X=A.X.toarray().astype(np.float64) if hasattr(A.X,"toarray") else np.asarray(A.X,np.float64)
-g=A.obs['guide_ids'].astype(str).values
-del A
-if single:
-    is_single=lambda s: s!=ctrl and s!="" and ","not in s and "+"not in s and "_"not in s
-    cand=sorted({s for s in np.unique(g) if is_single(s)})
-    dropped=sorted({s for s in np.unique(g) if s!=ctrl and s not in cand})
-    print("KEPT examples:",cand[:6]); print("DROPPED examples:",dropped[:6])
-    print(f"single-gene labels {len(cand)} | dropped {len(dropped)}")
-else:
-    cand=[p for p in np.unique(g) if p!=ctrl]
-Xc=X[g==ctrl]
-mu=Xc.mean(0); _,_,Vt=np.linalg.svd(Xc-mu,full_matrices=False); Bp=Vt[:D].T
-proj=lambda M:(M-mu)@Bp
-Yobs=proj(Xc); Zc=Yobs
-perts=[p for p in cand if (g==p).sum()>=NMIN]
-print(f"{name}: X {X.shape} | control {len(Xc)} | powered perts {len(perts)}")
-sizes=[int((g==p).sum()) for p in perts]
-detect={};ratios={};shifts=[]
-for p in perts:
-    Yp=proj(X[g==p]); n=len(Yp)
-    crit=pr.null_threshold(Yobs,alpha=0.05,B=500,rng=rng,n_env=n)
-    s=pr.precision_signal(Yp,Yobs); detect[p]=bool(s>crit); ratios[p]=float(s/crit)
-    if s>crit:
-        sh=Yp.mean(0)-Yobs.mean(0); shifts.append(sh/(np.linalg.norm(sh)+1e-12))
-n_det=sum(detect.values()); rr=np.array(list(ratios.values()))
-nfake=50; fdet=0
-for _ in range(nfake):
-    n=int(rng.choice(sizes)); sub=proj(Xc[rng.choice(len(Xc),n,replace=False)])
-    crit=pr.null_threshold(Yobs,alpha=0.05,B=500,rng=rng,n_env=n)
-    if pr.precision_signal(sub,Yobs)>crit: fdet+=1
-m=int(np.median(sizes)); struct=[]
-for j in range(D):
-    o=np.argsort(Zc[:,j]); struct+=[o[:m],o[-m:]]
-sdet=0
-for sub in struct:
-    crit=pr.null_threshold(Yobs,alpha=0.05,B=500,rng=rng,n_env=len(sub))
-    if pr.precision_signal(proj(Xc[sub]),Yobs)>crit: sdet+=1
-if shifts:
-    M=np.array(shifts); t2=(M[:,:2]**2).sum(1); am,amd=float(t2.mean()),float(np.median(t2))
-else: am=amd=None
-rep=dict(dataset=name,n_cells=int(X.shape[0]),n_genes=int(X.shape[1]),control_label=repr(ctrl),
- n_control=int(len(Xc)),single_gene_only=single,d_proj=D,nmin=NMIN,n_powered_perts=len(perts),
- negative_control=f"{fdet}/{nfake}",negative_control_rate=round(fdet/nfake,4),
- structured_split_detect=f"{sdet}/{len(struct)}",structured_split_rate=round(sdet/len(struct),4),
- n_detectable=n_det,frac_detectable=round(n_det/len(perts),4),
- ratio_median=round(float(np.median(rr)),3),ratio_p90=round(float(np.quantile(rr,.9)),3),
- frac_gt_2=round(float((rr>2).mean()),4),
- confound_align_top2_mean=None if am is None else round(am,3),
- confound_align_top2_median=None if amd is None else round(amd,3))
-Path(f"results/e3/e3_{name}.json").write_text(json.dumps(rep,indent=2))
-print(json.dumps(rep,indent=2))
+
+import anndata as ad
+import numpy as np
+
+from e3_gate_compare import (compare_geometries, comparison_summary,
+                             decision_records, shift_alignment)
+
+
+spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
+pr = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(pr)
+
+D = 10
+NMIN = 200
+SEED = 0
+ALPHA = 0.05
+Q = 0.05
+B_BOOT = 500
+
+
+def main():
+    name, path, ctrl, single_arg = sys.argv[1:5]
+    single = single_arg == "1"
+    if ctrl == "EMPTY":
+        ctrl = ""
+
+    A = ad.read_h5ad(path)
+    X = (A.X.toarray().astype(np.float64) if hasattr(A.X, "toarray")
+         else np.asarray(A.X, np.float64))
+    g = A.obs["guide_ids"].astype(str).values
+    del A
+
+    if single:
+        def is_single(label):
+            return (label != ctrl and label != "" and "," not in label
+                    and "+" not in label and "_" not in label)
+
+        cand = sorted({label for label in np.unique(g) if is_single(label)})
+        dropped = sorted({label for label in np.unique(g)
+                          if label != ctrl and label not in cand})
+        print("KEPT examples:", cand[:6])
+        print("DROPPED examples:", dropped[:6])
+        print(f"single-gene labels {len(cand)} | dropped {len(dropped)}")
+    else:
+        cand = [label for label in np.unique(g) if label != ctrl]
+
+    Xc = X[g == ctrl]
+    mu = Xc.mean(0)
+    _, _, Vt = np.linalg.svd(Xc - mu, full_matrices=False)
+    Bp = Vt[:D].T
+    proj = lambda M: (M - mu) @ Bp
+    Yobs = proj(Xc)
+
+    perts = [p for p in cand if (g == p).sum() >= NMIN]
+    Yperts = [proj(X[g == p]) for p in perts]
+    sizes = [int(len(Y)) for Y in Yperts]
+    print(f"{name}: X {X.shape} | control {len(Xc)} | powered perts {len(perts)}")
+
+    pert_cmp = compare_geometries(
+        pr, Yperts, Yobs, seed=SEED, alpha=ALPHA, B=B_BOOT, q=Q)
+
+    selection_rng = np.random.default_rng(SEED)
+    nfake = 50
+    Yfake = []
+    for _ in range(nfake):
+        n = int(selection_rng.choice(sizes))
+        idx = selection_rng.choice(len(Xc), n, replace=False)
+        Yfake.append(proj(Xc[idx]))
+    fake_labels = [f"random_control_{i:02d}" for i in range(nfake)]
+    fake_cmp = compare_geometries(
+        pr, Yfake, Yobs, seed=10_000 + SEED, alpha=ALPHA, B=B_BOOT, q=Q)
+
+    m = int(np.median(sizes))
+    struct_labels, Ystruct = [], []
+    for j in range(D):
+        order = np.argsort(Yobs[:, j])
+        struct_labels.extend([f"pc{j}_low", f"pc{j}_high"])
+        Ystruct.extend([proj(Xc[order[:m]]), proj(Xc[order[-m:]])])
+    struct_cmp = compare_geometries(
+        pr, Ystruct, Yobs, seed=20_000 + SEED, alpha=ALPHA, B=B_BOOT, q=Q)
+
+    align = {}
+    for geometry, result in pert_cmp.items():
+        align[f"{geometry}_raw"] = shift_alignment(
+            Yperts, Yobs, result["raw_detect"])
+        align[f"{geometry}_bh"] = shift_alignment(
+            Yperts, Yobs, result["bh_detect"])
+
+    corrected = pert_cmp["corrected_disjoint"]
+    report = dict(
+        dataset=name,
+        n_cells=int(X.shape[0]),
+        n_genes=int(X.shape[1]),
+        control_label=repr(ctrl),
+        n_control=int(len(Xc)),
+        single_gene_only=single,
+        d_proj=D,
+        nmin=NMIN,
+        n_powered_perts=len(perts),
+        alpha=ALPHA,
+        q=Q,
+        B=B_BOOT,
+        primary_decision="corrected_disjoint BH-FDR at q=0.05",
+        bh_families=(
+            "BH applied separately to powered perturbations, random controls, "
+            "and structured controls"),
+        n_detectable=int(corrected["bh_count"]),
+        frac_detectable=round(corrected["bh_count"] / len(perts), 6),
+        perturbation_screen=comparison_summary(pert_cmp),
+        negative_control_screen=comparison_summary(fake_cmp),
+        structured_control_screen=comparison_summary(struct_cmp),
+        confound_alignment=align,
+        per_perturbation=decision_records(perts, Yperts, pert_cmp),
+        negative_control_records=decision_records(fake_labels, Yfake, fake_cmp),
+        structured_control_records=decision_records(
+            struct_labels, Ystruct, struct_cmp),
+    )
+    out = Path(f"results/e3/e3_{name}.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(report, indent=2))
+    print(json.dumps({k: report[k] for k in (
+        "dataset", "n_control", "n_powered_perts", "primary_decision",
+        "n_detectable", "frac_detectable", "perturbation_screen",
+        "negative_control_screen", "structured_control_screen",
+        "confound_alignment")}, indent=2))
+
+
+if __name__ == "__main__":
+    main()
