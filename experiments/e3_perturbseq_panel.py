@@ -1,7 +1,7 @@
 """E3 Perturb-seq panel with historical-vs-corrected gate decisions.
 
 Usage:
-    python experiments/e3_perturbseq_panel.py NAME H5AD CONTROL SINGLE_GENE_ONLY
+    python experiments/e3_perturbseq_panel.py NAME H5AD CONTROL SINGLE_GENE_ONLY [OUTPUT_STEM]
 
 Use CONTROL=EMPTY for the empty-string control label and SINGLE_GENE_ONLY=1 for
 the Norman single-gene screen. The output includes raw alpha-level and BH-FDR
@@ -34,6 +34,7 @@ B_BOOT = 500
 
 def main():
     name, path, ctrl, single_arg = sys.argv[1:5]
+    output_stem = sys.argv[5] if len(sys.argv) > 5 else name
     single = single_arg == "1"
     if ctrl == "EMPTY":
         ctrl = ""
@@ -103,6 +104,7 @@ def main():
     corrected = pert_cmp["corrected_disjoint"]
     report = dict(
         dataset=name,
+        result_stem=output_stem,
         n_cells=int(X.shape[0]),
         n_genes=int(X.shape[1]),
         control_label=repr(ctrl),
@@ -129,7 +131,7 @@ def main():
         structured_control_records=decision_records(
             struct_labels, Ystruct, struct_cmp),
     )
-    out = Path(f"results/e3/e3_{name}.json")
+    out = Path(f"results/e3/e3_{output_stem}.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2))
     print(json.dumps({k: report[k] for k in (
