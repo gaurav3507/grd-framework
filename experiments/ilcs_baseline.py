@@ -54,10 +54,10 @@ DATASETS = [
     ("RPE1", str(perturbseq_path("causalbench_rpe1.h5ad")), "", False),
     ("Norman", str(perturbseq_path("Norman2019_raw.h5ad")), "", True),
 ]
-GATE_JSON = {
-    "K562":   "results/e3/e3_k562_gate_fixed.json",
-    "RPE1":   "results/e3/e3_rpe1_gate_fixed.json",
-    "Norman": "results/e3/e3_Norman_CRISPRa_singlegene.json",
+GATE_DECISIONS = {
+    "K562": "results/e3_decisions/K562.json",
+    "RPE1": "results/e3_decisions/RPE1.json",
+    "Norman": "results/e3_decisions/Norman.json",
 }
 OUT = Path("results/ilcs_baseline")
 
@@ -272,8 +272,15 @@ def run_dataset(name, path, ctrl, single, smoke, outdir):
         rows = [r for r in records if r["kind"] == kind]
         return round(float(np.mean([r[key] for r in rows])), 4) if rows else None
 
-    calib_pert_ids = {r["id"] for r in records if r["kind"] == "pert" and r["calibrated_fires"]}
-    jaccard, jreason = _jaccard_vs_gate(name, calib_pert_ids)
+    evaluated_pert_ids = {
+        str(r["id"]) for r in records if r["kind"] == "pert"
+    }
+    calib_pert_ids = {
+        str(r["id"]) for r in records
+        if r["kind"] == "pert" and r["calibrated_fires"]
+    }
+    jaccard, jreason = _jaccard_vs_gate(
+        name, calib_pert_ids, evaluated_pert_ids)
 
     unit_warn = int(sum(1 for r in records if not r["ica_unit_var_ok"]))
     nonconv = int(sum(1 for r in records if not r["ica_converged"]))
@@ -315,28 +322,23 @@ def run_dataset(name, path, ctrl, single, smoke, outdir):
     return summary
 
 
-def _jaccard_vs_gate(name, calib_ids):
-    """Jaccard of calibrated-iLCS detected perts with the gate's detected perts. The
-    committed gate JSONs carry only aggregate counts, no per-pert detect dict, so this
-    is not computable from them; returns (None, reason) in that case.
-    """
-    path = Path(GATE_JSON[name])
+def _jaccard_vs_gate(name, calib_ids, evaluated_ids):
+    """Jaccard on the perturbations evaluated by this iLCS invocation."""
+    path = Path(GATE_DECISIONS[name])
     if not path.exists():
-        return None, f"gate JSON {path} not found"
+        return None, f"gate decision JSON {path} not found"
     gate = json.loads(path.read_text())
-    detect = None
-    for k in ("detect", "detections", "per_pert_detect", "detected_perts"):
-        if isinstance(gate.get(k), (dict, list)):
-            detect = gate[k]; break
-    if detect is None:
-        return None, ("gate JSON carries only aggregate counts (no per-pert detect dict); "
-                      "Jaccard not computable from committed gate files")
-    if isinstance(detect, dict):
-        gate_ids = {p for p, v in detect.items() if v}
-    else:
-        gate_ids = set(detect)
+    gate_ids = {
+        str(row["environment"]) for row in gate["decisions"]
+        if row["bh_detect"] and str(row["environment"]) in evaluated_ids
+    }
     union = calib_ids | gate_ids
-    return (round(len(calib_ids & gate_ids) / len(union), 4) if union else 0.0), "per-pert detect dict"
+    jaccard = round(len(calib_ids & gate_ids) / len(union), 4) if union else 1.0
+    note = (
+        f"corrected-disjoint BH decisions; shared evaluated universe "
+        f"n={len(evaluated_ids)}; gate source={path}"
+    )
+    return jaccard, note
 
 
 def _summary_from_perdataset(pd):
@@ -344,22 +346,41 @@ def _summary_from_perdataset(pd):
     key when present; otherwise recomputes the rates from the records (this handles a
     per-dataset file written by an earlier version that lacked the key).
     """
-    if "summary" in pd:
-        return pd["summary"]
     recs = pd["records"]
     def rate(kind, key):
         rows = [r for r in recs if r["kind"] == kind]
         return round(float(np.mean([r[key] for r in rows])), 4) if rows else None
-    return dict(
-        dataset=pd["dataset"],
-        naive_fake_rate=rate("fake", "naive_fires"), calib_fake_rate=rate("fake", "calibrated_fires"),
-        naive_random_rate=rate("random", "naive_fires"), calib_random_rate=rate("random", "calibrated_fires"),
-        naive_struct_rate=rate("struct", "naive_fires"), calib_struct_rate=rate("struct", "calibrated_fires"),
-        naive_pert_rate=rate("pert", "naive_fires"), calib_pert_rate=rate("pert", "calibrated_fires"),
-        jaccard_calib_vs_gate=None, jaccard_note="rebuilt from per-dataset file",
-        n_dims_near_gaussian=pd.get("n_dims_near_gaussian"), ica_unit_var_warn=pd.get("ica_unit_var_warn"),
-        ica_nonconverged_count=pd.get("ica_nonconverged_count"), ica_nonconverged_frac=pd.get("ica_nonconverged_frac"),
-        total_ica_fits=pd.get("total_ica_fits"), ica_deflation_count=pd.get("ica_deflation_count"))
+    if "summary" in pd:
+        summary = dict(pd["summary"])
+    else:
+        summary = dict(
+            dataset=pd["dataset"],
+            naive_fake_rate=rate("fake", "naive_fires"),
+            calib_fake_rate=rate("fake", "calibrated_fires"),
+            naive_random_rate=rate("random", "naive_fires"),
+            calib_random_rate=rate("random", "calibrated_fires"),
+            naive_struct_rate=rate("struct", "naive_fires"),
+            calib_struct_rate=rate("struct", "calibrated_fires"),
+            naive_pert_rate=rate("pert", "naive_fires"),
+            calib_pert_rate=rate("pert", "calibrated_fires"),
+            n_dims_near_gaussian=pd.get("n_dims_near_gaussian"),
+            ica_unit_var_warn=pd.get("ica_unit_var_warn"),
+            ica_nonconverged_count=pd.get("ica_nonconverged_count"),
+            ica_nonconverged_frac=pd.get("ica_nonconverged_frac"),
+            total_ica_fits=pd.get("total_ica_fits"),
+            ica_deflation_count=pd.get("ica_deflation_count"),
+        )
+    evaluated = {str(r["id"]) for r in recs if r["kind"] == "pert"}
+    calibrated = {
+        str(r["id"]) for r in recs
+        if r["kind"] == "pert" and r["calibrated_fires"]
+    }
+    if evaluated:
+        jaccard, note = _jaccard_vs_gate(
+            pd["dataset"], calibrated, evaluated)
+        summary["jaccard_calib_vs_gate"] = jaccard
+        summary["jaccard_note"] = note
+    return summary
 
 
 def write_summary(mode, outdir, seed):
@@ -397,9 +418,15 @@ def aggregate_seeds():
     seeds = [int(p.name[4:]) for p in seed_dirs if (p / "summary.json").exists()]
     if not seeds:
         sys.exit("no per-seed summaries found under results/ilcs_baseline/seed*/")
+    for path in seed_dirs:
+        summary_path = path / "summary.json"
+        if summary_path.exists():
+            stored = json.loads(summary_path.read_text())
+            write_summary(stored.get("mode", "full"), path, int(path.name[4:]))
+
     keys = ["naive_fake_rate","calib_fake_rate","naive_random_rate","calib_random_rate",
             "naive_struct_rate","calib_struct_rate","naive_pert_rate","calib_pert_rate",
-            "ica_nonconverged_frac"]
+            "jaccard_calib_vs_gate", "ica_nonconverged_frac"]
     names = [d[0] for d in DATASETS]
     agg = {}
     for name in names:
