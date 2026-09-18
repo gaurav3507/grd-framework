@@ -5,8 +5,12 @@ Gate-Recover-Discover: a precondition-gated CRL+CD framework; the Gate pre-tests
 **STATUS: Experimental arc complete; manuscript preparation in progress.** The
 repository contains the E0 oracle, full and genuinely capped E1 pipelines,
 non-tautological E2 starvation calibration, corrected-null/BH-FDR E3 screens,
-real-data attribution limits, and the validated three-seed iLCS baseline. The projected-attribution
-rescue failed its predeclared synthetic gate and was not applied to real data.
+real-data attribution limits, and the validated three-seed iLCS baseline. The
+projected-attribution rescue failed its predeclared synthetic gate and was not
+applied to real data. The Task 6 Gaussian finite-sample direction certificate is
+valid but vacuous at the current synthetic operating point (n=2000); see
+`notes/TASK6_DAVIS_KAHAN_CERTIFICATE.md` and
+`results/e2e_certificate/certificate_report.json`.
 See `notes/TRACK_SHEET.md` and `results/` for the evidence trail.
 
 Experiments note: `experiments/ilcs_baseline.py` is an ungated baseline whose iLCS detector is reimplemented from Chen et al. 2024 (arXiv 2410.24059) Algorithm 1, because the original repository github.com/TianyuCodings/iLCS is unavailable (404). It runs on the same D=10 control-fit projected inputs as the E3 gate, with a size-matched null.
