@@ -18,4 +18,5 @@ __pycache__/
 *.h5ad
 *.png
 *.pdf
+!paper/figures/*.pdf
 *.log
