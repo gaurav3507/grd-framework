@@ -17,11 +17,22 @@ the precondition gate: a mismatched null manufactures detections out of sampling
 noise), NOT as a live result. Do not cite the numbers in the VOID file as a current
 detection rate. The `VOID` in the filename marks it as void.
 
-## Live K562 result
+## Live results
 
-The current, size-matched K562 gate screen is:
+The current corrected-disjoint, BH-FDR gate screens are:
 
-    results/e3/e3_k562_gate_fixed.json
+    results/e3/e3_K562_CRISPRi.json
+    results/e3/e3_rpe1_gate_fixed.json
+    results/e3/e3_Norman_CRISPRa_singlegene.json
+    results/e3/e3_fMRI_HCP_task.json
+    results/e3/e3_fMRI_ABIDE_site.json
 
-(RPE1's live screen is `e3_rpe1_gate_fixed.json`.) These `*_gate_fixed.json` files use
-the size-matched per-environment null and are the numbers to cite.
+These files include per-environment raw and BH decisions under both the historical
+two-bootstrap and corrected-disjoint nulls. The primary decision is the
+corrected-disjoint BH result at `q=0.05`.
+
+`e3_k562_gate_fixed.json` predates the disjoint-null/BH rerun and is retained only
+as historical evidence. Do not use it as the current K562 result.
+
+Compact corrected-BH decision exports for K562, RPE1, and Norman are under
+`results/e3_decisions/`. Their source-result checksums are embedded in each file.

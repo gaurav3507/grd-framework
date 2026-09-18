@@ -1,8 +1,8 @@
 # Gate-Recover-Discover (GRD): A Precondition-Gated Framework for Causal Representation Learning and Causal Discovery
 
-Design document v0.1, 1 Sep 2026.
-Author: Gaurav Goyal (TIET, reg. 902503013). Status: IMPLEMENTED. Framework built and validated (E0-E3 + iLCS baseline); see README.md and notes/TRACK_SHEET.md.
-Repo (to be created): github.com/gaurav3507/grd-framework. Do NOT reuse ccrl-newidea2.
+Design document v0.1, 1 Sep 2026, with as-built status updated 18 Sep 2026.
+Author: Gaurav Goyal (TIET, reg. 902503013). Status: IMPLEMENTED. Framework built and validated through E3; manuscript preparation and the final iLCS result commit remain. See README.md and notes/TRACK_SHEET.md.
+Repo: github.com/gaurav3507/grd-framework.
 
 Style rule: no em dashes anywhere in this project (papers, code, comments, docs).
 
@@ -196,27 +196,26 @@ E1 (synthetic, clean): all preconditions satisfied by construction. Expected: ga
 PROCEED, recovery succeeds (report MCC and SHD), all edges decided. Establishes the
 pipeline works when it should.
 
-E2 (semi-synthetic violation injection, the headline experiment): start from E1 and inject
-one violation at a time, sweeping severity:
+E2 (semi-synthetic violation injection): start from E1 and inject one violation at a
+time, sweeping severity:
   a. environment starvation: reduce m below n+1.
   b. power starvation: shrink n_e through the 125 floor.
   c. measurement contamination: replace a fraction of interventional environments with
      measurement-only shifts (diagonal/gain perturbations of the mixing, not the SCM).
   d. rank starvation: reduce intervened-node count k through the k >= 3 power boundary.
-Expected pattern, which IS the paper's central figure: gate verdict degrades in lockstep
-with recovery quality of the naive (ungated) backbone, and the gated pipeline either
-abstains or returns the capped-but-correct subgraph while the naive run returns confident
-garbage. Metric: calibration of gate verdict vs realised recovery error (e.g. verdict-
-stratified MCC distributions), plus abstention correctness (did UNDECIDED edges actually
-correspond to unidentifiable structure).
+As-built correction: the original starvation arm zero-filled missing rows and was only a
+consistency check. E2c replaces it with a full-rank spectral-completion estimator. Its MCC
+falls smoothly from 0.9991 at m=5 to 0.7986 at m=1; the gate caps at m=4 while mean MCC
+crosses 0.90 at m=2. The defensible result is conservative early capping, not lockstep or
+exact crossover prediction. Measurement contamination remains the documented violation
+class that a detectability-only gate cannot attribute.
 
-E3 (real data): run gated vs naive (same backbone, no gate) on the in-hand datasets.
-Honest expectation from the five-lane wall: the gate will often say ABSTAIN or
-PROCEED_CAPPED on real data. The paper frames this as the finding: the framework correctly
-refuses where Paper 2 showed refusal is warranted, and quantifies exactly how many
-directions and which resolution each dataset supports. The comparison that must be shown:
-what the naive backbone confidently (and unstably) returns on the same data, seed-to-seed
-graph instability as the symptom (mirroring the Gamella CCRL instability result).
+E3 (real data, as built): corrected disjoint-null and BH-FDR screens were run on K562,
+RPE1, Norman, HCP, and ABIDE. Most Perturb-seq perturbations are not certified; RPE1 has
+the strongest association with structured control heterogeneity. Full-dimensional
+subspace attribution is inconclusive on real data, and a predeclared projected rescue
+failed its synthetic go/no-go criteria. The paper therefore reports attribution as
+unresolved rather than forcing a mechanism or measurement label.
 
 E4 (optional stretch, only if E1-E3 are done and budget remains): light-tunnel data as an
 external real benchmark for the gate's P3/P4 verdicts (not for recovery claims; the mixing
@@ -244,38 +243,35 @@ graph stability (SHD between seeds) as the honesty metric.
 Not claimed: any single component. Rank tests, VAR diagnostics, linear multi-node CRL
 estimators, CD algorithms, and the abstention concept all exist and are cited.
 
-Claimed: (a) the first precondition-gated environment-selection front end for LATENT
+Claimed: (a) a precondition-gated environment-selection front end for LATENT
 recovery (no located prior work gates CRL recovery on data-side identifiability tests);
 (b) ambiguity-aware abstention over the LATENT graph, the latent analogue of
 observed-variable admissibility gating; (c) the empirical characterisation, across
-synthetic, semi-synthetic, and eight real datasets, of exactly where identification is and
+synthetic, semi-synthetic, and five real datasets, of where identification is and
 is not achievable, which is Objective 2's second clause fulfilled with numbers.
 
 ## 8. Risks and open design decisions
 
-R1. P3's form outside time series. The VAR diagnostic needs a temporal axis. For
-Perturb-seq the mechanism-vs-measurement split must be operationalised differently
-(batch-randomisation check; possibly control-vs-control covariance shifts). Decide before
-coding Module 1; record the decision here.
+R1. P3 outside time series, resolved with a limitation. Perturb-seq uses random and
+structured control splits plus PC alignment as heterogeneity-association diagnostics.
+These do not causally attribute a detection. The full-dimensional subspace test was
+underpowered on real data, and the projected rescue failed calibration.
 
-R2. Backbone implementation cost. If no usable reference implementation of the
-Bing/Varici estimators exists, implementing from the papers is the single largest time
-item. Timebox: if a faithful implementation cannot pass E0 within the timebox, fall back
-to the simplest provable linear estimator (Squires-style with known/estimated targets) and
-say so; the framework claim survives a simpler backbone.
+R2. Backbone implementation, resolved. The reference estimator did not recover under
+the simulator's variance-changing interventions. The implemented v1 backbone is the
+documented covariance/precision-difference linear fallback with known targets.
 
-R3. Gate-recovery disagreement on real data. Possible that the estimator succeeds where
-the gate says CAPPED (test underpowered) or fails where the gate says PROCEED. This is
-reportable signal either way, but the writeup must pre-commit to that framing (Section 5
-decision rule) to avoid looking post hoc.
+R3. Gate-recovery disagreement. The non-tautological starvation experiment found early,
+conservative capping rather than an exact recovery crossover. Real-data graph recovery is
+not claimed where the gate does not certify sufficient environments.
 
 R4. Reviewer pattern-match to observed-variable gating. Mitigated by the page-1
 distinction paragraph (Section 10) and the per-edge status codes being explicitly about
 recovery ambiguity, not noise-model preconditions.
 
-R5. Ceiling honesty. This is an 8/10 thesis framework and a 6-7/10 mid-tier journal
-paper; it is 4-5/10 at CLeaR/UAI/NeurIPS as-is. The upgrade path is Path B (curvature-
-robust rank test) slotting in as a novel Module 1 later. Do not oversell v1.
+R5. Claim ceiling. The submission must emphasize precondition testing, calibrated
+abstention, and the negative attribution findings. It must not claim a new recovery
+estimator, causal attribution of RPE1 heterogeneity, or real-data graph identification.
 
 Kill criteria (pre-registered): if E2 shows the gate verdict does NOT track naive-backbone
 failure (calibration flat), the central claim is false and the framework reverts to an
@@ -315,19 +311,13 @@ audit, which we already have; stop and reassess rather than adding epicycles.
    2604.23800): the current frontier the linear backbone sits inside; cite to show the
    regime choice is deliberate, not ignorant.
 
-## 11. Milestones (order fixed, dates indicative, no external deadline)
+## 11. Milestones (as-built status)
 
-M0 Repo + scaffolding + this doc committed. Half a day.
-M1 Simulator port + E0 oracle harness green across all three modules. This gates
-   everything (Lesson 1). ~1 week.
-M2 Module 1 complete on synthetic (P1, P2, P4; P3 decision resolved per R1). ~1-2 weeks.
-M3 Module 2 backbone passing E0/E1 (R2 timebox applies). ~2-4 weeks, the risk item.
-M4 Module 3 + E1 end to end green. ~1 week.
-M5 E2 violation-injection suite, the headline figure. ~2 weeks.
-M6 E3 real-data runs (data already in hand, paths known). ~2 weeks.
-M7 Writeup: thesis chapter first, then journal manuscript (venue decision after results;
-   candidates Neurocomputing / KBS / Pattern Recognition / TNNLS, no APC).
-
-First concrete build step after this doc is approved: M0 repo scaffolding prompt for
-Claude Code, then the M1 simulator-port handoff. Nothing runs on the A100 until M1's
-oracle is green on the Mac.
+- M0-M4: complete. Repository, oracle, gate, fallback backbone, Discover, and full E1
+  pipeline are committed.
+- M5: complete with correction. The original zero-fill starvation arm is historical;
+  E2c is the live non-tautological result.
+- M6: complete. Corrected E3 panels, stability, positive control, attribution panel,
+  decision exports, and reproducibility tooling are committed.
+- M7: in progress. Finalize the iLCS three-seed result commit, manuscript tables, and
+  JMLR-facing writeup without exceeding the claim ceiling in Section 8.
