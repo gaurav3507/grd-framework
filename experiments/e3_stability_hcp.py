@@ -10,6 +10,7 @@ import numpy as np
 
 from e3_gate_compare import (compare_geometries, comparison_summary,
                              decision_records, shift_alignment)
+from data_paths import hcp_ts_root
 
 
 spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
@@ -17,7 +18,7 @@ pr = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pr)
 
 D = 10
-TS = "/workspace/meridian-identifiability/hcp/ts"
+TS = str(hcp_ts_root())
 TASKS = ["WM", "GAMBLING", "MOTOR", "LANGUAGE", "SOCIAL", "RELATIONAL", "EMOTION"]
 SEEDS = range(5)
 ALPHA = 0.05

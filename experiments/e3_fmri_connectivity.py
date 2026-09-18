@@ -11,6 +11,7 @@ import numpy as np
 
 from e3_gate_compare import (compare_geometries, comparison_summary,
                              decision_records, shift_alignment)
+from data_paths import abide_npz_path, hcp_ts_root
 
 
 spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
@@ -32,8 +33,7 @@ def subject_connectivity(ts):
 def build_subject_vectors(mode):
     """Return group connectivity matrices, baseline label, and group type."""
     if mode == "abide":
-        z = np.load("/workspace/ranktest-diagnostics/data/abide_harmonized.npz",
-                    allow_pickle=True)
+        z = np.load(abide_npz_path(), allow_pickle=True)
         X = z["X"].astype(float)
         group_ids = z["site_ids"]
         features = {}
@@ -44,7 +44,7 @@ def build_subject_vectors(mode):
         baseline = max(groups, key=lambda label: len(groups[label]))
         group_type = "site (measurement shift)"
     elif mode == "hcp":
-        ts_root = "/workspace/meridian-identifiability/hcp/ts"
+        ts_root = str(hcp_ts_root())
         tasks = ["WM", "GAMBLING", "MOTOR", "LANGUAGE", "SOCIAL",
                  "RELATIONAL", "EMOTION"]
         subjects = sorted({os.path.basename(f).split("_")[0]

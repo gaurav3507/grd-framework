@@ -15,13 +15,14 @@ import numpy as np
 
 from e3_gate_compare import (compare_geometries, comparison_summary,
                              decision_records, shift_alignment)
+from data_paths import perturbseq_path
 
 
 spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
 pr = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pr)
 
-H5 = "/workspace/external/discrepancy_vae/datasets/causalbench_rpe1.h5ad"
+H5 = str(perturbseq_path("causalbench_rpe1.h5ad"))
 CTRL = ""
 NMIN = 200
 D = 10

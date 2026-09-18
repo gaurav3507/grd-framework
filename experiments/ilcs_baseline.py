@@ -24,9 +24,9 @@ null costs <= 6 * B small-matrix fits per dataset rather than one null per envir
 These two changes only remove redundant ICA solves; the L statistic, psi-sort, the
 Yobs-vs-n_env geometry, and the null seeding are unchanged.
 
-Data lives on the A100 (/workspace/external/...), not the Mac; run --smoke only where
-the K562 h5ad is reachable. anndata is imported lazily inside the loader so the iLCS
-functions can be exercised without it.
+Data paths are resolved through GRD_DATA_ROOT (legacy default /workspace/external).
+Run --smoke only where the K562 h5ad is reachable. anndata is imported lazily inside
+the loader so the iLCS functions can be exercised without it.
 """
 import sys
 import json
@@ -39,6 +39,8 @@ import numpy as np
 from sklearn.decomposition import FastICA
 from scipy.stats import kurtosis
 
+from data_paths import perturbseq_path
+
 # --- panel importlib block, verbatim (loads the precision-gate readout module) ---
 spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
 pr = importlib.util.module_from_spec(spec); spec.loader.exec_module(pr)
@@ -48,9 +50,9 @@ D = 10; NMIN = 200; SEED = 0   # SEED is overridden by --seed in main()
 # The three dataset invocations, taken verbatim from experiments/e3_stability_perturbseq.py
 # run(name, path, ctrl, single). ctrl is the control guide label ('' = control).
 DATASETS = [
-    ("K562",   "/workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad", "", False),
-    ("RPE1",   "/workspace/external/discrepancy_vae/datasets/causalbench_rpe1.h5ad", "", False),
-    ("Norman", "/workspace/external/discrepancy_vae/datasets/Norman2019_raw.h5ad",   "", True),
+    ("K562", str(perturbseq_path("causalbench_k562.h5ad")), "", False),
+    ("RPE1", str(perturbseq_path("causalbench_rpe1.h5ad")), "", False),
+    ("Norman", str(perturbseq_path("Norman2019_raw.h5ad")), "", True),
 ]
 GATE_JSON = {
     "K562":   "results/e3/e3_k562_gate_fixed.json",

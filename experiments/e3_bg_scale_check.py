@@ -1,5 +1,6 @@
 import numpy as np, anndata as ad
-A=ad.read_h5ad('/workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad')
+from data_paths import perturbseq_path
+A=ad.read_h5ad(perturbseq_path('causalbench_k562.h5ad'))
 X=A.X.toarray().astype(np.float64) if hasattr(A.X,"toarray") else np.asarray(A.X,np.float64)
 g=A.obs['guide_ids'].astype(str).values
 Xc=X[g=='']

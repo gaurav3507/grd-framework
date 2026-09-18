@@ -9,6 +9,7 @@ import numpy as np
 
 from e3_gate_compare import (compare_geometries, comparison_summary,
                              decision_records)
+from data_paths import perturbseq_path
 
 
 def load(name, path):
@@ -46,8 +47,7 @@ def assert_equal_size_paths_identical(comparison):
 def main():
     rng = np.random.default_rng(SEED)
 
-    A = ad.read_h5ad(
-        "/workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad")
+    A = ad.read_h5ad(perturbseq_path("causalbench_k562.h5ad"))
     X = (A.X.toarray().astype(np.float64) if hasattr(A.X, "toarray")
          else np.asarray(A.X, np.float64))
     g = A.obs["guide_ids"].astype(str).values

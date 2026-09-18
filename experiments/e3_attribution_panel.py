@@ -47,6 +47,7 @@ import numpy as np
 from scipy.linalg import eigh
 
 from e3_fmri_connectivity import build_subject_vectors
+from data_paths import perturbseq_path
 
 
 # NumPy 2.0 on macOS Accelerate can emit spurious matmul RuntimeWarnings while
@@ -79,21 +80,21 @@ DATASETS = [
     dict(
         name="K562",
         kind="perturbseq",
-        data_path="/workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad",
+        data_path=str(perturbseq_path("causalbench_k562.h5ad")),
         gate_path=REPO / "results" / "e3" / "e3_K562_CRISPRi.json",
         control="",
     ),
     dict(
         name="RPE1",
         kind="perturbseq",
-        data_path="/workspace/external/discrepancy_vae/datasets/causalbench_rpe1.h5ad",
+        data_path=str(perturbseq_path("causalbench_rpe1.h5ad")),
         gate_path=REPO / "results" / "e3" / "e3_rpe1_gate_fixed.json",
         control="",
     ),
     dict(
         name="Norman",
         kind="perturbseq",
-        data_path="/workspace/external/discrepancy_vae/datasets/Norman2019_raw.h5ad",
+        data_path=str(perturbseq_path("Norman2019_raw.h5ad")),
         gate_path=REPO / "results" / "e3" / "e3_Norman_CRISPRa_singlegene.json",
         control="",
     ),

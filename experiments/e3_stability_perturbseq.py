@@ -10,6 +10,7 @@ import numpy as np
 
 from e3_gate_compare import (compare_geometries, comparison_summary,
                              decision_records, shift_alignment)
+from data_paths import perturbseq_path
 
 
 spec = importlib.util.spec_from_file_location("pr", "src/gate/precision_readout.py")
@@ -124,11 +125,11 @@ def run(name, path, ctrl, single):
 def main():
     kind = sys.argv[1]
     if kind == "k562":
-        run("K562", "/workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad", "", False)
+        run("K562", str(perturbseq_path("causalbench_k562.h5ad")), "", False)
     elif kind == "rpe1":
-        run("RPE1", "/workspace/external/discrepancy_vae/datasets/causalbench_rpe1.h5ad", "", False)
+        run("RPE1", str(perturbseq_path("causalbench_rpe1.h5ad")), "", False)
     elif kind == "norman":
-        run("Norman", "/workspace/external/discrepancy_vae/datasets/Norman2019_raw.h5ad", "", True)
+        run("Norman", str(perturbseq_path("Norman2019_raw.h5ad")), "", True)
     else:
         raise SystemExit(f"unknown dataset: {kind}")
 

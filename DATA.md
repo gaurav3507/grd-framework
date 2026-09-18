@@ -9,7 +9,8 @@ have their own licences).
 
 ## Expected location
 
-Scripts expect the external data under a root given by the environment variable
+Perturb-seq scripts resolve external data under a root given by the environment
+variable
 
     GRD_DATA_ROOT      (default: /workspace/external)
 
@@ -26,16 +27,26 @@ cells labelled by the empty string `''`. fMRI (HCP task, ABIDE site) inputs are 
 by the corresponding `experiments/e3_fmri_*` and `experiments/e3_stability_hcp.py`
 scripts.
 
+When `GRD_DATA_ROOT` is explicitly set, the fMRI defaults are:
+
+    $GRD_DATA_ROOT/meridian-identifiability/hcp/ts/*.npy
+    $GRD_DATA_ROOT/ranktest-diagnostics/data/abide_harmonized.npz
+
+They can also be overridden independently:
+
+    GRD_HCP_TS_ROOT    directory containing the HCP task `.npy` files
+    GRD_ABIDE_NPZ      path to `abide_harmonized.npz`
+
+If no environment variables are set, the original A100 locations remain the
+defaults: `/workspace/meridian-identifiability/hcp/ts` and
+`/workspace/ranktest-diagnostics/data/abide_harmonized.npz`.
+
 So, for the default root, the K562 file is expected at:
 
     /workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad
 
 ## Path portability
 
-`GRD_DATA_ROOT` is honoured by **new** scripts. The original E3 scripts
-(`experiments/e3_perturbseq_panel.py`, `experiments/e3_rpe1_confound_check.py`,
-`experiments/e3_stability_perturbseq.py`, and the other `e3_*` scripts) still contain
-hardcoded `/workspace/external/...` paths; migrating them to `GRD_DATA_ROOT` is
-pending and intentionally out of scope here (those scripts and their committed outputs
-are left untouched). Until then, place the data under `/workspace/external` or adjust
-those paths locally when running the original E3 scripts.
+All E3 and iLCS real-data scripts use `experiments/data_paths.py`; no source edit is
+needed to move the datasets. Existing committed results retain their original
+provenance and are not rewritten merely because path resolution was made portable.
