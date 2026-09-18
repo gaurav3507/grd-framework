@@ -43,7 +43,6 @@ import time
 import warnings
 from pathlib import Path
 
-import anndata as ad
 import numpy as np
 from scipy.linalg import eigh
 
@@ -288,6 +287,8 @@ def _load_gate(config):
 
 
 def _load_perturbseq_selected(config, selected_labels):
+    import anndata as ad
+
     A = ad.read_h5ad(config["data_path"])
     labels = A.obs["guide_ids"].astype(str).values
     keep = (labels == config["control"]) | np.isin(labels, selected_labels)
