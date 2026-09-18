@@ -5,7 +5,7 @@ Gate-Recover-Discover: a precondition-gated CRL+CD framework; the Gate pre-tests
 **STATUS: Experimental arc complete; manuscript preparation in progress.** The
 repository contains the E0 oracle, full and genuinely capped E1 pipelines,
 non-tautological E2 starvation calibration, corrected-null/BH-FDR E3 screens,
-real-data attribution limits, and the iLCS baseline. The projected-attribution
+real-data attribution limits, and the validated three-seed iLCS baseline. The projected-attribution
 rescue failed its predeclared synthetic gate and was not applied to real data.
 See `notes/TRACK_SHEET.md` and `results/` for the evidence trail.
 
