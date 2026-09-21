@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software or its committed artifacts, please cite the paper below."
+title: "Gate, Recover, Discover: Testing Identifiability Preconditions Before Causal Representation Learning"
+type: software
+authors:
+  - family-names: Goyal
+    given-names: Gaurav
+    email: ggoyal_phd25@thapar.edu
+    affiliation: "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology"
+  - family-names: Tiwari
+    given-names: Shailendra
+    email: shailendra@thapar.edu
+    affiliation: "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology"
+  - family-names: Khurana
+    given-names: Manju
+    email: manju.khurana@thapar.edu
+    affiliation: "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology"
+repository-code: "https://github.com/gaurav3507/grd-framework"
+license: MIT
+version: "0.1.0"
+date-released: "2026-09-21"
+keywords:
+  - causal representation learning
+  - identifiability
+  - multi-environment data
+  - abstention
+  - causal discovery
+preferred-citation:
+  type: unpublished
+  title: "Gate, Recover, Discover: Testing Identifiability Preconditions Before Causal Representation Learning"
+  year: 2026
+  notes: "Under review."
+  authors:
+    - family-names: Goyal
+      given-names: Gaurav
+    - family-names: Tiwari
+      given-names: Shailendra
+    - family-names: Khurana
+      given-names: Manju
