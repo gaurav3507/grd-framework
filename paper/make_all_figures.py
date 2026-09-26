@@ -9,6 +9,8 @@ Figures:
     figure2  synthetic precondition-violation calibration (arms A/B/C/D)
     figure3  RPE1 is not a success case (perturbation vs control splits)
     figure4  closest-prior-method stress test (naive vs calibrated iLCS)
+    figure7  second backbone (covariance readout), four panels mirroring figure2
+    figure8  split-control gate: BH fraction, shared vs split, per dataset
 
 The Gate-Recover-Discover schematic is maintained separately as a draw.io
 file (paper/figures/grd_pipeline.drawio) and is not produced here.
@@ -609,6 +611,239 @@ def make_figure6():
     save(fig, "figure6_certificate_feasibility")
 
 
+# --------------------------------------------------------------------------
+# FIGURE 7 : second backbone (Backbone B, covariance readout), mirrors figure 2
+# --------------------------------------------------------------------------
+E4_DIR = RESULTS / "e4_second_backbone"
+E5_DIR = RESULTS / "e5_split_control"
+BEHAVIOR_TEXT = {
+    "TRACKS_TIGHT": "gate tracks recovery",
+    "TRACKS_CONSERVATIVE": "gate restricts first",
+    "FOOLED": "gate certifies non-recoverable directions",
+    "FLAT_OR_SILENT": "gate proceeds while MCC $<$ 0.90",
+}
+
+
+def _mcc_bar(ax):
+    """Recessive 0.90 recovery bar used by the E2/E4 crossover rules."""
+    ax.axhline(0.90, color="#9AA0A6", lw=0.8, ls=(0, (4, 3)), zorder=1)
+
+
+def make_figure7():
+    d = read_json(E4_DIR / "e4_calibration_report.json")
+    st = read_json(E4_DIR / "e4_starvation_report.json")
+
+    def arm(name):
+        levels = d["arms"][name]["levels"]
+        x = [lv["level"] for lv in levels]
+        naive = [lv["naive_mcc_mean"] for lv in levels]
+        cert = [lv["certified_recovery_mean"] for lv in levels]
+        gate = [lv["gate_n_recoverable_mean"] for lv in levels]
+        grange, naive_sd, cert_sd = [], [], []
+        for lv in levels:
+            gs = [s["n_recoverable"] for s in lv["per_seed"]]
+            grange.append((min(gs), max(gs)))
+            naive_sd.append(float(np.std([s["naive_mcc"] for s in lv["per_seed"]])))
+            cm = [s["certified_recovery"] for s in lv["per_seed"]
+                  if s.get("certified_recovery") is not None]
+            cert_sd.append(float(np.std(cm)) if len(cm) > 1 else 0.0)
+        return x, naive, cert, gate, grange, naive_sd, cert_sd
+
+    def gate_whiskers(ax, x, gate, grange, d_latent=5.0):
+        lo = [g[0] / d_latent for g in grange]
+        hi = [g[1] / d_latent for g in grange]
+        mean = [g / d_latent for g in gate]
+        yerr = [[m - l for m, l in zip(mean, lo)], [h - m for m, h in zip(mean, hi)]]
+        ax.errorbar(x, mean, yerr=yerr, marker="s", ms=4.5, color=CB["gate"],
+                    lw=1.4, capsize=2.5, elinewidth=0.8,
+                    label=r"Gate cap $\hat{n}_{\mathrm{rec}}/d$ (min-max)")
+
+    def subtitle(name, unit):
+        a = d["arms"][name]
+        return (f"{BEHAVIOR_TEXT.get(a['gate_behavior'], a['gate_behavior'])}\n"
+                f"leaves PROCEED at {unit}={a['crossover_gate_leaves_proceed']}; "
+                f"MCC $<$ 0.90 at {unit}={a['crossover_naive_below_0p90']}")
+
+    fig, axes = plt.subplots(2, 2, figsize=(7.2, 6.3))
+    fig.subplots_adjust(left=0.10, right=0.97, top=0.91, bottom=0.09,
+                        hspace=0.52, wspace=0.36)
+
+    # panel (a): direction starvation, random-subset series
+    axA = axes[0, 0]
+    panel_label(axA, "(a)")
+    agg = st["aggregate"]
+    rs = [x["random_subset_control"] for x in agg["levels"]]
+    m = [x["m"] for x in agg["levels"]]
+    axA.errorbar(m, [r["mcc_mean"] for r in rs], yerr=[r["mcc_seed_sd"] for r in rs],
+                 marker="o", ms=5, color=CB["naive"], capsize=2.5, lw=1.4,
+                 label="Ungated recovery (MCC)")
+    axA.plot(m, [r["gate_n_recoverable_mean"] / 5.0 for r in rs], marker="s", ms=4.5,
+             color=CB["gate"], lw=1.4, label=r"Gate cap $\hat{n}_{\mathrm{rec}}/d$")
+    _mcc_bar(axA)
+    axA.set_xticks([1, 2, 3, 4, 5])
+    axA.set_xlim(0.6, 5.4)
+    axA.set_ylim(0, 1.05)
+    axA.grid(True, color=CB["light"], linewidth=0.6)
+    axA.set_axisbelow(True)
+    axA.set_xlabel("Intervened directions $m$")
+    axA.set_ylabel("Recovery quality")
+    axA.set_title(f"Direction starvation\ngate first restricts at "
+                  f"$m$={agg['crossover_gate_first_restricts']}; MCC $<$ 0.90 from "
+                  f"$m$={agg['crossover_random_subset_mcc_below_0p90']}",
+                  loc="left", pad=8, fontsize=8.2)
+    axA.legend(loc="lower right", frameon=False)
+
+    # panel (b): power starvation
+    axB = axes[0, 1]
+    panel_label(axB, "(b)")
+    x, naive, cert, gate, grange, nsd, csd = arm("B_power_starvation")
+    axB.errorbar(x, naive, yerr=nsd, marker="o", ms=5, color=CB["naive"], lw=1.4,
+                 capsize=2.5, elinewidth=0.8, label="Ungated MCC (seed SD)")
+    gate_whiskers(axB, x, gate, grange)
+    _mcc_bar(axB)
+    axB.set_xscale("log")
+    axB.set_xticks(x)
+    axB.set_xticklabels([str(v) for v in x])
+    axB.minorticks_off()
+    axB.set_ylim(0, 1.05)
+    axB.grid(True, color=CB["light"], linewidth=0.6, which="major")
+    axB.set_axisbelow(True)
+    axB.set_xlabel("Samples per environment $n_e$")
+    axB.set_ylabel("Recovery quality")
+    axB.set_title("Power starvation\n" + subtitle("B_power_starvation", "$n_e$"),
+                  loc="left", pad=8, fontsize=8.2)
+    axB.legend(loc="lower right", frameon=False)
+
+    # panel (c): weak-signal starvation
+    axD = axes[1, 0]
+    panel_label(axD, "(c)")
+    x, naive, cert, gate, grange, nsd, csd = arm("D_weak_signal_starvation")
+    axD.errorbar(x, naive, yerr=nsd, marker="o", ms=5, color=CB["naive"], lw=1.4,
+                 capsize=2.5, elinewidth=0.8, label="Ungated MCC (seed SD)")
+    gate_whiskers(axD, x, gate, grange)
+    _mcc_bar(axD)
+    axD.set_xlim(0.05, 1.05)
+    axD.set_ylim(0, 1.05)
+    axD.grid(True, color=CB["light"], linewidth=0.6)
+    axD.set_axisbelow(True)
+    axD.set_xlabel(r"Intervention scale $s_{\mathrm{iv}}$")
+    axD.set_ylabel("Recovery quality")
+    axD.set_title("Weak-signal starvation\n"
+                  + subtitle("D_weak_signal_starvation", r"$s_{\mathrm{iv}}$"),
+                  loc="left", pad=8, fontsize=8.2)
+    axD.legend(loc="lower left", frameon=False)
+
+    # panel (d): measurement contamination
+    axC = axes[1, 1]
+    panel_label(axC, "(d)")
+    x, naive, cert, gate, grange, nsd, csd = arm("C_measurement_contamination")
+    axC.errorbar(x, naive, yerr=nsd, marker="o", ms=5, color=CB["naive"], lw=1.4,
+                 capsize=2.5, elinewidth=0.8, label="Naive recovery MCC")
+    cx = [v for v, c in zip(x, cert) if c is not None]
+    axC.errorbar(cx, [c for c in cert if c is not None],
+                 yerr=[s for s, c in zip(csd, cert) if c is not None], marker="^",
+                 ms=5, color="#8E44AD", lw=1.4, capsize=2.5, elinewidth=0.8,
+                 label="Certified recovery*")
+    _mcc_bar(axC)
+    low = min([v for v in naive + cert if v is not None] + [0.60])
+    axC.set_xticks(x)
+    axC.set_ylim(np.floor((low - 0.05) * 20) / 20, 1.05)
+    axC.grid(True, color=CB["light"], linewidth=0.6)
+    axC.set_axisbelow(True)
+    axC.set_xlabel("Contaminated dimensions")
+    axC.set_ylabel("Recovery quality")
+    behavior = d["arms"]["C_measurement_contamination"]["gate_behavior"]
+    axC.set_title("Measurement contamination\n"
+                  + BEHAVIOR_TEXT.get(behavior, behavior),
+                  loc="left", pad=8, fontsize=8.2)
+    axC.legend(loc="lower right", bbox_to_anchor=(1.0, 0.07), frameon=False)
+    axC.text(0.02, 0.02,
+             "*conditional on seeds with $\\geq 1$ certified direction.",
+             transform=axC.transAxes, fontsize=6.2, color=CB["grey"],
+             ha="left", va="bottom")
+
+    dec = d.get("population_decomposition")
+    note = ("Backbone B: covariance-difference gate and recovery rule. "
+            "Dashed line: 0.90 recovery bar.")
+    if dec:
+        note += (f" Covariance rule MCC with exact population covariances "
+                 f"{dec['covariance_rule']['population']['mean']:.3f} "
+                 f"(precision rule {dec['precision_rule']['population']['mean']:.3f}).")
+    fig.text(0.5, 0.005, note, ha="center", fontsize=6.6, color=CB["grey"])
+    save(fig, "figure7_second_backbone")
+
+
+# --------------------------------------------------------------------------
+# FIGURE 8 : split-control gate, BH fraction shared versus split
+# --------------------------------------------------------------------------
+def make_figure8():
+    d = read_json(E5_DIR / "e5_real_panel.json")["datasets"]
+    datasets = [k for k in ("K562", "RPE1", "Norman") if k in d]
+    designs = [("corrected_disjoint", "Shared reference", None),
+               ("split_control", "Split control", "////")]
+
+    fig, ax = plt.subplots(figsize=(5.0, 3.4))
+    fig.subplots_adjust(left=0.14, right=0.97, top=0.84, bottom=0.20)
+    width = 0.34
+    xb = np.arange(len(datasets))
+    for j, (key, label, hatch) in enumerate(designs):
+        off = (j - 0.5) * width
+        for i, ds in enumerate(datasets):
+            stab = d[ds]["perturbation_stability"]
+            mean = stab[f"{key}_bh_fraction_mean"]
+            sd = stab[f"{key}_bh_fraction_sd"]
+            pts = stab[f"{key}_bh_fraction_per_seed"]
+            color = CB[ds]
+            ax.bar(xb[i] + off, mean, width * 0.9, yerr=sd,
+                   color=color if hatch is None else "white", edgecolor=color,
+                   hatch=hatch, linewidth=1.0, capsize=2.5,
+                   error_kw=dict(lw=0.7), zorder=2)
+            ax.scatter([xb[i] + off] * len(pts), pts, s=7, color="#222222",
+                       zorder=5, linewidths=0)
+            n = d[ds]["n_perts"]
+            counts = [e["shared" if key == "corrected_disjoint" else "split"]["bh_count"]
+                      for e in d[ds]["shared_vs_split"]["per_seed"]]
+            ax.text(xb[i] + off, max(pts + [mean + sd]) + 0.02,
+                    f"{np.mean(counts):.4g}/{n}", ha="center", va="bottom",
+                    fontsize=6.8, color="#222222")
+    for i, ds in enumerate(datasets):
+        jac = d[ds]["shared_vs_split"]["summary"]["jaccard_bh_mean"]
+        txt = "both empty" if jac is None else f"Jaccard {jac:.2f}"
+        ax.text(xb[i], -0.13, txt, ha="center", va="top", fontsize=6.8,
+                color=CB["grey"], transform=ax.get_xaxis_transform())
+    ax.set_xticks(xb)
+    ax.set_xticklabels(datasets)
+    ymax = max(max(d[ds]["perturbation_stability"][f"{k}_bh_fraction_per_seed"])
+               for ds in datasets for k, _, _ in designs)
+    ax.set_ylim(0, max(0.12, ymax * 1.25 + 0.04))
+    ax.yaxis.grid(True, color=CB["light"], linewidth=0.5)
+    ax.set_axisbelow(True)
+    ax.set_ylabel(r"BH-FDR-selected fraction ($q = 0.05$)")
+    ax.set_title("Split-control gate: BH-selected perturbation fraction",
+                 loc="left", pad=22, fontsize=9)
+    from matplotlib.patches import Patch
+    ax.legend(handles=[Patch(facecolor="#777777", edgecolor="#777777",
+                             label="Shared reference (E3)"),
+                       Patch(facecolor="white", edgecolor="#777777", hatch="////",
+                             label="Split control")],
+              loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False,
+              fontsize=7.4)
+    seeds = d[datasets[0]]["seeds"]
+    fig.text(0.5, 0.005,
+             f"Bars: mean over {len(seeds)} gate seeds; error bars: population SD; "
+             f"dots: individual seeds; counts are seed means.",
+             ha="center", fontsize=6.6, color=CB["grey"])
+    save(fig, "figure8_split_control")
+
+
+# Tier 2 figures read artifacts produced on the A100; "all" skips them until the
+# JSONs exist so figures 1-6 keep rendering from the committed results.
+FIGURE_INPUTS = {
+    "figure7": [E4_DIR / "e4_calibration_report.json",
+                E4_DIR / "e4_starvation_report.json"],
+    "figure8": [E5_DIR / "e5_real_panel.json"],
+}
+
 FIGURES = {
     "figure1": make_figure1,
     "figure2": make_figure2,
@@ -616,6 +851,8 @@ FIGURES = {
     "figure4": make_figure4,
     "figure5": make_figure5,
     "figure6": make_figure6,
+    "figure7": make_figure7,
+    "figure8": make_figure8,
 }
 
 
@@ -630,6 +867,10 @@ def main():
     configure_style()
     keys = list(FIGURES) if args.figure == "all" else [args.figure]
     for k in keys:
+        missing = [p for p in FIGURE_INPUTS.get(k, []) if not p.exists()]
+        if missing and args.figure == "all":
+            print(f"skip {k}: missing {', '.join(str(p.relative_to(REPO)) for p in missing)}")
+            continue
         FIGURES[k]()
 
 

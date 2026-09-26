@@ -14,14 +14,19 @@ src/gate/precision_readout.py.
 import numpy as np
 
 
-def _detect_family(pr, Y_envs, Y_obs, seed, alpha, B, q, disjoint):
-    """Detect each environment on a paired deterministic RNG stream."""
+def _detect_family(pr, Y_envs, Y_obs, seed, alpha, B, q, disjoint,
+                   readout="precision", Y_null=None):
+    """Detect each environment on a paired deterministic RNG stream.
+
+    readout and Y_null pass straight to pr.detect_with_pvalues (Tier 2). The
+    defaults are the shared-reference precision gate every E3 script uses.
+    """
     signals, thresholds, raw_detect, pvalues = [], [], [], []
     for i, Y in enumerate(Y_envs):
         rng = np.random.default_rng(np.random.SeedSequence([int(seed), i]))
         one = pr.detect_with_pvalues(
             [Y], Y_obs, alpha=alpha, B=B, rng=rng, q=q,
-            disjoint=disjoint)
+            disjoint=disjoint, readout=readout, Y_null=Y_null)
         signals.append(float(one["signals"][0]))
         thresholds.append(float(one["thresholds"][0]))
         raw_detect.append(bool(one["raw_detect"][0]))

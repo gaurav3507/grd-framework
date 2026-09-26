@@ -29,15 +29,18 @@ import numpy as np
 
 
 # ---------------------------------------------- pure covariance-difference API
-def covariance_difference(Y_e, Y_0):
+def covariance_difference(Y_e, Y_0, matched_n=True):
     """Delta = cov(Y_e) - cov(Y_0). Both are (n, d) with matched n.
 
     The matched-n guard matters: an n mismatch would bias Delta by the
-    n-dependent estimation noise alone.
+    n-dependent estimation noise alone. matched_n=False drops the guard for a
+    caller that calibrates Delta against a null drawn at the same unequal
+    sample-size geometry (the size-matched gate null, readout="covariance" in
+    precision_readout.py); the default keeps the guard.
     """
     Y_e = np.asarray(Y_e)
     Y_0 = np.asarray(Y_0)
-    if Y_e.shape[0] != Y_0.shape[0]:
+    if matched_n and Y_e.shape[0] != Y_0.shape[0]:
         raise ValueError(
             f"matched-n violation: Y_e has {Y_e.shape[0]} rows, Y_0 has "
             f"{Y_0.shape[0]}; the covariance difference would be biased")

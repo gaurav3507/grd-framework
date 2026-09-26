@@ -116,8 +116,12 @@ def gate_certificate(m_int, precision_count, intended_d):
     return n_recoverable, verdict
 
 
-def evaluate(basis_X, obs_X, obs_Z, int_envs, seed):
-    """int_envs: list of (node_index, X). Returns gate + naive + gated metrics."""
+def evaluate(basis_X, obs_X, obs_Z, int_envs, seed, readout="precision"):
+    """int_envs: list of (node_index, X). Returns gate + naive + gated metrics.
+
+    readout selects the gate statistic and the backbone row rule together
+    ("precision" default; "covariance" is the Tier 2 Backbone B).
+    """
     mu, Wp = BK.fit_pca(basis_X, D_PROJ)
     Y_obs = BK.project(obs_X, mu, Wp)
     Y_int = [BK.project(X, mu, Wp) for (_, X) in int_envs]
@@ -125,7 +129,8 @@ def evaluate(basis_X, obs_X, obs_Z, int_envs, seed):
 
     # GATE
     gate = PR.count_recoverable(Y_int, Y_obs, alpha=ALPHA, B=B_BOOT,
-                                rng=np.random.default_rng(910_000 + seed))
+                                rng=np.random.default_rng(910_000 + seed),
+                                readout=readout)
     detect = gate["detect"]
     certified = [nodes[k] for k in range(len(nodes)) if detect[k]]
     n_recoverable, verdict = gate_certificate(len(int_envs), gate["count"], D_LATENT)
@@ -135,7 +140,7 @@ def evaluate(basis_X, obs_X, obs_Z, int_envs, seed):
     # all d nodes are supplied.
     W = np.zeros((D_LATENT, D_LATENT))
     for (i, _), Y in zip(int_envs, Y_int):
-        W[i, :] = BK._unmixing_row(Y_obs, Y)
+        W[i, :] = BK._unmixing_row(Y_obs, Y, readout=readout)
     Z_hat = Y_obs @ W.T
     naive_mcc = float(E0.mcc(Z_hat, obs_Z))   # overall recovery (Hungarian), the 0.90-bar metric
     # number of true latents recovered by SOME column (permutation-safe direction count)
@@ -265,7 +270,7 @@ def _arm_verdict(arm_rows):
                 silent_failure=bool(silent_failure), degrades=bool(degrades))
 
 
-def run():
+def run(readout="precision"):
     report = {
         "milestone": "E2",
         "code_commit": E0._code_commit(),
@@ -285,7 +290,8 @@ def run():
                 B, nv, is_src = _base_scm(seed)
                 ds, int_envs = builder(seed, lvl)
                 r = evaluate(ds.environments["basis"].X, ds.environments["obs"].X,
-                             ds.environments["obs"].Z, int_envs, seed)
+                             ds.environments["obs"].Z, int_envs, seed,
+                             readout=readout)
                 seed_recs.append(r)
             # aggregate over seeds
             def col(key):

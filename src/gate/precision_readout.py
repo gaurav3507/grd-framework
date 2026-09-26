@@ -26,8 +26,27 @@ covariance suffered under an anisotropic spectrum does not occur here.
 
 Pure readout (numpy/scipy). Operates on data already projected to the working space
 (as the backbone does internally); no file I/O, no global seeding.
+
+Pluggable statistic (Tier 2, Backbone B). Every gate entry point takes
+readout="precision" (default, the statistic above, unchanged) or
+readout="covariance": the largest eigenvalue of Cov(Y_obs) - Cov(Y_env), which is
+rank_readout.covariance_difference with the sign flipped so a variance reduction
+is the leading eigenvalue. Only the statistic changes; the null construction,
+p-values and BH are shared.
+
+Split-control design (Tier 2). detect_with_pvalues takes Y_null: when given, every
+null draw comes from Y_null only and the observed statistic is computed against
+Y_obs, which is never resampled. split_control_indices makes the 50/50 split.
+Default Y_null=None is the shared-reference design.
 """
+import importlib.util
+from pathlib import Path
+
 import numpy as np
+
+
+READOUTS = ("precision", "covariance")
+_RANK_READOUT = None
 
 
 def precision_signal(Y_env, Y_obs):
@@ -41,19 +60,74 @@ def precision_signal(Y_env, Y_obs):
     return float(np.max(np.linalg.eigvalsh(Pe - P0)))
 
 
+def _rank_readout():
+    """rank_readout.py, loaded by path because scripts load this module by path."""
+    global _RANK_READOUT
+    if _RANK_READOUT is None:
+        path = Path(__file__).resolve().with_name("rank_readout.py")
+        spec = importlib.util.spec_from_file_location(
+            "grd_gate_rank_readout_for_precision_readout", str(path))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _RANK_READOUT = module
+    return _RANK_READOUT
+
+
+def covariance_signal(Y_env, Y_obs):
+    """Backbone B discriminant: the largest eigenvalue of Cov(Y_obs) - Cov(Y_env).
+
+    This is rank_readout.covariance_difference(Y_env, Y_obs) with the sign flipped,
+    so a variance REDUCTION under the intervention is the leading eigenvalue. The
+    matched-n guard is off because calibration comes from the size-matched null.
+    """
+    delta = _rank_readout().covariance_difference(Y_env, Y_obs, matched_n=False)
+    return float(np.max(np.linalg.eigvalsh(-delta)))
+
+
+def _signal_fn(readout):
+    if readout == "precision":
+        return precision_signal
+    if readout == "covariance":
+        return covariance_signal
+    raise ValueError(f"readout must be one of {READOUTS}, got {readout!r}")
+
+
+def readout_signal(Y_env, Y_obs, readout="precision"):
+    """The gate statistic selected by readout (see module docstring)."""
+    return _signal_fn(readout)(Y_env, Y_obs)
+
+
+def split_control_indices(n, rng):
+    """One random 50/50 split of n control rows for the split-control design.
+
+    Returns (null_idx, ref_idx), each sorted. Half A (null_idx) builds every null;
+    Half B (ref_idx, the extra row when n is odd) is the fixed reference and is
+    never resampled.
+    """
+    n = int(n)
+    if n < 2:
+        raise ValueError(f"need at least 2 control rows to split, got {n}")
+    order = rng.permutation(n)
+    half = n // 2
+    return np.sort(order[:half]), np.sort(order[half:])
+
+
 def _use_disjoint_null(n_obs, n_env, d, disjoint):
     """Whether a disjoint pseudo-environment/reference split is well posed."""
     return bool(disjoint and n_env <= n_obs // 2 and (n_obs - n_env) > d)
 
 
-def _precision_null_values(Y_obs, B, rng, n_env=None, disjoint=True):
-    """Draw precision statistics under the requested null geometry.
+def _precision_null_values(Y_obs, B, rng, n_env=None, disjoint=True,
+                           readout="precision"):
+    """Draw gate statistics under the requested null geometry.
 
     For a smaller environment, the disjoint path matches the tested comparison as
     closely as possible without sharing rows: n_env control rows form the pseudo-
     environment and all remaining rows form its reference. Equal-size comparisons
-    retain the historical two-bootstrap path exactly.
+    retain the historical two-bootstrap path exactly. readout selects the statistic
+    only; the draws are identical for every readout.
     """
+    stat = _signal_fn(readout)
     Y_obs = np.asarray(Y_obs)
     n, d = Y_obs.shape
     m = n if n_env is None else int(n_env)
@@ -67,19 +141,19 @@ def _precision_null_values(Y_obs, B, rng, n_env=None, disjoint=True):
     if _use_disjoint_null(n, m, d, disjoint):
         for b in range(B):
             idx = rng.permutation(n)
-            vals[b] = precision_signal(Y_obs[idx[:m]], Y_obs[idx[m:]])
+            vals[b] = stat(Y_obs[idx[:m]], Y_obs[idx[m:]])
     else:
         # Historical path. Keep the draw order unchanged so all equal-size synthetic
         # experiments are numerically identical to the pre-geometry-fix code.
         for b in range(B):
             i1 = rng.integers(0, n, m)
             i2 = rng.integers(0, n, m)
-            vals[b] = precision_signal(Y_obs[i1], Y_obs[i2])
+            vals[b] = stat(Y_obs[i1], Y_obs[i2])
     return vals
 
 
 def null_threshold(Y_obs, alpha=0.05, B=500, rng=None, n_env=None,
-                   disjoint=True):
+                   disjoint=True, readout="precision"):
     """(1 - alpha) quantile of the precision signal under no intervention.
 
     When n_env is a smaller environment size, the default null uses a disjoint
@@ -95,7 +169,7 @@ def null_threshold(Y_obs, alpha=0.05, B=500, rng=None, n_env=None,
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
     vals = _precision_null_values(
-        Y_obs, B=B, rng=rng, n_env=n_env, disjoint=disjoint)
+        Y_obs, B=B, rng=rng, n_env=n_env, disjoint=disjoint, readout=readout)
     return float(np.quantile(vals, 1.0 - alpha))
 
 
@@ -122,7 +196,7 @@ def bh_fdr(pvals, q=0.05):
 
 
 def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
-                        q=0.05, disjoint=True):
+                        q=0.05, disjoint=True, readout="precision", Y_null=None):
     """Detect precision changes and control environment-wise FDR.
 
     Each environment is compared with a null at its own sample size. The raw
@@ -130,18 +204,26 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
     p-values use the finite-resampling correction
         (1 + number of null statistics >= observed) / (B + 1).
     Benjamini-Hochberg is then applied across the supplied environments.
+
+    readout selects the statistic ("precision" default, or "covariance").
+    Y_null=None is the shared-reference design: nulls are drawn from Y_obs. With
+    Y_null given (split-control design), every null draw comes from Y_null only and
+    the observed statistic uses Y_obs as the reference, which is never resampled.
     """
     if rng is None:
         raise ValueError("detect_with_pvalues needs an explicit rng")
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
+    stat = _signal_fn(readout)
+    null_pool = Y_obs if Y_null is None else np.asarray(Y_null)
 
     signals, thresholds, pvalues, raw_detect = [], [], [], []
     for Y in Y_int_list:
         Y = np.asarray(Y)
         null = _precision_null_values(
-            Y_obs, B=B, rng=rng, n_env=Y.shape[0], disjoint=disjoint)
-        signal = precision_signal(Y, Y_obs)
+            null_pool, B=B, rng=rng, n_env=Y.shape[0], disjoint=disjoint,
+            readout=readout)
+        signal = stat(Y, Y_obs)
         threshold = float(np.quantile(null, 1.0 - alpha))
         pvalue = float((1 + np.count_nonzero(null >= signal)) / (B + 1))
         signals.append(float(signal))
@@ -151,7 +233,7 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
 
     bh_detect = bh_fdr(pvalues, q=q)
     raw_detect = np.asarray(raw_detect, dtype=bool)
-    return dict(
+    out = dict(
         signals=signals,
         thresholds=thresholds,
         raw_detect=raw_detect.tolist(),
@@ -164,29 +246,41 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
         B=int(B),
         disjoint=bool(disjoint),
     )
+    # Non-default designs only, so default-call output is unchanged.
+    if readout != "precision":
+        out["readout"] = readout
+    if Y_null is not None:
+        out["split_control"] = True
+        out["n_null_pool"] = int(null_pool.shape[0])
+        out["n_reference"] = int(np.asarray(Y_obs).shape[0])
+    return out
 
 
-def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None):
+def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
+                      readout="precision"):
     """Count intervention environments whose per-node precision signal exceeds the
     control-vs-control null threshold.
 
     Y_int_list : list of (n, d) projected interventional environments, one per
                  intervened latent (matching how the backbone isolates directions).
     Y_obs      : (n, d) projected observational environment.
+    readout    : gate statistic, "precision" (default) or "covariance".
 
     Returns dict: count (n_recoverable), threshold, per-environment signals, detect
     flags, and signal/threshold ratios.
     """
     if rng is None:
         raise ValueError("count_recoverable needs an explicit rng")
+    stat = _signal_fn(readout)
     signals, thresholds, detect, ratios = [], [], [], []
     for Y in Y_int_list:
         Y = np.asarray(Y)
         # Size-matched null (Lesson 2): the null resamples at THIS environment's size,
         # so a smaller perturbation environment is not scored against a tighter
         # full-size null. Equal-size environments reduce to the prior behaviour.
-        crit = null_threshold(Y_obs, alpha=alpha, B=B, rng=rng, n_env=Y.shape[0])
-        s = precision_signal(Y, Y_obs)
+        crit = null_threshold(Y_obs, alpha=alpha, B=B, rng=rng, n_env=Y.shape[0],
+                              readout=readout)
+        s = stat(Y, Y_obs)
         signals.append(float(s))
         thresholds.append(float(crit))
         detect.append(bool(s > crit))
@@ -194,11 +288,14 @@ def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None):
     # Backward-compat scalar 'threshold' = the MAX per-environment threshold (the most
     # conservative one); per-environment thresholds are in 'thresholds'.
     scalar_threshold = float(max(thresholds)) if thresholds else 0.0
-    return dict(count=int(sum(detect)), threshold=scalar_threshold,
-                thresholds=thresholds,
-                signals=signals, detect=detect,
-                ratios=[round(r, 2) for r in ratios],
-                alpha=float(alpha), B=int(B))
+    out = dict(count=int(sum(detect)), threshold=scalar_threshold,
+               thresholds=thresholds,
+               signals=signals, detect=detect,
+               ratios=[round(r, 2) for r in ratios],
+               alpha=float(alpha), B=int(B))
+    if readout != "precision":
+        out["readout"] = readout
+    return out
 
 
 # ------------------------------------------------------------------ Subspace attribution (P3)

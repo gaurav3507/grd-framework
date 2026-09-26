@@ -53,17 +53,47 @@ def project(X, mu, W_pca):
     return (X - mu) @ W_pca
 
 
-def _unmixing_row(Y_obs, Y_env):
+_RANK_READOUT = None
+
+
+def _rank_readout():
+    """src/gate/rank_readout.py, loaded by path like every other module here."""
+    global _RANK_READOUT
+    if _RANK_READOUT is None:
+        import importlib.util
+        path = REPO_ROOT / "src" / "gate" / "rank_readout.py"
+        spec = importlib.util.spec_from_file_location(
+            "grd_gate_rank_readout_for_backbone", str(path))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _RANK_READOUT = module
+    return _RANK_READOUT
+
+
+def _unmixing_row(Y_obs, Y_env, readout="precision"):
     """Row of the unmixing recovering the intervened latent: top eigenvector of the
     observed precision difference Prec(Y_env) - Prec(Y_obs).
+
+    readout="covariance" (Tier 2 Backbone B) instead takes the top eigenvector of
+    Cov(Y_obs) - Cov(Y_env), the covariance mirror of the precision rule. It has
+    no identifiability argument of its own; it is the materially different
+    statistic used to test whether the gate contract survives a backbone swap.
     """
+    if readout == "covariance":
+        delta = _rank_readout().covariance_difference(Y_env, Y_obs, matched_n=False)
+        vals, vecs = np.linalg.eigh(-delta)       # -delta = Cov(Y_obs) - Cov(Y_env)
+        return vecs[:, int(np.argmax(vals))]
+    if readout != "precision":
+        raise ValueError(
+            f"readout must be 'precision' or 'covariance', got {readout!r}")
     P0 = np.linalg.inv(np.cov(Y_obs, rowvar=False))
     Pe = np.linalg.inv(np.cov(Y_env, rowvar=False))
     vals, vecs = np.linalg.eigh(Pe - P0)          # ascending, orthonormal columns
     return vecs[:, int(np.argmax(vals))]          # largest eigenvalue
 
 
-def recover(envs, targets, d_latent, basis_key="basis", obs_key="obs"):
+def recover(envs, targets, d_latent, basis_key="basis", obs_key="obs",
+            readout="precision"):
     """Recover latents from multi-environment observed data.
 
     envs        : dict {env_key: X (n, D)} of observed data. Must contain basis_key
@@ -72,6 +102,7 @@ def recover(envs, targets, d_latent, basis_key="basis", obs_key="obs"):
     targets     : dict {env_key: latent_index} for the interventional environments,
                   giving the (known) perfect-intervention target of each.
     d_latent    : working dimension; observed data is projected here via PCA.
+    readout     : "precision" (default) or "covariance"; see _unmixing_row.
 
     Returns dict:
         Z_hat    : (n_obs, d_latent) recovered latents for the observational env,
@@ -92,7 +123,7 @@ def recover(envs, targets, d_latent, basis_key="basis", obs_key="obs"):
     W = np.zeros((d_latent, d_latent))
     for env_key, i in targets.items():
         Y_env = project(envs[env_key], mu, W_pca)
-        W[i, :] = _unmixing_row(Y_obs, Y_env)
+        W[i, :] = _unmixing_row(Y_obs, Y_env, readout=readout)
 
     Z_hat = Y_obs @ W.T
     return dict(Z_hat=Z_hat, W=W, targets=dict(targets),

@@ -205,7 +205,11 @@ def evaluate_subset(
     )
 
 
-def evaluate_seed(seed, B):
+def evaluate_seed(seed, B, readout="precision"):
+    """readout selects the gate statistic and the supplied-row rule together
+    ("precision" default; "covariance" is the Tier 2 Backbone B). The spectral
+    completion of missing rows is the same for every readout.
+    """
     ds = build_dataset(seed)
     basis = ds.environments["basis"].X
     obs = ds.environments["obs"]
@@ -221,9 +225,10 @@ def evaluate_seed(seed, B):
         alpha=ALPHA,
         B=B,
         rng=np.random.default_rng(910_000 + seed),
+        readout=readout,
     )
     recovered_rows = {
-        node: BK._unmixing_row(Y_obs, Y_interventions[node])
+        node: BK._unmixing_row(Y_obs, Y_interventions[node], readout=readout)
         for node in range(D_LATENT)
     }
 
