@@ -205,11 +205,14 @@ def evaluate_subset(
     )
 
 
-def evaluate_seed(seed, B, readout="precision"):
-    """readout selects the gate statistic and the supplied-row rule together
-    ("precision" default; "covariance" is the Tier 2 Backbone B). The spectral
-    completion of missing rows is the same for every readout.
+def evaluate_seed(seed, B, readout="precision", recovery=None):
+    """readout selects the gate statistic and recovery the supplied-row rule
+    (recovery=None uses readout). Per-environment rules (precision, covariance)
+    compute each row once; the joint rule "jad" (Backbone C) is refitted on every
+    supplied subset, since its rows depend on which environments are supplied. The
+    spectral completion of missing rows is the same for every rule.
     """
+    recovery = readout if recovery is None else recovery
     ds = build_dataset(seed)
     basis = ds.environments["basis"].X
     obs = ds.environments["obs"]
@@ -227,10 +230,19 @@ def evaluate_seed(seed, B, readout="precision"):
         rng=np.random.default_rng(910_000 + seed),
         readout=readout,
     )
-    recovered_rows = {
-        node: BK._unmixing_row(Y_obs, Y_interventions[node], readout=readout)
-        for node in range(D_LATENT)
-    }
+    if recovery == "jad":
+        def rows_for(subset):
+            W = BK.unmixing_rows(Y_obs, [Y_interventions[n] for n in subset],
+                                 list(subset), D_LATENT, readout="jad")
+            return {int(n): W[n] for n in subset}
+    else:
+        recovered_rows = {
+            node: BK._unmixing_row(Y_obs, Y_interventions[node], readout=recovery)
+            for node in range(D_LATENT)
+        }
+
+        def rows_for(subset):
+            return recovered_rows
 
     levels = []
     for m in STARVATION_LEVELS:
@@ -240,7 +252,7 @@ def evaluate_seed(seed, B, readout="precision"):
             Y_obs,
             obs.Z,
             Y_interventions,
-            recovered_rows,
+            rows_for(canonical_subset),
             gate["detect"],
         )
         control_subsets = subset_control(seed, m)
@@ -250,7 +262,7 @@ def evaluate_seed(seed, B, readout="precision"):
                 Y_obs,
                 obs.Z,
                 Y_interventions,
-                recovered_rows,
+                rows_for(subset),
                 gate["detect"],
             )
             for subset in control_subsets

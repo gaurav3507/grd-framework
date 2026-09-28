@@ -27,12 +27,14 @@ covariance suffered under an anisotropic spectrum does not occur here.
 Pure readout (numpy/scipy). Operates on data already projected to the working space
 (as the backbone does internally); no file I/O, no global seeding.
 
-Pluggable statistic (Tier 2, Backbone B). Every gate entry point takes
-readout="precision" (default, the statistic above, unchanged) or
-readout="covariance": the largest eigenvalue of Cov(Y_obs) - Cov(Y_env), which is
-rank_readout.covariance_difference with the sign flipped so a variance reduction
-is the leading eigenvalue. Only the statistic changes; the null construction,
-p-values and BH are shared.
+Pluggable statistic (Tier 2). Every gate entry point takes readout=:
+  "precision"  (default) the statistic above, unchanged;
+  "frobenius"  (Backbone C) ||inv(cov(Y_env)) - inv(cov(Y_obs))||_F, the size of the
+               whole precision difference that Backbone C joint-diagonalizes;
+  "covariance" (negative control) the largest eigenvalue of Cov(Y_obs) - Cov(Y_env),
+               rank_readout.covariance_difference with the sign flipped so a
+               variance reduction is the leading eigenvalue.
+Only the statistic changes; the null construction, p-values and BH are shared.
 
 Split-control design (Tier 2). detect_with_pvalues takes Y_null: when given, every
 null draw comes from Y_null only and the observed statistic is computed against
@@ -45,7 +47,7 @@ from pathlib import Path
 import numpy as np
 
 
-READOUTS = ("precision", "covariance")
+READOUTS = ("precision", "frobenius", "covariance")
 _RANK_READOUT = None
 
 
@@ -73,8 +75,19 @@ def _rank_readout():
     return _RANK_READOUT
 
 
+def frobenius_signal(Y_env, Y_obs):
+    """Backbone C discriminant: the Frobenius norm of the precision difference
+    inv(cov(Y_env)) - inv(cov(Y_obs)). Two-sided: any precision change counts.
+    """
+    Y_env = np.asarray(Y_env)
+    Y_obs = np.asarray(Y_obs)
+    Pe = np.linalg.inv(np.cov(Y_env, rowvar=False))
+    P0 = np.linalg.inv(np.cov(Y_obs, rowvar=False))
+    return float(np.linalg.norm(Pe - P0))
+
+
 def covariance_signal(Y_env, Y_obs):
-    """Backbone B discriminant: the largest eigenvalue of Cov(Y_obs) - Cov(Y_env).
+    """Negative-control discriminant: the largest eigenvalue of Cov(Y_obs) - Cov(Y_env).
 
     This is rank_readout.covariance_difference(Y_env, Y_obs) with the sign flipped,
     so a variance REDUCTION under the intervention is the leading eigenvalue. The
@@ -87,6 +100,8 @@ def covariance_signal(Y_env, Y_obs):
 def _signal_fn(readout):
     if readout == "precision":
         return precision_signal
+    if readout == "frobenius":
+        return frobenius_signal
     if readout == "covariance":
         return covariance_signal
     raise ValueError(f"readout must be one of {READOUTS}, got {readout!r}")

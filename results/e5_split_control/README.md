@@ -32,15 +32,21 @@ Produced by `experiments/e5_split_control.py` (launcher:
 - `shared_vs_split.<perturbations|random_controls|structured_controls>`.
 - `shared_reproduces_e3.checks`: reproduction of the committed E3 decisions per family.
 
-`e5_poscontrol.json` (layout of `results/e3_poscontrol/poscontrol_final.json`)
-- `smoke_snr8`, `dose_response[]`: planted and null-draw screens under both designs.
+`e5_poscontrol.json` and `e5_poscontrol_obs400.json` (layout of
+`results/e3_poscontrol/poscontrol_final.json`; 200 and 400 observational cells)
+- `n_obs`, `smoke_snr8`, `dose_response[]`: planted and null-draw screens under both designs.
 - `shared_vs_split.<ratio>`: planted and null-draw counts under both designs.
-- `split_geometry_note`: read this before interpreting the split arm (below).
+- `split_geometry_note`: the geometry of that variant (below).
+- `shared_reproduces_e3`: the 200-cell variant only; the 400-cell variant has a different
+  observational draw.
 
-## Caveat for the positive control
+## Positive-control geometry
 
-The observational draw there has 200 cells, so each half has 100 and every 200-cell
-environment is larger than Half A. The split null then falls back to 200 draws with
-replacement from 100 rows while the observed statistic compares 200 cells with a
-100-cell reference. It is run as specified, but it is not a like-for-like null for
-that construction.
+With the E3 observational draw of 200 cells each half has 100, every 200-cell
+environment is larger than Half A, and the split null falls back to 200 draws with
+replacement from 100 rows while the observed statistic uses a 100-cell reference, so
+that variant is not a like-for-like null. The 400-cell variant appends 200 more
+observational latents from the same SCM (the first 200 unchanged) so each half has
+200 cells, matching every environment; its shared design then uses the disjoint null
+and is no longer the E3 construction. The signal scale is fixed on the original 200
+observational cells in both, so the ratios are the same.

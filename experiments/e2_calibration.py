@@ -116,11 +116,14 @@ def gate_certificate(m_int, precision_count, intended_d):
     return n_recoverable, verdict
 
 
-def evaluate(basis_X, obs_X, obs_Z, int_envs, seed, readout="precision"):
+def evaluate(basis_X, obs_X, obs_Z, int_envs, seed, readout="precision",
+             recovery=None):
     """int_envs: list of (node_index, X). Returns gate + naive + gated metrics.
 
-    readout selects the gate statistic and the backbone row rule together
-    ("precision" default; "covariance" is the Tier 2 Backbone B).
+    readout selects the gate statistic and recovery the backbone row rule
+    (recovery=None uses readout). Defaults are the precision gate and backbone;
+    Tier 2 uses readout="frobenius", recovery="jad" (Backbone C) and
+    readout="covariance" (negative control).
     """
     mu, Wp = BK.fit_pca(basis_X, D_PROJ)
     Y_obs = BK.project(obs_X, mu, Wp)
@@ -135,12 +138,11 @@ def evaluate(basis_X, obs_X, obs_Z, int_envs, seed, readout="precision"):
     certified = [nodes[k] for k in range(len(nodes)) if detect[k]]
     n_recoverable, verdict = gate_certificate(len(int_envs), gate["count"], D_LATENT)
 
-    # NAIVE backbone: compose _unmixing_row for each supplied env (backbone's own block),
-    # zero rows for latents with no supplied environment. Equals backbone.recover when
-    # all d nodes are supplied.
-    W = np.zeros((D_LATENT, D_LATENT))
-    for (i, _), Y in zip(int_envs, Y_int):
-        W[i, :] = BK._unmixing_row(Y_obs, Y, readout=readout)
+    # NAIVE backbone: rows for each supplied env (backbone's own block, via
+    # unmixing_rows), zero rows for latents with no supplied environment. Equals
+    # backbone.recover when all d nodes are supplied.
+    W = BK.unmixing_rows(Y_obs, Y_int, nodes, D_LATENT,
+                         readout=readout if recovery is None else recovery)
     Z_hat = Y_obs @ W.T
     naive_mcc = float(E0.mcc(Z_hat, obs_Z))   # overall recovery (Hungarian), the 0.90-bar metric
     # number of true latents recovered by SOME column (permutation-safe direction count)
@@ -270,7 +272,7 @@ def _arm_verdict(arm_rows):
                 silent_failure=bool(silent_failure), degrades=bool(degrades))
 
 
-def run(readout="precision"):
+def run(readout="precision", recovery=None):
     report = {
         "milestone": "E2",
         "code_commit": E0._code_commit(),
@@ -291,7 +293,7 @@ def run(readout="precision"):
                 ds, int_envs = builder(seed, lvl)
                 r = evaluate(ds.environments["basis"].X, ds.environments["obs"].X,
                              ds.environments["obs"].Z, int_envs, seed,
-                             readout=readout)
+                             readout=readout, recovery=recovery)
                 seed_recs.append(r)
             # aggregate over seeds
             def col(key):

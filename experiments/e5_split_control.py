@@ -34,12 +34,14 @@ random splits still do not, the positive control stays 0/3 through ratio 2 and
 3/3 at ratio 8. A large drop in RPE1's BH count is a result, not a bug; nothing is
 tuned.
 
-Known geometry caveat, recorded in the artifact: in the positive control the
-observational environment has only 200 cells, so each half has 100 and every
-planted environment (200 cells) is larger than Half A. The null then falls back to
-the two-resample path (200 draws with replacement from 100 rows) while the observed
-statistic compares 200 cells with a 100-cell reference. The split design is run as
-specified there, but it is not a like-for-like null for that construction.
+Positive-control geometry, two recorded variants. With the E3 observational draw
+of 200 cells each half has 100, every planted environment (200 cells) is larger
+than Half A, and the split null falls back to 200 draws with replacement from 100
+rows while the observed statistic uses a 100-cell reference: not like-for-like.
+The 400-cell variant appends 200 more observational latents from the same SCM so
+each half has 200 cells, matching every environment. Both are run in one
+invocation (e5_poscontrol.json and e5_poscontrol_obs400.json); the geometry of
+each is written into its artifact.
 
 Usage:
     python experiments/e5_split_control.py real --dataset rpe1
@@ -328,7 +330,32 @@ def _poscontrol_noise_pool(selftest):
     return T2._dense_rows(X, g == "")
 
 
-def run_poscontrol(out_dir, B, selftest=False):
+# Observational draw sizes for the positive control. 200 is the E3 construction; with
+# 200 cells the split halves (100) are smaller than every 200-cell environment. 400
+# draws 200 more observational latents from the same SCM so each half has 200 cells.
+PC_N_OBS = (200, 400)
+PC_OBS_EXTRA_SEED = 40_400
+PC_GEOMETRY_NOTE = {
+    200: ("The observational draw has 200 cells, so each half has 100 and every "
+          "200-cell planted or null environment is larger than Half A. The "
+          "split-control null therefore uses the two-resample path (200 draws with "
+          "replacement from 100 rows) while the observed statistic compares 200 cells "
+          "with a 100-cell reference. Run as specified; not a like-for-like null for "
+          "this construction. The shared design here is the E3 equal-size path."),
+    400: ("The observational draw has 400 cells: the E3 200 plus 200 more "
+          "observational latents from the same SCM (seed 40400), the first 200 "
+          "identical to the 200-cell variant. Each half has 200 cells, equal to every "
+          "planted and null environment, so the split null is the equal-size "
+          "two-resample path within Half A and the observed statistic compares 200 "
+          "cells with a 200-cell reference. The shared design now uses the disjoint "
+          "null (n_e = 200 <= 400/2), so it is not the E3 construction and is not "
+          "checked against the committed E3 result. The signal scale is defined on "
+          "the original 200 observational cells in both variants, so the ratios are "
+          "the same."),
+}
+
+
+def run_poscontrol(out_dir, B, selftest=False, n_obs_list=PC_N_OBS):
     started = time.time()
     SIM = T2.load_module("grd_sim_for_e5", "sim/simulator.py")
     BK = T2.load_module("grd_backbone_for_e5", "src/recover/backbone.py")
@@ -362,9 +389,17 @@ def run_poscontrol(out_dir, B, selftest=False):
         noise_idx = local_rng.integers(0, len(Xc_centered), len(Z))
         return signal + Xc_centered[noise_idx]
 
-    def run_gate(snr, seeds, gate_seed):
+    def obs_latents(n_obs):
+        Z = environments["obs"].Z
+        if n_obs == len(Z):
+            return Z
+        extra = SIM.sample_latent(ds.B, ds.noise_var, n_obs - len(Z),
+                                  np.random.default_rng(PC_OBS_EXTRA_SEED))
+        return np.vstack([Z, extra])
+
+    def run_gate(snr, seeds, gate_seed, Z_obs):
         Xbasis = make_env(environments["basis"].Z, snr, seeds["basis"])
-        Xobs = make_env(environments["obs"].Z, snr, seeds["obs"])
+        Xobs = make_env(Z_obs, snr, seeds["obs"])
         Xint = [make_env(environments[f"iv{k}"].Z, snr, seeds["iv"] + k)
                 for k in range(PC["R_PLANT"])]
         mu, W = BK.fit_pca(Xbasis, PC["DPROJ"])
@@ -396,78 +431,88 @@ def run_poscontrol(out_dir, B, selftest=False):
                                          split_control=fakes[1])),
         )
 
-    smoke = run_gate(PC_SMOKE["snr"], PC_SMOKE["seeds"], PC_SMOKE["gate_seed"])
-    smoke_count = smoke["planted_screen"]["corrected_disjoint"]["raw_count"]
-    print(f"smoke: shared raw {smoke_count}/{PC['R_PLANT']} at snr=8", flush=True)
-    if smoke_count < PC["R_PLANT"] and not selftest:
-        raise SystemExit(
-            f"[stop] construction broken: strong planted intervention not detected "
-            f"by the shared design ({smoke_count}/{PC['R_PLANT']})")
+    for n_obs in n_obs_list:
+        variant_started = time.time()
+        Z_obs = obs_latents(n_obs)
+        print(f"--- observational draw {n_obs} cells", flush=True)
+        smoke = run_gate(PC_SMOKE["snr"], PC_SMOKE["seeds"], PC_SMOKE["gate_seed"],
+                         Z_obs)
+        smoke_count = smoke["planted_screen"]["corrected_disjoint"]["raw_count"]
+        print(f"smoke: shared raw {smoke_count}/{PC['R_PLANT']} at snr=8", flush=True)
+        if smoke_count < PC["R_PLANT"] and not selftest:
+            raise SystemExit(
+                f"[stop] construction broken: strong planted intervention not "
+                f"detected by the shared design ({smoke_count}/{PC['R_PLANT']}, "
+                f"{n_obs} observational cells)")
 
-    dose = []
-    for index, snr in enumerate(PC_DOSE):
-        result = run_gate(snr, dict(basis=5000, obs=5001, iv=5100),
-                          gate_seed=30_000 + index)
-        dose.append(result)
-        ps = result["planted_screen"]
-        print(f"snr {snr}: shared raw/BH {ps['corrected_disjoint']['raw_count']}/"
-              f"{ps['corrected_disjoint']['bh_count']} | split raw/BH "
-              f"{ps['split_control']['raw_count']}/{ps['split_control']['bh_count']}",
-              flush=True)
+        dose = []
+        for index, snr in enumerate(PC_DOSE):
+            result = run_gate(snr, dict(basis=5000, obs=5001, iv=5100),
+                              30_000 + index, Z_obs)
+            dose.append(result)
+            ps = result["planted_screen"]
+            print(f"snr {snr}: shared raw/BH {ps['corrected_disjoint']['raw_count']}/"
+                  f"{ps['corrected_disjoint']['bh_count']} | split raw/BH "
+                  f"{ps['split_control']['raw_count']}/"
+                  f"{ps['split_control']['bh_count']}", flush=True)
 
-    ref = None
-    ref_path = REPO / "results" / "e3_poscontrol" / "poscontrol_final.json"
-    if not selftest and ref_path.exists():
-        doc = json.loads(ref_path.read_text())
-        committed = {r["snr"]: r for r in [doc["smoke_snr8"]] + doc["dose_response"]}
-        checks = {}
-        for r in [smoke] + dose:
-            c = committed.get(r["snr"])
-            if c is None:
-                continue
-            checks[str(r["snr"])] = {
-                screen: all(
-                    r[screen]["corrected_disjoint"][k] == c[screen]["corrected_disjoint"][k]
-                    for k in ("raw_count", "bh_count", "n_environments"))
-                for screen in ("planted_screen", "negative_control_screen")}
-        ref = dict(source=str(ref_path.relative_to(REPO)),
-                   sha256=T2.sha256_file(ref_path), counts_match=checks)
+        ref = None
+        ref_path = REPO / "results" / "e3_poscontrol" / "poscontrol_final.json"
+        if n_obs == PC["NPER"] and not selftest and ref_path.exists():
+            doc = json.loads(ref_path.read_text())
+            committed = {r["snr"]: r for r in [doc["smoke_snr8"]] + doc["dose_response"]}
+            checks = {}
+            for r in [smoke] + dose:
+                c = committed.get(r["snr"])
+                if c is None:
+                    continue
+                checks[str(r["snr"])] = {
+                    screen: all(
+                        r[screen]["corrected_disjoint"][k]
+                        == c[screen]["corrected_disjoint"][k]
+                        for k in ("raw_count", "bh_count", "n_environments"))
+                    for screen in ("planted_screen", "negative_control_screen")}
+            ref = dict(source=str(ref_path.relative_to(REPO)),
+                       sha256=T2.sha256_file(ref_path), counts_match=checks)
 
-    report = dict(
-        experiment=("E5 split-control positive control: shared-SCM reduced-variance "
-                    "interventions mixed into gene space with real K562 control "
-                    "noise, screened under the shared and split-control designs"),
-        d_latent=PC["DLAT"], d_gene=DGENE, d_proj=PC["DPROJ"],
-        planted_rank=PC["R_PLANT"], cells_per_env=PC["NPER"],
-        iv_scale=PC["IV_SCALE"], alpha=PC["ALPHA"], q=PC["Q"], B=B,
-        designs=DESIGN_NOTE,
-        primary_decision="split_control BH-FDR at q=0.05",
-        bh_families=("Within each SNR arm and design, BH applied separately to "
-                     "planted interventions and null basis draws"),
-        scale="signal total variance = SNR times real background total variance",
-        null="independent un-intervened basis draws versus observational draw",
-        note="snr=0 is a null sanity check, not a real-data E3 verdict",
-        split_geometry_note=(
-            "The observational draw has 200 cells, so each half has 100 and every "
-            "200-cell planted or null environment is larger than Half A. The "
-            "split-control null therefore uses the two-resample path (200 draws "
-            "with replacement from 100 rows) while the observed statistic compares "
-            "200 cells with a 100-cell reference. Run as specified; not a "
-            "like-for-like null for this construction."),
-        real_bg_var_total=round(bg_total, 6),
-        shared_reproduces_e3=ref,
-        smoke_snr8=smoke,
-        dose_response=dose,
-        shared_vs_split={str(r["snr"]): r["shared_vs_split"] for r in [smoke] + dose},
-        selftest=bool(selftest),
-        provenance=T2.provenance(
-            __file__, extra_files=["experiments/e3_poscontrol_faithful.py",
-                                   "sim/simulator.py"]),
-        wall_seconds=round(time.time() - started, 1),
-    )
-    out = Path(out_dir) / "e5_poscontrol.json"
-    T2.write_json(out, report)
-    print(f"written {out} ({report['wall_seconds']}s)", flush=True)
+        report = dict(
+            experiment=("E5 split-control positive control: shared-SCM "
+                        "reduced-variance interventions mixed into gene space with "
+                        "real K562 control noise, screened under the shared and "
+                        "split-control designs"),
+            n_obs=int(n_obs),
+            d_latent=PC["DLAT"], d_gene=DGENE, d_proj=PC["DPROJ"],
+            planted_rank=PC["R_PLANT"], cells_per_env=PC["NPER"],
+            iv_scale=PC["IV_SCALE"], alpha=PC["ALPHA"], q=PC["Q"], B=B,
+            designs=DESIGN_NOTE,
+            primary_decision="split_control BH-FDR at q=0.05",
+            bh_families=("Within each SNR arm and design, BH applied separately to "
+                         "planted interventions and null basis draws"),
+            scale=("signal total variance = SNR times real background total "
+                   "variance, with the signal scale fixed on the original 200 "
+                   "observational cells"),
+            null="independent un-intervened basis draws versus observational draw",
+            note="snr=0 is a null sanity check, not a real-data E3 verdict",
+            split_geometry_note=PC_GEOMETRY_NOTE[n_obs],
+            real_bg_var_total=round(bg_total, 6),
+            shared_reproduces_e3=(ref if n_obs == PC["NPER"] else
+                                  "not applicable: different observational draw"),
+            smoke_snr8=smoke,
+            dose_response=dose,
+            shared_vs_split={str(r["snr"]): r["shared_vs_split"]
+                             for r in [smoke] + dose},
+            selftest=bool(selftest),
+            provenance=T2.provenance(
+                __file__, extra_files=["experiments/e3_poscontrol_faithful.py",
+                                       "sim/simulator.py"]),
+            wall_seconds=round(time.time() - variant_started, 1),
+        )
+        name = ("e5_poscontrol.json" if n_obs == PC["NPER"]
+                else f"e5_poscontrol_obs{n_obs}.json")
+        out = Path(out_dir) / name
+        T2.write_json(out, report)
+        print(f"written {out} ({report['wall_seconds']}s)", flush=True)
+    print(f"positive control done ({time.time() - started:.0f}s)", flush=True)
 
 
 def parse_args():

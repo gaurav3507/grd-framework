@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Tier 2 experiments on the A100: Experiment A (second backbone, E4), then
-# Experiment B (split-control gate, E5). No tmux; launch with nohup from the repo root:
+# Tier 2 experiments on the A100: Experiment A (E4: Backbone C, the second backbone,
+# then the covariance readout as a negative control), then Experiment B (E5:
+# split-control gate). No tmux; launch with nohup from the repo root:
 #
 #   export GRD_DATA_ROOT=/workspace/external        # see DATA.md
 #   export CB_ACTIVATE=/path/to/cb/bin/activate     # the cb venv (optional if active)
@@ -9,9 +10,13 @@
 #
 # All output goes to results/logs/tier2_<date>_<time>.log. Each stage prints one
 # PASS or FAIL line with its artifact count. FAIL means the stage crashed or its
-# artifact is missing or malformed. A scientific outcome (for example Backbone B not
-# being fooled by contamination, or RPE1's BH count dropping under split control)
-# is a finding recorded in the JSON, never a FAIL.
+# artifact is missing or malformed. A scientific outcome (for example Backbone C
+# behaving differently from the precision backbone, or RPE1's BH count dropping
+# under split control) is a finding recorded in the JSON, never a FAIL.
+#
+# Backbone C runs only if its population check passes (declared rule: population
+# MCC mean >= 0.99 and every seed >= 0.98 at the E2 reference point); otherwise its
+# sweeps are skipped and reported, and the rest of the run continues.
 #
 # The preflight re-screens RPE1 seed 0 with the unchanged E3 gate and must
 # reproduce results/e3_stability and results/e3_decisions exactly; if it does not,
@@ -116,15 +121,33 @@ if ! stage preflight-e3-reproduction - \
 fi
 
 # ---------------------------------------------------------------- Experiment A
-stage A1-e4-calibration e4_calibration \
-    "$PY" experiments/e4_second_backbone.py calibration
-stage A2-e4-starvation e4_starvation \
-    "$PY" experiments/e4_second_backbone.py starvation
+# Backbone C (second backbone): the population check must pass before any sweep.
 DATASETS="k562:K562 rpe1:RPE1 norman:Norman"
+if stage A0-e4-C-population-check e4_popcheck \
+        "$PY" experiments/e4_second_backbone.py population-check; then
+    stage A1-e4-C-calibration e4_calibration \
+        "$PY" experiments/e4_second_backbone.py calibration --backbone C
+    stage A2-e4-C-starvation e4_starvation \
+        "$PY" experiments/e4_second_backbone.py starvation --backbone C
+    for pair in $DATASETS; do
+        ds=${pair%%:*}
+        stage "A3-e4-C-real-${ds}" "e4_real:${pair#*:}" \
+            "$PY" experiments/e4_second_backbone.py real --backbone C --dataset "$ds"
+    done
+else
+    echo "SKIP [A1-A3 Backbone C] population check did not pass; no Backbone C sweep runs"
+    FAILED+=("A1-A3-backbone-C-skipped")
+fi
+
+# Covariance readout, relabelled a negative control (headline: population MCC).
+stage A4-e4-negctrl-calibration e4nc_calibration \
+    "$PY" experiments/e4_second_backbone.py calibration --backbone covneg
+stage A5-e4-negctrl-starvation e4nc_starvation \
+    "$PY" experiments/e4_second_backbone.py starvation --backbone covneg
 for pair in $DATASETS; do
     ds=${pair%%:*}
-    stage "A3-e4-real-${ds}" "e4_real:${pair#*:}" \
-        "$PY" experiments/e4_second_backbone.py real --dataset "$ds"
+    stage "A6-e4-negctrl-real-${ds}" "e4nc_real:${pair#*:}" \
+        "$PY" experiments/e4_second_backbone.py real --backbone covneg --dataset "$ds"
 done
 
 # ---------------------------------------------------------------- Experiment B

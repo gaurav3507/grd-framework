@@ -9,7 +9,7 @@ Figures:
     figure2  synthetic precondition-violation calibration (arms A/B/C/D)
     figure3  RPE1 is not a success case (perturbation vs control splits)
     figure4  closest-prior-method stress test (naive vs calibrated iLCS)
-    figure7  second backbone (covariance readout), four panels mirroring figure2
+    figure7  second backbone (Backbone C, joint diagonalization), mirrors figure2
     figure8  split-control gate: BH fraction, shared vs split, per dataset
 
 The Gate-Recover-Discover schematic is maintained separately as a draw.io
@@ -612,7 +612,7 @@ def make_figure6():
 
 
 # --------------------------------------------------------------------------
-# FIGURE 7 : second backbone (Backbone B, covariance readout), mirrors figure 2
+# FIGURE 7 : second backbone (Backbone C, joint diagonalization), mirrors figure 2
 # --------------------------------------------------------------------------
 E4_DIR = RESULTS / "e4_second_backbone"
 E5_DIR = RESULTS / "e5_split_control"
@@ -622,6 +622,11 @@ BEHAVIOR_TEXT = {
     "FOOLED": "gate certifies non-recoverable directions",
     "FLAT_OR_SILENT": "gate proceeds while MCC $<$ 0.90",
 }
+
+
+def _crossing(text, unit, value, never):
+    """'text unit=value', or the 'never' wording when the crossover did not occur."""
+    return never if value is None else f"{text} {unit}={value}"
 
 
 def _mcc_bar(ax):
@@ -661,8 +666,8 @@ def make_figure7():
     def subtitle(name, unit):
         a = d["arms"][name]
         return (f"{BEHAVIOR_TEXT.get(a['gate_behavior'], a['gate_behavior'])}\n"
-                f"leaves PROCEED at {unit}={a['crossover_gate_leaves_proceed']}; "
-                f"MCC $<$ 0.90 at {unit}={a['crossover_naive_below_0p90']}")
+                f"{_crossing('leaves PROCEED at', unit, a['crossover_gate_leaves_proceed'], 'always PROCEED')}; "
+                f"{_crossing('MCC $<$ 0.90 at', unit, a['crossover_naive_below_0p90'], 'MCC never $<$ 0.90')}")
 
     fig, axes = plt.subplots(2, 2, figsize=(7.2, 6.3))
     fig.subplots_adjust(left=0.10, right=0.97, top=0.91, bottom=0.09,
@@ -687,9 +692,12 @@ def make_figure7():
     axA.set_axisbelow(True)
     axA.set_xlabel("Intervened directions $m$")
     axA.set_ylabel("Recovery quality")
-    axA.set_title(f"Direction starvation\ngate first restricts at "
-                  f"$m$={agg['crossover_gate_first_restricts']}; MCC $<$ 0.90 from "
-                  f"$m$={agg['crossover_random_subset_mcc_below_0p90']}",
+    axA.set_title("Direction starvation\n"
+                  + _crossing("gate first restricts at", "$m$",
+                              agg["crossover_gate_first_restricts"], "gate never restricts")
+                  + "; " + _crossing("MCC $<$ 0.90 from", "$m$",
+                                     agg["crossover_random_subset_mcc_below_0p90"],
+                                     "MCC never $<$ 0.90"),
                   loc="left", pad=8, fontsize=8.2)
     axA.legend(loc="lower right", frameon=False)
 
@@ -762,14 +770,14 @@ def make_figure7():
              transform=axC.transAxes, fontsize=6.2, color=CB["grey"],
              ha="left", va="bottom")
 
-    dec = d.get("population_decomposition")
-    note = ("Backbone B: covariance-difference gate and recovery rule. "
-            "Dashed line: 0.90 recovery bar.")
-    if dec:
-        note += (f" Covariance rule MCC with exact population covariances "
-                 f"{dec['covariance_rule']['population']['mean']:.3f} "
-                 f"(precision rule {dec['precision_rule']['population']['mean']:.3f}).")
-    fig.text(0.5, 0.005, note, ha="center", fontsize=6.6, color=CB["grey"])
+    dec = d["population_decomposition"]
+    note = ("Backbone C: joint diagonalization of all precision differences, gate "
+            r"$\|\Delta_e\|_F$. Dashed line: 0.90 recovery bar." "\n"
+            "Recovery MCC with exact population covariances: Backbone C "
+            f"{dec['jad_rule']['population']['mean']:.3f}, precision rule "
+            f"{dec['precision_rule']['population']['mean']:.3f}, covariance negative "
+            f"control {dec['covariance_rule']['population']['mean']:.3f}.")
+    fig.text(0.5, -0.012, note, ha="center", fontsize=6.6, color=CB["grey"])
     save(fig, "figure7_second_backbone")
 
 
