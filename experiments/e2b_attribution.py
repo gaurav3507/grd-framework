@@ -115,7 +115,14 @@ EXPECT = {
 }
 
 
-def main():
+def run(readout="precision"):
+    """All seeds and cases; returns the report dict (main() writes it).
+
+    readout selects only the detection statistic (precision_readout readout=);
+    the default is the precision screen. The subspace attribution step, the
+    environments and every RNG stream are the same for every readout. Tier 2 uses
+    readout="frobenius" for Backbone C (experiments/e4_second_backbone.py).
+    """
     t0 = time.time()
     rows = []
     for seed in SEEDS:
@@ -124,7 +131,7 @@ def main():
         # Precision null: shared across cases (all envs have N_BASE rows).
         prec_crit = PR.null_threshold(Y_obs, alpha=ALPHA, B=B_BOOT,
                                       rng=np.random.default_rng(910_000 + seed),
-                                      n_env=N_BASE)
+                                      n_env=N_BASE, readout=readout)
         # Subspace null: shared across cases (same X_obs, same n_env). Computed once.
         sub_crit = PR.subspace_null(X_obs, D_LATENT, alpha=ALPHA, B=B_BOOT,
                                     rng=np.random.default_rng(920_000 + seed),
@@ -136,7 +143,7 @@ def main():
             else:
                 X_env = gain_env(ds, gfn(rng), rng)
             Y_env = BK.project(X_env, mu, Wp)
-            fired = bool(PR.precision_signal(Y_env, Y_obs) > prec_crit)
+            fired = bool(PR.readout_signal(Y_env, Y_obs, readout) > prec_crit)
             r = PR.attribute_environment(X_env, X_obs, D_LATENT, fired,
                                          alpha=ALPHA, B=B_BOOT,
                                          subspace_crit=sub_crit)
@@ -167,7 +174,6 @@ def main():
             expected=EXPECT[name],
         )
 
-    OUT.mkdir(parents=True, exist_ok=True)
     report = dict(
         experiment="e2b_attribution",
         alpha=ALPHA, B=B_BOOT, seeds=SEEDS,
@@ -180,8 +186,11 @@ def main():
         summary=summary, rows=rows,
         wall_seconds=round(time.time() - t0, 1),
     )
-    (OUT / "attribution_report.json").write_text(json.dumps(report, indent=2))
+    return report
 
+
+def print_table(report):
+    summary = report["summary"]
     print(f"\n{'case':22s} {'det':>5s} {'unatt|det':>9s} {'mech|det':>8s} "
           f"{'angle':>8s}  expected", flush=True)
     for name, _ in CASES:
@@ -194,6 +203,13 @@ def main():
             f"{s['angle_deg_mean']:.1f}d"
         print(f"{name:22s} {s['detected_rate']:5.2f} {ua:>9s} {ms:>8s} {ang:>8s}  "
               f"{s['expected']}", flush=True)
+
+
+def main():
+    report = run()
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "attribution_report.json").write_text(json.dumps(report, indent=2))
+    print_table(report)
     print(f"\nwritten {OUT / 'attribution_report.json'} "
           f"({report['wall_seconds']}s)", flush=True)
 

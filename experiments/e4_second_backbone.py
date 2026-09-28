@@ -25,6 +25,9 @@ Parts:
                     same arms with the precision readout on the same code as the
                     comparator, and the population decomposition of all row rules.
   starvation        the E2c random-subset starvation series (e2c_starvation), 10 seeds.
+  attribution       Backbone C only, run on the Mac: the five e2b attribution cases
+                    with the Frobenius detection statistic (e2b_attribution.run),
+                    written to e4_attribution.json in the e2b schema.
   real              gate only (no recovery) on K562 / RPE1 / Norman, corrected
                     disjoint null, BH within family, NMIN=200, d_proj=10, five gate
                     seeds, plus the E3 random pure-control family.
@@ -39,6 +42,7 @@ only a crash, a malformed artifact, or a missing or failed population check does
 
 Usage:
     python experiments/e4_second_backbone.py population-check
+    python experiments/e4_second_backbone.py attribution
     python experiments/e4_second_backbone.py calibration [--backbone covneg]
     python experiments/e4_second_backbone.py starvation [--backbone covneg]
     python experiments/e4_second_backbone.py real --dataset k562 [--backbone covneg]
@@ -588,11 +592,109 @@ def run_real(backbone, key, out_dir, seeds, B, selftest=False):
     print(f"written {out} [{name}] ({block['wall_seconds']}s)", flush=True)
 
 
+# ------------------------------------------------------------------ attribution
+# Backbone C on the five e2b attribution cases. Only the detection statistic
+# differs from e2b (||Delta_e||_F instead of lambda_max); the subspace attribution
+# step, the environments and every RNG stream are the same. Expectations written
+# before the run (2026-09-27). ||.||_F is two-sided, so the lambda_max
+# one-sidedness result (Prop 1: variance inflation is invisible to the screen) does
+# not carry over.
+ATTRIBUTION_EXPECT_FROBENIUS = {
+    "mechanism_hard_iv": ("detected ~1.0; UNATTRIBUTED|detected as in e2b "
+                          "(attribution step unchanged)"),
+    "mixed_gain_u05_15": "detected high; UNATTRIBUTED|detected ~1.0 as in e2b",
+    "uniform_gain_0.7": ("detected ~1.0; verdict as in e2b (attribution step "
+                         "unchanged)"),
+    "uniform_gain_1.0": "detected ~alpha (identity sanity)",
+    "uniform_gain_1.4": ("detected ~1.0, NOT ~0 as for lambda_max: ||Delta||_F is "
+                         "two-sided, so inflation is visible; the Prop 1 "
+                         "one-sidedness does not carry over"),
+}
+
+
+def run_attribution(out_dir):
+    spec = BACKBONES["C"]
+    E2 = _load(REPO / "experiments" / "e2_calibration.py", "grd_e2_for_e4_attr")
+    check = population_check(E2)
+    if not check["passed"]:
+        raise SystemExit("[stop] Backbone C population check failed; attribution "
+                         "check not run")
+    E2B = _load(REPO / "experiments" / "e2b_attribution.py", "grd_e2b_for_e4")
+    started = time.time()
+    report = E2B.run(readout=spec["gate_readout"])
+
+    for name, s in report["summary"].items():
+        s["expected_precision_e2b"] = s["expected"]
+        s["expected"] = ATTRIBUTION_EXPECT_FROBENIUS[name]
+
+    comparison = None
+    ref_path = REPO / "results" / "e2b" / "attribution_report.json"
+    if ref_path.exists():
+        ref = json.loads(ref_path.read_text())
+        ref_rows = {(r["seed"], r["case"]): r for r in ref["rows"]}
+        per_case = {}
+        for name, s in report["summary"].items():
+            rs = [r for r in report["rows"] if r["case"] == name]
+            both = [r for r in rs if r["detected"]
+                    and ref_rows[(r["seed"], r["case"])]["detected"]]
+            per_case[name] = dict(
+                detected_rate=dict(frobenius=s["detected_rate"],
+                                   precision=ref["summary"][name]["detected_rate"]),
+                unattributed_rate_given_detected=dict(
+                    frobenius=s["unattributed_rate_given_detected"],
+                    precision=ref["summary"][name]["unattributed_rate_given_detected"]),
+                n_detected_by_both=len(both),
+                verdict_agreement_when_both_detected=(
+                    sum(r["verdict"] == ref_rows[(r["seed"], r["case"])]["verdict"]
+                        for r in both)),
+            )
+        comparison = dict(source=str(ref_path.relative_to(REPO)),
+                          sha256=T2.sha256_file(ref_path), per_case=per_case)
+
+    report = dict(
+        role=spec["role"],
+        gate_readout=spec["gate_readout"],
+        backbone=_public(spec),
+        two_sided_note=("||Delta_e||_F is two-sided: it reacts to precision "
+                        "increases and decreases alike, so the lambda_max "
+                        "one-sidedness result (variance inflation invisible, "
+                        "Prop 1) does not carry over to Backbone C."),
+        rows_note=("rows[].precision_crit keeps its e2b key name but holds the "
+                   "gate threshold of gate_readout"),
+        population_check=dict(population_mcc_mean=check["population_mcc_mean"],
+                              population_mcc_min=check["population_mcc_min"],
+                              passed=check["passed"], rule=check["rule"]),
+        comparison_to_precision_e2b=comparison,
+    ) | report
+    report["experiment"] = "e4_attribution"
+    report["provenance"] = T2.provenance(
+        __file__, extra_files=["experiments/e2b_attribution.py",
+                               "experiments/e2_calibration.py"])
+    report["wall_seconds"] = round(time.time() - started, 1)
+    out = Path(out_dir) / "e4_attribution.json"
+    T2.write_json(out, report)
+    print(f"\nE4 ATTRIBUTION (Backbone C, gate readout {spec['gate_readout']})",
+          flush=True)
+    E2B.print_table(report)
+    if comparison:
+        print("\ncase                    detected F/P   unatt|det F/P   verdict "
+              "agreement when both detected", flush=True)
+        for name, c in comparison["per_case"].items():
+            print(f"{name:22s}  {c['detected_rate']['frobenius']}/"
+                  f"{c['detected_rate']['precision']}   "
+                  f"{c['unattributed_rate_given_detected']['frobenius']}/"
+                  f"{c['unattributed_rate_given_detected']['precision']}   "
+                  f"{c['verdict_agreement_when_both_detected']}/"
+                  f"{c['n_detected_by_both']}", flush=True)
+    print(f"written {out} ({report['wall_seconds']}s)", flush=True)
+
+
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="part", required=True)
     sub.add_parser("population-check").add_argument("--out-dir", default=str(RESULTS))
+    sub.add_parser("attribution").add_argument("--out-dir", default=str(RESULTS))
     for part in ("calibration", "starvation", "real"):
         sp = sub.add_parser(part)
         sp.add_argument("--backbone", choices=sorted(BACKBONES), default="C",
@@ -616,6 +718,8 @@ def main():
         raise SystemExit("--selftest must not write under results/; pass --out-dir")
     if args.part == "population-check":
         run_population_check(args.out_dir)
+    elif args.part == "attribution":
+        run_attribution(args.out_dir)
     elif args.part == "calibration":
         run_calibration(args.backbone, args.out_dir)
     elif args.part == "starvation":

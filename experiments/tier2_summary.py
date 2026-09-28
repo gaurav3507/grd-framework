@@ -210,6 +210,17 @@ def summary():
                          f"m={a['crossover_gate_first_restricts']}, MCC < 0.90 from "
                          f"m={a['crossover_random_subset_mcc_below_0p90']}, restricts at "
                          f"or before: {a['gate_restricts_at_or_before_mcc_crossover']}")
+    attr_path = E4 / "e4_attribution.json"
+    if attr_path.exists():
+        attr = _load(attr_path)
+        comp = (attr.get("comparison_to_precision_e2b") or {}).get("per_case", {})
+        lines += ["", "Backbone C attribution cases (detected rate Frobenius / precision; "
+                  "UNATTRIBUTED given detected, Frobenius / precision)"]
+        for case, c in comp.items():
+            lines.append(f"  {case:22} {c['detected_rate']['frobenius']} / "
+                         f"{c['detected_rate']['precision']}   "
+                         f"{c['unattributed_rate_given_detected']['frobenius']} / "
+                         f"{c['unattributed_rate_given_detected']['precision']}")
     return "\n".join(lines)
 
 

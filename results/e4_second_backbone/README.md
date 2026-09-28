@@ -20,12 +20,29 @@ covneg` for the negative control); launcher `experiments/run_tier2_a100.sh`.
 | file | contents |
 |---|---|
 | `e4_population_check.json` | Backbone C population MCC per seed, the declared rule, `passed` |
+| `e4_attribution.json` | Backbone C on the five e2b attribution cases (schema of `results/e2b/attribution_report.json`); run on the Mac |
 | `e4_calibration_report.json` | Backbone C, E2 arms (schema of `results/e2/e2_calibration_report.json`) |
 | `e4_starvation_report.json` | Backbone C, E2c series (schema of `results/e2c/starvation_report.json`) |
 | `e4_real_panel.json` | Backbone C gate on the real panel |
 | `e4_negctrl_calibration_report.json` | negative control, E2 arms; `headline` first |
 | `e4_negctrl_starvation_report.json` | negative control, E2c series |
 | `e4_negctrl_real_panel.json` | negative control gate on the real panel |
+
+## The Backbone C gate statistic is two-sided
+
+`||Delta_e||_F` reacts to precision increases and decreases alike, whereas the
+precision gate's `lambda_max(Prec(Y_e) - Prec(Y_0))` reacts only to a precision
+increase (a variance reduction). The one-sidedness result for `lambda_max` (Prop 1:
+variance inflation, such as a uniform gain above 1, is invisible to the screen) therefore
+does not carry over to Backbone C: under `||.||_F` inflation is detectable.
+`e4_attribution.json` measures this on the e2b cases (Mac, 10 seeds, B=500):
+`uniform_gain_1.4` is detected on 10/10 seeds (0/10 under `lambda_max`), and the
+unchanged subspace attributor then returns MECHANISM_SUPPORTED on all 10, because a
+scalar gain preserves the signal subspace (the Prop 3 blind spot). The two-sided
+statistic therefore turns the precision screen's safe miss into a false mechanism
+attribution for variance inflation. The shrink case (`uniform_gain_0.7`) stays
+UNATTRIBUTED under both statistics, through the lower-SNR side channel that
+inflation does not open.
 
 ## JSON keys
 
@@ -43,6 +60,13 @@ Calibration reports
 - `per_seed[].population_mcc`, `offdiag_ratio_at_solution` versus `offdiag_ratio_at_truth`
   (solution below truth means the truth is not the exact joint-diagonal optimum, a model
   property, not an optimizer failure), `n_iter`, `converged`.
+
+`e4_attribution.json`
+- `summary.<case>`: detected rate and verdict rates in the e2b layout; `expected` holds the
+  Frobenius expectation, `expected_precision_e2b` the original e2b one.
+- `comparison_to_precision_e2b.per_case`: detected and UNATTRIBUTED rates under both
+  statistics, and verdict agreement on environments both screens detect.
+- `two_sided_note`, `rows_note`, `population_check`.
 
 Starvation reports
 - `aggregate.levels[].random_subset_control`: MCC mean and seed SD, gate cap, verdict counts.
