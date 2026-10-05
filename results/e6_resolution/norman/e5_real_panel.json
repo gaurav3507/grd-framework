@@ -1,0 +1,3301 @@
+{
+  "experiment": "e5_split_control_real_panel",
+  "designs": {
+    "corrected_disjoint": "shared-reference design: observed statistic and null both use all control cells (reproduces E3)",
+    "split_control": "Half A builds every null, Half B is the fixed reference and is never resampled"
+  },
+  "config": {
+    "readout": "precision",
+    "d_proj": 10,
+    "nmin": 200,
+    "alpha": 0.05,
+    "q": 0.05,
+    "B": 9999,
+    "seeds": [
+      0
+    ],
+    "n_random_controls": 50,
+    "split_salt": 5050,
+    "projection": "control-fit PCA on all control cells (unchanged)",
+    "jaccard_convention": "None when both BH sets are empty"
+  },
+  "datasets": {
+    "Norman": {
+      "dataset": "Norman",
+      "source": "/workspace/external/discrepancy_vae/datasets/Norman2019_raw.h5ad",
+      "n_control": 8907,
+      "n_perts": 101,
+      "seeds": [
+        0
+      ],
+      "alpha": 0.05,
+      "q": 0.05,
+      "B": 9999,
+      "primary_decision": "split_control BH-FDR at q=0.05",
+      "bh_families": "Within each seed and design, BH applied separately to powered perturbations and random controls",
+      "perturbation_stability": {
+        "corrected_disjoint_raw_fraction_mean": 0.089109,
+        "corrected_disjoint_raw_fraction_sd": 0.0,
+        "corrected_disjoint_raw_fraction_per_seed": [
+          0.089109
+        ],
+        "corrected_disjoint_bh_fraction_mean": 0.009901,
+        "corrected_disjoint_bh_fraction_sd": 0.0,
+        "corrected_disjoint_bh_fraction_per_seed": [
+          0.009901
+        ],
+        "split_control_raw_fraction_mean": 0.138614,
+        "split_control_raw_fraction_sd": 0.0,
+        "split_control_raw_fraction_per_seed": [
+          0.138614
+        ],
+        "split_control_bh_fraction_mean": 0.029703,
+        "split_control_bh_fraction_sd": 0.0,
+        "split_control_bh_fraction_per_seed": [
+          0.029703
+        ]
+      },
+      "negative_control_stability": {
+        "corrected_disjoint_raw_fraction_mean": 0.08,
+        "corrected_disjoint_raw_fraction_sd": 0.0,
+        "corrected_disjoint_raw_fraction_per_seed": [
+          0.08
+        ],
+        "corrected_disjoint_bh_fraction_mean": 0.0,
+        "corrected_disjoint_bh_fraction_sd": 0.0,
+        "corrected_disjoint_bh_fraction_per_seed": [
+          0.0
+        ],
+        "split_control_raw_fraction_mean": 0.12,
+        "split_control_raw_fraction_sd": 0.0,
+        "split_control_raw_fraction_per_seed": [
+          0.12
+        ],
+        "split_control_bh_fraction_mean": 0.0,
+        "split_control_bh_fraction_sd": 0.0,
+        "split_control_bh_fraction_per_seed": [
+          0.0
+        ]
+      },
+      "shared_vs_split": {
+        "per_seed": [
+          {
+            "n_environments": 101,
+            "shared": {
+              "raw_count": 9,
+              "bh_count": 1
+            },
+            "split": {
+              "raw_count": 14,
+              "bh_count": 3
+            },
+            "jaccard_bh": 0.333333,
+            "jaccard_raw": 0.642857,
+            "both_bh_empty": false,
+            "seed": 0,
+            "negative_controls": {
+              "n_environments": 50,
+              "shared": {
+                "raw_count": 4,
+                "bh_count": 0
+              },
+              "split": {
+                "raw_count": 6,
+                "bh_count": 0
+              },
+              "jaccard_bh": null,
+              "jaccard_raw": 0.666667,
+              "both_bh_empty": true
+            }
+          }
+        ],
+        "summary": {
+          "shared_raw_count_mean": 9.0,
+          "shared_bh_count_mean": 1.0,
+          "split_raw_count_mean": 14.0,
+          "split_bh_count_mean": 3.0,
+          "jaccard_bh_mean": 0.3333,
+          "n_seeds_both_bh_empty": 0
+        }
+      },
+      "e3_reference": {
+        "source": "results/e3_stability/Norman.json",
+        "sha256": "def0417ef62c482a5643878d5ec255d0446c867eaa1355e0abff00250b97d350"
+      },
+      "selftest": false,
+      "per_seed": [
+        {
+          "seed": 0,
+          "n_perts": 101,
+          "split": {
+            "n_control": 8907,
+            "n_null_half": 4453,
+            "n_reference_half": 4454,
+            "split_rng": "SeedSequence([5050, 0])",
+            "null_idx_sha256": "103d34501021c6105431bc09ba6ffe1843b273a20d58fe34f5dad1a1c5fe8d47"
+          },
+          "perturbation_screen": {
+            "corrected_disjoint": {
+              "n_environments": 101,
+              "n_disjoint_applied": 101,
+              "raw_count": 9,
+              "raw_fraction": 0.089109,
+              "bh_count": 1,
+              "bh_fraction": 0.009901,
+              "ratio_median": 0.559063,
+              "ratio_p90": 0.982312,
+              "pvalue_median": 0.3658,
+              "threshold_median": 0.554208,
+              "min_attainable_pvalue": 0.0001,
+              "alpha": 0.05,
+              "q": 0.05,
+              "B": 9999
+            },
+            "split_control": {
+              "n_environments": 101,
+              "n_disjoint_applied": 101,
+              "raw_count": 14,
+              "raw_fraction": 0.138614,
+              "bh_count": 3,
+              "bh_fraction": 0.029703,
+              "ratio_median": 0.626172,
+              "ratio_p90": 1.090997,
+              "pvalue_median": 0.2868,
+              "threshold_median": 0.537206,
+              "min_attainable_pvalue": 0.0001,
+              "alpha": 0.05,
+              "q": 0.05,
+              "B": 9999
+            },
+            "transitions": {
+              "raw_shared_only": 0,
+              "raw_split_only": 5,
+              "raw_both": 9,
+              "bh_shared_only": 0,
+              "bh_split_only": 2,
+              "bh_both": 1
+            }
+          },
+          "negative_control_screen": {
+            "corrected_disjoint": {
+              "n_environments": 50,
+              "n_disjoint_applied": 50,
+              "raw_count": 4,
+              "raw_fraction": 0.08,
+              "bh_count": 0,
+              "bh_fraction": 0.0,
+              "ratio_median": 0.510693,
+              "ratio_p90": 0.924528,
+              "pvalue_median": 0.4894,
+              "threshold_median": 0.501794,
+              "min_attainable_pvalue": 0.0001,
+              "alpha": 0.05,
+              "q": 0.05,
+              "B": 9999
+            },
+            "split_control": {
+              "n_environments": 50,
+              "n_disjoint_applied": 50,
+              "raw_count": 6,
+              "raw_fraction": 0.12,
+              "bh_count": 0,
+              "bh_fraction": 0.0,
+              "ratio_median": 0.559886,
+              "ratio_p90": 1.016748,
+              "pvalue_median": 0.3775,
+              "threshold_median": 0.486283,
+              "min_attainable_pvalue": 0.0001,
+              "alpha": 0.05,
+              "q": 0.05,
+              "B": 9999
+            },
+            "transitions": {
+              "raw_shared_only": 0,
+              "raw_split_only": 2,
+              "raw_both": 4,
+              "bh_shared_only": 0,
+              "bh_split_only": 0,
+              "bh_both": 0
+            }
+          },
+          "confound_alignment": {
+            "corrected_disjoint_raw": {
+              "n_detected": 9,
+              "top2_energy_mean": 0.363843,
+              "top2_energy_median": 0.25326
+            },
+            "corrected_disjoint_bh": {
+              "n_detected": 1,
+              "top2_energy_mean": 0.712922,
+              "top2_energy_median": 0.712922
+            },
+            "split_control_raw": {
+              "n_detected": 14,
+              "top2_energy_mean": 0.366187,
+              "top2_energy_median": 0.366788
+            },
+            "split_control_bh": {
+              "n_detected": 3,
+              "top2_energy_mean": 0.322201,
+              "top2_energy_median": 0.182403
+            }
+          },
+          "bh_selected_ids": {
+            "corrected_disjoint": [
+              "BAK1"
+            ],
+            "split_control": [
+              "BAK1",
+              "IRF1",
+              "ZC3HAV1"
+            ]
+          },
+          "shared_reproduces_e3_stability": {
+            "labels_match": true,
+            "raw_match": false,
+            "bh_match": false
+          },
+          "per_perturbation": [
+            {
+              "environment": "AHR",
+              "n_samples": 558,
+              "corrected_disjoint": {
+                "signal": 0.21299045331409505,
+                "threshold": 0.5155285566228006,
+                "pvalue": 0.7059,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.22195955618100302,
+                "threshold": 0.4959613036395542,
+                "pvalue": 0.6819,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ARID1A",
+              "n_samples": 232,
+              "corrected_disjoint": {
+                "signal": 0.6204995280555826,
+                "threshold": 0.977854376967919,
+                "pvalue": 0.2381,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6633382384914461,
+                "threshold": 0.9592220178137267,
+                "pvalue": 0.18,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ARRDC3",
+              "n_samples": 495,
+              "corrected_disjoint": {
+                "signal": 0.21336408704217047,
+                "threshold": 0.5641882213921399,
+                "pvalue": 0.7598,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.26930448713340194,
+                "threshold": 0.5505803360016485,
+                "pvalue": 0.5433,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ATL1",
+              "n_samples": 379,
+              "corrected_disjoint": {
+                "signal": 0.4171311542105945,
+                "threshold": 0.676661612642056,
+                "pvalue": 0.2678,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4159863521948437,
+                "threshold": 0.6612157598889671,
+                "pvalue": 0.2621,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "BAK1",
+              "n_samples": 1457,
+              "corrected_disjoint": {
+                "signal": 0.737841945511337,
+                "threshold": 0.285679645261668,
+                "pvalue": 0.0001,
+                "raw_detect": true,
+                "bh_detect": true,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.7864178235820893,
+                "threshold": 0.2878946509458287,
+                "pvalue": 0.0001,
+                "raw_detect": true,
+                "bh_detect": true,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "BCL2L11",
+              "n_samples": 582,
+              "corrected_disjoint": {
+                "signal": 0.3382338531952807,
+                "threshold": 0.5075574406582775,
+                "pvalue": 0.2176,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.38419552917193217,
+                "threshold": 0.4869163655468616,
+                "pvalue": 0.1382,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "BCORL1",
+              "n_samples": 533,
+              "corrected_disjoint": {
+                "signal": 0.3961355500622224,
+                "threshold": 0.5392721859658963,
+                "pvalue": 0.1533,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.44541952086268155,
+                "threshold": 0.5245527055678455,
+                "pvalue": 0.0983,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "BPGM",
+              "n_samples": 464,
+              "corrected_disjoint": {
+                "signal": 0.27904788724553875,
+                "threshold": 0.5891114047217952,
+                "pvalue": 0.5389,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.30332152912711946,
+                "threshold": 0.5708461675304958,
+                "pvalue": 0.4482,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "C19orf26",
+              "n_samples": 872,
+              "corrected_disjoint": {
+                "signal": 0.20237573496422037,
+                "threshold": 0.3856890344227449,
+                "pvalue": 0.4741,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.21555680831232546,
+                "threshold": 0.37776653226631174,
+                "pvalue": 0.4293,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "C3orf72",
+              "n_samples": 264,
+              "corrected_disjoint": {
+                "signal": 0.3368646720639108,
+                "threshold": 0.8909859597485822,
+                "pvalue": 0.7241,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3592595390415375,
+                "threshold": 0.8660514173905584,
+                "pvalue": 0.6642,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CBFA2T3",
+              "n_samples": 658,
+              "corrected_disjoint": {
+                "signal": 0.19262837125092436,
+                "threshold": 0.46103859400700037,
+                "pvalue": 0.6999,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.21011196108594318,
+                "threshold": 0.45541356172290076,
+                "pvalue": 0.6337,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CBL",
+              "n_samples": 663,
+              "corrected_disjoint": {
+                "signal": 0.2538768170926955,
+                "threshold": 0.46197560410544364,
+                "pvalue": 0.4044,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.29920497608093677,
+                "threshold": 0.4395164386911462,
+                "pvalue": 0.2455,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CDKN1A",
+              "n_samples": 360,
+              "corrected_disjoint": {
+                "signal": 0.5019167676556373,
+                "threshold": 0.6992515444945265,
+                "pvalue": 0.1662,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5652106003619009,
+                "threshold": 0.6808822940725521,
+                "pvalue": 0.1055,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CDKN1B",
+              "n_samples": 550,
+              "corrected_disjoint": {
+                "signal": 0.5008344188671545,
+                "threshold": 0.5231451307773245,
+                "pvalue": 0.0604,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5511986397607551,
+                "threshold": 0.5052246183209336,
+                "pvalue": 0.0345,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CDKN1C",
+              "n_samples": 230,
+              "corrected_disjoint": {
+                "signal": 0.5015450980298201,
+                "threshold": 0.9989005256439316,
+                "pvalue": 0.4297,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5042734435686906,
+                "threshold": 0.9852630048067543,
+                "pvalue": 0.4081,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CEBPA",
+              "n_samples": 460,
+              "corrected_disjoint": {
+                "signal": 0.4442043323487557,
+                "threshold": 0.6032471410521811,
+                "pvalue": 0.1481,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.45151729182661776,
+                "threshold": 0.5749282509226507,
+                "pvalue": 0.129,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CEBPB",
+              "n_samples": 488,
+              "corrected_disjoint": {
+                "signal": 0.4229172373003705,
+                "threshold": 0.5648950395327099,
+                "pvalue": 0.152,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.47327312676497035,
+                "threshold": 0.5507604683161238,
+                "pvalue": 0.088,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CEBPE",
+              "n_samples": 1233,
+              "corrected_disjoint": {
+                "signal": 0.2733730236275976,
+                "threshold": 0.3108455953116332,
+                "pvalue": 0.0896,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2811160546731106,
+                "threshold": 0.30816984444899015,
+                "pvalue": 0.0785,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CELF2",
+              "n_samples": 475,
+              "corrected_disjoint": {
+                "signal": 0.32920760080043165,
+                "threshold": 0.5842423115781414,
+                "pvalue": 0.3521,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.34998583013141077,
+                "threshold": 0.5623536638089114,
+                "pvalue": 0.2868,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CITED1",
+              "n_samples": 215,
+              "corrected_disjoint": {
+                "signal": 0.4215538340747346,
+                "threshold": 1.0514865768622879,
+                "pvalue": 0.6505,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4401710394251927,
+                "threshold": 1.0258280465180196,
+                "pvalue": 0.6027,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CKS1B",
+              "n_samples": 241,
+              "corrected_disjoint": {
+                "signal": 0.5163084461263899,
+                "threshold": 0.9699636381261234,
+                "pvalue": 0.3658,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.535918435485496,
+                "threshold": 0.9400161624427561,
+                "pvalue": 0.3194,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CLDN6",
+              "n_samples": 670,
+              "corrected_disjoint": {
+                "signal": 0.27513819735340617,
+                "threshold": 0.464132953574297,
+                "pvalue": 0.321,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.27149726304489524,
+                "threshold": 0.44451941870882233,
+                "pvalue": 0.3388,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CNN1",
+              "n_samples": 765,
+              "corrected_disjoint": {
+                "signal": 0.2664598916856232,
+                "threshold": 0.423629887041948,
+                "pvalue": 0.2745,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.26007666110306105,
+                "threshold": 0.41233389689997285,
+                "pvalue": 0.3055,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CNNM4",
+              "n_samples": 470,
+              "corrected_disjoint": {
+                "signal": 0.37174501794287274,
+                "threshold": 0.586855196971062,
+                "pvalue": 0.2544,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.40457226658026946,
+                "threshold": 0.5573769650208008,
+                "pvalue": 0.1835,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "COL1A1",
+              "n_samples": 328,
+              "corrected_disjoint": {
+                "signal": 0.3611201865070593,
+                "threshold": 0.7612985083596714,
+                "pvalue": 0.4953,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3853786449667414,
+                "threshold": 0.7305013051316581,
+                "pvalue": 0.4302,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "COL2A1",
+              "n_samples": 598,
+              "corrected_disjoint": {
+                "signal": 0.3918952609882953,
+                "threshold": 0.48955267103018857,
+                "pvalue": 0.1224,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3967002929053974,
+                "threshold": 0.48687864657853397,
+                "pvalue": 0.1136,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "CSRNP1",
+              "n_samples": 478,
+              "corrected_disjoint": {
+                "signal": 0.4867276110282588,
+                "threshold": 0.5786425381517377,
+                "pvalue": 0.0958,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5290942279304631,
+                "threshold": 0.5513180900258575,
+                "pvalue": 0.0597,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "DLX2",
+              "n_samples": 732,
+              "corrected_disjoint": {
+                "signal": 0.31426242172284613,
+                "threshold": 0.4398005073362232,
+                "pvalue": 0.1741,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3114223523398652,
+                "threshold": 0.4192493648124141,
+                "pvalue": 0.1785,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "DUSP9",
+              "n_samples": 731,
+              "corrected_disjoint": {
+                "signal": 0.3687232766906815,
+                "threshold": 0.432328337063724,
+                "pvalue": 0.0939,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3910205629274684,
+                "threshold": 0.41878849390831496,
+                "pvalue": 0.0701,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "EGR1",
+              "n_samples": 322,
+              "corrected_disjoint": {
+                "signal": 0.5343149992165008,
+                "threshold": 0.7772263715308875,
+                "pvalue": 0.1791,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5881504298164164,
+                "threshold": 0.730390650526227,
+                "pvalue": 0.1138,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ELMSAN1",
+              "n_samples": 937,
+              "corrected_disjoint": {
+                "signal": 0.35357574312100065,
+                "threshold": 0.37316860081617936,
+                "pvalue": 0.0634,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.37539619748176967,
+                "threshold": 0.35994884071440864,
+                "pvalue": 0.0413,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ETS2",
+              "n_samples": 1201,
+              "corrected_disjoint": {
+                "signal": 0.14095057389926213,
+                "threshold": 0.31616019703627474,
+                "pvalue": 0.6745,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.17294439646266602,
+                "threshold": 0.3161617415190106,
+                "pvalue": 0.5027,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FEV",
+              "n_samples": 704,
+              "corrected_disjoint": {
+                "signal": 0.1541524478905671,
+                "threshold": 0.4523046324651665,
+                "pvalue": 0.851,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.17226581673215308,
+                "threshold": 0.42994949343631905,
+                "pvalue": 0.7861,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FOSB",
+              "n_samples": 630,
+              "corrected_disjoint": {
+                "signal": 0.2167233766027512,
+                "threshold": 0.47280995839601175,
+                "pvalue": 0.6041,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.25704051415873996,
+                "threshold": 0.46059914237694743,
+                "pvalue": 0.4316,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FOXA1",
+              "n_samples": 851,
+              "corrected_disjoint": {
+                "signal": 0.15378972214821307,
+                "threshold": 0.395243960756211,
+                "pvalue": 0.7731,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.15815128158953778,
+                "threshold": 0.377492041996517,
+                "pvalue": 0.7796,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FOXA3",
+              "n_samples": 494,
+              "corrected_disjoint": {
+                "signal": 0.18333097693840592,
+                "threshold": 0.563976302234129,
+                "pvalue": 0.8693,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.18615802007930432,
+                "threshold": 0.5383862629106837,
+                "pvalue": 0.8776,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FOXF1",
+              "n_samples": 874,
+              "corrected_disjoint": {
+                "signal": 0.39780419754559415,
+                "threshold": 0.3838722608674259,
+                "pvalue": 0.0434,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.44584666427065023,
+                "threshold": 0.3780673389078861,
+                "pvalue": 0.0231,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FOXL2",
+              "n_samples": 652,
+              "corrected_disjoint": {
+                "signal": 0.23330250317479082,
+                "threshold": 0.47706677718402146,
+                "pvalue": 0.5073,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2649304950257273,
+                "threshold": 0.4504283611534076,
+                "pvalue": 0.3841,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "FOXO4",
+              "n_samples": 215,
+              "corrected_disjoint": {
+                "signal": 0.6897986616441297,
+                "threshold": 1.0610838433679048,
+                "pvalue": 0.201,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.7068037652106396,
+                "threshold": 1.007717383295433,
+                "pvalue": 0.1795,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "GLB1L2",
+              "n_samples": 463,
+              "corrected_disjoint": {
+                "signal": 0.7457530603149642,
+                "threshold": 0.6002375643449175,
+                "pvalue": 0.0185,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.8036854047937972,
+                "threshold": 0.570255580772173,
+                "pvalue": 0.0104,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "HK2",
+              "n_samples": 303,
+              "corrected_disjoint": {
+                "signal": 0.31515702696325687,
+                "threshold": 0.8027646985420492,
+                "pvalue": 0.6892,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.32349620050173294,
+                "threshold": 0.7767777040429837,
+                "pvalue": 0.6754,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "HNF4A",
+              "n_samples": 237,
+              "corrected_disjoint": {
+                "signal": 0.5024888265470764,
+                "threshold": 0.9831853989742542,
+                "pvalue": 0.408,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5055831253148722,
+                "threshold": 0.953815461348356,
+                "pvalue": 0.3799,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "HOXA13",
+              "n_samples": 274,
+              "corrected_disjoint": {
+                "signal": 0.3451873938986997,
+                "threshold": 0.8705786564302035,
+                "pvalue": 0.6801,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.35013052023795094,
+                "threshold": 0.8179674231390061,
+                "pvalue": 0.6501,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "HOXB9",
+              "n_samples": 701,
+              "corrected_disjoint": {
+                "signal": 0.30765677380444567,
+                "threshold": 0.44645329322848387,
+                "pvalue": 0.2046,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.29277742756335784,
+                "threshold": 0.4267814160645557,
+                "pvalue": 0.2459,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "HOXC13",
+              "n_samples": 385,
+              "corrected_disjoint": {
+                "signal": 0.6041670069615499,
+                "threshold": 0.6748882418943579,
+                "pvalue": 0.0774,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6279021705727771,
+                "threshold": 0.648477400027803,
+                "pvalue": 0.0576,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "IER5L",
+              "n_samples": 405,
+              "corrected_disjoint": {
+                "signal": 0.4399373008435772,
+                "threshold": 0.653940096466447,
+                "pvalue": 0.1976,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4404087930001383,
+                "threshold": 0.6379397216687025,
+                "pvalue": 0.1943,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "IGDCC3",
+              "n_samples": 613,
+              "corrected_disjoint": {
+                "signal": 0.4619748155765318,
+                "threshold": 0.4850676687855314,
+                "pvalue": 0.0603,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4925479179971578,
+                "threshold": 0.4704618383579846,
+                "pvalue": 0.0401,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "IKZF3",
+              "n_samples": 681,
+              "corrected_disjoint": {
+                "signal": 0.26743839466643926,
+                "threshold": 0.4529831082076314,
+                "pvalue": 0.3331,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2867521024979864,
+                "threshold": 0.4338507066475132,
+                "pvalue": 0.2768,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "IRF1",
+              "n_samples": 427,
+              "corrected_disjoint": {
+                "signal": 1.0703186398568199,
+                "threshold": 0.6271921363083571,
+                "pvalue": 0.0023,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 1.118045427288211,
+                "threshold": 0.5967746798802165,
+                "pvalue": 0.0013,
+                "raw_detect": true,
+                "bh_detect": true,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ISL2",
+              "n_samples": 582,
+              "corrected_disjoint": {
+                "signal": 0.3976188502189587,
+                "threshold": 0.5100262904945518,
+                "pvalue": 0.1296,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.45212850839137864,
+                "threshold": 0.48642196110116115,
+                "pvalue": 0.0671,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "JUN",
+              "n_samples": 266,
+              "corrected_disjoint": {
+                "signal": 0.4157402124185704,
+                "threshold": 0.8974277986830603,
+                "pvalue": 0.509,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.433920351692176,
+                "threshold": 0.8619388985505028,
+                "pvalue": 0.4649,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "KIAA1804",
+              "n_samples": 278,
+              "corrected_disjoint": {
+                "signal": 0.5142119625785477,
+                "threshold": 0.8623374155298446,
+                "pvalue": 0.272,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5763686224926164,
+                "threshold": 0.8314761389268607,
+                "pvalue": 0.1862,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "KIF18B",
+              "n_samples": 254,
+              "corrected_disjoint": {
+                "signal": 0.1657877316028513,
+                "threshold": 0.9142007512804393,
+                "pvalue": 0.992,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.1695723698405465,
+                "threshold": 0.8810067511851356,
+                "pvalue": 0.9922,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "KIF2C",
+              "n_samples": 634,
+              "corrected_disjoint": {
+                "signal": 0.25939173704065244,
+                "threshold": 0.4799101652244829,
+                "pvalue": 0.4081,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3114531161496777,
+                "threshold": 0.4593674876209529,
+                "pvalue": 0.2411,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "KLF1",
+              "n_samples": 1960,
+              "corrected_disjoint": {
+                "signal": 0.2880508725842101,
+                "threshold": 0.24017456481064,
+                "pvalue": 0.0222,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2973062286922833,
+                "threshold": 0.25706721059821047,
+                "pvalue": 0.0215,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "KMT2A",
+              "n_samples": 241,
+              "corrected_disjoint": {
+                "signal": 0.289198778157966,
+                "threshold": 0.9570019260596296,
+                "pvalue": 0.8749,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.308726676767591,
+                "threshold": 0.9159149052658724,
+                "pvalue": 0.8411,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "LHX1",
+              "n_samples": 375,
+              "corrected_disjoint": {
+                "signal": 0.3636106241690348,
+                "threshold": 0.694067399717782,
+                "pvalue": 0.4048,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3746450167312704,
+                "threshold": 0.6662336492560991,
+                "pvalue": 0.3748,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "LYL1",
+              "n_samples": 432,
+              "corrected_disjoint": {
+                "signal": 0.6100708174945421,
+                "threshold": 0.62105632639418,
+                "pvalue": 0.054,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6652711085893372,
+                "threshold": 0.6128172369288134,
+                "pvalue": 0.0353,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAML2",
+              "n_samples": 626,
+              "corrected_disjoint": {
+                "signal": 0.4399933191320712,
+                "threshold": 0.48631538247451356,
+                "pvalue": 0.0728,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4513893476248042,
+                "threshold": 0.4671969862204823,
+                "pvalue": 0.0584,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAP2K3",
+              "n_samples": 579,
+              "corrected_disjoint": {
+                "signal": 0.42883490844228966,
+                "threshold": 0.5072674302809568,
+                "pvalue": 0.0952,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.45878499926145155,
+                "threshold": 0.4878803519296888,
+                "pvalue": 0.0666,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAP2K6",
+              "n_samples": 878,
+              "corrected_disjoint": {
+                "signal": 0.13921468081455632,
+                "threshold": 0.37675114715196,
+                "pvalue": 0.8338,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.14529754559717892,
+                "threshold": 0.37567472526015344,
+                "pvalue": 0.8398,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAP4K3",
+              "n_samples": 363,
+              "corrected_disjoint": {
+                "signal": 0.24057480318691885,
+                "threshold": 0.7084363942516648,
+                "pvalue": 0.8235,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.27352109683486214,
+                "threshold": 0.6771453497628439,
+                "pvalue": 0.7239,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAP4K5",
+              "n_samples": 366,
+              "corrected_disjoint": {
+                "signal": 0.12642652959931824,
+                "threshold": 0.704527242061881,
+                "pvalue": 0.9942,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.14092895445171177,
+                "threshold": 0.6717438549910327,
+                "pvalue": 0.9902,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAP7D1",
+              "n_samples": 751,
+              "corrected_disjoint": {
+                "signal": 0.19255440993473913,
+                "threshold": 0.4172508541704486,
+                "pvalue": 0.6169,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.25035555301760365,
+                "threshold": 0.41534412708112184,
+                "pvalue": 0.3531,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MAPK1",
+              "n_samples": 765,
+              "corrected_disjoint": {
+                "signal": 0.23937766666708668,
+                "threshold": 0.4246390319891948,
+                "pvalue": 0.3734,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.25245059159986577,
+                "threshold": 0.40316466948359864,
+                "pvalue": 0.3334,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MEIS1",
+              "n_samples": 776,
+              "corrected_disjoint": {
+                "signal": 0.2355411856333232,
+                "threshold": 0.4229448212605653,
+                "pvalue": 0.3778,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.27855827150048496,
+                "threshold": 0.40443696241647203,
+                "pvalue": 0.2349,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "MIDN",
+              "n_samples": 298,
+              "corrected_disjoint": {
+                "signal": 0.2642406336565573,
+                "threshold": 0.810401712826036,
+                "pvalue": 0.8484,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.26790671521607085,
+                "threshold": 0.7854959081216418,
+                "pvalue": 0.8446,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "NCL",
+              "n_samples": 237,
+              "corrected_disjoint": {
+                "signal": 0.3744927814169811,
+                "threshold": 0.9787904141817407,
+                "pvalue": 0.6976,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3597997547659306,
+                "threshold": 0.955095143199045,
+                "pvalue": 0.7375,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "OSR2",
+              "n_samples": 1003,
+              "corrected_disjoint": {
+                "signal": 0.16027188344428847,
+                "threshold": 0.358057268170133,
+                "pvalue": 0.6497,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.1613299069438311,
+                "threshold": 0.342960375190961,
+                "pvalue": 0.6796,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "POU3F2",
+              "n_samples": 359,
+              "corrected_disjoint": {
+                "signal": 0.2228399321359372,
+                "threshold": 0.6979296582428315,
+                "pvalue": 0.875,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2335738528811973,
+                "threshold": 0.6824075799132858,
+                "pvalue": 0.851,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "PRDM1",
+              "n_samples": 297,
+              "corrected_disjoint": {
+                "signal": 0.30773431649817773,
+                "threshold": 0.8304196594040752,
+                "pvalue": 0.7341,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3271042715471913,
+                "threshold": 0.7914554751000115,
+                "pvalue": 0.6735,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "PRTG",
+              "n_samples": 685,
+              "corrected_disjoint": {
+                "signal": 0.36163800147783826,
+                "threshold": 0.4562028442671916,
+                "pvalue": 0.1206,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3648656254679134,
+                "threshold": 0.4312026191079803,
+                "pvalue": 0.1069,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "PTPN1",
+              "n_samples": 419,
+              "corrected_disjoint": {
+                "signal": 0.4509947593678482,
+                "threshold": 0.6369791587886595,
+                "pvalue": 0.1741,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5052685915340909,
+                "threshold": 0.6101846520044936,
+                "pvalue": 0.1068,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "PTPN12",
+              "n_samples": 445,
+              "corrected_disjoint": {
+                "signal": 0.2397639053971346,
+                "threshold": 0.6104210963134756,
+                "pvalue": 0.7154,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.27141653444175884,
+                "threshold": 0.5853444767987463,
+                "pvalue": 0.6066,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "PTPN13",
+              "n_samples": 270,
+              "corrected_disjoint": {
+                "signal": 0.5037849369363846,
+                "threshold": 0.9011236978738859,
+                "pvalue": 0.3092,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5203972206847787,
+                "threshold": 0.861131542410697,
+                "pvalue": 0.2813,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "PTPN9",
+              "n_samples": 445,
+              "corrected_disjoint": {
+                "signal": 0.2943832750713655,
+                "threshold": 0.6136587246962045,
+                "pvalue": 0.5104,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.30703643122788,
+                "threshold": 0.5872182661660325,
+                "pvalue": 0.4659,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "RHOXF2",
+              "n_samples": 328,
+              "corrected_disjoint": {
+                "signal": 0.2896405436354249,
+                "threshold": 0.7518070949437438,
+                "pvalue": 0.7276,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2925103540390175,
+                "threshold": 0.7260162805413638,
+                "pvalue": 0.7251,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "RREB1",
+              "n_samples": 331,
+              "corrected_disjoint": {
+                "signal": 0.21908182893437214,
+                "threshold": 0.7698708551665869,
+                "pvalue": 0.9094,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2546004361265238,
+                "threshold": 0.7278490615264355,
+                "pvalue": 0.8284,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "RUNX1T1",
+              "n_samples": 779,
+              "corrected_disjoint": {
+                "signal": 0.24859952583734518,
+                "threshold": 0.41548557513811474,
+                "pvalue": 0.3365,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.28806879159899734,
+                "threshold": 0.40779471621864477,
+                "pvalue": 0.2103,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "S1PR2",
+              "n_samples": 541,
+              "corrected_disjoint": {
+                "signal": 0.2127821229378304,
+                "threshold": 0.5289531927416601,
+                "pvalue": 0.7274,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.23301357681822032,
+                "threshold": 0.5041323847275883,
+                "pvalue": 0.6368,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SAMD1",
+              "n_samples": 498,
+              "corrected_disjoint": {
+                "signal": 0.1729556554749553,
+                "threshold": 0.5597317977138554,
+                "pvalue": 0.895,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.17635823098356737,
+                "threshold": 0.5406932055167215,
+                "pvalue": 0.9005,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SET",
+              "n_samples": 986,
+              "corrected_disjoint": {
+                "signal": 0.38515861825659986,
+                "threshold": 0.3567580082898107,
+                "pvalue": 0.0346,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.42198374057067845,
+                "threshold": 0.3490240487412085,
+                "pvalue": 0.0186,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SGK1",
+              "n_samples": 483,
+              "corrected_disjoint": {
+                "signal": 0.22787641574321615,
+                "threshold": 0.5758716895816112,
+                "pvalue": 0.7164,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.22487039325134434,
+                "threshold": 0.5566712524746031,
+                "pvalue": 0.7375,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SLC38A2",
+              "n_samples": 332,
+              "corrected_disjoint": {
+                "signal": 0.45112281219822215,
+                "threshold": 0.7534337267467721,
+                "pvalue": 0.2753,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.477885919558062,
+                "threshold": 0.7196266088175298,
+                "pvalue": 0.2297,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SLC4A1",
+              "n_samples": 1000,
+              "corrected_disjoint": {
+                "signal": 0.18096469624365086,
+                "threshold": 0.35168265721464803,
+                "pvalue": 0.5062,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.18482603860274666,
+                "threshold": 0.34916950730880053,
+                "pvalue": 0.5287,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SLC6A9",
+              "n_samples": 558,
+              "corrected_disjoint": {
+                "signal": 0.1833145197022499,
+                "threshold": 0.5213143574494391,
+                "pvalue": 0.8244,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.18563162314542964,
+                "threshold": 0.5006172630306828,
+                "pvalue": 0.8241,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SNAI1",
+              "n_samples": 467,
+              "corrected_disjoint": {
+                "signal": 0.3109105505378827,
+                "threshold": 0.5874488147018172,
+                "pvalue": 0.4166,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3322642601805982,
+                "threshold": 0.5590563538535597,
+                "pvalue": 0.3564,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "SPI1",
+              "n_samples": 613,
+              "corrected_disjoint": {
+                "signal": 0.4855557680372575,
+                "threshold": 0.4909666422459476,
+                "pvalue": 0.0523,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5148721130642367,
+                "threshold": 0.4711391774108949,
+                "pvalue": 0.0342,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "STIL",
+              "n_samples": 309,
+              "corrected_disjoint": {
+                "signal": 0.23634729249538666,
+                "threshold": 0.7919434027020261,
+                "pvalue": 0.8974,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.25293284427554313,
+                "threshold": 0.7656772728097889,
+                "pvalue": 0.8679,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "TBX2",
+              "n_samples": 690,
+              "corrected_disjoint": {
+                "signal": 0.24228389659973665,
+                "threshold": 0.45113318178574535,
+                "pvalue": 0.437,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.27086723117329686,
+                "threshold": 0.43958639498081903,
+                "pvalue": 0.3259,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "TBX3",
+              "n_samples": 691,
+              "corrected_disjoint": {
+                "signal": 0.2780508164912328,
+                "threshold": 0.45055108024576607,
+                "pvalue": 0.2925,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.28661912718562843,
+                "threshold": 0.42984686145071016,
+                "pvalue": 0.264,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "TGFBR2",
+              "n_samples": 646,
+              "corrected_disjoint": {
+                "signal": 0.3580195918944018,
+                "threshold": 0.46671263241922595,
+                "pvalue": 0.1398,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.38721341741547477,
+                "threshold": 0.45184501234043767,
+                "pvalue": 0.0993,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "TMSB4X",
+              "n_samples": 543,
+              "corrected_disjoint": {
+                "signal": 0.24658744715183584,
+                "threshold": 0.5311769723100488,
+                "pvalue": 0.5663,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2764159245961874,
+                "threshold": 0.5142190188430265,
+                "pvalue": 0.4484,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "TP73",
+              "n_samples": 248,
+              "corrected_disjoint": {
+                "signal": 0.699325641839803,
+                "threshold": 0.9490620025335604,
+                "pvalue": 0.14,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6849101410046008,
+                "threshold": 0.9100523012291611,
+                "pvalue": 0.1389,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "TSC22D1",
+              "n_samples": 441,
+              "corrected_disjoint": {
+                "signal": 0.41071779292134614,
+                "threshold": 0.6242974309860259,
+                "pvalue": 0.213,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4655335119380979,
+                "threshold": 0.593302484674871,
+                "pvalue": 0.13,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "UBASH3A",
+              "n_samples": 819,
+              "corrected_disjoint": {
+                "signal": 0.15606866584009824,
+                "threshold": 0.405272483283413,
+                "pvalue": 0.7763,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.20352601912054075,
+                "threshold": 0.38539265906768005,
+                "pvalue": 0.5233,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "UBASH3B",
+              "n_samples": 1202,
+              "corrected_disjoint": {
+                "signal": 0.37719127823520876,
+                "threshold": 0.3190650149651274,
+                "pvalue": 0.0234,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4170282352628828,
+                "threshold": 0.3127447179018989,
+                "pvalue": 0.0095,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ZBTB1",
+              "n_samples": 693,
+              "corrected_disjoint": {
+                "signal": 0.17761925321409724,
+                "threshold": 0.4528400499986685,
+                "pvalue": 0.7426,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.21010314787683146,
+                "threshold": 0.4353025140994866,
+                "pvalue": 0.5961,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ZBTB25",
+              "n_samples": 740,
+              "corrected_disjoint": {
+                "signal": 0.6356505791142404,
+                "threshold": 0.4272452920887033,
+                "pvalue": 0.008,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6839271045126121,
+                "threshold": 0.41461873441657193,
+                "pvalue": 0.0036,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ZC3HAV1",
+              "n_samples": 516,
+              "corrected_disjoint": {
+                "signal": 1.0596481968462457,
+                "threshold": 0.5542076203023926,
+                "pvalue": 0.0013,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 1.0837683398299967,
+                "threshold": 0.5372061924033791,
+                "pvalue": 0.0006,
+                "raw_detect": true,
+                "bh_detect": true,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "ZNF318",
+              "n_samples": 650,
+              "corrected_disjoint": {
+                "signal": 0.303106783424266,
+                "threshold": 0.47791231293806724,
+                "pvalue": 0.2561,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.30966747195132704,
+                "threshold": 0.4420531966747654,
+                "pvalue": 0.2305,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            }
+          ],
+          "negative_control_records": [
+            {
+              "environment": "random_control_00",
+              "n_samples": 558,
+              "corrected_disjoint": {
+                "signal": 0.1479694291185174,
+                "threshold": 0.5207860656044205,
+                "pvalue": 0.9361,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.1754197711080356,
+                "threshold": 0.5017930805690277,
+                "pvalue": 0.8738,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_01",
+              "n_samples": 375,
+              "corrected_disjoint": {
+                "signal": 0.3118200354729668,
+                "threshold": 0.6786975464345761,
+                "pvalue": 0.566,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3680413756508944,
+                "threshold": 0.6599408544487696,
+                "pvalue": 0.3814,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_02",
+              "n_samples": 690,
+              "corrected_disjoint": {
+                "signal": 0.24388460645642349,
+                "threshold": 0.4512655206433631,
+                "pvalue": 0.4157,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.291661664269053,
+                "threshold": 0.4316303746692073,
+                "pvalue": 0.2575,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_03",
+              "n_samples": 693,
+              "corrected_disjoint": {
+                "signal": 0.23099581376787418,
+                "threshold": 0.44878660402562387,
+                "pvalue": 0.4723,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.25152637936201955,
+                "threshold": 0.4337932441690102,
+                "pvalue": 0.391,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_04",
+              "n_samples": 478,
+              "corrected_disjoint": {
+                "signal": 0.6451424981183554,
+                "threshold": 0.586247579564573,
+                "pvalue": 0.0349,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6986155767903907,
+                "threshold": 0.5625054323605235,
+                "pvalue": 0.0182,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_05",
+              "n_samples": 1202,
+              "corrected_disjoint": {
+                "signal": 0.18137239310008968,
+                "threshold": 0.3168674655643171,
+                "pvalue": 0.4035,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.214898825514936,
+                "threshold": 0.31249956554234204,
+                "pvalue": 0.275,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_06",
+              "n_samples": 297,
+              "corrected_disjoint": {
+                "signal": 0.4242252791260943,
+                "threshold": 0.8169200375664447,
+                "pvalue": 0.4074,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.44329719537251056,
+                "threshold": 0.7886680640741195,
+                "pvalue": 0.3527,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_07",
+              "n_samples": 475,
+              "corrected_disjoint": {
+                "signal": 0.22966971921971902,
+                "threshold": 0.5903885553156115,
+                "pvalue": 0.7179,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2565846880791213,
+                "threshold": 0.5685351794613482,
+                "pvalue": 0.6291,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_08",
+              "n_samples": 751,
+              "corrected_disjoint": {
+                "signal": 0.24339648875033396,
+                "threshold": 0.432581108484713,
+                "pvalue": 0.369,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2604391063288814,
+                "threshold": 0.40992591644861637,
+                "pvalue": 0.3193,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_09",
+              "n_samples": 851,
+              "corrected_disjoint": {
+                "signal": 0.29662896293953794,
+                "threshold": 0.3908077406747638,
+                "pvalue": 0.1526,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.35310036698227615,
+                "threshold": 0.38343565362493903,
+                "pvalue": 0.0691,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_10",
+              "n_samples": 582,
+              "corrected_disjoint": {
+                "signal": 0.2745299818494078,
+                "threshold": 0.49614327428271626,
+                "pvalue": 0.3957,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3151578970062612,
+                "threshold": 0.48401203818673033,
+                "pvalue": 0.2697,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_11",
+              "n_samples": 270,
+              "corrected_disjoint": {
+                "signal": 0.19042799088324253,
+                "threshold": 0.8781500372582056,
+                "pvalue": 0.9793,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.21613291778802546,
+                "threshold": 0.8471446213955892,
+                "pvalue": 0.9582,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_12",
+              "n_samples": 582,
+              "corrected_disjoint": {
+                "signal": 0.2537426421628145,
+                "threshold": 0.49564733042658604,
+                "pvalue": 0.4843,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.29807511339073123,
+                "threshold": 0.4839022564502246,
+                "pvalue": 0.3251,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_13",
+              "n_samples": 634,
+              "corrected_disjoint": {
+                "signal": 0.24593638229669817,
+                "threshold": 0.4795312913491432,
+                "pvalue": 0.4693,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.26956947000140086,
+                "threshold": 0.45022074559389963,
+                "pvalue": 0.3736,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_14",
+              "n_samples": 467,
+              "corrected_disjoint": {
+                "signal": 0.8779555887363046,
+                "threshold": 0.5889624372834433,
+                "pvalue": 0.0072,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.931538615585547,
+                "threshold": 0.5605888588698292,
+                "pvalue": 0.0034,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_15",
+              "n_samples": 232,
+              "corrected_disjoint": {
+                "signal": 0.9188353381363233,
+                "threshold": 1.000346792248183,
+                "pvalue": 0.0682,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.958620132063832,
+                "threshold": 0.9528597898468123,
+                "pvalue": 0.0489,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_16",
+              "n_samples": 681,
+              "corrected_disjoint": {
+                "signal": 0.13739977078847376,
+                "threshold": 0.4586421237940123,
+                "pvalue": 0.921,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.17421776376972087,
+                "threshold": 0.44128656583783726,
+                "pvalue": 0.79,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_17",
+              "n_samples": 464,
+              "corrected_disjoint": {
+                "signal": 0.46468018857433224,
+                "threshold": 0.586996242979171,
+                "pvalue": 0.1264,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.49449542542013786,
+                "threshold": 0.5617656761073944,
+                "pvalue": 0.0874,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_18",
+              "n_samples": 776,
+              "corrected_disjoint": {
+                "signal": 0.09868691341949418,
+                "threshold": 0.4140725229891558,
+                "pvalue": 0.9797,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.13227700912996218,
+                "threshold": 0.411169836102176,
+                "pvalue": 0.9195,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_19",
+              "n_samples": 701,
+              "corrected_disjoint": {
+                "signal": 0.1899676433917777,
+                "threshold": 0.4501957462172544,
+                "pvalue": 0.6846,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.19848241781742956,
+                "threshold": 0.42937384498493825,
+                "pvalue": 0.6568,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_20",
+              "n_samples": 765,
+              "corrected_disjoint": {
+                "signal": 0.1475951532156549,
+                "threshold": 0.4267277789989779,
+                "pvalue": 0.8429,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.16515072185699434,
+                "threshold": 0.405678392877316,
+                "pvalue": 0.7886,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_21",
+              "n_samples": 385,
+              "corrected_disjoint": {
+                "signal": 0.32682128591677695,
+                "threshold": 0.6684584078781035,
+                "pvalue": 0.4945,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.35435229654262135,
+                "threshold": 0.6387660800088472,
+                "pvalue": 0.4097,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_22",
+              "n_samples": 1960,
+              "corrected_disjoint": {
+                "signal": 0.12751267771857638,
+                "threshold": 0.24400188521763577,
+                "pvalue": 0.5184,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.17251675195845884,
+                "threshold": 0.253375611469068,
+                "pvalue": 0.31,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_23",
+              "n_samples": 740,
+              "corrected_disjoint": {
+                "signal": 0.16250469757102434,
+                "threshold": 0.4270791523851367,
+                "pvalue": 0.7853,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.1852382703609399,
+                "threshold": 0.4082732992400606,
+                "pvalue": 0.6959,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_24",
+              "n_samples": 366,
+              "corrected_disjoint": {
+                "signal": 0.33848040833796794,
+                "threshold": 0.7040545242689243,
+                "pvalue": 0.4959,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.36484638405106473,
+                "threshold": 0.6844306422766568,
+                "pvalue": 0.4181,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_25",
+              "n_samples": 878,
+              "corrected_disjoint": {
+                "signal": 0.3101570636919727,
+                "threshold": 0.3803512240432232,
+                "pvalue": 0.1197,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3568037978227755,
+                "threshold": 0.37573682345374315,
+                "pvalue": 0.0649,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_26",
+              "n_samples": 533,
+              "corrected_disjoint": {
+                "signal": 0.17963680807048255,
+                "threshold": 0.5393831605264596,
+                "pvalue": 0.856,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.21069442616443831,
+                "threshold": 0.517022758266518,
+                "pvalue": 0.7465,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_27",
+              "n_samples": 704,
+              "corrected_disjoint": {
+                "signal": 0.5837996464635113,
+                "threshold": 0.4424680212765781,
+                "pvalue": 0.0128,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.6412759055479273,
+                "threshold": 0.43516305003829686,
+                "pvalue": 0.0068,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_28",
+              "n_samples": 704,
+              "corrected_disjoint": {
+                "signal": 0.22150816331355774,
+                "threshold": 0.44950702336312587,
+                "pvalue": 0.5133,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2256105913529665,
+                "threshold": 0.42919820744634873,
+                "pvalue": 0.507,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_29",
+              "n_samples": 241,
+              "corrected_disjoint": {
+                "signal": 0.4815673504481117,
+                "threshold": 0.9606955306196764,
+                "pvalue": 0.4312,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5188013457070275,
+                "threshold": 0.9382345449243916,
+                "pvalue": 0.3506,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_30",
+              "n_samples": 467,
+              "corrected_disjoint": {
+                "signal": 0.24547422857240872,
+                "threshold": 0.5964568699000099,
+                "pvalue": 0.6693,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.26563758042023394,
+                "threshold": 0.5757657053871198,
+                "pvalue": 0.5942,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_31",
+              "n_samples": 467,
+              "corrected_disjoint": {
+                "signal": 0.21810059817638375,
+                "threshold": 0.5933855087519604,
+                "pvalue": 0.7776,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2388133587151234,
+                "threshold": 0.5751069797389368,
+                "pvalue": 0.7023,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_32",
+              "n_samples": 432,
+              "corrected_disjoint": {
+                "signal": 0.25747702586381405,
+                "threshold": 0.6329404283062485,
+                "pvalue": 0.6735,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.31211615102448703,
+                "threshold": 0.6065443854406929,
+                "pvalue": 0.4698,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_33",
+              "n_samples": 385,
+              "corrected_disjoint": {
+                "signal": 0.2913889557222096,
+                "threshold": 0.6647108156319086,
+                "pvalue": 0.6086,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.30442120924571864,
+                "threshold": 0.6461149292282814,
+                "pvalue": 0.5774,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_34",
+              "n_samples": 550,
+              "corrected_disjoint": {
+                "signal": 0.3966499862906464,
+                "threshold": 0.5260518617087792,
+                "pvalue": 0.1483,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.45395606801686983,
+                "threshold": 0.5067230336715075,
+                "pvalue": 0.0795,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_35",
+              "n_samples": 598,
+              "corrected_disjoint": {
+                "signal": 0.48265734045224906,
+                "threshold": 0.4931999837241801,
+                "pvalue": 0.0553,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.5331009571735368,
+                "threshold": 0.4789440367133346,
+                "pvalue": 0.0279,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_36",
+              "n_samples": 765,
+              "corrected_disjoint": {
+                "signal": 0.17622934286164138,
+                "threshold": 0.41953201334672263,
+                "pvalue": 0.6932,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.20868599605156213,
+                "threshold": 0.4069350266960245,
+                "pvalue": 0.5468,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_37",
+              "n_samples": 579,
+              "corrected_disjoint": {
+                "signal": 0.18013160951697324,
+                "threshold": 0.5074450198493305,
+                "pvalue": 0.8183,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.2025210638957613,
+                "threshold": 0.4885535303842214,
+                "pvalue": 0.7412,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_38",
+              "n_samples": 241,
+              "corrected_disjoint": {
+                "signal": 0.3052517145744956,
+                "threshold": 0.9721368878477873,
+                "pvalue": 0.8466,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.33317919052815503,
+                "threshold": 0.9438255560343892,
+                "pvalue": 0.787,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_39",
+              "n_samples": 1000,
+              "corrected_disjoint": {
+                "signal": 0.284480168018767,
+                "threshold": 0.3510839593292218,
+                "pvalue": 0.1191,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.32277058347132237,
+                "threshold": 0.3509981168831821,
+                "pvalue": 0.0699,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_40",
+              "n_samples": 765,
+              "corrected_disjoint": {
+                "signal": 0.17575798480533902,
+                "threshold": 0.43516828128357726,
+                "pvalue": 0.7038,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.16184780670004664,
+                "threshold": 0.41005317209791414,
+                "pvalue": 0.7958,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_41",
+              "n_samples": 937,
+              "corrected_disjoint": {
+                "signal": 0.20573243099516944,
+                "threshold": 0.3730744460569608,
+                "pvalue": 0.4137,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.24268272748196368,
+                "threshold": 0.3603303094673093,
+                "pvalue": 0.2679,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_42",
+              "n_samples": 328,
+              "corrected_disjoint": {
+                "signal": 0.40286393831193396,
+                "threshold": 0.7700358318107973,
+                "pvalue": 0.3993,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4503883153043978,
+                "threshold": 0.7341448232153861,
+                "pvalue": 0.2866,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_43",
+              "n_samples": 630,
+              "corrected_disjoint": {
+                "signal": 0.16633865329304628,
+                "threshold": 0.4818483245753301,
+                "pvalue": 0.8449,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.20381693616761956,
+                "threshold": 0.45819176024454034,
+                "pvalue": 0.6811,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_44",
+              "n_samples": 937,
+              "corrected_disjoint": {
+                "signal": 0.1871278234321173,
+                "threshold": 0.36731792787049566,
+                "pvalue": 0.5227,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.19779879571788028,
+                "threshold": 0.36222179056093656,
+                "pvalue": 0.4801,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_45",
+              "n_samples": 1202,
+              "corrected_disjoint": {
+                "signal": 0.06034444811940707,
+                "threshold": 0.32099266546773103,
+                "pvalue": 0.9954,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.06581625516993202,
+                "threshold": 0.3184629271622805,
+                "pvalue": 0.9958,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_46",
+              "n_samples": 322,
+              "corrected_disjoint": {
+                "signal": 0.42621850629278235,
+                "threshold": 0.7829886234050272,
+                "pvalue": 0.3541,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4486271132525749,
+                "threshold": 0.7398458983162798,
+                "pvalue": 0.2992,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_47",
+              "n_samples": 498,
+              "corrected_disjoint": {
+                "signal": 0.360899793178321,
+                "threshold": 0.5638071746097086,
+                "pvalue": 0.246,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.3565915675003375,
+                "threshold": 0.5463152256660238,
+                "pvalue": 0.2512,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_48",
+              "n_samples": 332,
+              "corrected_disjoint": {
+                "signal": 0.8857011906990604,
+                "threshold": 0.744556981598974,
+                "pvalue": 0.0222,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.9244370461692047,
+                "threshold": 0.7208519606825666,
+                "pvalue": 0.0164,
+                "raw_detect": true,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            },
+            {
+              "environment": "random_control_49",
+              "n_samples": 331,
+              "corrected_disjoint": {
+                "signal": 0.4224555157126748,
+                "threshold": 0.7559176088901794,
+                "pvalue": 0.3484,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              },
+              "split_control": {
+                "signal": 0.4538688079840431,
+                "threshold": 0.7368689517431994,
+                "pvalue": 0.2737,
+                "raw_detect": false,
+                "bh_detect": false,
+                "disjoint_applied": true
+              }
+            }
+          ]
+        }
+      ],
+      "provenance": {
+        "code_commit": "7ccce00bf456154f961410bb380f7fb626c33c11",
+        "source_sha256": {
+          "src/gate/precision_readout.py": "1f8bdaf52a05d1c6e6941551e94e3a3db852350c8af3e76174174385901eb872",
+          "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+          "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+          "experiments/e3_gate_compare.py": "c48d670f1757b543f7673104aed1375c7d3f8b8a7c5791ec90b1d467c0dae32d",
+          "experiments/tier2_common.py": "cb23ea2ec40e85f0d818f2e04a3c5c72d0873267cd9b804aa022d200f1533711",
+          "experiments/e5_split_control.py": "d3283f3c37c0f14045f8d51e75894d97a0ce403f4b73582f7f40383d6ae179ad"
+        },
+        "numpy_version": "1.24.4",
+        "python_version": "3.10.12",
+        "host": "dgxanode02"
+      },
+      "wall_seconds": 2157.9
+    }
+  }
+}
