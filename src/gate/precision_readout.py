@@ -40,6 +40,14 @@ Split-control design (Tier 2). detect_with_pvalues takes Y_null: when given, eve
 null draw comes from Y_null only and the observed statistic is computed against
 Y_obs, which is never resampled. split_control_indices makes the 50/50 split.
 Default Y_null=None is the shared-reference design.
+
+Centred pooled-permutation null (Tier 2, E8). detect_with_pvalues takes null=:
+"disjoint" (default, every path above, unchanged) or "pooled". The pooled null
+centres the environment and the control at their own column means, pools them, and
+splits uniform permutations of the pool into n_e and n_0 rows; it is the null of
+Theorem 2 in notes/theory/grd_theory_note.pdf and is defined only for the
+shared-reference design. by_fdr gives Benjamini-Yekutieli decisions, valid under
+arbitrary dependence among the p-values.
 """
 import importlib.util
 from pathlib import Path
@@ -210,8 +218,54 @@ def bh_fdr(pvals, q=0.05):
     return reject
 
 
+def by_fdr(pvals, q=0.05):
+    """Benjamini-Yekutieli FDR decisions, aligned to the input order.
+
+    BH at level q / H_m with H_m = sum_{i=1}^m 1/i (Benjamini and Yekutieli 2001),
+    which controls the FDR under arbitrary dependence among the p-values. Input
+    validation and output alignment are those of bh_fdr.
+    """
+    if not 0.0 < q < 1.0:
+        raise ValueError(f"q must be in (0, 1), got {q}")
+    arr = np.asarray(pvals, dtype=float)
+    m = arr.size if arr.ndim == 1 else 0
+    harmonic = sum(1.0 / i for i in range(1, m + 1)) if m else 1.0
+    return bh_fdr(pvals, q=q / harmonic)
+
+
+def _pooled_null_values(Y_env, Y_obs, B, rng, readout="precision"):
+    """Centred pooled-permutation null (Theorem 2, notes/theory/grd_theory_note.pdf).
+
+    Each group is centred at its own column mean, the two are stacked into one pool
+    of n_e + n_0 rows, and each draw splits a uniform permutation of the pool into
+    an n_e-row pseudo-environment and an n_0-row pseudo-reference. readout selects
+    the statistic, as in _precision_null_values.
+    """
+    stat = _signal_fn(readout)
+    Y_env = np.asarray(Y_env, dtype=float)
+    Y_obs = np.asarray(Y_obs, dtype=float)
+    n_e, d = Y_env.shape
+    n_0 = Y_obs.shape[0]
+    if Y_obs.shape[1] != d:
+        raise ValueError(
+            f"pooled null needs matching columns; got {d} and {Y_obs.shape[1]}")
+    if n_e <= d or n_0 <= d:
+        raise ValueError(
+            f"pooled null needs n_env > d and n_obs > d for invertible covariance; "
+            f"got n_env={n_e}, n_obs={n_0}, d={d}")
+    if B <= 0:
+        raise ValueError(f"B must be positive, got {B}")
+    pool = np.vstack([Y_env - Y_env.mean(0), Y_obs - Y_obs.mean(0)])
+    vals = np.empty(B)
+    for b in range(B):
+        idx = rng.permutation(n_e + n_0)
+        vals[b] = stat(pool[idx[:n_e]], pool[idx[n_e:]])
+    return vals
+
+
 def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
-                        q=0.05, disjoint=True, readout="precision", Y_null=None):
+                        q=0.05, disjoint=True, readout="precision", Y_null=None,
+                        null="disjoint"):
     """Detect precision changes and control environment-wise FDR.
 
     Each environment is compared with a null at its own sample size. The raw
@@ -224,9 +278,18 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
     Y_null=None is the shared-reference design: nulls are drawn from Y_obs. With
     Y_null given (split-control design), every null draw comes from Y_null only and
     the observed statistic uses Y_obs as the reference, which is never resampled.
+    null="disjoint" (default) is the size-matched null above. null="pooled" draws
+    each environment's null with _pooled_null_values (centred pooled permutations,
+    Theorem 2); it requires the shared-reference design (Y_null=None).
     """
     if rng is None:
         raise ValueError("detect_with_pvalues needs an explicit rng")
+    if null not in ("disjoint", "pooled"):
+        raise ValueError(f"null must be 'disjoint' or 'pooled', got {null!r}")
+    if null == "pooled" and Y_null is not None:
+        raise ValueError("the pooled null is defined only for the shared-reference "
+                         "design (Y_null=None)")
+    null_design = null
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
     stat = _signal_fn(readout)
@@ -235,9 +298,12 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
     signals, thresholds, pvalues, raw_detect = [], [], [], []
     for Y in Y_int_list:
         Y = np.asarray(Y)
-        null = _precision_null_values(
-            null_pool, B=B, rng=rng, n_env=Y.shape[0], disjoint=disjoint,
-            readout=readout)
+        if null_design == "pooled":
+            null = _pooled_null_values(Y, Y_obs, B=B, rng=rng, readout=readout)
+        else:
+            null = _precision_null_values(
+                null_pool, B=B, rng=rng, n_env=Y.shape[0], disjoint=disjoint,
+                readout=readout)
         signal = stat(Y, Y_obs)
         threshold = float(np.quantile(null, 1.0 - alpha))
         pvalue = float((1 + np.count_nonzero(null >= signal)) / (B + 1))
@@ -268,6 +334,8 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
         out["split_control"] = True
         out["n_null_pool"] = int(null_pool.shape[0])
         out["n_reference"] = int(np.asarray(Y_obs).shape[0])
+    if null_design == "pooled":
+        out["null"] = "pooled"
     return out
 
 

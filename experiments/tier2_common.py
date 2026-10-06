@@ -262,16 +262,21 @@ def split_halves(Yobs, gate_seed):
     return Yobs[null_idx], Yobs[ref_idx], info
 
 
-def screen(Y_envs, Y_ref, seed, readout="precision", Y_null=None, B=B_BOOT):
+def screen(Y_envs, Y_ref, seed, readout="precision", Y_null=None, B=B_BOOT,
+           null="disjoint"):
     """One BH family through the shared E3 detection helper (corrected disjoint).
 
     Y_null=None: shared-reference design, nulls drawn from Y_ref.
     Y_null given: split-control design, nulls drawn from Y_null only.
+    null="pooled": centred pooled-permutation null (E8, Theorem 2); shared design only.
     """
     Y_envs = [np.asarray(Y) for Y in Y_envs]
     Y_ref = np.asarray(Y_ref)
     result = _detect_family(PR, Y_envs, Y_ref, seed, ALPHA, B, Q, disjoint=True,
-                            readout=readout, Y_null=Y_null)
+                            readout=readout, Y_null=Y_null, null=null)
+    if null == "pooled":
+        result["disjoint_applied"] = [False] * len(Y_envs)
+        return result
     pool = Y_ref if Y_null is None else np.asarray(Y_null)
     result["disjoint_applied"] = [
         bool(PR._use_disjoint_null(len(pool), len(Y), pool.shape[1], True))
