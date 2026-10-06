@@ -1,0 +1,21 @@
+{
+  "B_resolution": {
+    "m": 21,
+    "k": 1,
+    "q": 0.05,
+    "threshold_B_plus_1": 420.0,
+    "results": {
+      "399": {
+        "true_env_selected": 1,
+        "reps": 20,
+        "null_selections": 1
+      },
+      "499": {
+        "true_env_selected": 8,
+        "reps": 20,
+        "null_selections": 2
+      }
+    }
+  },
+  "wall_seconds": 587.6
+}

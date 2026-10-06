@@ -1,0 +1,10 @@
+{
+  "wall_seconds": 0.0,
+  "D_meanshift": {
+    "reps": 150,
+    "mahalanobis_shift": 1.0,
+    "frac_p_le_0_05": 0.1,
+    "frac_p_le_0_20": 0.2733333333333333,
+    "median_p": 0.51
+  }
+}

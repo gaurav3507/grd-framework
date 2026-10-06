@@ -150,7 +150,7 @@ def make_figure1():
                      fontweight="bold" if r["key"] == "RPE1" else "normal")
     rpe1 = next(r for r in rows if r["key"] == "RPE1")
     # annotation in open upper-right space, clear of the HCP/ABIDE labels
-    axb.annotate("all 20/20 structured\ncontrol splits fire",
+    axb.annotate("detections align with\nleading control PCs",
                  xy=(rpe1["raw"], rpe1["align"]), xytext=(0.66, 0.52),
                  textcoords="data", fontsize=7.5, color=rpe1["color"], ha="left",
                  va="center",
@@ -393,8 +393,8 @@ def make_figure3():
                   loc="left", pad=8, fontsize=9)
 
     fig.text(0.5, 0.02,
-             "Random splits pass 0/20; structured splits pass 20/20. "
-             "Association with control heterogeneity, not proven causation.",
+             "Random splits pass 0/20; structured splits pass 20/20, as expected for PC-tail subsets. "
+             "Alignment with control PCs is an association, not proven causation.",
              ha="center", fontsize=6.8, color=CB["grey"])
     save(fig, "figure3_rpe1_not_success")
 
@@ -455,7 +455,7 @@ def make_figure4():
     ax1.yaxis.grid(True, color=CB["light"], linewidth=0.5)
     ax1.set_axisbelow(True)
     ax1.set_ylabel("Calibrated iLCS firing rate")
-    ax1.set_title("Size matching reduces iLCS firing, but structured-control firing remains",
+    ax1.set_title("Size matching reduces iLCS firing on pure-control resamples",
                   loc="left", pad=20, fontsize=8.8)
     dot = mpl.lines.Line2D([], [], marker="o", ls="none", ms=3.2,
                            color="#222222", label="per-seed")

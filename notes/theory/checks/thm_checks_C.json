@@ -1,0 +1,15 @@
+{
+  "C_validity": {
+    "m": 10,
+    "n_e": 300,
+    "n0": 1500,
+    "B": 99,
+    "reps": 120,
+    "frac_p_le_0_05": 0.041666666666666664,
+    "frac_p_le_0_10": 0.0875,
+    "frac_p_le_0_20": 0.18,
+    "all_null_FWER_BH_q0_2": 0.15,
+    "all_null_FWER_BY_q0_2": 0.0
+  },
+  "wall_seconds": 49.3
+}

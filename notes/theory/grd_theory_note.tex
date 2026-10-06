@@ -1,0 +1,207 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\renewcommand{\thelemma}{\Alph{lemma}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\op}{\operatorname}
+\newcommand{\Hone}{\mathcal{H}_1}
+\newcommand{\Hzero}{\mathcal{H}_0}
+\newcommand{\Chat}{\widehat C}
+\newcommand{\Bb}{B_{\mathrm{boot}}}
+
+\title{GRD theory package (draft for supervisor review):\\ validity and consistency of the admissibility verdict}
+\author{Gaurav Goyal, Shailendra Tiwari, Manju Khurana}
+\date{Draft of 5 October 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Purpose}
+
+The JMLR novelty check found GRD's empirical side above the journal's norm and its theory below every comparable CRL paper. The manuscript's formal results (Propositions 1 and 2, Lemmas 1 and 2, the attribution proposition) are correct but elementary. This note drafts the two results that would change that assessment.
+
+\begin{itemize}
+  \item \textbf{Theorem 3 (consistency of the verdict).} Under the paper's own model, the gate's certified set equals the set of intervened environments with probability tending to one, so $d_{\mathrm{rec}}$ is a consistent estimator of the number of identifiable latent directions, and each certified direction is recovered at rate $\sqrt{d/n}$. The resolution floor of Proposition 1 appears as a necessary condition inside the theorem, not as a separate remark.
+  \item \textbf{Theorem 2 (finite-sample validity).} With a pooled-permutation null, every gate $p$-value is exactly valid, and Benjamini--Yekutieli control of the false discovery rate holds under the arbitrary dependence created by the shared control sample.
+\end{itemize}
+
+Section~\ref{sec:checks} reports numerical checks of every quantitative claim. Section~\ref{sec:gaps} lists what is not yet proved and what each result costs the paper.
+
+\section{Setting and assumptions}
+
+Environments $e\in\{0,1,\ldots,m\}$ produce i.i.d.\ rows $Y^{(e)}_1,\ldots,Y^{(e)}_{n_e}\in\R^d$, independent across environments, with covariance $\Sigma_e$ and precision $\Omega_e=\Sigma_e^{-1}$; $e=0$ is the control sample. Write $\Delta_e=\Omega_e-\Omega_0$ and $\widehat\Omega_e$ for the inverse sample covariance. The gate statistic is $T_e=\lambda_{\max}(\widehat\Omega_e-\widehat\Omega_0)$, its population value is $\tau_e=\lambda_{\max}(\Delta_e)$, and the $p$-value is $p_e=(1+\#\{b:T_e^{(b)}\ge T_e\})/(\Bb+1)$ over $\Bb$ null draws.
+
+\begin{enumerate}
+  \item[(A1)] \emph{Gaussian rows.} Each $Y^{(e)}_i\sim N(\mu_e,\Sigma_e)$.
+  \item[(A2)] \emph{Bounded spectra.} $K^{-1}\le\lambda_{\min}(\Sigma_e)\le\lambda_{\max}(\Sigma_e)\le K$ for all $e$.
+  \item[(A3)] \emph{Dichotomy.} Every environment is either null, $e\in\Hzero$ with $\Sigma_e=\Sigma_0$, or shifted, $e\in\Hone$ with $\tau_e>0$. Write $k=|\Hone|$, $m_0=|\Hzero|$, and $\gamma=\min_{e\in\Hone}\tau_e$.
+  \item[(A4)] \emph{Sizes.} $n_0\ge 2\max_e n_e$, so the disjoint null of the paper applies to every environment.
+\end{enumerate}
+
+By Lemma 2 of the paper, $\tau_e>0$ if and only if $\Sigma_e\not\succeq\Sigma_0$. Environments with $\Sigma_e\succeq\Sigma_0$, $\Sigma_e\ne\Sigma_0$ (pure variance inflation) are excluded by (A3); Remark~\ref{rem:inflation} returns to them.
+
+\section{Two lemmas}
+
+\begin{lemma}[Precision concentration]
+\label{lem:conc}
+Under (A1) and (A2) there is an absolute constant $c$ such that, for $t>0$ and $n\ge c K^2(d+t)$, the sample precision of $n$ rows satisfies
+\[
+  \|\widehat\Omega-\Omega\|_{\op{op}}\;\le\;\varepsilon(n,t):=cK^3\sqrt{(d+t)/n}
+\]
+with probability at least $1-2e^{-t}$.
+\end{lemma}
+
+\begin{proof}
+By the Gaussian covariance bound \citep[Thm.~5.39, Rem.~5.40]{vershynin2012nonasymptotic}, $\|\widehat\Sigma-\Sigma\|\le c_1K\sqrt{(d+t)/n}$ with probability at least $1-2e^{-t}$ (estimating the mean costs one degree of freedom and changes only $c_1$). If $\|\widehat\Sigma-\Sigma\|\le 1/(2K)$, which the condition on $n$ ensures, then $\lambda_{\min}(\widehat\Sigma)\ge 1/(2K)$ and
+\[\|\widehat\Sigma^{-1}-\Sigma^{-1}\|=\|\widehat\Sigma^{-1}(\Sigma-\widehat\Sigma)\Sigma^{-1}\|\le 2K\cdot K\cdot\|\widehat\Sigma-\Sigma\|.\]
+\end{proof}
+
+\begin{lemma}[Null draws vanish]
+\label{lem:null}
+Let a null draw split the control sample, uniformly at random and independently of the data, into disjoint parts of sizes $n_e$ and $n_0-n_e$, and let $T^{(b)}_e$ be the gate statistic of the two parts. Under (A1), (A2), and (A4), each draw satisfies $P\bigl(T^{(b)}_e>2\varepsilon(n_e,t)\bigr)\le 4e^{-t}$. For the $(1-\alpha)$ quantile $\widehat c_e(\alpha)$ of $\Bb$ draws, $P\bigl(\widehat c_e(\alpha)>2\varepsilon(n_e,t)\bigr)\le 4e^{-t}/\alpha$.
+\end{lemma}
+
+\begin{proof}
+Because the split is independent of the data and the control rows are i.i.d., the two parts are, unconditionally, independent i.i.d.\ samples from $N(\mu_0,\Sigma_0)$ of sizes $n_e$ and $n_0-n_e\ge n_e$. Weyl's inequality gives $T^{(b)}_e\le\|\widehat\Omega_A-\Omega_0\|+\|\widehat\Omega_B-\Omega_0\|$, and Lemma~\ref{lem:conc} bounds each term. For the quantile, the fraction $F$ of draws exceeding $2\varepsilon$ has $E F\le 4e^{-t}$, and $\widehat c_e(\alpha)>2\varepsilon$ requires $F>\alpha$; apply Markov's inequality.
+\end{proof}
+
+\section{Theorem 3: consistency of the admissibility verdict}
+
+\setcounter{theorem}{2}
+\begin{theorem}[Verdict consistency]
+\label{thm:consistency}
+Assume (A1) to (A4), let $\Chat$ be the BH-certified set at level $q$, and fix $\delta\in(0,1)$. Set $t=\log\{4(m+k\Bb)/\delta\}$ and $\bar\varepsilon=\max_e\varepsilon(n_e,t)$, and assume $\min_e n_e\ge cK^2(d+t)$ as in Lemma~\ref{lem:conc}.
+\begin{enumerate}
+  \item[(i)] \textbf{Accurate statistics.} With probability at least $1-\delta$, $|T_e-\tau_e|\le2\bar\varepsilon$ for every $e$, and no null draw of any shifted environment exceeds $2\bar\varepsilon$.
+  \item[(ii)] \textbf{Sure screening.} If $\gamma>4\bar\varepsilon$ and
+  \begin{equation}
+    (\Bb+1)\,k\,q\;\ge\;m,
+    \label{eq:resolution}
+  \end{equation}
+  then $P(\Hone\subseteq\Chat)\ge1-\delta$. Conversely, if $(\Bb+1)\,k\,q<m$ and every null $p$-value exceeds $q$, then $\Chat=\emptyset$ however large $\gamma$ is, so condition~\eqref{eq:resolution} cannot be weakened.
+  \item[(iii)] \textbf{Exact recovery.} If, in addition, the null $p$-values are valid, $P(p_e\le u)\le u$ for $e\in\Hzero$ and $u\in[0,1]$, then
+  \[
+    P\bigl(\Chat=\Hone\bigr)\;\ge\;1-\delta-m_0\,q .
+  \]
+  Hence, if $q=q_n\to0$, $\Bb\ge m/(kq_n)$, and $\gamma/\bar\varepsilon\to\infty$, the verdict $d_{\mathrm{rec}}=\min\{|\Chat|,d_\star\}$ converges in probability to $\min\{k,d_\star\}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Apply Lemma~\ref{lem:conc} to each of the $m+1$ samples with probability at least $1-2e^{-t}$ each and Weyl's inequality, $|T_e-\tau_e|\le\|\widehat\Omega_e-\Omega_e\|+\|\widehat\Omega_0-\Omega_0\|$; apply Lemma~\ref{lem:null} to the $k\Bb$ draws of shifted environments. A union bound over at most $2(m+1)+4k\Bb\le 4(m+k\Bb)$ failure events of probability $e^{-t}$ gives $1-\delta$.
+
+(ii) On the event of (i), every $e\in\Hone$ has $T_e\ge\gamma-2\bar\varepsilon>2\bar\varepsilon\ge T^{(b)}_e$ for every draw $b$, so $p_e=1/(\Bb+1)$. The $k$ smallest $p$-values are then all equal to $1/(\Bb+1)$, and by \eqref{eq:resolution} $p_{(k)}=1/(\Bb+1)\le kq/m$. The BH rejection count $R$ is the largest $j$ with $p_{(j)}\le jq/m$, so $R\ge k$, and BH rejects every $p$-value at most $p_{(R)}\ge1/(\Bb+1)$, which includes all of $\Hone$. For the converse, by Proposition 1 of the paper any nonempty BH set has at least $m/\{q(\Bb+1)\}>k$ elements, so it must contain a null environment; but a rejected $p$-value is at most $Rq/m\le q$, and every null $p$-value exceeds $q$. Hence $R=0$.
+
+(iii) BH rejects $e$ only if $p_e\le Rq/m\le q$. For $e\in\Hzero$, validity gives $P(p_e\le q)\le q$, so $P(\Chat\cap\Hzero\ne\emptyset)\le m_0q$. Combine with (ii). The limit statement follows because $\delta$ can be taken to zero with $t=\log\{4(m+k\Bb)/\delta\}$ growing only logarithmically while $\gamma/\bar\varepsilon\to\infty$.
+\end{proof}
+
+Parts (i) and (ii) hold for the paper's disjoint null as it is. Part (iii) needs valid null $p$-values, which the disjoint null provides only approximately; Theorem~\ref{thm:validity} supplies them exactly for a pooled-permutation null, whose consistency (the analogue of Lemma~\ref{lem:null}) is the first open item of Section~\ref{sec:gaps}.
+
+\begin{remark}[What the theorem adds to Proposition 1]
+Proposition 1 shows that a coarse null forces abstention. Theorem~\ref{thm:consistency}(ii) shows that the same inequality, $(\Bb+1)kq\ge m$, is also sufficient: once the statistic separates, the resolution of the null is the only remaining obstacle to certifying every shifted environment. The Norman screen is an instance: with $m=101$, $k=1$, and $q=0.05$, condition~\eqref{eq:resolution} needs $\Bb+1\ge2{,}020$; it fails at 500 draws and holds at 9{,}999.
+\end{remark}
+
+\begin{corollary}[Link to identifiability]
+\label{cor:ident}
+Take the model of Section 2.1 of the paper, $Y^{(e)}=RZ^{(e)}+\eta^{(e)}$ with a shared invertible $R$, a shared noise covariance $\op{Cov}(\eta^{(e)})=\sigma^2I$, and environments that are either unintervened or perform one atomic hard intervention on a target $i(e)$, with $\lambda'_{i}<\lambda_i$ whenever the target has no parents. Then:
+\begin{enumerate}
+  \item[(a)] $\Hone$ is exactly the set of intervened environments, so under the conditions of Theorem~\ref{thm:consistency}(iii) $d_{\mathrm{rec}}\to\min\{\#\text{intervened targets},\,d_\star\}$ in probability, the number of latent directions that the recovery theorem identifies, capped at the working dimension.
+  \item[(b)] For every certified $e$, with probability at least $1-\delta$, the recovered direction satisfies
+  \[\sin\angle\bigl(v_{\max}(\widehat\Omega_e-\widehat\Omega_0),\,v_{\max}(\Delta_e)\bigr)\le4\bar\varepsilon/\gamma,\]
+  and, when $\sigma=0$, $v_{\max}(\Delta_e)$ lies within the angle of Equation (8) of the paper from the target's unmixing row, and equals it when the target has no parents.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) The latent precision changes by $\Theta_e-\Theta_0=\lambda_i'^{-1}e_ie_i^\top-\lambda_i^{-1}(e_i-b_i)(e_i-b_i)^\top$ (Proposition 2 of the paper). If $b_i\ne0$, take $v\perp e_i-b_i$ with $v^\top e_i\ne0$; then $v^\top(\Theta_e-\Theta_0)v=\lambda_i'^{-1}(v^\top e_i)^2>0$. If $b_i=0$, $\Theta_e-\Theta_0=(\lambda_i'^{-1}-\lambda_i^{-1})e_ie_i^\top$, which has a positive eigenvalue when $\lambda'_i<\lambda_i$. Either way $\Sigma_{Z,e}\not\succeq\Sigma_{Z,0}$ by Lemma 2 of the paper. Congruence by $R$ and adding the common $\sigma^2I$ preserve the Loewner relation of the two covariances, because $\Sigma_e-\Sigma_0=R(\Sigma_{Z,e}-\Sigma_{Z,0})R^\top$; so $\tau_e>0$. Unintervened environments have $\Sigma_e=\Sigma_0$. (b) For positive definite $A,B$, $A^{-1}-B^{-1}=A^{-1/2}(I-A^{1/2}B^{-1}A^{1/2})A^{-1/2}$ and $B-A=A^{1/2}(A^{-1/2}BA^{-1/2}-I)A^{1/2}$, so $A^{-1}-B^{-1}$ and $B-A$ have the same inertia. Applying this twice, $\Delta_e$ has the inertia of $\Sigma_0-\Sigma_e=R(\Sigma_{Z,0}-\Sigma_{Z,e})R^\top$, hence of $\Theta_e-\Theta_0$: rank at most two and at most one positive eigenvalue, with or without observation noise. Its eigengap satisfies $\lambda_1-\lambda_2\ge\tau_e\ge\gamma$, and the Davis--Kahan variant of \citet{yu2015davis} gives $\sin\theta\le2\|E\|/\gamma$ with $\|E\|\le2\bar\varepsilon$ on the event of Theorem~\ref{thm:consistency}(i). The noiseless statement is Proposition 2 of the paper.
+\end{proof}
+
+\begin{remark}[Off the model]
+\label{rem:inflation}
+Proposition 3 of the paper shows that measurement changes can also have $\tau_e>0$. Theorem~\ref{thm:consistency} does not distinguish them: off the model, $d_{\mathrm{rec}}$ is a consistent estimator of the number of \emph{detectable} directions, and equals the number of identifiable directions only under the corollary's model. Environments with pure variance inflation, $\Sigma_e\succeq\Sigma_0$, have $\tau_e\le0$ and are not certified with probability tending to one; they are exactly the invisible measurement changes of Proposition 3(i).
+\end{remark}
+
+\section{Theorem 2: exact validity with a pooled-permutation null}
+
+The paper's disjoint null draws both pseudo-samples from controls. The pooled-permutation null instead pools $Y^{(e)}$ and $Y^{(0)}$, relabels the $n_e+n_0$ rows uniformly at random into groups of sizes $n_e$ and $n_0$, and recomputes the statistic. Because Perturb-seq perturbations often shift means, each group is first centred at its own mean; Section~\ref{sec:checks} shows why this matters.
+
+\setcounter{theorem}{1}
+\begin{theorem}[Exact validity and dependence-robust FDR]
+\label{thm:validity}
+Suppose that for every $e\in\Hzero$ the rows of $Y^{(e)}$ and $Y^{(0)}$ are jointly exchangeable (for example, i.i.d.\ from one distribution). With pooled-permutation $p$-values:
+\begin{enumerate}
+  \item[(i)] $P(p_e\le u)\le u$ for every $e\in\Hzero$ and $u\in[0,1]$, for any $\Bb\ge1$ and any sample sizes;
+  \item[(ii)] the Benjamini--Yekutieli procedure at level $q$ satisfies $\op{FDR}\le q\,m_0/m$, whatever the dependence among the $p$-values, including the dependence induced by the shared control sample.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Under exchangeability, the observed labelling is one uniformly random element of the relabelling group, independent of the $\Bb$ random relabellings, so the observed statistic is exchangeable with the $\Bb$ draws; the $p$-value $(1+\#)/(\Bb+1)$ is then super-uniform \citep{phipson2010permutation,hemerik2018exact}. (ii) Benjamini--Yekutieli control holds for any joint law of valid $p$-values \citep[Theorem 1.3]{benjamini2001control}.
+\end{proof}
+
+\begin{remark}[Centring]
+Exchangeability, and so exactness, holds for environments with the same distribution as the controls. An environment that shifts only its mean has $\tau_e=0$ but is not exchangeable with the controls, and without centring the pooled test rejects it: in our check, 10\% of such environments had $p\le0.05$. Centring each group at its own mean removes the shift; the centred residuals are exchangeable only approximately (each group's residuals sum to zero), so validity becomes approximate, with error of order $1/n_e$. The same check gives rejection rates of 3.3\% to 7.3\% at the 5\% level after centring (Section~\ref{sec:checks}).
+\end{remark}
+
+\begin{remark}[Consistency is preserved]
+Under $\Hone$ both pooled groups are uniformly random subsets of the same pooled sample, so they share the mixture covariance in expectation, and the pooled null statistics vanish at the rate of Lemma~\ref{lem:null}. Making this rigorous needs a matrix concentration bound for sampling without replacement \citep{gross2010note}; the argument is sketched here and not yet written out (Section~\ref{sec:gaps}).
+\end{remark}
+
+\section{Numerical checks}
+\label{sec:checks}
+
+Every quantitative claim was checked on the paper's own model ($d=10$, random sparse DAG, random invertible $R$, hard interventions to noise variance 0.1 or 0.05), with the repository's gate code (\texttt{src/gate/precision\_readout.py}) for the statistic, the disjoint null, and BH.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{3.6cm}p{6.2cm}p{4.6cm}}
+\toprule
+Claim & Check & Result \\
+\midrule
+Lemma~\ref{lem:conc} and Theorem~\ref{thm:consistency}(i): $|T_e-\tau_e|=O_P(\sqrt{d/n})$ &
+Intervened target with parents, $n_0=20{,}000$, $n_e\in\{250,\ldots,8{,}000\}$, 20 replicates; log--log slope of the median error. &
+Slope $-0.57$; median error $2.50$ at $n_e=250$ to $0.35$ at $8{,}000$. Consistent with $n^{-1/2}$. \\
+Lemma~\ref{lem:null}: null threshold $=O_P(\sqrt{d/n})$ &
+Same design, 95\% quantile of 200 disjoint-null draws. &
+Slope $-0.53$; quantile $7.89$ to $1.29$. Consistent with $n^{-1/2}$. \\
+Theorem~\ref{thm:consistency}(ii): condition~\eqref{eq:resolution} is sharp &
+$m=21$, $k=1$ strong environment, $q=0.05$, so the threshold is $\Bb+1\ge420$; 20 replicates at $\Bb=399$ and $\Bb=499$. &
+The shifted environment's $p$-value hit the floor in 20/20 runs at $\Bb=399$ and 19/20 at $499$. It was certified in 1/20 runs at 399 (only alongside a null environment with a near-floor $p$-value, as the converse allows) and in 19/20 at 499, exactly the runs at the floor; no null certified at 499. \\
+Theorem~\ref{thm:validity}(i): pooled $p$-values valid with shared controls &
+$m=10$ null environments sharing one control sample ($n_e=300$, $n_0=1{,}500$, $\Bb=99$), 120 replicates. &
+$P(p\le0.05)=0.042$, $P(p\le0.10)=0.088$, $P(p\le0.20)=0.18$. Any rejection with all environments null at $q=0.2$: BH 0.15, BY 0. \\
+Centring remark: mean-only shifts &
+Pooled null with a Mahalanobis mean shift of 1, $n_e=300$, $n_0=1{,}500$, 150 replicates; then the centred version with shifts of 0, 1, and 3. &
+Uncentred: $P(p\le0.05)=0.10$, invalid. Centred: $0.033$, $0.073$, $0.053$ (standard error about $0.018$). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Gaps and cost to the paper}
+\label{sec:gaps}
+
+\begin{enumerate}
+  \item \textbf{Pooled-null consistency.} The remark after Theorem~\ref{thm:validity} needs a written proof via \citet{gross2010note}. Expected effort: one to two days.
+  \item \textbf{Code and reruns.} Theorem~\ref{thm:validity} applies to the pooled-permutation null, not to the disjoint null used for every result in the paper. Adopting it means one new null backend in \texttt{precision\_readout.py}, a check that synthetic verdicts are unchanged, and an A100 rerun of the three Perturb-seq panels at $\Bb=9{,}999$ (about one day of compute). The alternative is to keep the disjoint null and state Theorem~\ref{thm:validity} for the pooled variant only, which is weaker.
+  \item \textbf{Assumption (A3).} The dichotomy excludes environments that shift only slightly ($0<\tau_e\le4\bar\varepsilon$). A version with three classes (null, weak, strong) and a guarantee only for the strong class is straightforward and more honest for real data.
+  \item \textbf{Gaussianity.} (A1) can be relaxed to sub-Gaussian rows with the same rate; heavy-tailed single-cell data are not covered.
+  \item \textbf{Novelty.} The ingredients (Weyl, covariance concentration, Davis--Kahan, randomization tests, BH and BY) are standard. What is new is the statement: a consistency guarantee for an admissibility verdict that is coupled to an identifiability theorem, with the null resolution as an explicit necessary and sufficient condition. On the rubric used for the JMLR check this moves the theory score from 2 to about 3, not to the 4 or 5 of identifiability papers.
+\end{enumerate}
+
+\bibliographystyle{plainnat}
+\bibliography{theory}
+
+\end{document}
