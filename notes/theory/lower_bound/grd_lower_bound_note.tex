@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\renewcommand{\thetheorem}{LB\arabic{theorem}}
+\renewcommand{\thelemma}{LB\arabic{lemma}}
+\renewcommand{\thecorollary}{LB\arabic{corollary}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Bb}{B_{\mathrm{boot}}}
+
+\title{GRD theory, part 2 (draft for supervisor review):\\ the gate is rate-optimal}
+\author{Gaurav Goyal, Shailendra Tiwari, Manju Khurana}
+\date{Draft of 7 October 2026, rechecked: detection constant corrected to $0.67$}
+
+\begin{document}
+\maketitle
+
+\section*{Purpose and result}
+
+Theorem~7 and Corollary~8 of the manuscript are upper bounds: the gate certifies a shifted environment once its population statistic $\gamma$ exceeds about $\sqrt{d/n_e}$ (up to logarithmic factors), and the certified direction is then recovered with angle error about $\sqrt{d/n_e}/\gamma$. A reviewer's natural question is whether the gate is too conservative. This note answers it with matching lower bounds:
+\begin{itemize}
+  \item \textbf{Detection (Theorem~\ref{thm:det}).} If $\gamma\le\tfrac12\sqrt{d/n_e}$, no test, even one that knows the control covariance exactly, can tell a shifted environment from a null one: its two error probabilities sum to at least $0.67$.
+  \item \textbf{Recovery (Theorem~\ref{thm:rec}).} No estimator recovers the unmixing direction with angle error below $0.05\sqrt{(d-2)/n_e}/\gamma$ with probability above one half.
+\end{itemize}
+Together with Theorem~7 and Corollary~8 (Corollary~\ref{cor:opt}), the gate and the recovery step are rate-optimal up to logarithmic factors: the gate abstains, up to constants and logarithms, only where certification and recovery are impossible for every method. This turns abstention from a conservative heuristic into the correct decision, and it is the strongest theoretical statement the paper can make within its model.
+
+\section{Novelty sweep (abbreviated)}
+
+Five search angles on 7 October 2026: lower bounds for interventional CRL; sample complexity of interventional CRL; testing or certifying identifiability conditions with abstention; minimax detection of covariance or precision changes; and rank-one spike detection.
+
+\begin{center}
+\small
+\begin{tabular}{p{4.4cm}p{6.4cm}p{3.4cm}}
+\toprule
+Work & What it proves & Relation \\
+\midrule
+\citet{acarturk2024sample} & Sample-size upper bounds for interventional CRL; identifiability assumed & No lower bound, no testing \\
+\citet{lee2026beyond} & Finite-sample upper bounds with few environments; cites only the counting condition $K=\Omega(d)$ as a lower bound & No statistical lower bound, no testing \\
+\citet{berthet2013optimal}; \citet{cai2015optimal} & Minimax detection and estimation of spiked covariances & The technique we adapt; no CRL, no admissibility \\
+\citet{vu2013minimax} & Minimax rates for principal subspace estimation & Recovery lower-bound technique \\
+\citet{moen2024minimax} & Minimax rates for covariance changepoint testing & Related detection problem; no CRL \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Calibrated conclusion.} We found no prior result that gives matching upper and lower bounds for a pre-recovery admissibility test in interventional CRL. The lower-bound \emph{techniques} are standard and must be cited as such; the new contribution is the statement that the gate's certification threshold and the recovery error are minimax-optimal within the paper's model. A full twelve-angle sweep with the \texttt{novelty-check} package should be run before submission.
+
+\section{A hard subfamily inside the paper's model}
+
+\begin{lemma}[Embedding]
+\label{lem:embed}
+For every unit vector $v\in\R^d$ and every $\gamma\in(0,1]$ there is an instance of the model of Section~2.1 of the manuscript (latent noise variances in $[1/2,2]$, invertible $R$, no observation noise) whose control covariance is $\Sigma_0=I$ and in which a parentless hard intervention produces $\Omega_e=I+\gamma vv^\top$, so $\Delta_e=\gamma vv^\top$ and $\tau_e=\gamma$. Every such instance satisfies (A2) with $K=2$.
+\end{lemma}
+
+\begin{proof}
+Take the empty latent graph ($B=0$), all latent noise variances equal to one, an orthogonal $Q$ whose first column is $v$, and $R=Q$. Then $\Sigma_0=QQ^\top=I$ and the unmixing row of node 1 is $w_1=R^{-\top}e_1=v$. A hard intervention on node 1 with $\lambda_1'=1/(1+\gamma)$ gives $\Theta_e-\Theta_0=\gamma e_1e_1^\top$, hence $\Delta_e=\gamma vv^\top$. The spectra of $\Sigma_0$ and $\Sigma_e$ lie in $[1/2,1]$.
+\end{proof}
+
+Because $R$ is unknown, the direction $v$ is unknown: a lower bound may average over $v$. All results below hold even if the procedure is told $\Sigma_0=I$, so they hold a fortiori for procedures that estimate $\Sigma_0$ from controls. Write $\theta=\gamma/(1+\gamma)$, so that $\Sigma_e=I-\theta vv^\top$ and the intervention lowers the variance along $v$ from $1$ to $1-\theta$.
+
+\section{Detection lower bound}
+
+\begin{theorem}[No test below $\sqrt{d/n}$]
+\label{thm:det}
+Let $P_0$ be the law of $n$ i.i.d.\ rows from $N(0,I)$ and $P_v$ the law under $\Sigma_e=I-\theta vv^\top$. If $\gamma\le1$ and $\gamma\le\tfrac12\sqrt{d/n}$, then every test $\phi$ satisfies
+\[
+  P_0(\phi=1)+\sup_{\|v\|=1}P_v(\phi=0)\;\ge\;1-\tfrac12\sqrt{\sqrt2-1}\;>\;0.67 .
+\]
+More generally the left side is at least $1-\tfrac12\{(1-2n\theta^2/d)^{-1/2}-1\}^{1/2}$ whenever $2n\theta^2<d$.
+\end{theorem}
+
+\begin{proof}
+Let $\bar P=\mathbb{E}_vP_v$ with $v$ uniform on the sphere. For any test, $P_0(\phi=1)+\sup_vP_v(\phi=0)\ge P_0(\phi=1)+\bar P(\phi=0)\ge1-\mathrm{TV}(P_0,\bar P)\ge1-\tfrac12\sqrt{\chi^2(\bar P\|P_0)}$.
+
+\emph{The $\chi^2$ divergence.} With $L_v=dP_v/dP_0$ for one row, $L_v(x)=\sqrt{1+\gamma}\exp\{-\gamma(v^\top x)^2/2\}$, and a Gaussian integral gives
+$\mathbb{E}_0[L_vL_{v'}]=(1+\gamma)\det(I+\gamma vv^\top+\gamma v'v'^\top)^{-1/2}=(1-\theta^2t)^{-1/2}$ with $t=\langle v,v'\rangle^2$. For $n$ i.i.d.\ rows, $\chi^2(\bar P\|P_0)=\mathbb{E}_{v,v'}(1-\theta^2t)^{-n/2}-1$.
+
+\emph{Bounding the expectation.} Since $\gamma\le1$, $\theta\le\tfrac12$ and $\theta^2t\le\tfrac14$, and $-\log(1-x)\le2x$ on $[0,\tfrac12]$ gives $(1-\theta^2t)^{-n/2}\le\exp(n\theta^2t)$. For independent uniform $v,v'$, $t\sim\mathrm{Beta}(\tfrac12,\tfrac{d-1}2)$, whose moment generating function is the confluent hypergeometric function ${}_1F_1(\tfrac12;\tfrac d2;s)=\sum_k(\tfrac12)_ks^k/\{(\tfrac d2)_kk!\}$. Since $(\tfrac d2)_k\ge(\tfrac d2)^k$, it is bounded termwise by $\sum_k(\tfrac12)_k(2s/d)^k/k!=(1-2s/d)^{-1/2}$ for $s<d/2$. With $s=n\theta^2$, $\chi^2\le(1-2n\theta^2/d)^{-1/2}-1$. Under the stated conditions $\theta\le\gamma\le\tfrac12\sqrt{d/n}$, so $2n\theta^2/d\le\tfrac12$ and $\chi^2\le\sqrt2-1$.
+\end{proof}
+
+\section{Recovery lower bound}
+
+\begin{theorem}[No estimator below $\sqrt{d/n}/\gamma$]
+\label{thm:rec}
+Let $d\ge6$ and $\gamma\in(0,1]$. For any estimator $\hat v$ computed from $n$ rows,
+\[
+  \sup_{\|v\|=1}P_v\Bigl(\sin\angle(\hat v,v)\;\ge\;0.05\,\min\Bigl\{1,\;\frac1\gamma\sqrt{\frac{d-2}{n}}\Bigr\}\Bigr)\;\ge\;\frac12 .
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Divergence.} For unit $v,v'$, $\Sigma_v=I-\theta vv^\top$ and $\Sigma_{v'}^{-1}=I+\gamma v'v'^\top$ have equal determinants, and $\mathrm{tr}(\Sigma_{v'}^{-1}\Sigma_v)=d-\theta+\gamma-\theta\gamma\langle v,v'\rangle^2$. Since $\gamma-\theta=\theta\gamma$, the Kullback--Leibler divergence of $n$ rows is $\mathrm{KL}(P_v\|P_{v'})=\tfrac n2\theta\gamma\sin^2\angle(v,v')\le\tfrac n2\gamma^2\sin^2\angle(v,v')$.
+
+\emph{Packing.} The unit sphere of $e_1^\perp$ contains $M\ge2^{d-2}$ points $u_j$ with $\|u_j-u_k\|\ge\tfrac12$ (a volume argument on the sphere $S^{d-2}$). For $\varepsilon\in(0,1/\sqrt2]$ set $v_j=\sqrt{1-\varepsilon^2}\,e_1+\varepsilon u_j$. Then $\langle v_j,v_k\rangle=1-\varepsilon^2\|u_j-u_k\|^2/2\in[0,1-\varepsilon^2/8]$, so $\sin^2\angle(v_j,v_k)\ge1-\langle v_j,v_k\rangle\ge\varepsilon^2/8$, and $\sin^2\angle(v_j,v_k)\le\|v_j-v_k\|^2\le4\varepsilon^2$.
+
+\emph{Fano.} The pairwise divergences are at most $2n\gamma^2\varepsilon^2$. Choose $\varepsilon^2=\min\{\tfrac12,(d-2)\log2/(8n\gamma^2)\}$. Then $\max\mathrm{KL}\le\tfrac14\log M$, and Fano's inequality gives an identification error of at least $1-(\tfrac14\log M+\log2)/\log M\ge\tfrac12$ for $d\ge6$. Because $\sin\angle$ is a metric on lines and the $v_j$ are $\varepsilon/\sqrt8$ apart, any $\hat v$ with $\sin\angle(\hat v,v_j)<\varepsilon/(2\sqrt8)$ identifies $j$; so with probability at least one half the error is at least $\varepsilon/(2\sqrt8)\ge0.05\min\{1,\gamma^{-1}\sqrt{(d-2)/n}\}$.
+\end{proof}
+
+\section{Rate optimality}
+
+\begin{corollary}[The gate is rate-optimal up to logarithms]
+\label{cor:opt}
+Within the model class of Lemma~\ref{lem:embed} ($K=2$), and with $L$, $\bar\varepsilon$ as in Theorem~7 of the manuscript:
+\begin{enumerate}
+  \item[(a)] the gate certifies every shifted environment with probability at least $1-\delta$ once $(\Bb+1)kq\ge m$ and
+  \[\gamma\ge C\sqrt{(d+L)L/n_{\min}}\quad\text{(Theorem~7)},\]
+  while no test can do so reliably when $\gamma\le\tfrac12\sqrt{d/n_e}$ (Theorem~\ref{thm:det});
+  \item[(b)] the certified direction is recovered with angle error
+  \[\sin\angle\le4\bar\varepsilon/\gamma\le C\sqrt{(d+L)L/n_{\min}}\,/\,\gamma\quad\text{(Corollary~8)},\]
+  while no estimator achieves $0.05\sqrt{(d-2)/n_e}\,/\,\gamma$ uniformly (Theorem~\ref{thm:rec}).
+\end{enumerate}
+The upper and lower thresholds differ by a factor of order $L$, logarithmic in the number of environments, null draws, samples, and $1/\delta$.
+\end{corollary}
+
+\noindent\textbf{What this does not say.} Optimality is in the rate, not the constant; at finite samples the constants matter, and the positive control of the manuscript (certification only from signal-to-background ratio 4) is consistent with a constant of a few units. The lower bounds are worst case over directions within the hard-intervention subclass. They say nothing about attribution: a measurement change with $\tau_e\ge\gamma$ is as detectable as a mechanism change (Proposition~5 of the manuscript).
+
+\section{Numerical check}
+
+Setting of Lemma~\ref{lem:embed}, $d=10$, $\gamma=x\sqrt{d/n_e}$ for $x\in\{0.25,\ldots,6\}$ and $n_e\in\{200,800,3200\}$. ``Oracle'' is the test $\lambda_{\max}(\widehat\Omega_e-I)$ that knows $\Sigma_0=I$, calibrated on 2{,}000 null simulations (60 replicates); ``gate'' is the committed GRD gate with $n_0=4n_e$ estimated controls, disjoint null, $\Bb=199$ (30 replicates); ``$\sin$'' is the gate's median recovery error.
+
+\begin{center}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+$x=\gamma\sqrt{n_e/d}$ & 0.25 & 0.5 & 1 & 2 & 3 & 4 & 6 \\
+\midrule
+Oracle power, $n_e=200$ & 0.07 & 0.12 & 0.15 & 0.43 & 0.72 & 0.95 & 1.00 \\
+Oracle power, $n_e=800$ & 0.07 & 0.07 & 0.23 & 0.60 & 0.97 & 1.00 & 1.00 \\
+Oracle power, $n_e=3{,}200$ & 0.02 & 0.05 & 0.17 & 0.75 & 0.98 & 1.00 & 1.00 \\
+\addlinespace
+Gate power, $n_e=200$ & 0.10 & 0.07 & 0.10 & 0.40 & 0.60 & 1.00 & 1.00 \\
+Gate power, $n_e=800$ & 0.03 & 0.13 & 0.13 & 0.53 & 0.93 & 0.97 & 1.00 \\
+Gate power, $n_e=3{,}200$ & 0.00 & 0.07 & 0.07 & 0.67 & 1.00 & 1.00 & 1.00 \\
+\addlinespace
+Gate $\sin$, $n_e=200$ & 0.97 & 0.95 & 0.89 & 0.58 & 0.44 & 0.35 & 0.25 \\
+Gate $\sin$, $n_e=800$ & 0.96 & 0.93 & 0.80 & 0.50 & 0.35 & 0.32 & 0.21 \\
+Gate $\sin$, $n_e=3{,}200$ & 0.93 & 0.95 & 0.82 & 0.55 & 0.37 & 0.27 & 0.19 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The curves collapse on $x$, as the theorems predict: at $x\le0.5$ neither the oracle nor the gate has power above $0.13$, within the bound of Theorem~\ref{thm:det}, the transition sits between $x=1$ and $x=3$ for every $n_e$, the gate's power is close to the oracle's, and $x\cdot\sin$ is roughly constant once the environment is detectable.
+
+\section{Cost to the paper}
+
+Two theorems and a corollary (about one page in Section~3.5, proofs in Appendix~D), one sentence in the abstract and contributions, and the simulation above as a small figure or table. No new real-data runs. The gate code is unchanged.
+
+\bibliographystyle{plainnat}
+\bibliography{lb}
+
+\end{document}

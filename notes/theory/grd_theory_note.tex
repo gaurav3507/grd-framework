@@ -23,12 +23,15 @@
 
 \title{GRD theory package (draft for supervisor review):\\ validity and consistency of the admissibility verdict}
 \author{Gaurav Goyal, Shailendra Tiwari, Manju Khurana}
-\date{Draft of 5 October 2026}
+\date{Draft of 5 October 2026, revised 7 October 2026. Superseded by Section 3.5 and Appendix D of the manuscript; cross-references follow the manuscript of 5 October.}
 
 \begin{document}
 \maketitle
 
 \section*{Purpose}
+
+\emph{Revised 6 October: Lemma~\ref{lem:pooled} and Corollary~\ref{cor:pooled} close the pooled-null gap; the checks table adds the repository implementation.}
+
 
 The JMLR novelty check found GRD's empirical side above the journal's norm and its theory below every comparable CRL paper. The manuscript's formal results (Propositions 1 and 2, Lemmas 1 and 2, the attribution proposition) are correct but elementary. This note drafts the two results that would change that assessment.
 
@@ -50,7 +53,7 @@ Environments $e\in\{0,1,\ldots,m\}$ produce i.i.d.\ rows $Y^{(e)}_1,\ldots,Y^{(e
   \item[(A4)] \emph{Sizes.} $n_0\ge 2\max_e n_e$, so the disjoint null of the paper applies to every environment.
 \end{enumerate}
 
-By Lemma 2 of the paper, $\tau_e>0$ if and only if $\Sigma_e\not\succeq\Sigma_0$. Environments with $\Sigma_e\succeq\Sigma_0$, $\Sigma_e\ne\Sigma_0$ (pure variance inflation) are excluded by (A3); Remark~\ref{rem:inflation} returns to them.
+By Lemma 4 of the paper, $\tau_e>0$ if and only if $\Sigma_e\not\succeq\Sigma_0$. Environments with $\Sigma_e\succeq\Sigma_0$, $\Sigma_e\ne\Sigma_0$ (pure variance inflation) are excluded by (A3); Remark~\ref{rem:inflation} returns to them.
 
 \section{Two lemmas}
 
@@ -107,7 +110,7 @@ Assume (A1) to (A4), let $\Chat$ be the BH-certified set at level $q$, and fix $
 (iii) BH rejects $e$ only if $p_e\le Rq/m\le q$. For $e\in\Hzero$, validity gives $P(p_e\le q)\le q$, so $P(\Chat\cap\Hzero\ne\emptyset)\le m_0q$. Combine with (ii). The limit statement follows because $\delta$ can be taken to zero with $t=\log\{4(m+k\Bb)/\delta\}$ growing only logarithmically while $\gamma/\bar\varepsilon\to\infty$.
 \end{proof}
 
-Parts (i) and (ii) hold for the paper's disjoint null as it is. Part (iii) needs valid null $p$-values, which the disjoint null provides only approximately; Theorem~\ref{thm:validity} supplies them exactly for a pooled-permutation null, whose consistency (the analogue of Lemma~\ref{lem:null}) is the first open item of Section~\ref{sec:gaps}.
+Parts (i) and (ii) hold for the paper's disjoint null as it is. Part (iii) needs valid null $p$-values, which the disjoint null provides only approximately; Theorem~\ref{thm:validity} supplies them for the centred pooled-permutation null, and Lemma~\ref{lem:pooled} shows that parts (i) and (ii) also hold for that null, with $\bar\varepsilon$ replaced by a bound larger by a logarithmic factor.
 
 \begin{remark}[What the theorem adds to Proposition 1]
 Proposition 1 shows that a coarse null forces abstention. Theorem~\ref{thm:consistency}(ii) shows that the same inequality, $(\Bb+1)kq\ge m$, is also sufficient: once the statistic separates, the resolution of the null is the only remaining obstacle to certifying every shifted environment. The Norman screen is an instance: with $m=101$, $k=1$, and $q=0.05$, condition~\eqref{eq:resolution} needs $\Bb+1\ge2{,}020$; it fails at 500 draws and holds at 9{,}999.
@@ -125,12 +128,12 @@ Take the model of Section 2.1 of the paper, $Y^{(e)}=RZ^{(e)}+\eta^{(e)}$ with a
 \end{corollary}
 
 \begin{proof}
-(a) The latent precision changes by $\Theta_e-\Theta_0=\lambda_i'^{-1}e_ie_i^\top-\lambda_i^{-1}(e_i-b_i)(e_i-b_i)^\top$ (Proposition 2 of the paper). If $b_i\ne0$, take $v\perp e_i-b_i$ with $v^\top e_i\ne0$; then $v^\top(\Theta_e-\Theta_0)v=\lambda_i'^{-1}(v^\top e_i)^2>0$. If $b_i=0$, $\Theta_e-\Theta_0=(\lambda_i'^{-1}-\lambda_i^{-1})e_ie_i^\top$, which has a positive eigenvalue when $\lambda'_i<\lambda_i$. Either way $\Sigma_{Z,e}\not\succeq\Sigma_{Z,0}$ by Lemma 2 of the paper. Congruence by $R$ and adding the common $\sigma^2I$ preserve the Loewner relation of the two covariances, because $\Sigma_e-\Sigma_0=R(\Sigma_{Z,e}-\Sigma_{Z,0})R^\top$; so $\tau_e>0$. Unintervened environments have $\Sigma_e=\Sigma_0$. (b) For positive definite $A,B$, $A^{-1}-B^{-1}=A^{-1/2}(I-A^{1/2}B^{-1}A^{1/2})A^{-1/2}$ and $B-A=A^{1/2}(A^{-1/2}BA^{-1/2}-I)A^{1/2}$, so $A^{-1}-B^{-1}$ and $B-A$ have the same inertia. Applying this twice, $\Delta_e$ has the inertia of $\Sigma_0-\Sigma_e=R(\Sigma_{Z,0}-\Sigma_{Z,e})R^\top$, hence of $\Theta_e-\Theta_0$: rank at most two and at most one positive eigenvalue, with or without observation noise. Its eigengap satisfies $\lambda_1-\lambda_2\ge\tau_e\ge\gamma$, and the Davis--Kahan variant of \citet{yu2015davis} gives $\sin\theta\le2\|E\|/\gamma$ with $\|E\|\le2\bar\varepsilon$ on the event of Theorem~\ref{thm:consistency}(i). The noiseless statement is Proposition 2 of the paper.
+(a) The latent precision changes by $\Theta_e-\Theta_0=\lambda_i'^{-1}e_ie_i^\top-\lambda_i^{-1}(e_i-b_i)(e_i-b_i)^\top$ (Proposition 2 of the paper). If $b_i\ne0$, take $v\perp e_i-b_i$ with $v^\top e_i\ne0$; then $v^\top(\Theta_e-\Theta_0)v=\lambda_i'^{-1}(v^\top e_i)^2>0$. If $b_i=0$, $\Theta_e-\Theta_0=(\lambda_i'^{-1}-\lambda_i^{-1})e_ie_i^\top$, which has a positive eigenvalue when $\lambda'_i<\lambda_i$. Either way $\Sigma_{Z,e}\not\succeq\Sigma_{Z,0}$ by Lemma 4 of the paper. Congruence by $R$ and adding the common $\sigma^2I$ preserve the Loewner relation of the two covariances, because $\Sigma_e-\Sigma_0=R(\Sigma_{Z,e}-\Sigma_{Z,0})R^\top$; so $\tau_e>0$. Unintervened environments have $\Sigma_e=\Sigma_0$. (b) For positive definite $A,B$, $A^{-1}-B^{-1}=A^{-1/2}(I-A^{1/2}B^{-1}A^{1/2})A^{-1/2}$ and $B-A=A^{1/2}(A^{-1/2}BA^{-1/2}-I)A^{1/2}$, so $A^{-1}-B^{-1}$ and $B-A$ have the same inertia. Applying this twice, $\Delta_e$ has the inertia of $\Sigma_0-\Sigma_e=R(\Sigma_{Z,0}-\Sigma_{Z,e})R^\top$, hence of $\Theta_e-\Theta_0$: rank at most two and at most one positive eigenvalue, with or without observation noise. Its eigengap satisfies $\lambda_1-\lambda_2\ge\tau_e\ge\gamma$, and the Davis--Kahan variant of \citet{yu2015davis} gives $\sin\theta\le2\|E\|/\gamma$ with $\|E\|\le2\bar\varepsilon$ on the event of Theorem~\ref{thm:consistency}(i). The noiseless statement is Proposition 2 of the paper.
 \end{proof}
 
 \begin{remark}[Off the model]
 \label{rem:inflation}
-Proposition 3 of the paper shows that measurement changes can also have $\tau_e>0$. Theorem~\ref{thm:consistency} does not distinguish them: off the model, $d_{\mathrm{rec}}$ is a consistent estimator of the number of \emph{detectable} directions, and equals the number of identifiable directions only under the corollary's model. Environments with pure variance inflation, $\Sigma_e\succeq\Sigma_0$, have $\tau_e\le0$ and are not certified with probability tending to one; they are exactly the invisible measurement changes of Proposition 3(i).
+Proposition 5 of the paper shows that measurement changes can also have $\tau_e>0$. Theorem~\ref{thm:consistency} does not distinguish them: off the model, $d_{\mathrm{rec}}$ is a consistent estimator of the number of \emph{detectable} directions, and equals the number of identifiable directions only under the corollary's model. Environments with pure variance inflation, $\Sigma_e\succeq\Sigma_0$, have $\tau_e\le0$ and are not certified with probability tending to one; they are exactly the invisible measurement changes of Proposition 5(i).
 \end{remark}
 
 \section{Theorem 2: exact validity with a pooled-permutation null}
@@ -155,9 +158,39 @@ Suppose that for every $e\in\Hzero$ the rows of $Y^{(e)}$ and $Y^{(0)}$ are join
 Exchangeability, and so exactness, holds for environments with the same distribution as the controls. An environment that shifts only its mean has $\tau_e=0$ but is not exchangeable with the controls, and without centring the pooled test rejects it: in our check, 10\% of such environments had $p\le0.05$. Centring each group at its own mean removes the shift; the centred residuals are exchangeable only approximately (each group's residuals sum to zero), so validity becomes approximate, with error of order $1/n_e$. The same check gives rejection rates of 3.3\% to 7.3\% at the 5\% level after centring (Section~\ref{sec:checks}).
 \end{remark}
 
-\begin{remark}[Consistency is preserved]
-Under $\Hone$ both pooled groups are uniformly random subsets of the same pooled sample, so they share the mixture covariance in expectation, and the pooled null statistics vanish at the rate of Lemma~\ref{lem:null}. Making this rigorous needs a matrix concentration bound for sampling without replacement \citep{gross2010note}; the argument is sketched here and not yet written out (Section~\ref{sec:gaps}).
-\end{remark}
+The pooled null keeps the consistency of Theorem~\ref{thm:consistency}. The difference from Lemma~\ref{lem:null} is that under $\Hone$ the pool mixes two distributions, so its subsets are not samples from either; the point is that both pseudo-groups are random subsets of the same pool, and therefore estimate the same matrix.
+
+\begin{lemma}[Pooled null draws vanish, for every environment]
+\label{lem:pooled}
+Assume (A1), (A2), and (A4), and let $N=n_e+n_0$. There are absolute constants $c,c'$ such that, for $\eta\in(0,1)$ and $n_e\ge cK^4(d+\log(N/\eta))\log(2d/\eta)$, a centred pooled-permutation draw satisfies
+\[
+  P\Bigl(T^{(b)}_e>\varepsilon'(n_e,\eta)\Bigr)\le c'\eta,
+  \qquad
+  \varepsilon'(n_e,\eta):=cK^3\sqrt{\frac{\{d+\log(N/\eta)\}\log(2d/\eta)}{n_e}},
+\]
+whether $e\in\Hzero$ or $e\in\Hone$.
+\end{lemma}
+
+\begin{proof}
+Condition on the data and write $z_1,\ldots,z_N$ for the centred pooled rows, $S_P=N^{-1}\sum_iz_iz_i^\top$, and $L=\max_i\|z_i\|^2$. A draw splits the pool uniformly into $A$ ($n_e$ rows) and $B$ ($n_0$ rows); let $S_A,S_B$ be the corresponding averages of $z_iz_i^\top$. Since $n_eS_A+n_0S_B=NS_P$, we have $S_B-S_P=-(n_e/n_0)(S_A-S_P)$, so it suffices to control $S_A$.
+
+\emph{Step 1: the pool.} By Lemma~\ref{lem:conc} applied to each group and $n_0\ge2n_e$, with probability at least $1-4\eta$, $\|S_P\|\le2K$ and, since $\lambda_{\min}(\widehat\Sigma_0)\ge1/(2K)$ on the event of Lemma~\ref{lem:conc}, $\lambda_{\min}(S_P)\ge(n_0/N)\lambda_{\min}(\widehat\Sigma_0)\ge1/(3K)$. By a $\chi^2$ tail bound \citep{laurent2000adaptive} and a union bound over the $N$ rows, $L\le cK\{d+\log(N/\eta)\}$ with probability at least $1-2\eta$.
+
+\emph{Step 2: one draw.} $S_A$ is the average of $n_e$ matrices sampled without replacement from $\{z_iz_i^\top\}$, whose mean is $S_P$. Sampling without replacement satisfies the same matrix moment-generating-function bounds as sampling with replacement \citep{gross2010note}, so matrix Bernstein \citep{tropp2012user}, with summands bounded by $2L$ and variance proxy $L\|S_P\|$, gives
+$\|S_A-S_P\|\le\sqrt{2L\|S_P\|\log(2d/\eta)/n_e}+(4L/3)\log(2d/\eta)/n_e$
+with probability at least $1-\eta$. The same argument on the Hermitian dilation of the subset mean $m_A$ (the pool has mean zero) gives $\|m_A\|^2\le cL\log(2d/\eta)/n_e$. The sample covariance of $A$ is $\frac{n_e}{n_e-1}(S_A-m_Am_A^\top)$, so on these events it lies within $\rho=cK\sqrt{\{d+\log(N/\eta)\}\log(2d/\eta)/n_e}$ of $S_P$, and the sample covariance of $B$ lies within $(n_e/n_0)\rho+O(\rho^2)\le\rho$ of it.
+
+\emph{Step 3: inversion.} The condition on $n_e$ makes $\rho\le\lambda_{\min}(S_P)/2$, so both inverses lie within $2\{3K\}^2\rho$ of $S_P^{-1}$, and by Weyl's inequality $T^{(b)}_e\le\|\widehat\Omega_A-\widehat\Omega_B\|\le36K^2\rho=\varepsilon'$. No step used $\Sigma_e=\Sigma_0$: only the spectral bounds (A2) and $n_0\ge2n_e$.
+\end{proof}
+
+\begin{corollary}[Theorem~\ref{thm:consistency} under the pooled null]
+\label{cor:pooled}
+With the centred pooled null, parts (i) and (ii) of Theorem~\ref{thm:consistency} hold with $\bar\varepsilon$ replaced by $\bar\varepsilon'=\max_e\varepsilon'(n_e,\eta)$ for $\eta=\delta/\{c'(m+k\Bb)\}$, and part (iii) holds with the null $p$-values of Theorem~\ref{thm:validity}: exactly valid for environments with the same distribution as the controls, approximately valid after centring for environments that shift only their mean.
+\end{corollary}
+
+\begin{proof}
+Replace Lemma~\ref{lem:null} by Lemma~\ref{lem:pooled} in the proof of Theorem~\ref{thm:consistency}; the union bound has the same number of terms.
+\end{proof}
 
 \section{Numerical checks}
 \label{sec:checks}
@@ -186,6 +219,9 @@ $P(p\le0.05)=0.042$, $P(p\le0.10)=0.088$, $P(p\le0.20)=0.18$. Any rejection with
 Centring remark: mean-only shifts &
 Pooled null with a Mahalanobis mean shift of 1, $n_e=300$, $n_0=1{,}500$, 150 replicates; then the centred version with shifts of 0, 1, and 3. &
 Uncentred: $P(p\le0.05)=0.10$, invalid. Centred: $0.033$, $0.073$, $0.053$ (standard error about $0.018$). \\
+Repository implementation (commit \texttt{8ebe72d}) &
+\texttt{experiments/e8\_pooled\_null.py --validity-check}: the same two designs run through the committed gate code, plus an exact-equality regression of the default (disjoint) path against the previous module. &
+Null: $P(p\le0.05)=0.048$, $P(p\le0.20)=0.213$, any BY rejection $0.008$. Mean shift: $0.053$. Default path byte-identical. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -194,8 +230,8 @@ Uncentred: $P(p\le0.05)=0.10$, invalid. Centred: $0.033$, $0.073$, $0.053$ (stan
 \label{sec:gaps}
 
 \begin{enumerate}
-  \item \textbf{Pooled-null consistency.} The remark after Theorem~\ref{thm:validity} needs a written proof via \citet{gross2010note}. Expected effort: one to two days.
-  \item \textbf{Code and reruns.} Theorem~\ref{thm:validity} applies to the pooled-permutation null, not to the disjoint null used for every result in the paper. Adopting it means one new null backend in \texttt{precision\_readout.py}, a check that synthetic verdicts are unchanged, and an A100 rerun of the three Perturb-seq panels at $\Bb=9{,}999$ (about one day of compute). The alternative is to keep the disjoint null and state Theorem~\ref{thm:validity} for the pooled variant only, which is weaker.
+  \item \textbf{Pooled-null consistency.} Closed by Lemma~\ref{lem:pooled} and Corollary~\ref{cor:pooled} (6 October). The bound is larger than the disjoint one by a factor $\sqrt{\log(2d/\eta)}$ and uses only (A2) and $n_0\ge2n_e$.
+  \item \textbf{Code and reruns.} The centred pooled null and BY are in the gate (commit \texttt{8ebe72d}; default path unchanged). The A100 rerun of the three Perturb-seq panels at $\Bb=9{,}999$ with this null (E8) is running; its BH and BY sets replace the disjoint-null sets as the paper's primary real-data decision.
   \item \textbf{Assumption (A3).} The dichotomy excludes environments that shift only slightly ($0<\tau_e\le4\bar\varepsilon$). A version with three classes (null, weak, strong) and a guarantee only for the strong class is straightforward and more honest for real data.
   \item \textbf{Gaussianity.} (A1) can be relaxed to sub-Gaussian rows with the same rate; heavy-tailed single-cell data are not covered.
   \item \textbf{Novelty.} The ingredients (Weyl, covariance concentration, Davis--Kahan, randomization tests, BH and BY) are standard. What is new is the statement: a consistency guarantee for an admissibility verdict that is coupled to an identifiability theorem, with the null resolution as an explicit necessary and sufficient condition. On the rubric used for the JMLR check this moves the theory score from 2 to about 3, not to the 4 or 5 of identifiability papers.
