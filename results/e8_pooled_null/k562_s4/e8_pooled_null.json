@@ -1,0 +1,4000 @@
+{
+  "experiment": "e8_pooled_null",
+  "description": "Centred pooled-permutation null (Theorem 2) on the Perturb-seq panel, shared-reference design; BH and BY at q; E3 random pure-control family per seed; Jaccard of BH sets against E6.",
+  "config": {
+    "null": "pooled_centred",
+    "B": 9999,
+    "alpha": 0.05,
+    "q": 0.05,
+    "seeds": [
+      4
+    ],
+    "d_proj": 10,
+    "nmin": 200
+  },
+  "datasets": {
+    "K562": {
+      "dataset": "K562",
+      "source": "/workspace/external/discrepancy_vae/datasets/causalbench_k562.h5ad",
+      "n_control": 10691,
+      "n_perts": 385,
+      "seeds": [
+        4
+      ],
+      "null": "pooled_centred",
+      "B": 9999,
+      "p_floor": 0.0001,
+      "bh_count_per_seed": [
+        0
+      ],
+      "by_count_per_seed": [
+        0
+      ],
+      "random_bh_count_per_seed": [
+        0
+      ],
+      "random_by_count_per_seed": [
+        0
+      ],
+      "n_pvalues_at_floor_per_seed": [
+        0
+      ],
+      "jaccard_bh_vs_e6_shared_per_seed": [
+        null
+      ],
+      "selftest": false,
+      "per_seed": [
+        {
+          "seed": 4,
+          "raw_count": 74,
+          "bh_count": 0,
+          "by_count": 0,
+          "bh_selected": [],
+          "by_selected": [],
+          "random_raw_count": 1,
+          "random_bh_count": 0,
+          "random_by_count": 0,
+          "n_pvalues_at_floor": 0,
+          "random_n_pvalues_at_floor": 0,
+          "jaccard_bh_vs_e6_shared": null,
+          "e6_reference": null,
+          "per_environment": [
+            {
+              "label": "ENSG00000004897",
+              "n": 366,
+              "signal": 0.14334117771455365,
+              "threshold": 0.7095513645359389,
+              "pvalue": 0.9977,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000005448",
+              "n": 208,
+              "signal": 0.8031966387020221,
+              "threshold": 1.063549105994376,
+              "pvalue": 0.2261,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000006712",
+              "n": 238,
+              "signal": 0.4918717160829124,
+              "threshold": 0.9528474420980151,
+              "pvalue": 0.677,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000006715",
+              "n": 332,
+              "signal": 0.5660277970967019,
+              "threshold": 0.7568961975200856,
+              "pvalue": 0.2572,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000008128",
+              "n": 269,
+              "signal": 1.5251295300105558,
+              "threshold": 0.8941667243399578,
+              "pvalue": 0.0023,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000008988",
+              "n": 273,
+              "signal": 0.47456444994370134,
+              "threshold": 0.860039938745952,
+              "pvalue": 0.609,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000010244",
+              "n": 283,
+              "signal": 0.8274081305120782,
+              "threshold": 0.8473410842004253,
+              "pvalue": 0.0576,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000010256",
+              "n": 316,
+              "signal": 0.6970730474744036,
+              "threshold": 0.7925732006545981,
+              "pvalue": 0.109,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000012174",
+              "n": 214,
+              "signal": 1.0963109018429287,
+              "threshold": 1.0553964365483217,
+              "pvalue": 0.0417,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000013275",
+              "n": 242,
+              "signal": 0.3185171741448432,
+              "threshold": 0.9468156370983298,
+              "pvalue": 0.9519,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000013561",
+              "n": 240,
+              "signal": 1.0167436640406746,
+              "threshold": 0.9717178010842326,
+              "pvalue": 0.038,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000014138",
+              "n": 234,
+              "signal": 0.9363032395950777,
+              "threshold": 0.9698613585153084,
+              "pvalue": 0.0624,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000028203",
+              "n": 204,
+              "signal": 0.4983526516795229,
+              "threshold": 1.0888989567733331,
+              "pvalue": 0.7882,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000029364",
+              "n": 752,
+              "signal": 0.46530815340142473,
+              "threshold": 0.4405664079187263,
+              "pvalue": 0.0333,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000030066",
+              "n": 291,
+              "signal": 0.7247227858331153,
+              "threshold": 0.8330447159486316,
+              "pvalue": 0.1096,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000033327",
+              "n": 674,
+              "signal": 0.41748531230411107,
+              "threshold": 0.46751802250294777,
+              "pvalue": 0.1088,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000034510",
+              "n": 228,
+              "signal": 0.8429318151943364,
+              "threshold": 1.0051621772856467,
+              "pvalue": 0.1361,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000037897",
+              "n": 208,
+              "signal": 0.5592629580028943,
+              "threshold": 1.0813921639647877,
+              "pvalue": 0.6606,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000041357",
+              "n": 388,
+              "signal": 0.6638554159488632,
+              "threshold": 0.6703151661627693,
+              "pvalue": 0.0539,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000044574",
+              "n": 438,
+              "signal": 0.6025227162888172,
+              "threshold": 0.6086639358460304,
+              "pvalue": 0.054,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000047315",
+              "n": 320,
+              "signal": 0.3270053563236987,
+              "threshold": 0.7596734823639937,
+              "pvalue": 0.8606,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000050820",
+              "n": 246,
+              "signal": 0.7840956745103709,
+              "threshold": 0.9537442566679205,
+              "pvalue": 0.1476,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000051180",
+              "n": 241,
+              "signal": 0.6079850690728864,
+              "threshold": 0.9492765401257283,
+              "pvalue": 0.4276,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000052749",
+              "n": 204,
+              "signal": 1.0022223669139416,
+              "threshold": 1.0914903464572057,
+              "pvalue": 0.0824,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000055130",
+              "n": 223,
+              "signal": 0.7620709385572266,
+              "threshold": 1.01638917663352,
+              "pvalue": 0.2339,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000058600",
+              "n": 221,
+              "signal": 0.7518755044957035,
+              "threshold": 1.0188609203774477,
+              "pvalue": 0.2548,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000060688",
+              "n": 210,
+              "signal": 0.6401014088025327,
+              "threshold": 1.0731474266399676,
+              "pvalue": 0.487,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000061794",
+              "n": 201,
+              "signal": 0.9271739577591018,
+              "threshold": 1.1137595536444813,
+              "pvalue": 0.1372,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000062485",
+              "n": 222,
+              "signal": 0.7094523421186215,
+              "threshold": 1.0208592787766162,
+              "pvalue": 0.3022,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000062822",
+              "n": 212,
+              "signal": 1.9754348538528512,
+              "threshold": 1.0644807220027803,
+              "pvalue": 0.0011,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000063177",
+              "n": 308,
+              "signal": 0.9961407272683597,
+              "threshold": 0.7747792130638721,
+              "pvalue": 0.0105,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000065183",
+              "n": 365,
+              "signal": 0.6291423042937807,
+              "threshold": 0.7084035077408424,
+              "pvalue": 0.1071,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000065328",
+              "n": 219,
+              "signal": 0.4033278031123417,
+              "threshold": 1.0270705893115517,
+              "pvalue": 0.8968,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000067334",
+              "n": 264,
+              "signal": 0.7379296914501714,
+              "threshold": 0.8946447755182533,
+              "pvalue": 0.1435,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000067704",
+              "n": 216,
+              "signal": 1.0207928771833337,
+              "threshold": 1.041811288417465,
+              "pvalue": 0.0568,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000068120",
+              "n": 247,
+              "signal": 0.9278783002611755,
+              "threshold": 0.9435527471502994,
+              "pvalue": 0.0548,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000071082",
+              "n": 294,
+              "signal": 0.860697278305275,
+              "threshold": 0.8196644571328743,
+              "pvalue": 0.0364,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000072756",
+              "n": 203,
+              "signal": 0.7786741596635381,
+              "threshold": 1.091139119948402,
+              "pvalue": 0.2734,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000073050",
+              "n": 254,
+              "signal": 0.707469477021019,
+              "threshold": 0.9224315328449727,
+              "pvalue": 0.2164,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000073536",
+              "n": 413,
+              "signal": 0.7587630425078294,
+              "threshold": 0.6469261528117216,
+              "pvalue": 0.0177,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000077380",
+              "n": 300,
+              "signal": 0.29285729576423863,
+              "threshold": 0.8089188731653141,
+              "pvalue": 0.9405,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000080986",
+              "n": 214,
+              "signal": 0.08370592684870434,
+              "threshold": 1.022909162309954,
+              "pvalue": 1.0,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000082898",
+              "n": 207,
+              "signal": 0.8634620193092352,
+              "threshold": 1.0658831913898978,
+              "pvalue": 0.1611,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000083896",
+              "n": 237,
+              "signal": 0.5832307256634954,
+              "threshold": 0.9783568461663866,
+              "pvalue": 0.4917,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000084463",
+              "n": 312,
+              "signal": 0.3421111905866848,
+              "threshold": 0.78808291639368,
+              "pvalue": 0.8461,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000085840",
+              "n": 530,
+              "signal": 0.2794255186915258,
+              "threshold": 0.5529390691457918,
+              "pvalue": 0.7409,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000086061",
+              "n": 292,
+              "signal": 0.4760579948991647,
+              "threshold": 0.823960417983004,
+              "pvalue": 0.5644,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000086827",
+              "n": 200,
+              "signal": 0.5769090832096399,
+              "threshold": 1.1125962826865374,
+              "pvalue": 0.6486,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000087087",
+              "n": 307,
+              "signal": 0.45858908935276194,
+              "threshold": 0.7888437605457226,
+              "pvalue": 0.5542,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000087365",
+              "n": 500,
+              "signal": 0.7349140084867286,
+              "threshold": 0.5512570742879579,
+              "pvalue": 0.0028,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000088038",
+              "n": 332,
+              "signal": 0.4656750406116277,
+              "threshold": 0.7466419516035377,
+              "pvalue": 0.4764,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000088325",
+              "n": 361,
+              "signal": 0.3444368383621718,
+              "threshold": 0.7145273823221745,
+              "pvalue": 0.759,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000089009",
+              "n": 273,
+              "signal": 0.9427829504879206,
+              "threshold": 0.8632916470891301,
+              "pvalue": 0.0291,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000089289",
+              "n": 281,
+              "signal": 0.201855942079159,
+              "threshold": 0.8455873619705058,
+              "pvalue": 0.9947,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000089737",
+              "n": 286,
+              "signal": 0.9818480058951595,
+              "threshold": 0.8287263465695208,
+              "pvalue": 0.0159,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000090061",
+              "n": 327,
+              "signal": 0.69108297273485,
+              "threshold": 0.762720121003488,
+              "pvalue": 0.0959,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000091140",
+              "n": 311,
+              "signal": 0.7660804175277031,
+              "threshold": 0.7914069089572363,
+              "pvalue": 0.0602,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000092199",
+              "n": 334,
+              "signal": 0.7128744728870932,
+              "threshold": 0.7507397036083622,
+              "pvalue": 0.0717,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000094914",
+              "n": 212,
+              "signal": 0.6899036251811255,
+              "threshold": 1.0625411067444357,
+              "pvalue": 0.3728,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000095139",
+              "n": 333,
+              "signal": 0.5082124969065227,
+              "threshold": 0.7541074010063624,
+              "pvalue": 0.372,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000099783",
+              "n": 258,
+              "signal": 0.6826636821436393,
+              "threshold": 0.918586677549741,
+              "pvalue": 0.2407,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000099817",
+              "n": 225,
+              "signal": 0.44358899489981884,
+              "threshold": 1.0201751939273977,
+              "pvalue": 0.8222,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000099821",
+              "n": 214,
+              "signal": 0.6518327286687996,
+              "threshold": 1.049569282053302,
+              "pvalue": 0.4474,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000099995",
+              "n": 332,
+              "signal": 0.7726790678368236,
+              "threshold": 0.7461514370133742,
+              "pvalue": 0.041,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100084",
+              "n": 341,
+              "signal": 0.7883016192039891,
+              "threshold": 0.7474228727741749,
+              "pvalue": 0.0352,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100142",
+              "n": 337,
+              "signal": 0.5208303412940993,
+              "threshold": 0.741203095243172,
+              "pvalue": 0.3313,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100316",
+              "n": 1996,
+              "signal": 0.31074226456747,
+              "threshold": 0.25954950793083675,
+              "pvalue": 0.0087,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100410",
+              "n": 231,
+              "signal": 0.8151346487700888,
+              "threshold": 0.9824224202931897,
+              "pvalue": 0.1386,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100567",
+              "n": 372,
+              "signal": 0.35243602835928667,
+              "threshold": 0.6803402816591291,
+              "pvalue": 0.7197,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100575",
+              "n": 201,
+              "signal": 1.2552059100262676,
+              "threshold": 1.1084445613545344,
+              "pvalue": 0.0255,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100603",
+              "n": 226,
+              "signal": 0.6662415961930842,
+              "threshold": 1.0076232033248216,
+              "pvalue": 0.3653,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100764",
+              "n": 316,
+              "signal": 0.26290943068900546,
+              "threshold": 0.7633657643013575,
+              "pvalue": 0.9509,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000100804",
+              "n": 270,
+              "signal": 0.4987771321175933,
+              "threshold": 0.8738005997863656,
+              "pvalue": 0.5627,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000101158",
+              "n": 201,
+              "signal": 0.9905437682244458,
+              "threshold": 1.1247737630064363,
+              "pvalue": 0.0988,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000101161",
+              "n": 232,
+              "signal": 0.5031421157604498,
+              "threshold": 0.9711745796286332,
+              "pvalue": 0.6842,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000101166",
+              "n": 273,
+              "signal": 0.42829380543365914,
+              "threshold": 0.8719349440123864,
+              "pvalue": 0.7327,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000101343",
+              "n": 261,
+              "signal": 0.49328885596533945,
+              "threshold": 0.883844425571079,
+              "pvalue": 0.6101,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000101639",
+              "n": 202,
+              "signal": 0.6359253040729631,
+              "threshold": 1.1100947176584475,
+              "pvalue": 0.5323,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000101868",
+              "n": 230,
+              "signal": 0.6206158999242161,
+              "threshold": 0.98658760360619,
+              "pvalue": 0.437,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000102967",
+              "n": 223,
+              "signal": 1.0328784160249673,
+              "threshold": 1.0334719064350237,
+              "pvalue": 0.0502,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000103035",
+              "n": 373,
+              "signal": 0.31070273636367923,
+              "threshold": 0.6754055069224937,
+              "pvalue": 0.8261,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000103257",
+              "n": 378,
+              "signal": 0.5012537467126194,
+              "threshold": 0.6959743786788776,
+              "pvalue": 0.2846,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000103502",
+              "n": 247,
+              "signal": 0.7432874246601531,
+              "threshold": 0.9402012036609334,
+              "pvalue": 0.1805,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000103510",
+              "n": 287,
+              "signal": 0.6510115657315235,
+              "threshold": 0.8441699614376007,
+              "pvalue": 0.2123,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000104299",
+              "n": 229,
+              "signal": 0.39611296634312193,
+              "threshold": 0.9743109428572727,
+              "pvalue": 0.8908,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000104408",
+              "n": 232,
+              "signal": 0.8860837599911449,
+              "threshold": 0.9872562762238699,
+              "pvalue": 0.0931,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000104897",
+              "n": 321,
+              "signal": 0.3702734575411984,
+              "threshold": 0.7563862287796035,
+              "pvalue": 0.7716,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105011",
+              "n": 284,
+              "signal": 1.1088185969312905,
+              "threshold": 0.8569867025027743,
+              "pvalue": 0.0104,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105058",
+              "n": 396,
+              "signal": 0.49790284252110734,
+              "threshold": 0.6443632174857711,
+              "pvalue": 0.2322,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105229",
+              "n": 206,
+              "signal": 0.7143485725745049,
+              "threshold": 1.1035932837246387,
+              "pvalue": 0.3634,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105258",
+              "n": 223,
+              "signal": 0.3788674499049741,
+              "threshold": 0.9918417845025347,
+              "pvalue": 0.9093,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105281",
+              "n": 490,
+              "signal": 0.6227687953236959,
+              "threshold": 0.589857932146986,
+              "pvalue": 0.0347,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105372",
+              "n": 422,
+              "signal": 0.709080580820089,
+              "threshold": 0.6330114330724468,
+              "pvalue": 0.0232,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105568",
+              "n": 455,
+              "signal": 0.7339367355643126,
+              "threshold": 0.6184670338599821,
+              "pvalue": 0.0143,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105732",
+              "n": 314,
+              "signal": 0.7090196859917663,
+              "threshold": 0.7809636584806058,
+              "pvalue": 0.0943,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000105819",
+              "n": 553,
+              "signal": 0.4765690525644965,
+              "threshold": 0.5370415150623833,
+              "pvalue": 0.1089,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000106105",
+              "n": 256,
+              "signal": 0.604510911751951,
+              "threshold": 0.906582557836584,
+              "pvalue": 0.3759,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000106246",
+              "n": 267,
+              "signal": 0.9647185024585146,
+              "threshold": 0.902272527320845,
+              "pvalue": 0.0315,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000106355",
+              "n": 202,
+              "signal": 0.3191481847873391,
+              "threshold": 1.0906989822520745,
+              "pvalue": 0.9774,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000106399",
+              "n": 208,
+              "signal": 0.6977598074837624,
+              "threshold": 1.0673925638485013,
+              "pvalue": 0.3782,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000107581",
+              "n": 379,
+              "signal": 0.8724326363123663,
+              "threshold": 0.676333795724298,
+              "pvalue": 0.0097,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108298",
+              "n": 238,
+              "signal": 1.0829234604521665,
+              "threshold": 0.9467210227458457,
+              "pvalue": 0.0228,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108312",
+              "n": 202,
+              "signal": 0.8191218255054245,
+              "threshold": 1.1223932419261915,
+              "pvalue": 0.2292,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108424",
+              "n": 366,
+              "signal": 0.30906539332629257,
+              "threshold": 0.6881793253811708,
+              "pvalue": 0.8431,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108506",
+              "n": 354,
+              "signal": 0.8853870609264483,
+              "threshold": 0.693301191528398,
+              "pvalue": 0.0085,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108518",
+              "n": 259,
+              "signal": 0.4930567659887697,
+              "threshold": 0.9054925606612827,
+              "pvalue": 0.6313,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108561",
+              "n": 210,
+              "signal": 0.82651091171035,
+              "threshold": 1.0602148809564502,
+              "pvalue": 0.1988,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108592",
+              "n": 207,
+              "signal": 0.48220130927009885,
+              "threshold": 1.0832584540046095,
+              "pvalue": 0.7945,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000108784",
+              "n": 265,
+              "signal": 0.521427892221627,
+              "threshold": 0.8862467750939161,
+              "pvalue": 0.5427,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000109111",
+              "n": 288,
+              "signal": 0.5148949139506688,
+              "threshold": 0.8254488364375699,
+              "pvalue": 0.4398,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000109475",
+              "n": 330,
+              "signal": 0.6846828654983386,
+              "threshold": 0.7423355653001605,
+              "pvalue": 0.0855,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000109606",
+              "n": 359,
+              "signal": 0.6091988422482864,
+              "threshold": 0.6915083170288411,
+              "pvalue": 0.1127,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000109971",
+              "n": 255,
+              "signal": 0.6437420914217638,
+              "threshold": 0.9070094690788112,
+              "pvalue": 0.3037,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110025",
+              "n": 637,
+              "signal": 0.11874481501299146,
+              "threshold": 0.4906244443778108,
+              "pvalue": 0.9958,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110104",
+              "n": 253,
+              "signal": 0.6148910660319231,
+              "threshold": 0.9324098859975769,
+              "pvalue": 0.3728,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110172",
+              "n": 259,
+              "signal": 0.8151387553215118,
+              "threshold": 0.9020298545428895,
+              "pvalue": 0.0932,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110200",
+              "n": 424,
+              "signal": 0.6106464297691045,
+              "threshold": 0.6422474565963022,
+              "pvalue": 0.0725,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110321",
+              "n": 342,
+              "signal": 0.6966975519687726,
+              "threshold": 0.7396068062744923,
+              "pvalue": 0.0734,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110713",
+              "n": 510,
+              "signal": 0.504331553501596,
+              "threshold": 0.5530672085424472,
+              "pvalue": 0.0961,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000110768",
+              "n": 434,
+              "signal": 0.5416555172538233,
+              "threshold": 0.6286770138308205,
+              "pvalue": 0.1227,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000111231",
+              "n": 276,
+              "signal": 0.4950605730785158,
+              "threshold": 0.853230319952261,
+              "pvalue": 0.5512,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000111481",
+              "n": 207,
+              "signal": 0.7417811813030125,
+              "threshold": 1.0775814920179139,
+              "pvalue": 0.3106,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000111581",
+              "n": 316,
+              "signal": 0.5525262427607044,
+              "threshold": 0.7779061011586104,
+              "pvalue": 0.3032,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000111615",
+              "n": 449,
+              "signal": 0.9176789735057935,
+              "threshold": 0.6218582730872553,
+              "pvalue": 0.0026,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000111711",
+              "n": 279,
+              "signal": 0.6607818279857278,
+              "threshold": 0.8591308030817535,
+              "pvalue": 0.214,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000112029",
+              "n": 326,
+              "signal": 0.6802927166797418,
+              "threshold": 0.7668836745388784,
+              "pvalue": 0.1073,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000112306",
+              "n": 485,
+              "signal": 0.5806736264188306,
+              "threshold": 0.5795246593883172,
+              "pvalue": 0.0497,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000112739",
+              "n": 208,
+              "signal": 0.7321547188792406,
+              "threshold": 1.0632991206890474,
+              "pvalue": 0.3145,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000112972",
+              "n": 230,
+              "signal": 0.45889776888540346,
+              "threshold": 0.9780873214451774,
+              "pvalue": 0.7865,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000113013",
+              "n": 420,
+              "signal": 0.6981322274849302,
+              "threshold": 0.6438578393458562,
+              "pvalue": 0.0274,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000113141",
+              "n": 289,
+              "signal": 0.6749182117499208,
+              "threshold": 0.8250880220523991,
+              "pvalue": 0.1641,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000113643",
+              "n": 404,
+              "signal": 0.6436885442357468,
+              "threshold": 0.6508999902269256,
+              "pvalue": 0.0544,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000113810",
+              "n": 340,
+              "signal": 0.5540109825575658,
+              "threshold": 0.7524512136758574,
+              "pvalue": 0.2556,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000113812",
+              "n": 252,
+              "signal": 0.7465814505711945,
+              "threshold": 0.9200087591846825,
+              "pvalue": 0.1666,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000114391",
+              "n": 460,
+              "signal": 0.8221968897040843,
+              "threshold": 0.6042460946556639,
+              "pvalue": 0.0062,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000114503",
+              "n": 992,
+              "signal": 0.2505987131354286,
+              "threshold": 0.36494194730596896,
+              "pvalue": 0.3949,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000114867",
+              "n": 372,
+              "signal": 0.9899809310648188,
+              "threshold": 0.7031421732857919,
+              "pvalue": 0.005,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000115053",
+              "n": 298,
+              "signal": 0.7025497072593465,
+              "threshold": 0.8279215715157798,
+              "pvalue": 0.1302,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000115073",
+              "n": 206,
+              "signal": 1.0293261075777382,
+              "threshold": 1.0891811877233741,
+              "pvalue": 0.0715,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000115211",
+              "n": 324,
+              "signal": 0.7267246133142711,
+              "threshold": 0.7631811564644828,
+              "pvalue": 0.0682,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000115484",
+              "n": 251,
+              "signal": 0.2536796356924631,
+              "threshold": 0.9372585427413638,
+              "pvalue": 0.9879,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000116560",
+              "n": 303,
+              "signal": 0.6355875200082947,
+              "threshold": 0.7991776285491089,
+              "pvalue": 0.1776,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000116580",
+              "n": 237,
+              "signal": 0.6773371304856839,
+              "threshold": 0.9634067473892992,
+              "pvalue": 0.3121,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000116670",
+              "n": 200,
+              "signal": 0.7835144677705563,
+              "threshold": 1.114994279688966,
+              "pvalue": 0.289,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000116752",
+              "n": 227,
+              "signal": 0.5036114728989417,
+              "threshold": 1.005161327812746,
+              "pvalue": 0.6856,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000116754",
+              "n": 437,
+              "signal": 0.7308404156230603,
+              "threshold": 0.6366627870605615,
+              "pvalue": 0.0179,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000116922",
+              "n": 240,
+              "signal": 0.8290086003390915,
+              "threshold": 0.9573144469048385,
+              "pvalue": 0.1183,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000117748",
+              "n": 225,
+              "signal": 0.4051653157429409,
+              "threshold": 1.0167053449186025,
+              "pvalue": 0.869,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000118412",
+              "n": 211,
+              "signal": 1.1999384931774633,
+              "threshold": 1.0856644333103764,
+              "pvalue": 0.0268,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000119203",
+              "n": 627,
+              "signal": 0.6097087612597085,
+              "threshold": 0.5071436083806713,
+              "pvalue": 0.011,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000119285",
+              "n": 234,
+              "signal": 0.627191442000986,
+              "threshold": 0.9665869894059725,
+              "pvalue": 0.4,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000119523",
+              "n": 247,
+              "signal": 0.7190867439696647,
+              "threshold": 0.9408775516468743,
+              "pvalue": 0.2164,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000119616",
+              "n": 231,
+              "signal": 1.0451338784794661,
+              "threshold": 0.9870183509613819,
+              "pvalue": 0.0357,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000119718",
+              "n": 319,
+              "signal": 0.526492507883344,
+              "threshold": 0.7814899890055887,
+              "pvalue": 0.3572,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000119720",
+              "n": 504,
+              "signal": 0.5302104489825253,
+              "threshold": 0.5636055876403906,
+              "pvalue": 0.0785,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000122026",
+              "n": 262,
+              "signal": 1.5754268148843305,
+              "threshold": 0.9043314750460073,
+              "pvalue": 0.0015,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000122218",
+              "n": 243,
+              "signal": 0.5857012408564172,
+              "threshold": 0.9497347180908073,
+              "pvalue": 0.4527,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000122406",
+              "n": 200,
+              "signal": 1.13205712172435,
+              "threshold": 1.1026076413080494,
+              "pvalue": 0.0432,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000122484",
+              "n": 398,
+              "signal": 0.35547766667381886,
+              "threshold": 0.6552159060074945,
+              "pvalue": 0.6677,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000124193",
+              "n": 231,
+              "signal": 0.8766316097462342,
+              "threshold": 1.0050677700185242,
+              "pvalue": 0.1047,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000124207",
+              "n": 432,
+              "signal": 0.6609401037241782,
+              "threshold": 0.6288005321976006,
+              "pvalue": 0.0355,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000124571",
+              "n": 221,
+              "signal": 0.8658342944870182,
+              "threshold": 1.02290561191737,
+              "pvalue": 0.1296,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000124784",
+              "n": 326,
+              "signal": 0.8706571266130922,
+              "threshold": 0.7558813955133472,
+              "pvalue": 0.0199,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000125107",
+              "n": 269,
+              "signal": 0.4592582624943621,
+              "threshold": 0.8573312182012818,
+              "pvalue": 0.6492,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000125686",
+              "n": 254,
+              "signal": 0.40766984547910384,
+              "threshold": 0.9154964387094823,
+              "pvalue": 0.8165,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000125691",
+              "n": 398,
+              "signal": 0.7718830863849465,
+              "threshold": 0.6509966031956337,
+              "pvalue": 0.0158,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000125835",
+              "n": 269,
+              "signal": 0.29602050083076936,
+              "threshold": 0.8733185374948699,
+              "pvalue": 0.9558,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000125971",
+              "n": 282,
+              "signal": 0.4379696558334499,
+              "threshold": 0.8457489428017598,
+              "pvalue": 0.6835,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000126088",
+              "n": 201,
+              "signal": 0.6500826006775249,
+              "threshold": 1.1068750612135647,
+              "pvalue": 0.5111,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000126226",
+              "n": 307,
+              "signal": 1.00271683194687,
+              "threshold": 0.7947570077392474,
+              "pvalue": 0.0114,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000126561",
+              "n": 204,
+              "signal": 0.5346394016393246,
+              "threshold": 1.0941858355328962,
+              "pvalue": 0.7225,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000126653",
+              "n": 237,
+              "signal": 0.5291381427172879,
+              "threshold": 0.9474497532784794,
+              "pvalue": 0.5999,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000126698",
+              "n": 277,
+              "signal": 0.621747604233228,
+              "threshold": 0.8615820520191556,
+              "pvalue": 0.2728,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000126756",
+              "n": 215,
+              "signal": 0.8062577679383878,
+              "threshold": 1.0678526377926876,
+              "pvalue": 0.2065,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000127337",
+              "n": 231,
+              "signal": 0.713025293423297,
+              "threshold": 0.9903045091281124,
+              "pvalue": 0.2818,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000127554",
+              "n": 222,
+              "signal": 1.0597688621024142,
+              "threshold": 1.0313464727261532,
+              "pvalue": 0.0422,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000130255",
+              "n": 204,
+              "signal": 1.0147359469429864,
+              "threshold": 1.0767489171778837,
+              "pvalue": 0.0699,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000130640",
+              "n": 238,
+              "signal": 0.6297596155355267,
+              "threshold": 0.9678401331606747,
+              "pvalue": 0.3911,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000130713",
+              "n": 226,
+              "signal": 0.43053738146239745,
+              "threshold": 1.0050530082689249,
+              "pvalue": 0.835,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000130935",
+              "n": 271,
+              "signal": 0.8943255022758727,
+              "threshold": 0.8804994664643322,
+              "pvalue": 0.045,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000130985",
+              "n": 287,
+              "signal": 0.41054978451960705,
+              "threshold": 0.8267408594717307,
+              "pvalue": 0.741,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000132383",
+              "n": 469,
+              "signal": 0.4152007995136617,
+              "threshold": 0.5873165112422222,
+              "pvalue": 0.3349,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000132603",
+              "n": 279,
+              "signal": 0.5699397090153335,
+              "threshold": 0.8605389686467637,
+              "pvalue": 0.3806,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000133119",
+              "n": 229,
+              "signal": 0.462657589719262,
+              "threshold": 0.995953946691574,
+              "pvalue": 0.7825,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000133398",
+              "n": 516,
+              "signal": 0.34862248551279873,
+              "threshold": 0.5568952556483439,
+              "pvalue": 0.4837,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000133997",
+              "n": 246,
+              "signal": 0.25360302621802094,
+              "threshold": 0.9313137032561385,
+              "pvalue": 0.9867,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000134001",
+              "n": 243,
+              "signal": 1.0241607524017529,
+              "threshold": 0.9425555805712206,
+              "pvalue": 0.0292,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000134419",
+              "n": 314,
+              "signal": 0.4496133562837049,
+              "threshold": 0.7776990805627596,
+              "pvalue": 0.5668,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000134597",
+              "n": 244,
+              "signal": 0.3598895348011174,
+              "threshold": 0.9260583473058082,
+              "pvalue": 0.9077,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000134697",
+              "n": 351,
+              "signal": 0.6953130151719454,
+              "threshold": 0.7219174369219644,
+              "pvalue": 0.0634,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000134884",
+              "n": 498,
+              "signal": 0.7752459780256828,
+              "threshold": 0.58686536185548,
+              "pvalue": 0.0054,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000134987",
+              "n": 285,
+              "signal": 0.6227890201448315,
+              "threshold": 0.8514299740581969,
+              "pvalue": 0.2575,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000135521",
+              "n": 318,
+              "signal": 1.0111649124289386,
+              "threshold": 0.7839805020261664,
+              "pvalue": 0.0106,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000135775",
+              "n": 343,
+              "signal": 0.7389056006576222,
+              "threshold": 0.7458992438548946,
+              "pvalue": 0.0531,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000136273",
+              "n": 201,
+              "signal": 1.630457978575953,
+              "threshold": 1.1109605412214283,
+              "pvalue": 0.0045,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000136527",
+              "n": 222,
+              "signal": 0.7503261133873542,
+              "threshold": 1.0241930966823376,
+              "pvalue": 0.2558,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000136710",
+              "n": 211,
+              "signal": 0.8270734685223777,
+              "threshold": 1.0601456926318953,
+              "pvalue": 0.1898,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000136819",
+              "n": 201,
+              "signal": 0.7148886782274511,
+              "threshold": 1.1000092950138423,
+              "pvalue": 0.3777,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000136930",
+              "n": 404,
+              "signal": 0.2032462238008936,
+              "threshold": 0.6492116220874966,
+              "pvalue": 0.9759,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000137054",
+              "n": 209,
+              "signal": 0.6891122902710147,
+              "threshold": 1.0777338051417524,
+              "pvalue": 0.3926,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000137100",
+              "n": 201,
+              "signal": 1.0901288745602482,
+              "threshold": 1.11095161832,
+              "pvalue": 0.0561,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000137497",
+              "n": 284,
+              "signal": 0.7686380929456083,
+              "threshold": 0.8435245796153229,
+              "pvalue": 0.0884,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138071",
+              "n": 236,
+              "signal": 0.7226538506043308,
+              "threshold": 0.9871666391856349,
+              "pvalue": 0.2449,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138160",
+              "n": 974,
+              "signal": 0.4238568019045379,
+              "threshold": 0.38172351707112245,
+              "pvalue": 0.0208,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138326",
+              "n": 243,
+              "signal": 0.8168403741328012,
+              "threshold": 0.941474727736991,
+              "pvalue": 0.1094,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138442",
+              "n": 213,
+              "signal": 0.9364298228581226,
+              "threshold": 1.0422295312128964,
+              "pvalue": 0.098,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138663",
+              "n": 262,
+              "signal": 0.6511510501000759,
+              "threshold": 0.8964782986531078,
+              "pvalue": 0.2723,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138750",
+              "n": 291,
+              "signal": 0.7049375330678379,
+              "threshold": 0.8359190764995028,
+              "pvalue": 0.1352,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000138867",
+              "n": 279,
+              "signal": 0.8185931950477299,
+              "threshold": 0.8393536301383697,
+              "pvalue": 0.0595,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000139726",
+              "n": 251,
+              "signal": 0.5899278649836952,
+              "threshold": 0.922283234277997,
+              "pvalue": 0.4282,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000142507",
+              "n": 200,
+              "signal": 0.4086591041539943,
+              "threshold": 1.1037928902325456,
+              "pvalue": 0.9173,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000142534",
+              "n": 268,
+              "signal": 1.053350752713719,
+              "threshold": 0.8752799402819194,
+              "pvalue": 0.017,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000142676",
+              "n": 387,
+              "signal": 1.081630427144648,
+              "threshold": 0.6705056428954421,
+              "pvalue": 0.0012,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000143228",
+              "n": 503,
+              "signal": 0.0416673063320663,
+              "threshold": 0.5684360536256158,
+              "pvalue": 1.0,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000143368",
+              "n": 238,
+              "signal": 0.3108353287223073,
+              "threshold": 0.9484852022073265,
+              "pvalue": 0.9608,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000143952",
+              "n": 321,
+              "signal": 0.5288185296772026,
+              "threshold": 0.7744114876903658,
+              "pvalue": 0.353,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000143977",
+              "n": 402,
+              "signal": 0.2796868465981827,
+              "threshold": 0.6516785205460742,
+              "pvalue": 0.8755,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000144021",
+              "n": 255,
+              "signal": 0.3904695317100784,
+              "threshold": 0.9262021021490994,
+              "pvalue": 0.8555,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000144231",
+              "n": 281,
+              "signal": 0.9367155093809068,
+              "threshold": 0.8501572664497934,
+              "pvalue": 0.0269,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000144713",
+              "n": 208,
+              "signal": 0.9091685101811757,
+              "threshold": 1.0879559412506918,
+              "pvalue": 0.1226,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000145191",
+              "n": 461,
+              "signal": 0.532853573116161,
+              "threshold": 0.5953219015362169,
+              "pvalue": 0.1032,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000145592",
+              "n": 382,
+              "signal": 0.6050785571707293,
+              "threshold": 0.6788167832594334,
+              "pvalue": 0.1016,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000145604",
+              "n": 202,
+              "signal": 0.8481464750042653,
+              "threshold": 1.110766621944077,
+              "pvalue": 0.2009,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000145734",
+              "n": 331,
+              "signal": 0.2467431593148029,
+              "threshold": 0.7546902986703256,
+              "pvalue": 0.9665,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000145833",
+              "n": 214,
+              "signal": 1.0920360951546182,
+              "threshold": 1.0484063195703632,
+              "pvalue": 0.0377,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000146007",
+              "n": 436,
+              "signal": 0.6234298824535187,
+              "threshold": 0.6222291460921471,
+              "pvalue": 0.0491,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000147403",
+              "n": 276,
+              "signal": 0.5668019026718721,
+              "threshold": 0.8635829389780144,
+              "pvalue": 0.3783,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000147416",
+              "n": 442,
+              "signal": 0.43557050972178624,
+              "threshold": 0.6077271522321227,
+              "pvalue": 0.3319,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000147457",
+              "n": 240,
+              "signal": 0.878910083802396,
+              "threshold": 0.9771126829741196,
+              "pvalue": 0.0918,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000147604",
+              "n": 301,
+              "signal": 0.47182335088822464,
+              "threshold": 0.8029051507528543,
+              "pvalue": 0.538,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000147677",
+              "n": 369,
+              "signal": 0.8173792065812278,
+              "threshold": 0.7057375941539826,
+              "pvalue": 0.0185,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000148297",
+              "n": 289,
+              "signal": 0.2905342240476396,
+              "threshold": 0.8104472570124878,
+              "pvalue": 0.9396,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000149016",
+              "n": 208,
+              "signal": 0.5830402360212037,
+              "threshold": 1.073942428164135,
+              "pvalue": 0.6044,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000149100",
+              "n": 246,
+              "signal": 0.715048262670454,
+              "threshold": 0.9400905940919176,
+              "pvalue": 0.2259,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000149136",
+              "n": 562,
+              "signal": 0.5210374272405194,
+              "threshold": 0.5252499154881317,
+              "pvalue": 0.0525,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000149273",
+              "n": 276,
+              "signal": 0.7000333921164699,
+              "threshold": 0.8611221301951514,
+              "pvalue": 0.1624,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000149554",
+              "n": 295,
+              "signal": 0.5978314180781036,
+              "threshold": 0.8122119218702403,
+              "pvalue": 0.2694,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000149636",
+              "n": 245,
+              "signal": 0.13071619480822844,
+              "threshold": 0.9212587376565283,
+              "pvalue": 0.9999,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000150990",
+              "n": 217,
+              "signal": 0.8721797603431418,
+              "threshold": 1.0235652536503492,
+              "pvalue": 0.127,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000151247",
+              "n": 357,
+              "signal": 0.7442164961533166,
+              "threshold": 0.716493908495247,
+              "pvalue": 0.0384,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000151849",
+              "n": 282,
+              "signal": 0.3738654470317681,
+              "threshold": 0.8496982133720379,
+              "pvalue": 0.8341,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000152684",
+              "n": 286,
+              "signal": 0.7073481945334097,
+              "threshold": 0.8503186405035296,
+              "pvalue": 0.1406,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000153207",
+              "n": 290,
+              "signal": 0.884480852381158,
+              "threshold": 0.8426306564910604,
+              "pvalue": 0.0364,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000154473",
+              "n": 409,
+              "signal": 0.2924981538995477,
+              "threshold": 0.6463117338509219,
+              "pvalue": 0.835,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000155115",
+              "n": 243,
+              "signal": 1.214632013644393,
+              "threshold": 0.9472711179568781,
+              "pvalue": 0.0107,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000155438",
+              "n": 240,
+              "signal": 0.6129790204109586,
+              "threshold": 0.9593735477763918,
+              "pvalue": 0.4167,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000155463",
+              "n": 344,
+              "signal": 0.7761359846169497,
+              "threshold": 0.738713702857536,
+              "pvalue": 0.036,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000155561",
+              "n": 735,
+              "signal": 0.35249269471879496,
+              "threshold": 0.4490951838578011,
+              "pvalue": 0.2206,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000155868",
+              "n": 272,
+              "signal": 0.5659186187067573,
+              "threshold": 0.8654399088148244,
+              "pvalue": 0.3905,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000156482",
+              "n": 365,
+              "signal": 0.5179836355227508,
+              "threshold": 0.6920720540782532,
+              "pvalue": 0.2679,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000156603",
+              "n": 544,
+              "signal": 0.3295948758520751,
+              "threshold": 0.5252032855684167,
+              "pvalue": 0.4919,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000157349",
+              "n": 285,
+              "signal": 0.6130786378051793,
+              "threshold": 0.8547474634155707,
+              "pvalue": 0.2824,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000157778",
+              "n": 439,
+              "signal": 0.5178419417111173,
+              "threshold": 0.6261511120536195,
+              "pvalue": 0.1672,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000158526",
+              "n": 523,
+              "signal": 0.8691778994552234,
+              "threshold": 0.5515166538347527,
+              "pvalue": 0.0013,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000159140",
+              "n": 515,
+              "signal": 0.4431975274098767,
+              "threshold": 0.5437542118232118,
+              "pvalue": 0.1869,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000159147",
+              "n": 745,
+              "signal": 0.31632076647329277,
+              "threshold": 0.43763333121261777,
+              "pvalue": 0.3303,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000159352",
+              "n": 352,
+              "signal": 0.6582268715419608,
+              "threshold": 0.7236889179628907,
+              "pvalue": 0.0914,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000160193",
+              "n": 347,
+              "signal": 0.5204867310559768,
+              "threshold": 0.737435343985025,
+              "pvalue": 0.3229,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000160783",
+              "n": 265,
+              "signal": 0.2049992048441533,
+              "threshold": 0.868492341532388,
+              "pvalue": 0.9957,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000161016",
+              "n": 384,
+              "signal": 0.3613654495877196,
+              "threshold": 0.6707920619520557,
+              "pvalue": 0.6589,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000161057",
+              "n": 432,
+              "signal": 0.3042581717978169,
+              "threshold": 0.6120773406629857,
+              "pvalue": 0.775,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000161203",
+              "n": 215,
+              "signal": 0.908763467003763,
+              "threshold": 1.0667559033688385,
+              "pvalue": 0.1176,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000161920",
+              "n": 237,
+              "signal": 0.7949544991235897,
+              "threshold": 0.9741461444509281,
+              "pvalue": 0.1426,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000161970",
+              "n": 209,
+              "signal": 0.7517386866765541,
+              "threshold": 1.0746797771804961,
+              "pvalue": 0.2886,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000162231",
+              "n": 251,
+              "signal": 0.6572981658423724,
+              "threshold": 0.9245078416936463,
+              "pvalue": 0.3003,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000162385",
+              "n": 242,
+              "signal": 0.7790026998601092,
+              "threshold": 0.9505086103456318,
+              "pvalue": 0.1575,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000162923",
+              "n": 226,
+              "signal": 0.8363206336537428,
+              "threshold": 1.008975261574674,
+              "pvalue": 0.1454,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163041",
+              "n": 237,
+              "signal": 1.0810897096512548,
+              "threshold": 0.9768714390750671,
+              "pvalue": 0.0274,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163466",
+              "n": 227,
+              "signal": 0.5538244345147691,
+              "threshold": 1.0178165186434254,
+              "pvalue": 0.5955,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163468",
+              "n": 234,
+              "signal": 0.5853867962816032,
+              "threshold": 0.9726593919725967,
+              "pvalue": 0.4947,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163636",
+              "n": 555,
+              "signal": 0.519008286357292,
+              "threshold": 0.5186340747683403,
+              "pvalue": 0.0498,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163682",
+              "n": 242,
+              "signal": 0.5828208535112511,
+              "threshold": 0.9496293243611241,
+              "pvalue": 0.458,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163714",
+              "n": 290,
+              "signal": 0.7641043730306837,
+              "threshold": 0.833531353234537,
+              "pvalue": 0.087,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163872",
+              "n": 240,
+              "signal": 0.7406081832082967,
+              "threshold": 0.9704718620342687,
+              "pvalue": 0.2126,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163930",
+              "n": 200,
+              "signal": 0.6369108541238916,
+              "threshold": 1.117485160197967,
+              "pvalue": 0.5397,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000163931",
+              "n": 202,
+              "signal": 0.7681654440759531,
+              "threshold": 1.0991499564340468,
+              "pvalue": 0.3032,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164151",
+              "n": 429,
+              "signal": 0.7218332561677733,
+              "threshold": 0.6154667981012948,
+              "pvalue": 0.0134,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164163",
+              "n": 249,
+              "signal": 0.5112604330813728,
+              "threshold": 0.9197009368954372,
+              "pvalue": 0.5951,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164167",
+              "n": 461,
+              "signal": 0.32957154786836956,
+              "threshold": 0.5915112005160168,
+              "pvalue": 0.6296,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164609",
+              "n": 225,
+              "signal": 0.4079324503445182,
+              "threshold": 0.9706898150645932,
+              "pvalue": 0.8728,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164758",
+              "n": 288,
+              "signal": 0.33845564920614324,
+              "threshold": 0.8228940871913848,
+              "pvalue": 0.877,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164880",
+              "n": 211,
+              "signal": 0.6978048306410377,
+              "threshold": 1.0706551445688997,
+              "pvalue": 0.3757,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164902",
+              "n": 412,
+              "signal": 0.4403607928352501,
+              "threshold": 0.6377806332296115,
+              "pvalue": 0.3715,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164941",
+              "n": 323,
+              "signal": 0.4889990978125954,
+              "threshold": 0.7641393804914484,
+              "pvalue": 0.4227,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000164975",
+              "n": 212,
+              "signal": 0.42917622920889126,
+              "threshold": 1.0533066767098718,
+              "pvalue": 0.8734,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000165280",
+              "n": 239,
+              "signal": 0.5049532429737857,
+              "threshold": 0.9632099194395741,
+              "pvalue": 0.6624,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000165494",
+              "n": 499,
+              "signal": 0.5785539727424808,
+              "threshold": 0.5696456070379683,
+              "pvalue": 0.0443,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000165630",
+              "n": 268,
+              "signal": 0.5880671965307835,
+              "threshold": 0.8589332311465119,
+              "pvalue": 0.3591,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000165898",
+              "n": 232,
+              "signal": 0.8136132988143958,
+              "threshold": 0.9971063385994773,
+              "pvalue": 0.1537,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000166441",
+              "n": 202,
+              "signal": 1.477316438769846,
+              "threshold": 1.0893448854024301,
+              "pvalue": 0.0082,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000167085",
+              "n": 256,
+              "signal": 0.983226001613285,
+              "threshold": 0.905219877352451,
+              "pvalue": 0.03,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000167522",
+              "n": 260,
+              "signal": 0.8666249243788594,
+              "threshold": 0.9195860836222954,
+              "pvalue": 0.0702,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000167526",
+              "n": 337,
+              "signal": 0.6086064340093538,
+              "threshold": 0.7413962470274716,
+              "pvalue": 0.1562,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000167658",
+              "n": 321,
+              "signal": 0.4758206566576589,
+              "threshold": 0.772654567041852,
+              "pvalue": 0.4897,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000168028",
+              "n": 224,
+              "signal": 0.5840287838364139,
+              "threshold": 1.004626347717629,
+              "pvalue": 0.5301,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000168090",
+              "n": 235,
+              "signal": 0.46088245471019357,
+              "threshold": 0.9717890430102599,
+              "pvalue": 0.7656,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000168118",
+              "n": 303,
+              "signal": 0.6276477718729451,
+              "threshold": 0.8121452464510703,
+              "pvalue": 0.2182,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000168827",
+              "n": 240,
+              "signal": 0.7234720345254049,
+              "threshold": 0.9593122370760827,
+              "pvalue": 0.2372,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000168883",
+              "n": 220,
+              "signal": 0.42464475601891605,
+              "threshold": 1.0101025614354875,
+              "pvalue": 0.8654,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000169375",
+              "n": 307,
+              "signal": 0.6613479158245138,
+              "threshold": 0.805573146442193,
+              "pvalue": 0.1578,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000169679",
+              "n": 648,
+              "signal": 0.3340641486987821,
+              "threshold": 0.4862985345454703,
+              "pvalue": 0.3916,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000169727",
+              "n": 431,
+              "signal": 0.33128299208583295,
+              "threshold": 0.6236104747199596,
+              "pvalue": 0.6973,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000169750",
+              "n": 220,
+              "signal": 0.7862107846625962,
+              "threshold": 1.0511674854099788,
+              "pvalue": 0.2135,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000169756",
+              "n": 287,
+              "signal": 0.6307857178752868,
+              "threshold": 0.8526413148106757,
+              "pvalue": 0.2502,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170248",
+              "n": 257,
+              "signal": 1.0715736876302795,
+              "threshold": 0.9170295137869205,
+              "pvalue": 0.0172,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170312",
+              "n": 347,
+              "signal": 0.22118231543240782,
+              "threshold": 0.7269542070894307,
+              "pvalue": 0.9768,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170322",
+              "n": 228,
+              "signal": 0.5854038041770069,
+              "threshold": 0.9961288982686958,
+              "pvalue": 0.5352,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170421",
+              "n": 347,
+              "signal": 1.3844875104651229,
+              "threshold": 0.7423956390919494,
+              "pvalue": 0.001,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170445",
+              "n": 289,
+              "signal": 0.5024854061429115,
+              "threshold": 0.8296258885611918,
+              "pvalue": 0.5058,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170889",
+              "n": 276,
+              "signal": 0.594336996387776,
+              "threshold": 0.8501449653493024,
+              "pvalue": 0.3109,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000170892",
+              "n": 275,
+              "signal": 0.7458320647920086,
+              "threshold": 0.8741313195980536,
+              "pvalue": 0.1226,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000171159",
+              "n": 212,
+              "signal": 0.7136379328780892,
+              "threshold": 1.0606531314932437,
+              "pvalue": 0.3459,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000171490",
+              "n": 211,
+              "signal": 0.9052506190296875,
+              "threshold": 1.05503546102896,
+              "pvalue": 0.1183,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000171848",
+              "n": 577,
+              "signal": 0.43058953746964185,
+              "threshold": 0.5223464328080263,
+              "pvalue": 0.1685,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000171863",
+              "n": 265,
+              "signal": 0.661103094602382,
+              "threshold": 0.8858823467247108,
+              "pvalue": 0.2321,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000172053",
+              "n": 400,
+              "signal": 0.6354936936486055,
+              "threshold": 0.6613465243680133,
+              "pvalue": 0.0637,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000172171",
+              "n": 203,
+              "signal": 0.6004417545040457,
+              "threshold": 1.1038701210037902,
+              "pvalue": 0.5967,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000172336",
+              "n": 218,
+              "signal": 0.5820095651820522,
+              "threshold": 1.0368867996070974,
+              "pvalue": 0.5737,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000172531",
+              "n": 248,
+              "signal": 0.8791137838784748,
+              "threshold": 0.9534014221376189,
+              "pvalue": 0.0802,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000173113",
+              "n": 201,
+              "signal": 1.4484675306928907,
+              "threshold": 1.107083216084207,
+              "pvalue": 0.0095,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000173692",
+              "n": 281,
+              "signal": 0.2744589113007451,
+              "threshold": 0.8458956001819723,
+              "pvalue": 0.9674,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000173933",
+              "n": 221,
+              "signal": 0.5766801650746514,
+              "threshold": 1.0346092339896549,
+              "pvalue": 0.5728,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000174444",
+              "n": 345,
+              "signal": 0.8128880768341737,
+              "threshold": 0.7114152955066642,
+              "pvalue": 0.019,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000174780",
+              "n": 224,
+              "signal": 0.6694267554629856,
+              "threshold": 1.019473390866507,
+              "pvalue": 0.3807,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000174953",
+              "n": 269,
+              "signal": 0.7353002675474569,
+              "threshold": 0.8848148647435649,
+              "pvalue": 0.1483,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000175216",
+              "n": 315,
+              "signal": 0.22209768025865034,
+              "threshold": 0.7789483855200608,
+              "pvalue": 0.9869,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000175467",
+              "n": 306,
+              "signal": 0.4119834061829189,
+              "threshold": 0.7791276368713671,
+              "pvalue": 0.6853,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000175550",
+              "n": 227,
+              "signal": 0.7259655542691426,
+              "threshold": 1.0103512824540972,
+              "pvalue": 0.2649,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000175792",
+              "n": 211,
+              "signal": 0.778477627620888,
+              "threshold": 1.0494636271682696,
+              "pvalue": 0.2458,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000176108",
+              "n": 624,
+              "signal": 0.4896096851155516,
+              "threshold": 0.49189616790462415,
+              "pvalue": 0.0519,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000177600",
+              "n": 222,
+              "signal": 1.2064656295493674,
+              "threshold": 1.010108654991053,
+              "pvalue": 0.018,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000178966",
+              "n": 203,
+              "signal": 1.060905184645266,
+              "threshold": 1.093992966450228,
+              "pvalue": 0.0596,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000179988",
+              "n": 379,
+              "signal": 0.6114537061382803,
+              "threshold": 0.692632881114907,
+              "pvalue": 0.1111,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000180104",
+              "n": 247,
+              "signal": 0.8321025711344994,
+              "threshold": 0.9332642856934624,
+              "pvalue": 0.0992,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000180198",
+              "n": 226,
+              "signal": 0.4092363090018247,
+              "threshold": 1.0057586837668873,
+              "pvalue": 0.8787,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000180992",
+              "n": 211,
+              "signal": 0.9346326388447872,
+              "threshold": 1.071729662417345,
+              "pvalue": 0.1082,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000181222",
+              "n": 410,
+              "signal": 0.5349002967970498,
+              "threshold": 0.643650726469162,
+              "pvalue": 0.1549,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000181789",
+              "n": 261,
+              "signal": 0.8362179862507848,
+              "threshold": 0.9049969897459126,
+              "pvalue": 0.0827,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000182774",
+              "n": 223,
+              "signal": 0.3811677324099649,
+              "threshold": 1.0075118522189204,
+              "pvalue": 0.9121,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000183011",
+              "n": 368,
+              "signal": 0.4801211885159795,
+              "threshold": 0.687371762008986,
+              "pvalue": 0.3374,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000183048",
+              "n": 303,
+              "signal": 0.5089352779450224,
+              "threshold": 0.8120656346148676,
+              "pvalue": 0.4579,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000183258",
+              "n": 292,
+              "signal": 0.46026120547458726,
+              "threshold": 0.7970029491525257,
+              "pvalue": 0.5957,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000183684",
+              "n": 319,
+              "signal": 0.49277981028087725,
+              "threshold": 0.7745277981753468,
+              "pvalue": 0.4588,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000184634",
+              "n": 573,
+              "signal": 0.2313453500795845,
+              "threshold": 0.5061176785889717,
+              "pvalue": 0.8335,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000185651",
+              "n": 201,
+              "signal": 0.7502250332493989,
+              "threshold": 1.101224621397023,
+              "pvalue": 0.331,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000186716",
+              "n": 561,
+              "signal": 0.5775662054914744,
+              "threshold": 0.5225192451258345,
+              "pvalue": 0.0238,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000187555",
+              "n": 276,
+              "signal": 0.5799655781809546,
+              "threshold": 0.8646630193552753,
+              "pvalue": 0.3729,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000188846",
+              "n": 220,
+              "signal": 0.9324904338517228,
+              "threshold": 1.027429674504117,
+              "pvalue": 0.0843,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000189091",
+              "n": 381,
+              "signal": 0.27915476821782964,
+              "threshold": 0.6553244531389657,
+              "pvalue": 0.8847,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000189308",
+              "n": 306,
+              "signal": 0.5063940509798,
+              "threshold": 0.800808952182548,
+              "pvalue": 0.4447,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000189403",
+              "n": 241,
+              "signal": 0.7289768816234623,
+              "threshold": 0.968303697536349,
+              "pvalue": 0.2229,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000196235",
+              "n": 406,
+              "signal": 0.46347243210741346,
+              "threshold": 0.644514038132108,
+              "pvalue": 0.296,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000196367",
+              "n": 427,
+              "signal": 0.6100208485104806,
+              "threshold": 0.6389191368153567,
+              "pvalue": 0.0675,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000196531",
+              "n": 354,
+              "signal": 0.4137526834721472,
+              "threshold": 0.7136902548499198,
+              "pvalue": 0.5778,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000197102",
+              "n": 291,
+              "signal": 0.13060696585915663,
+              "threshold": 0.822215036468247,
+              "pvalue": 0.9996,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000197170",
+              "n": 265,
+              "signal": 0.18474501026915024,
+              "threshold": 0.8758055363033,
+              "pvalue": 0.9972,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000197756",
+              "n": 386,
+              "signal": 0.6597628681916273,
+              "threshold": 0.6654783036452477,
+              "pvalue": 0.0531,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000197958",
+              "n": 255,
+              "signal": 0.47403649981895635,
+              "threshold": 0.8966352778029311,
+              "pvalue": 0.6714,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198042",
+              "n": 213,
+              "signal": 1.0395739996208349,
+              "threshold": 1.0561492597084239,
+              "pvalue": 0.0538,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198258",
+              "n": 232,
+              "signal": 0.4863179982979633,
+              "threshold": 0.9750284442763327,
+              "pvalue": 0.7217,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198301",
+              "n": 240,
+              "signal": 0.6635396331828174,
+              "threshold": 0.9557572015941486,
+              "pvalue": 0.3242,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198612",
+              "n": 224,
+              "signal": 0.8031193756087048,
+              "threshold": 1.012379919638472,
+              "pvalue": 0.1818,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198730",
+              "n": 212,
+              "signal": 1.0207644566071545,
+              "threshold": 1.062478401241495,
+              "pvalue": 0.0637,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198736",
+              "n": 205,
+              "signal": 0.5790932374427904,
+              "threshold": 1.081503456127521,
+              "pvalue": 0.6289,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198755",
+              "n": 257,
+              "signal": 0.8847840653958807,
+              "threshold": 0.908121147789054,
+              "pvalue": 0.0584,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000198856",
+              "n": 235,
+              "signal": 1.0187904375740091,
+              "threshold": 0.9749603845634239,
+              "pvalue": 0.0381,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204152",
+              "n": 498,
+              "signal": 0.507957628216427,
+              "threshold": 0.5695990816563312,
+              "pvalue": 0.1043,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204392",
+              "n": 357,
+              "signal": 0.6018857080402713,
+              "threshold": 0.6979884438130272,
+              "pvalue": 0.1268,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204394",
+              "n": 220,
+              "signal": 0.5516472453553971,
+              "threshold": 1.0384323734363927,
+              "pvalue": 0.6188,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204560",
+              "n": 328,
+              "signal": 0.4378061554618647,
+              "threshold": 0.7302076238784259,
+              "pvalue": 0.5544,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204574",
+              "n": 329,
+              "signal": 0.7048260124472395,
+              "threshold": 0.7667544519465719,
+              "pvalue": 0.0838,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204604",
+              "n": 207,
+              "signal": 0.8574700069713226,
+              "threshold": 1.0977517567033388,
+              "pvalue": 0.1802,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000204899",
+              "n": 455,
+              "signal": 0.5338076415205079,
+              "threshold": 0.6114621589127266,
+              "pvalue": 0.1181,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000205981",
+              "n": 398,
+              "signal": 0.47768167114542404,
+              "threshold": 0.6596726299830841,
+              "pvalue": 0.2865,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000213741",
+              "n": 403,
+              "signal": 0.5510289987089453,
+              "threshold": 0.6518897965806022,
+              "pvalue": 0.1416,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000214114",
+              "n": 208,
+              "signal": 0.5494505322730646,
+              "threshold": 1.074688336354684,
+              "pvalue": 0.6775,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000214517",
+              "n": 222,
+              "signal": 1.087712339713475,
+              "threshold": 1.020469474979671,
+              "pvalue": 0.0343,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000215021",
+              "n": 415,
+              "signal": 0.6595179683600573,
+              "threshold": 0.6397140658429512,
+              "pvalue": 0.0411,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000233927",
+              "n": 309,
+              "signal": 0.895192049047498,
+              "threshold": 0.7845347574621024,
+              "pvalue": 0.0222,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000239306",
+              "n": 228,
+              "signal": 0.9057960955816724,
+              "threshold": 0.9997087676525735,
+              "pvalue": 0.0902,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000241553",
+              "n": 220,
+              "signal": 0.8358239309697287,
+              "threshold": 1.0301118834803353,
+              "pvalue": 0.1593,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000249915",
+              "n": 203,
+              "signal": 1.1371223955526273,
+              "threshold": 1.0951895877103173,
+              "pvalue": 0.0388,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000261236",
+              "n": 253,
+              "signal": 1.0133248833768973,
+              "threshold": 0.9288205386729795,
+              "pvalue": 0.0283,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000269858",
+              "n": 362,
+              "signal": 0.7086824944502652,
+              "threshold": 0.720711392376184,
+              "pvalue": 0.0572,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ENSG00000275700",
+              "n": 298,
+              "signal": 0.7645572129831211,
+              "threshold": 0.8065704342479116,
+              "pvalue": 0.0707,
+              "bh": false,
+              "by": false
+            }
+          ],
+          "random_control_records": [
+            {
+              "label": "random_control_00",
+              "n": 225,
+              "signal": 0.449884676379436,
+              "threshold": 1.0147460493090859,
+              "pvalue": 0.8132,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_01",
+              "n": 238,
+              "signal": 0.35008102578829375,
+              "threshold": 0.9605647114167035,
+              "pvalue": 0.9314,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_02",
+              "n": 256,
+              "signal": 0.9106857164718669,
+              "threshold": 0.9276536956247367,
+              "pvalue": 0.0555,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_03",
+              "n": 432,
+              "signal": 0.4485001921979742,
+              "threshold": 0.6339441578782962,
+              "pvalue": 0.3262,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_04",
+              "n": 237,
+              "signal": 0.41209662950362597,
+              "threshold": 0.9828036547526463,
+              "pvalue": 0.8514,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_05",
+              "n": 315,
+              "signal": 0.31863098491739617,
+              "threshold": 0.7891732233171814,
+              "pvalue": 0.896,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_06",
+              "n": 373,
+              "signal": 0.8042206641387328,
+              "threshold": 0.7031760269764069,
+              "pvalue": 0.0196,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_07",
+              "n": 255,
+              "signal": 0.6873824738310158,
+              "threshold": 0.9214431518181551,
+              "pvalue": 0.234,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_08",
+              "n": 259,
+              "signal": 0.48064910107283515,
+              "threshold": 0.9045149913857174,
+              "pvalue": 0.6566,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_09",
+              "n": 212,
+              "signal": 0.6012055375868162,
+              "threshold": 1.0644098016134078,
+              "pvalue": 0.5608,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_10",
+              "n": 279,
+              "signal": 0.6080160602954887,
+              "threshold": 0.8715084962795572,
+              "pvalue": 0.308,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_11",
+              "n": 214,
+              "signal": 0.8476990260485152,
+              "threshold": 1.058427947805701,
+              "pvalue": 0.1636,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_12",
+              "n": 378,
+              "signal": 0.501557281371583,
+              "threshold": 0.6934765997424308,
+              "pvalue": 0.2928,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_13",
+              "n": 207,
+              "signal": 0.43833875772053277,
+              "threshold": 1.0834526549555024,
+              "pvalue": 0.8713,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_14",
+              "n": 409,
+              "signal": 0.2604517891548661,
+              "threshold": 0.6604123614032223,
+              "pvalue": 0.9109,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_15",
+              "n": 523,
+              "signal": 0.19702956704361116,
+              "threshold": 0.5605039166139167,
+              "pvalue": 0.9521,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_16",
+              "n": 210,
+              "signal": 0.73520897099725,
+              "threshold": 1.06822434727976,
+              "pvalue": 0.3186,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_17",
+              "n": 365,
+              "signal": 0.48879899032897633,
+              "threshold": 0.7135531112535948,
+              "pvalue": 0.3537,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_18",
+              "n": 237,
+              "signal": 0.7535096970078277,
+              "threshold": 0.9744972280222113,
+              "pvalue": 0.206,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_19",
+              "n": 225,
+              "signal": 0.6550822517052902,
+              "threshold": 1.026218557020127,
+              "pvalue": 0.4039,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_20",
+              "n": 321,
+              "signal": 0.3731120679646706,
+              "threshold": 0.7735865614580087,
+              "pvalue": 0.7721,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_21",
+              "n": 247,
+              "signal": 0.34286057887268373,
+              "threshold": 0.9497434656011448,
+              "pvalue": 0.9277,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_22",
+              "n": 331,
+              "signal": 0.485703197443933,
+              "threshold": 0.7599794173762008,
+              "pvalue": 0.4388,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_23",
+              "n": 252,
+              "signal": 0.4665262404557201,
+              "threshold": 0.9310520140892341,
+              "pvalue": 0.718,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_24",
+              "n": 211,
+              "signal": 1.0062100105782341,
+              "threshold": 1.0632490220928694,
+              "pvalue": 0.0671,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_25",
+              "n": 201,
+              "signal": 0.6879059441276635,
+              "threshold": 1.101785270611116,
+              "pvalue": 0.4389,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_26",
+              "n": 1996,
+              "signal": 0.11730633227999514,
+              "threshold": 0.25943492744365987,
+              "pvalue": 0.8657,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_27",
+              "n": 231,
+              "signal": 0.6989597372523191,
+              "threshold": 0.9949876819970618,
+              "pvalue": 0.3011,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_28",
+              "n": 337,
+              "signal": 0.6688963220266939,
+              "threshold": 0.7591558949896597,
+              "pvalue": 0.1042,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_29",
+              "n": 226,
+              "signal": 0.6205753699779187,
+              "threshold": 1.0135161564067088,
+              "pvalue": 0.4611,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_30",
+              "n": 265,
+              "signal": 0.3884016782989573,
+              "threshold": 0.8867763313684477,
+              "pvalue": 0.8454,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_31",
+              "n": 461,
+              "signal": 0.5517482605082928,
+              "threshold": 0.6102527235700902,
+              "pvalue": 0.0992,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_32",
+              "n": 240,
+              "signal": 0.7677935602217606,
+              "threshold": 0.9703106897531004,
+              "pvalue": 0.1739,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_33",
+              "n": 240,
+              "signal": 0.8304005436779229,
+              "threshold": 0.9779743772259089,
+              "pvalue": 0.1182,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_34",
+              "n": 223,
+              "signal": 0.8667755231764389,
+              "threshold": 1.0162098263451156,
+              "pvalue": 0.1263,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_35",
+              "n": 627,
+              "signal": 0.2306086868589286,
+              "threshold": 0.49430263518949996,
+              "pvalue": 0.8291,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_36",
+              "n": 222,
+              "signal": 0.9920176088050068,
+              "threshold": 1.0273091612915015,
+              "pvalue": 0.0594,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_37",
+              "n": 203,
+              "signal": 0.9191281459203327,
+              "threshold": 1.1042760011004495,
+              "pvalue": 0.1337,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_38",
+              "n": 354,
+              "signal": 0.4126798931032771,
+              "threshold": 0.7199479619875577,
+              "pvalue": 0.5974,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_39",
+              "n": 432,
+              "signal": 0.5670963892468059,
+              "threshold": 0.6401378603016966,
+              "pvalue": 0.1053,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_40",
+              "n": 243,
+              "signal": 0.8295337697670068,
+              "threshold": 0.9592437062310172,
+              "pvalue": 0.1147,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_41",
+              "n": 287,
+              "signal": 0.5035805795727945,
+              "threshold": 0.837668880149629,
+              "pvalue": 0.5172,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_42",
+              "n": 273,
+              "signal": 0.49709188447336056,
+              "threshold": 0.8837090009802923,
+              "pvalue": 0.578,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_43",
+              "n": 251,
+              "signal": 0.49970422770782696,
+              "threshold": 0.9331987067882546,
+              "pvalue": 0.6334,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_44",
+              "n": 366,
+              "signal": 0.43124360992589383,
+              "threshold": 0.7151891319380609,
+              "pvalue": 0.5145,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_45",
+              "n": 226,
+              "signal": 0.6457603407763647,
+              "threshold": 1.0149732364112802,
+              "pvalue": 0.4072,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_46",
+              "n": 258,
+              "signal": 0.4448902505830108,
+              "threshold": 0.9046352492745068,
+              "pvalue": 0.7505,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_47",
+              "n": 232,
+              "signal": 0.6306084084933375,
+              "threshold": 0.9854008305471722,
+              "pvalue": 0.4202,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_48",
+              "n": 211,
+              "signal": 0.7212249735627001,
+              "threshold": 1.0659269696616511,
+              "pvalue": 0.3377,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_49",
+              "n": 214,
+              "signal": 0.30349638199621387,
+              "threshold": 1.0562768123518518,
+              "pvalue": 0.9802,
+              "bh": false,
+              "by": false
+            }
+          ],
+          "wall_seconds": 26675.7
+        }
+      ],
+      "provenance": {
+        "code_commit": "f9557fb2a1b738e6d53323f6c0e5521d9d6fcdf9",
+        "source_sha256": {
+          "src/gate/precision_readout.py": "0295542cfd6747f2e2b858ad3e8ed7d1b7514efaa79baad62269c7b4232215ed",
+          "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+          "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+          "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+          "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+          "experiments/e8_pooled_null.py": "0a96a930a1f547b4338e0e1bf00cb99f6e59bc58006875a36fa1193247f2cd0a"
+        },
+        "numpy_version": "1.24.4",
+        "python_version": "3.10.12",
+        "host": "dgxanode02"
+      },
+      "wall_seconds": 27395.9
+    }
+  }
+}

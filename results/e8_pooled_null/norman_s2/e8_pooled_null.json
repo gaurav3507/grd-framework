@@ -1,0 +1,1451 @@
+{
+  "experiment": "e8_pooled_null",
+  "description": "Centred pooled-permutation null (Theorem 2) on the Perturb-seq panel, shared-reference design; BH and BY at q; E3 random pure-control family per seed; Jaccard of BH sets against E6.",
+  "config": {
+    "null": "pooled_centred",
+    "B": 9999,
+    "alpha": 0.05,
+    "q": 0.05,
+    "seeds": [
+      2
+    ],
+    "d_proj": 10,
+    "nmin": 200
+  },
+  "datasets": {
+    "Norman": {
+      "dataset": "Norman",
+      "source": "/workspace/external/discrepancy_vae/datasets/Norman2019_raw.h5ad",
+      "n_control": 8907,
+      "n_perts": 101,
+      "seeds": [
+        2
+      ],
+      "null": "pooled_centred",
+      "B": 9999,
+      "p_floor": 0.0001,
+      "bh_count_per_seed": [
+        2
+      ],
+      "by_count_per_seed": [
+        0
+      ],
+      "random_bh_count_per_seed": [
+        0
+      ],
+      "random_by_count_per_seed": [
+        0
+      ],
+      "n_pvalues_at_floor_per_seed": [
+        1
+      ],
+      "jaccard_bh_vs_e6_shared_per_seed": [
+        0.5
+      ],
+      "selftest": false,
+      "per_seed": [
+        {
+          "seed": 2,
+          "raw_count": 8,
+          "bh_count": 2,
+          "by_count": 0,
+          "bh_selected": [
+            "BAK1",
+            "ZC3HAV1"
+          ],
+          "by_selected": [],
+          "random_raw_count": 3,
+          "random_bh_count": 0,
+          "random_by_count": 0,
+          "n_pvalues_at_floor": 1,
+          "random_n_pvalues_at_floor": 0,
+          "jaccard_bh_vs_e6_shared": 0.5,
+          "e6_reference": {
+            "source": "results/e6_resolution/norman_s2/e5_real_panel.json",
+            "sha256": "bd0bfefc547a1450402b193e01fea60f4395df41211ba2cdea114c71953383af",
+            "bh_count": 1
+          },
+          "per_environment": [
+            {
+              "label": "AHR",
+              "n": 558,
+              "signal": 0.21299045331409505,
+              "threshold": 0.5106685781156274,
+              "pvalue": 0.6757,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ARID1A",
+              "n": 232,
+              "signal": 0.6204995280555826,
+              "threshold": 0.9798506519221338,
+              "pvalue": 0.2199,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ARRDC3",
+              "n": 495,
+              "signal": 0.21336408704217047,
+              "threshold": 0.554642276925537,
+              "pvalue": 0.7621,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ATL1",
+              "n": 379,
+              "signal": 0.4171311542105945,
+              "threshold": 0.6578389071292238,
+              "pvalue": 0.2452,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "BAK1",
+              "n": 1457,
+              "signal": 0.737841945511337,
+              "threshold": 0.2955940399491567,
+              "pvalue": 0.0001,
+              "bh": true,
+              "by": false
+            },
+            {
+              "label": "BCL2L11",
+              "n": 582,
+              "signal": 0.3382338531952807,
+              "threshold": 0.522236706192751,
+              "pvalue": 0.2378,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "BCORL1",
+              "n": 533,
+              "signal": 0.3961355500622224,
+              "threshold": 0.5437197477359446,
+              "pvalue": 0.1547,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "BPGM",
+              "n": 464,
+              "signal": 0.27904788724553875,
+              "threshold": 0.5920088584771551,
+              "pvalue": 0.5377,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "C19orf26",
+              "n": 872,
+              "signal": 0.20237573496422037,
+              "threshold": 0.3649425553852893,
+              "pvalue": 0.4412,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "C3orf72",
+              "n": 264,
+              "signal": 0.3368646720639108,
+              "threshold": 0.8787551815565996,
+              "pvalue": 0.7007,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CBFA2T3",
+              "n": 658,
+              "signal": 0.19262837125092436,
+              "threshold": 0.46153977098769766,
+              "pvalue": 0.6856,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CBL",
+              "n": 663,
+              "signal": 0.2538768170926955,
+              "threshold": 0.4632454800340859,
+              "pvalue": 0.3949,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CDKN1A",
+              "n": 360,
+              "signal": 0.5019167676556373,
+              "threshold": 0.7124050009697007,
+              "pvalue": 0.169,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CDKN1B",
+              "n": 550,
+              "signal": 0.5008344188671545,
+              "threshold": 0.5282492253919873,
+              "pvalue": 0.0599,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CDKN1C",
+              "n": 230,
+              "signal": 0.5015450980298201,
+              "threshold": 0.9971193547530035,
+              "pvalue": 0.409,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CEBPA",
+              "n": 460,
+              "signal": 0.4442043323487557,
+              "threshold": 0.5989359454534593,
+              "pvalue": 0.1356,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CEBPB",
+              "n": 488,
+              "signal": 0.4229172373003705,
+              "threshold": 0.579043972218996,
+              "pvalue": 0.1374,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CEBPE",
+              "n": 1233,
+              "signal": 0.2733730236275976,
+              "threshold": 0.32417401150850106,
+              "pvalue": 0.0907,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CELF2",
+              "n": 475,
+              "signal": 0.32920760080043165,
+              "threshold": 0.5850028883616291,
+              "pvalue": 0.3495,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CITED1",
+              "n": 215,
+              "signal": 0.4215538340747346,
+              "threshold": 1.0344037530685484,
+              "pvalue": 0.6283,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CKS1B",
+              "n": 241,
+              "signal": 0.5163084461263899,
+              "threshold": 0.9747942551203689,
+              "pvalue": 0.3564,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CLDN6",
+              "n": 670,
+              "signal": 0.27513819735340617,
+              "threshold": 0.44752968603955195,
+              "pvalue": 0.2768,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CNN1",
+              "n": 765,
+              "signal": 0.2664598916856232,
+              "threshold": 0.41686230064791135,
+              "pvalue": 0.2738,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CNNM4",
+              "n": 470,
+              "signal": 0.37174501794287274,
+              "threshold": 0.5873831566185168,
+              "pvalue": 0.2474,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "COL1A1",
+              "n": 328,
+              "signal": 0.3611201865070593,
+              "threshold": 0.7602303466015299,
+              "pvalue": 0.4692,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "COL2A1",
+              "n": 598,
+              "signal": 0.3918952609882953,
+              "threshold": 0.46410812613362656,
+              "pvalue": 0.0965,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "CSRNP1",
+              "n": 478,
+              "signal": 0.4867276110282588,
+              "threshold": 0.5772294844600508,
+              "pvalue": 0.0959,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "DLX2",
+              "n": 732,
+              "signal": 0.31426242172284613,
+              "threshold": 0.4238815078639716,
+              "pvalue": 0.1546,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "DUSP9",
+              "n": 731,
+              "signal": 0.3687232766906815,
+              "threshold": 0.42305769345364214,
+              "pvalue": 0.087,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "EGR1",
+              "n": 322,
+              "signal": 0.5343149992165008,
+              "threshold": 0.7639412491800875,
+              "pvalue": 0.183,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ELMSAN1",
+              "n": 937,
+              "signal": 0.35357574312100065,
+              "threshold": 0.38806644066236984,
+              "pvalue": 0.0719,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ETS2",
+              "n": 1201,
+              "signal": 0.14095057389926213,
+              "threshold": 0.3216091759940775,
+              "pvalue": 0.66,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FEV",
+              "n": 704,
+              "signal": 0.1541524478905671,
+              "threshold": 0.4265492447413561,
+              "pvalue": 0.8313,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FOSB",
+              "n": 630,
+              "signal": 0.2167233766027512,
+              "threshold": 0.47702149858133414,
+              "pvalue": 0.5831,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FOXA1",
+              "n": 851,
+              "signal": 0.15378972214821307,
+              "threshold": 0.3953573624664528,
+              "pvalue": 0.7477,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FOXA3",
+              "n": 494,
+              "signal": 0.18333097693840592,
+              "threshold": 0.5296311860919737,
+              "pvalue": 0.8517,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FOXF1",
+              "n": 874,
+              "signal": 0.39780419754559415,
+              "threshold": 0.4026575211991381,
+              "pvalue": 0.0526,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FOXL2",
+              "n": 652,
+              "signal": 0.23330250317479082,
+              "threshold": 0.4590538995217506,
+              "pvalue": 0.4507,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "FOXO4",
+              "n": 215,
+              "signal": 0.6897986616441297,
+              "threshold": 1.0235632678408058,
+              "pvalue": 0.2006,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "GLB1L2",
+              "n": 463,
+              "signal": 0.7457530603149642,
+              "threshold": 0.5997745652331637,
+              "pvalue": 0.0181,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "HK2",
+              "n": 303,
+              "signal": 0.31515702696325687,
+              "threshold": 0.7895628463147157,
+              "pvalue": 0.6857,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "HNF4A",
+              "n": 237,
+              "signal": 0.5024888265470764,
+              "threshold": 0.9527102479945158,
+              "pvalue": 0.3745,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "HOXA13",
+              "n": 274,
+              "signal": 0.3451873938986997,
+              "threshold": 0.8483197796362764,
+              "pvalue": 0.6368,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "HOXB9",
+              "n": 701,
+              "signal": 0.30765677380444567,
+              "threshold": 0.43826913586708405,
+              "pvalue": 0.1776,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "HOXC13",
+              "n": 385,
+              "signal": 0.6041670069615499,
+              "threshold": 0.6546814948875553,
+              "pvalue": 0.0661,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "IER5L",
+              "n": 405,
+              "signal": 0.4399373008435772,
+              "threshold": 0.6568349987897314,
+              "pvalue": 0.1971,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "IGDCC3",
+              "n": 613,
+              "signal": 0.4619748155765318,
+              "threshold": 0.4897364309367562,
+              "pvalue": 0.0636,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "IKZF3",
+              "n": 681,
+              "signal": 0.26743839466643926,
+              "threshold": 0.45026095825042795,
+              "pvalue": 0.2832,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "IRF1",
+              "n": 427,
+              "signal": 1.0703186398568199,
+              "threshold": 0.6423928170547146,
+              "pvalue": 0.0033,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ISL2",
+              "n": 582,
+              "signal": 0.3976188502189587,
+              "threshold": 0.5094018918325068,
+              "pvalue": 0.1282,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "JUN",
+              "n": 266,
+              "signal": 0.4157402124185704,
+              "threshold": 0.9066533775704471,
+              "pvalue": 0.5096,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "KIAA1804",
+              "n": 278,
+              "signal": 0.5142119625785477,
+              "threshold": 0.848591515616444,
+              "pvalue": 0.2752,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "KIF18B",
+              "n": 254,
+              "signal": 0.1657877316028513,
+              "threshold": 0.9117487368321849,
+              "pvalue": 0.9933,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "KIF2C",
+              "n": 634,
+              "signal": 0.25939173704065244,
+              "threshold": 0.4832087356484912,
+              "pvalue": 0.4146,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "KLF1",
+              "n": 1960,
+              "signal": 0.2880508725842101,
+              "threshold": 0.231390570137622,
+              "pvalue": 0.0156,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "KMT2A",
+              "n": 241,
+              "signal": 0.289198778157966,
+              "threshold": 0.9386111250536018,
+              "pvalue": 0.8788,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "LHX1",
+              "n": 375,
+              "signal": 0.3636106241690348,
+              "threshold": 0.6911854387241335,
+              "pvalue": 0.3976,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "LYL1",
+              "n": 432,
+              "signal": 0.6100708174945421,
+              "threshold": 0.6168085540956181,
+              "pvalue": 0.053,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAML2",
+              "n": 626,
+              "signal": 0.4399933191320712,
+              "threshold": 0.47111875706996253,
+              "pvalue": 0.0667,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAP2K3",
+              "n": 579,
+              "signal": 0.42883490844228966,
+              "threshold": 0.5058309248762929,
+              "pvalue": 0.0951,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAP2K6",
+              "n": 878,
+              "signal": 0.13921468081455632,
+              "threshold": 0.3748717013223477,
+              "pvalue": 0.8322,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAP4K3",
+              "n": 363,
+              "signal": 0.24057480318691885,
+              "threshold": 0.6919967322914767,
+              "pvalue": 0.8267,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAP4K5",
+              "n": 366,
+              "signal": 0.12642652959931824,
+              "threshold": 0.6967713828977272,
+              "pvalue": 0.9936,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAP7D1",
+              "n": 751,
+              "signal": 0.19255440993473913,
+              "threshold": 0.41115529732762984,
+              "pvalue": 0.611,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MAPK1",
+              "n": 765,
+              "signal": 0.23937766666708668,
+              "threshold": 0.4255683180182674,
+              "pvalue": 0.3626,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MEIS1",
+              "n": 776,
+              "signal": 0.2355411856333232,
+              "threshold": 0.4080272041909891,
+              "pvalue": 0.359,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "MIDN",
+              "n": 298,
+              "signal": 0.2642406336565573,
+              "threshold": 0.816842126338864,
+              "pvalue": 0.827,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "NCL",
+              "n": 237,
+              "signal": 0.3744927814169811,
+              "threshold": 0.9787838437166265,
+              "pvalue": 0.6827,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "OSR2",
+              "n": 1003,
+              "signal": 0.16027188344428847,
+              "threshold": 0.3308213851561312,
+              "pvalue": 0.5838,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "POU3F2",
+              "n": 359,
+              "signal": 0.2228399321359372,
+              "threshold": 0.7107061118237061,
+              "pvalue": 0.8696,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "PRDM1",
+              "n": 297,
+              "signal": 0.30773431649817773,
+              "threshold": 0.801439047645195,
+              "pvalue": 0.6977,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "PRTG",
+              "n": 685,
+              "signal": 0.36163800147783826,
+              "threshold": 0.4405053168541832,
+              "pvalue": 0.1033,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "PTPN1",
+              "n": 419,
+              "signal": 0.4509947593678482,
+              "threshold": 0.6242950218298299,
+              "pvalue": 0.1632,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "PTPN12",
+              "n": 445,
+              "signal": 0.2397639053971346,
+              "threshold": 0.6041755284791978,
+              "pvalue": 0.712,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "PTPN13",
+              "n": 270,
+              "signal": 0.5037849369363846,
+              "threshold": 0.8836165048101907,
+              "pvalue": 0.3025,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "PTPN9",
+              "n": 445,
+              "signal": 0.2943832750713655,
+              "threshold": 0.6309172579806022,
+              "pvalue": 0.5096,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "RHOXF2",
+              "n": 328,
+              "signal": 0.2896405436354249,
+              "threshold": 0.7304955242998522,
+              "pvalue": 0.6901,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "RREB1",
+              "n": 331,
+              "signal": 0.21908182893437214,
+              "threshold": 0.7399617882398418,
+              "pvalue": 0.8995,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "RUNX1T1",
+              "n": 779,
+              "signal": 0.24859952583734518,
+              "threshold": 0.414293407439933,
+              "pvalue": 0.322,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "S1PR2",
+              "n": 541,
+              "signal": 0.2127821229378304,
+              "threshold": 0.5229991544025915,
+              "pvalue": 0.698,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SAMD1",
+              "n": 498,
+              "signal": 0.1729556554749553,
+              "threshold": 0.5408455925604916,
+              "pvalue": 0.8742,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SET",
+              "n": 986,
+              "signal": 0.38515861825659986,
+              "threshold": 0.346603585899639,
+              "pvalue": 0.0287,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SGK1",
+              "n": 483,
+              "signal": 0.22787641574321615,
+              "threshold": 0.5687944724937162,
+              "pvalue": 0.7026,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SLC38A2",
+              "n": 332,
+              "signal": 0.45112281219822215,
+              "threshold": 0.7567372048371334,
+              "pvalue": 0.2908,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SLC4A1",
+              "n": 1000,
+              "signal": 0.18096469624365086,
+              "threshold": 0.33780546318233745,
+              "pvalue": 0.4754,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SLC6A9",
+              "n": 558,
+              "signal": 0.1833145197022499,
+              "threshold": 0.5138448535373987,
+              "pvalue": 0.8114,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SNAI1",
+              "n": 467,
+              "signal": 0.3109105505378827,
+              "threshold": 0.5913225900694257,
+              "pvalue": 0.3895,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "SPI1",
+              "n": 613,
+              "signal": 0.4855557680372575,
+              "threshold": 0.4885486116234837,
+              "pvalue": 0.0509,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "STIL",
+              "n": 309,
+              "signal": 0.23634729249538666,
+              "threshold": 0.7508595161648769,
+              "pvalue": 0.8903,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "TBX2",
+              "n": 690,
+              "signal": 0.24228389659973665,
+              "threshold": 0.44750968805698393,
+              "pvalue": 0.4088,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "TBX3",
+              "n": 691,
+              "signal": 0.2780508164912328,
+              "threshold": 0.44914768864499616,
+              "pvalue": 0.2743,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "TGFBR2",
+              "n": 646,
+              "signal": 0.3580195918944018,
+              "threshold": 0.4685797475764847,
+              "pvalue": 0.1399,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "TMSB4X",
+              "n": 543,
+              "signal": 0.24658744715183584,
+              "threshold": 0.5055619037858832,
+              "pvalue": 0.5533,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "TP73",
+              "n": 248,
+              "signal": 0.699325641839803,
+              "threshold": 0.9128508140598217,
+              "pvalue": 0.1214,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "TSC22D1",
+              "n": 441,
+              "signal": 0.41071779292134614,
+              "threshold": 0.6252938999265105,
+              "pvalue": 0.2136,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "UBASH3A",
+              "n": 819,
+              "signal": 0.15606866584009824,
+              "threshold": 0.3948443455296267,
+              "pvalue": 0.7697,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "UBASH3B",
+              "n": 1202,
+              "signal": 0.37719127823520876,
+              "threshold": 0.31351890020533213,
+              "pvalue": 0.0215,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ZBTB1",
+              "n": 693,
+              "signal": 0.17761925321409724,
+              "threshold": 0.4481013767055848,
+              "pvalue": 0.7177,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ZBTB25",
+              "n": 740,
+              "signal": 0.6356505791142404,
+              "threshold": 0.43450969986573673,
+              "pvalue": 0.009,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "ZC3HAV1",
+              "n": 516,
+              "signal": 1.0596481968462457,
+              "threshold": 0.5521157208912587,
+              "pvalue": 0.0007,
+              "bh": true,
+              "by": false
+            },
+            {
+              "label": "ZNF318",
+              "n": 650,
+              "signal": 0.303106783424266,
+              "threshold": 0.4712434315614017,
+              "pvalue": 0.2423,
+              "bh": false,
+              "by": false
+            }
+          ],
+          "random_control_records": [
+            {
+              "label": "random_control_00",
+              "n": 1000,
+              "signal": 0.12135093591382728,
+              "threshold": 0.3653620674391214,
+              "pvalue": 0.8773,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_01",
+              "n": 441,
+              "signal": 0.19429138707614854,
+              "threshold": 0.6313826723782852,
+              "pvalue": 0.8754,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_02",
+              "n": 470,
+              "signal": 0.23320731789402466,
+              "threshold": 0.5680777304178661,
+              "pvalue": 0.7132,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_03",
+              "n": 1003,
+              "signal": 0.1076297705339609,
+              "threshold": 0.35725669734071597,
+              "pvalue": 0.9233,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_04",
+              "n": 467,
+              "signal": 0.4378259026960345,
+              "threshold": 0.5937674071311473,
+              "pvalue": 0.15,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_05",
+              "n": 558,
+              "signal": 0.2528937734524123,
+              "threshold": 0.5134823068198844,
+              "pvalue": 0.5307,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_06",
+              "n": 613,
+              "signal": 0.35157203871677556,
+              "threshold": 0.49835184002679617,
+              "pvalue": 0.175,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_07",
+              "n": 690,
+              "signal": 0.23494676606666842,
+              "threshold": 0.4482488157940551,
+              "pvalue": 0.4552,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_08",
+              "n": 475,
+              "signal": 0.21320532010225035,
+              "threshold": 0.583752429652694,
+              "pvalue": 0.7886,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_09",
+              "n": 598,
+              "signal": 0.25013720240942994,
+              "threshold": 0.49509691770342623,
+              "pvalue": 0.4932,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_10",
+              "n": 432,
+              "signal": 0.5036475918569225,
+              "threshold": 0.6339044566486424,
+              "pvalue": 0.1167,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_11",
+              "n": 1201,
+              "signal": 0.26709142291307214,
+              "threshold": 0.3158504713134949,
+              "pvalue": 0.1026,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_12",
+              "n": 248,
+              "signal": 0.9366533107337636,
+              "threshold": 0.9392495654342087,
+              "pvalue": 0.0508,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_13",
+              "n": 1960,
+              "signal": 0.13389251267429428,
+              "threshold": 0.24407209417850315,
+              "pvalue": 0.4524,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_14",
+              "n": 464,
+              "signal": 0.209141720167058,
+              "threshold": 0.587442387580743,
+              "pvalue": 0.8071,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_15",
+              "n": 254,
+              "signal": 0.23086066684179854,
+              "threshold": 0.9251557424573046,
+              "pvalue": 0.9497,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_16",
+              "n": 872,
+              "signal": 0.189948642194819,
+              "threshold": 0.3950822934961072,
+              "pvalue": 0.5385,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_17",
+              "n": 558,
+              "signal": 0.22473049395090136,
+              "threshold": 0.5120451444992878,
+              "pvalue": 0.6491,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_18",
+              "n": 495,
+              "signal": 0.42626806905385717,
+              "threshold": 0.5815243640076918,
+              "pvalue": 0.1453,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_19",
+              "n": 328,
+              "signal": 0.33524979068216,
+              "threshold": 0.7676147373400779,
+              "pvalue": 0.5798,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_20",
+              "n": 328,
+              "signal": 0.3316805562743571,
+              "threshold": 0.7456750067508264,
+              "pvalue": 0.5937,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_21",
+              "n": 464,
+              "signal": 0.6684030954237747,
+              "threshold": 0.6022725816220232,
+              "pvalue": 0.0327,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_22",
+              "n": 626,
+              "signal": 0.30680860032128976,
+              "threshold": 0.4867056535225805,
+              "pvalue": 0.2711,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_23",
+              "n": 266,
+              "signal": 0.31838264778261055,
+              "threshold": 0.8878677247332889,
+              "pvalue": 0.7661,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_24",
+              "n": 328,
+              "signal": 0.5165958930441733,
+              "threshold": 0.7684994009059457,
+              "pvalue": 0.1894,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_25",
+              "n": 704,
+              "signal": 0.13947204560867088,
+              "threshold": 0.4365680628987983,
+              "pvalue": 0.9052,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_26",
+              "n": 241,
+              "signal": 0.6454299116773872,
+              "threshold": 0.967120257353122,
+              "pvalue": 0.1949,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_27",
+              "n": 558,
+              "signal": 0.2739937758414388,
+              "threshold": 0.5319538751174576,
+              "pvalue": 0.4392,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_28",
+              "n": 819,
+              "signal": 0.18914219789389347,
+              "threshold": 0.41116891168437075,
+              "pvalue": 0.5932,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_29",
+              "n": 266,
+              "signal": 0.9169018929883495,
+              "threshold": 0.8986050980012941,
+              "pvalue": 0.0467,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_30",
+              "n": 332,
+              "signal": 0.188832329404769,
+              "threshold": 0.7441016586998012,
+              "pvalue": 0.9559,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_31",
+              "n": 241,
+              "signal": 0.4873395929011518,
+              "threshold": 0.9618650265971683,
+              "pvalue": 0.4258,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_32",
+              "n": 779,
+              "signal": 0.16399666545241787,
+              "threshold": 0.40578462650612196,
+              "pvalue": 0.7567,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_33",
+              "n": 579,
+              "signal": 0.26783028821413163,
+              "threshold": 0.5055311943982106,
+              "pvalue": 0.4248,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_34",
+              "n": 1457,
+              "signal": 0.30121250742949307,
+              "threshold": 0.2862097320343617,
+              "pvalue": 0.0389,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_35",
+              "n": 322,
+              "signal": 0.44782955900264176,
+              "threshold": 0.7606890380496862,
+              "pvalue": 0.3161,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_36",
+              "n": 765,
+              "signal": 0.2783132468782458,
+              "threshold": 0.41844306544370735,
+              "pvalue": 0.2336,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_37",
+              "n": 359,
+              "signal": 0.5075824266695839,
+              "threshold": 0.7187897943612388,
+              "pvalue": 0.1709,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_38",
+              "n": 375,
+              "signal": 0.28494756653195735,
+              "threshold": 0.7002488014637361,
+              "pvalue": 0.6666,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_39",
+              "n": 558,
+              "signal": 0.5214396105165374,
+              "threshold": 0.5271446383157804,
+              "pvalue": 0.0531,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_40",
+              "n": 872,
+              "signal": 0.21459185417862522,
+              "threshold": 0.3921841510731368,
+              "pvalue": 0.4094,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_41",
+              "n": 670,
+              "signal": 0.25340071257536584,
+              "threshold": 0.4594924079011554,
+              "pvalue": 0.3997,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_42",
+              "n": 541,
+              "signal": 0.1477943256277575,
+              "threshold": 0.5289762631603705,
+              "pvalue": 0.9383,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_43",
+              "n": 445,
+              "signal": 0.2894975694866281,
+              "threshold": 0.6059286779510725,
+              "pvalue": 0.5216,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_44",
+              "n": 359,
+              "signal": 0.3308095268762534,
+              "threshold": 0.7117638773768455,
+              "pvalue": 0.537,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_45",
+              "n": 663,
+              "signal": 0.21109209493844142,
+              "threshold": 0.4617182302240992,
+              "pvalue": 0.5994,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_46",
+              "n": 215,
+              "signal": 0.37072390096709923,
+              "threshold": 1.052759153674742,
+              "pvalue": 0.7737,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_47",
+              "n": 582,
+              "signal": 0.26743437194842684,
+              "threshold": 0.5080044478409101,
+              "pvalue": 0.4341,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_48",
+              "n": 691,
+              "signal": 0.19598561520043473,
+              "threshold": 0.43789068160409084,
+              "pvalue": 0.657,
+              "bh": false,
+              "by": false
+            },
+            {
+              "label": "random_control_49",
+              "n": 432,
+              "signal": 0.23953846847537522,
+              "threshold": 0.6205036338654669,
+              "pvalue": 0.7399,
+              "bh": false,
+              "by": false
+            }
+          ],
+          "wall_seconds": 14156.7
+        }
+      ],
+      "provenance": {
+        "code_commit": "f9557fb2a1b738e6d53323f6c0e5521d9d6fcdf9",
+        "source_sha256": {
+          "src/gate/precision_readout.py": "0295542cfd6747f2e2b858ad3e8ed7d1b7514efaa79baad62269c7b4232215ed",
+          "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+          "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+          "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+          "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+          "experiments/e8_pooled_null.py": "0a96a930a1f547b4338e0e1bf00cb99f6e59bc58006875a36fa1193247f2cd0a"
+        },
+        "numpy_version": "1.24.4",
+        "python_version": "3.10.12",
+        "host": "dgxanode02"
+      },
+      "wall_seconds": 17192.2
+    }
+  }
+}
