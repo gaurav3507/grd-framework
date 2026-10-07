@@ -1,0 +1,139 @@
+{
+  "provenance": {
+    "code_commit": "8ec6f5200861654a9218d8ddac7c2f006c47168a",
+    "source_sha256": {
+      "src/gate/precision_readout.py": "0295542cfd6747f2e2b858ad3e8ed7d1b7514efaa79baad62269c7b4232215ed",
+      "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+      "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+      "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+      "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+      "experiments/e9_alignment_baseline.py": "2d5d3bdd7dcc56aeb879ace9ba13f7bda3a50dbc70b260f68b488e21992656fc"
+    },
+    "numpy_version": "1.24.4",
+    "python_version": "3.10.12",
+    "host": "dgxanode02"
+  },
+  "n_random": 1000,
+  "n_rep": 2000,
+  "results": {
+    "rpe1": {
+      "dataset": "RPE1",
+      "n_controls": 11485,
+      "n_perturbations": 146,
+      "top2_variance_share": 0.563532,
+      "eigenvalues_top10": [
+        4.989165,
+        2.066241,
+        1.230613,
+        0.971513,
+        0.761522,
+        0.66839,
+        0.531364,
+        0.468147,
+        0.434777,
+        0.398237
+      ],
+      "isotropic_reference": 0.2,
+      "random_controls": {
+        "n": 1000,
+        "mean": 0.485514,
+        "median": 0.499035,
+        "q05": 0.059733,
+        "q95": 0.873053
+      },
+      "all_perturbations": {
+        "n": 146,
+        "mean": 0.598511,
+        "median": 0.688354,
+        "q05": 0.119623,
+        "q95": 0.942488
+      },
+      "selected": {
+        "source": "results/e3_decisions/RPE1.json",
+        "sha256": "e0e0dccd5960e2760401eb527fefff6f9b0f0cbb5535860d6cbbb86b6703e165",
+        "n": 48,
+        "observed": {
+          "n": 48,
+          "mean": 0.620099,
+          "median": 0.728772,
+          "q05": 0.13585,
+          "q95": 0.905207
+        },
+        "size_matched_null_median": {
+          "n": 2000,
+          "mean": 0.484151,
+          "median": 0.483852,
+          "q05": 0.389293,
+          "q95": 0.575604
+        },
+        "p_value_one_sided": 0.0005
+      }
+    },
+    "k562": {
+      "dataset": "K562",
+      "n_controls": 10691,
+      "n_perturbations": 385,
+      "top2_variance_share": 0.439813,
+      "eigenvalues_top10": [
+        4.676058,
+        2.708204,
+        2.210052,
+        1.777437,
+        1.268825,
+        1.165439,
+        0.948832,
+        0.726403,
+        0.681513,
+        0.626767
+      ],
+      "isotropic_reference": 0.2,
+      "random_controls": {
+        "n": 1000,
+        "mean": 0.395456,
+        "median": 0.390845,
+        "q05": 0.045474,
+        "q95": 0.790724
+      },
+      "all_perturbations": {
+        "n": 385,
+        "mean": 0.500649,
+        "median": 0.553771,
+        "q05": 0.033364,
+        "q95": 0.873009
+      }
+    },
+    "norman": {
+      "dataset": "Norman",
+      "n_controls": 8907,
+      "n_perturbations": 101,
+      "top2_variance_share": 0.418163,
+      "eigenvalues_top10": [
+        5.836097,
+        3.737815,
+        3.089211,
+        2.876604,
+        2.106263,
+        1.421601,
+        1.135828,
+        0.966213,
+        0.922602,
+        0.802936
+      ],
+      "isotropic_reference": 0.2,
+      "random_controls": {
+        "n": 1000,
+        "mean": 0.362189,
+        "median": 0.338573,
+        "q05": 0.039619,
+        "q95": 0.763102
+      },
+      "all_perturbations": {
+        "n": 101,
+        "mean": 0.305169,
+        "median": 0.288456,
+        "q05": 0.05276,
+        "q95": 0.703941
+      }
+    }
+  }
+}
