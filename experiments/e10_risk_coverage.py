@@ -119,6 +119,14 @@ def unit_records(arm, lvl, seed, n_boot):
             boot_angle_median=float(np.median(angles)),
             boot_angle_p90=float(np.quantile(angles, 0.90)),
         ))
+        # E10b additions (appended; no existing field or rng draw changes): |corr|
+        # with every latent, and the target-aligned |corr|. Environment node k targets
+        # latent k; arm C contaminated environments have no intervention, so no target.
+        corr_all = [float(E2._abs_corr(Z_hat[:, node], obs_Z[:, j]))
+                    for j in range(E2.D_LATENT)]
+        target = None if rows[-1]["contaminated"] else int(node)
+        rows[-1].update(corr_all=corr_all, target=target,
+                        corr_target=(corr_all[node] if target is not None else None))
     return rows
 
 
