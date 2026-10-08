@@ -11,6 +11,7 @@ Figures:
     figure4  closest-prior-method stress test (naive vs calibrated iLCS)
     figure7  second backbone (Backbone C, joint diagonalization), mirrors figure2
     figure8  split-control gate: BH fraction, shared vs split, per dataset
+    figure10 E10 risk-coverage comparison of gates (synthetic arms A, B, D and C)
 
 The Gate-Recover-Discover schematic is maintained separately as a draw.io
 file (paper/figures/grd_pipeline.drawio) and is not produced here.
@@ -880,10 +881,78 @@ def make_figure8():
 
 # Tier 2 figures read artifacts produced on the A100; "all" skips them until the
 # JSONs exist so figures 1-6 keep rendering from the committed results.
+# --------------------------------------------------------------------------
+# FIGURE 10 : risk-coverage comparison of gates (E10, synthetic arms)
+# --------------------------------------------------------------------------
+E10_JSON = RESULTS / "e10_risk_coverage" / "curves.json"
+GATE_STYLE = {
+    # label, colour, line width, marker for single-point gates
+    "G0": ("G0 no gate", "#666666", 1.2, "o"),
+    "G1": ("G1 raw $p \\leq a$", "#E69F00", 1.2, None),
+    "G2": ("G2 GRD (BH at $q$)", CB["gate"], 2.4, None),
+    "G3": ("G3 $n_e \\geq n^*$", "#56B4E9", 1.2, "s"),
+    "G4": ("G4 $T_e > c$ (uncalibrated)", "#CC79A7", 1.2, None),
+    "G5": ("G5 bootstrap stability", "#0072B2", 1.2, None),
+    "G7": ("G7 oracle", "#111111", 1.2, "P"),
+}
+
+
+def make_figure10():
+    d = read_json(E10_JSON)
+    curves, summary = d["curves"], d["summary"]
+    fig, axes = plt.subplots(1, 2, figsize=(7.4, 3.5))
+    fig.subplots_adjust(left=0.09, right=0.98, top=0.86, bottom=0.30, wspace=0.28)
+    for ax, scope, label, title in ((axes[0], "ABD", "(a)", "Arms A, B, D pooled"),
+                                    (axes[1], "C", "(b)",
+                                     "Arm C (measurement contamination)")):
+        panel_label(ax, label, x=-0.16, y=1.12)
+        top = 0.0
+        for gate in ("G0", "G1", "G3", "G4", "G5", "G7", "G2"):
+            name, colour, lw, marker = GATE_STYLE[gate]
+            pts = curves[gate][scope]["curve"]
+            if not pts:
+                continue
+            x = [c for c, _ in pts]
+            y = [r for _, r in pts]
+            top = max(top, max(y))
+            if len(pts) == 1:
+                # G0 is drawn large and underneath, other single points small on
+                # top, so coincident operating points (G0 and G3 on arm C) stay visible
+                ax.plot(x, y, ls="none", marker=marker or "o",
+                        ms=8 if gate == "G0" else 4.5, color=colour, label=name,
+                        zorder=4 if gate == "G0" else 5)
+            else:
+                ax.plot(x, y, color=colour, lw=lw, label=name,
+                        zorder=5 if gate == "G2" else 3)
+        grd = summary["grd_default_q05"][scope]
+        g1 = summary["g1_default_a05"][scope]
+        ax.plot([grd["coverage"]], [grd["risk"]], ls="none", marker="*", ms=11,
+                color=CB["gate"], markeredgecolor="#222222", markeredgewidth=0.6,
+                zorder=6, label="GRD at $q = 0.05$")
+        ax.plot([g1["coverage"]], [g1["risk"]], ls="none", marker="D", ms=5,
+                color="#E69F00", markeredgecolor="#222222", markeredgewidth=0.6,
+                zorder=6, label="G1 at $a = 0.05$")
+        ax.set_xlim(0, 1.02)
+        ax.set_ylim(0, max(0.02, top * 1.12))
+        ax.grid(True, color=CB["light"], linewidth=0.5)
+        ax.set_axisbelow(True)
+        ax.set_xlabel("Coverage (certified / all directions)")
+        ax.set_ylabel("Risk (certified bad / certified)")
+        ax.set_title(title, loc="left", pad=8, fontsize=9)
+    handles, labels = axes[0].get_legend_handles_labels()
+    order = [GATE_STYLE[g][0] for g in GATE_STYLE] + ["GRD at $q = 0.05$",
+                                                      "G1 at $a = 0.05$"]
+    pairs = sorted(zip(handles, labels), key=lambda hl: order.index(hl[1]))
+    fig.legend([h for h, _ in pairs], [lab for _, lab in pairs], loc="lower center",
+               ncol=5, frameon=False, fontsize=7.2, bbox_to_anchor=(0.5, 0.0))
+    save(fig, "figure10_risk_coverage")
+
+
 FIGURE_INPUTS = {
     "figure7": [E4_DIR / "e4_calibration_report.json",
                 E4_DIR / "e4_starvation_report.json"],
     "figure8": [E5_DIR / "e5_real_panel.json"],
+    "figure10": [RESULTS / "e10_risk_coverage" / "curves.json"],
 }
 
 FIGURES = {
@@ -895,6 +964,7 @@ FIGURES = {
     "figure6": make_figure6,
     "figure7": make_figure7,
     "figure8": make_figure8,
+    "figure10": make_figure10,
 }
 
 

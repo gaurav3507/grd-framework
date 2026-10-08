@@ -1,0 +1,81 @@
+{
+  "prereg": "notes/e10_prereg.md",
+  "predictions": {
+    "P1": {
+      "value": 0.0019120458891013384,
+      "threshold": "<= 0.10",
+      "held": true
+    },
+    "P2": {
+      "grd_risk": 0.0019120458891013384,
+      "g0_risk": 0.06,
+      "g3_matched_risk": 0.07282181818183572,
+      "threshold": "grd < g0 and grd < g3 (matched)",
+      "held": true,
+      "note": null
+    },
+    "P3": {
+      "values": {
+        "A": {
+          "g4_aurc": 0.0,
+          "grd_aurc": 0.0,
+          "diff": 0.0
+        },
+        "B": {
+          "g4_aurc": 0.004283453539221288,
+          "grd_aurc": 0.0006123987186734502,
+          "diff": 0.0036710548205478376
+        },
+        "D": {
+          "g4_aurc": 0.015544410287093682,
+          "grd_aurc": 0.028335014691984583,
+          "diff": -0.012790604404890901
+        }
+      },
+      "threshold": "|diff| <= 0.02 on A and D; diff > 0.02 on B",
+      "held": false
+    },
+    "P4": {
+      "g5_matched_risk": 0.0007910349373886214,
+      "grd_risk": 0.0019120458891013384,
+      "threshold": "g5 <= grd + 0.02",
+      "held": true
+    },
+    "P5": {
+      "min_risk_non_oracle_cov_ge_0p5": 0.0,
+      "at": {
+        "gate": "G4",
+        "knob": {
+          "percentile": 35,
+          "c": 0.030096133312417755
+        },
+        "coverage": 0.56
+      },
+      "g5_min_risk_cov_ge_0p5": 0.0,
+      "threshold": "every non-oracle risk > 0.30 at coverage >= 0.5",
+      "held": false
+    },
+    "P6": {
+      "c_from_arm_B": {
+        "percentile": 50,
+        "c": 0.042916778079541244
+      },
+      "g4_coverage_B": 0.768,
+      "grd_coverage_B": 0.772,
+      "g4_risk_D": 0.0,
+      "g4_coverage_D": 0.152,
+      "grd_risk_D": 0.005555555555555556,
+      "grd_risk_B": 0.0,
+      "d_g4": 0.005555555555555556,
+      "d_grd": 0.005555555555555556,
+      "threshold": "d_g4 >= d_grd + 0.05",
+      "held": false
+    }
+  },
+  "decision_rule": {
+    "rule": "if G5's risk at GRD's q=0.05 coverage on ABD is lower than GRD's by more than 0.02, report GRD's advantage as calibration, estimator coupling and theory, not as a better risk-coverage trade-off",
+    "g5_matched_risk": 0.0007910349373886214,
+    "grd_risk": 0.0019120458891013384,
+    "triggered": false
+  }
+}
