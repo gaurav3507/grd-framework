@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or its committed artifacts, please cite the paper below."
-title: "Gate, Recover, Discover: Testing Identifiability Preconditions Before Causal Representation Learning"
+title: "Gate, Recover, Discover: Data-Side Admissibility Testing Before Causal Representation Learning"
 type: software
 authors:
   - family-names: Goyal
@@ -17,8 +17,8 @@ authors:
     affiliation: "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology"
 repository-code: "https://github.com/gaurav3507/grd-framework"
 license: MIT
-version: "0.1.0"
-date-released: "2026-09-21"
+version: "0.2.0"
+date-released: "2026-10-08"
 keywords:
   - causal representation learning
   - identifiability
@@ -27,7 +27,7 @@ keywords:
   - causal discovery
 preferred-citation:
   type: unpublished
-  title: "Gate, Recover, Discover: Testing Identifiability Preconditions Before Causal Representation Learning"
+  title: "Gate, Recover, Discover: Data-Side Admissibility Testing Before Causal Representation Learning"
   year: 2026
   notes: "Under review."
   authors:

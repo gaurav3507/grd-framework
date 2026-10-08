@@ -16,7 +16,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Bb}{B_{\mathrm{boot}}}
 
-\title{GRD theory, part 2 (draft for supervisor review):\\ the gate is rate-optimal}
+\title{GRD theory, part 2:\\ the gate is rate-optimal}
 \author{Gaurav Goyal, Shailendra Tiwari, Manju Khurana}
 \date{Draft of 7 October 2026, rechecked: detection constant corrected to $0.67$}
 
@@ -44,6 +44,7 @@ Work & What it proves & Relation \\
 \midrule
 \citet{acarturk2024sample} & Sample-size upper bounds for interventional CRL; identifiability assumed & No lower bound, no testing \\
 \citet{lee2026beyond} & Finite-sample upper bounds with few environments; cites only the counting condition $K=\Omega(d)$ as a lower bound & No statistical lower bound, no testing \\
+\citet{perry2018optimality} & Spiked Wishart detection: for the spherical prior the spectral threshold is optimal for positive and negative spikes, asymptotically & Direct precedent for Theorem~\ref{thm:det}; no CRL \\
 \citet{berthet2013optimal}; \citet{cai2015optimal} & Minimax detection and estimation of spiked covariances & The technique we adapt; no CRL, no admissibility \\
 \citet{vu2013minimax} & Minimax rates for principal subspace estimation & Recovery lower-bound technique \\
 \citet{moen2024minimax} & Minimax rates for covariance changepoint testing & Related detection problem; no CRL \\
@@ -51,7 +52,7 @@ Work & What it proves & Relation \\
 \end{tabular}
 \end{center}
 
-\noindent\textbf{Calibrated conclusion.} We found no prior result that gives matching upper and lower bounds for a pre-recovery admissibility test in interventional CRL. The lower-bound \emph{techniques} are standard and must be cited as such; the new contribution is the statement that the gate's certification threshold and the recovery error are minimax-optimal within the paper's model. A full twelve-angle sweep with the \texttt{novelty-check} package should be run before submission.
+\noindent\textbf{Calibrated conclusion.} The hard subfamily $\Sigma_e=I-\theta vv^\top$ is a negatively spiked Wishart model, and \citet{perry2018optimality} already show that detection is impossible below the spectral threshold for it (spherical prior, proportional asymptotics); Theorem~\ref{thm:det} is a non-asymptotic, explicit-constant counterpart, not a new phase transition. We found no prior result that gives matching upper and lower bounds for a pre-recovery admissibility test in interventional CRL. The lower-bound \emph{techniques} are standard and must be cited as such; the new contribution is the statement that the gate's certification threshold and the recovery error are minimax-optimal within the paper's model. A full twelve-angle sweep with the \texttt{novelty-check} package should be run before submission.
 
 \section{A hard subfamily inside the paper's model}
 

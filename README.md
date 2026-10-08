@@ -2,24 +2,24 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
-[![Status: under review](https://img.shields.io/badge/status-under%20review-orange.svg)](#citation)
+[![Status: preprint](https://img.shields.io/badge/status-preprint-orange.svg)](#citation)
 
 Reference implementation and committed result artifacts for
 
-> **Gate, Recover, Discover: Testing Identifiability Preconditions Before Causal Representation Learning.**
-> Gaurav Goyal, Shailendra Tiwari, and Manju. Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India. Under review, 2026.
+> **Gate, Recover, Discover: Data-Side Admissibility Testing Before Causal Representation Learning.**
+> Gaurav Goyal, Shailendra Tiwari, and Manju Khurana. Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India. Preprint, 2026.
 
 GRD reframes latent causal recovery as a **selective decision problem**. Modern causal
 representation learning (CRL) results identify latent variables and their graph only under
 explicit conditions on environments, power, mechanism shifts, and measurement stability, yet
 an estimator returns *something* for every input. GRD adds a data-side decision layer:
 
-1. **Gate** — test estimator-coupled preconditions with a size-matched precision-difference
+1. **Gate**: test estimator-coupled preconditions with a size-matched precision-difference
    null and BH-FDR within each declared family; return a certified environment set `C` and a
    recoverable resolution `d_rec = min(|C|, d*)`.
-2. **Recover** — run the identifiable backbone **only** on `C`; withhold uncertified latents
+2. **Recover**: run the identifiable backbone **only** on `C`; withhold uncertified latents
    rather than numerically completing them.
-3. **Discover** — report a partial graph with explicit *decided* and *undecided* edge states.
+3. **Discover**: report a partial graph with explicit *decided* and *undecided* edge states.
 
 The verdict is the first output: `PROCEED`, `PROCEED-CAPPED`, or `ABSTAIN`. Abstention and
 unresolved attribution are treated as scientific results, not failures.
@@ -39,7 +39,7 @@ at `m = 2`: the gate is conservative, not fit to the error curve.
 | Environments (`m`)        | `m = 4`       | 0.9908 | 2 |
 | Power (`n_e`)             | `n_e = 40`    | 0.9899 | 6 |
 | Signal (`scale`)          | `scale = 0.7` | 0.9092 | 7 |
-| Measurement contamination | not caught (declared failure class) | — | 8 |
+| Measurement contamination | not caught (declared failure class) | n/a | 8 |
 
 **Real Perturb-seq screens** (corrected disjoint null, BH-FDR at `q = 0.05`). GRD **declines to
 certify** the large majority of environments; 584 of 632 powered environments fail the primary
@@ -51,10 +51,27 @@ screen.
 | RPE1 (CRISPRi)   | 146 | 77 | **48** | 0.7288 |
 | Norman (CRISPRa) | 101 | 11 | **0**  | –      |
 
-RPE1 has the highest certification rate, but all 20 structured control splits also fire and the
-detected shifts concentrate in the leading control PCs (median 0.7288), so the detections track
-systematic control heterogeneity. Attribution (mechanism vs measurement) is reported as
-**unresolved**; no real-data latent graph is claimed.
+RPE1 has the highest certification rate, but its detected shifts concentrate in the leading
+control PCs well beyond size-matched random control subsets (median 0.7288 against 0.484,
+p = 0.0005; `results/e9_alignment_baseline`). The top-2 PCs carry 56% of the control variance,
+so the isotropic 0.20 value is not the right reference. Structured PC-tail control splits fire
+by construction, also on homogeneous Gaussian controls (600/600, `results/e7_structured_null`),
+so they are a cautionary diagnostic, not evidence of heterogeneity. Attribution (mechanism vs
+measurement) is reported as **unresolved**; no real-data latent graph is claimed.
+
+**Null resolution and dependence** (`results/e6_resolution`, `results/e8_pooled_null`). At
+500 null draws BH cannot certify fewer than 16 K562, 6 RPE1, or 5 Norman environments. At
+9,999 draws K562 stays at 0, BH certifies one Norman perturbation (BAK1) in every seed, and
+RPE1 keeps about 54 under BH and 30 under Benjamini-Yekutieli; a centred pooled-permutation
+null gives the same verdicts. Under Benjamini-Yekutieli with the pooled null, Norman needs
+B + 1 >= 10,499 for a single rejection; at 19,999 draws BAK1 is certified in 2 of 5 seeds,
+so Norman's single direction is borderline under the procedure that carries both guarantees.
+
+**Theory** (`notes/theory`, Section 3.5 and Appendix D of the paper). Validity of the pooled
+null under exchangeability, consistency of the verdict under BH or Benjamini-Yekutieli with the
+resolution condition (B+1) k q >= m c(m), and matching lower bounds that make the gate
+rate-optimal up to logarithmic factors (the detection bound is a non-asymptotic counterpart of
+Perry et al. 2018).
 
 **Ungated baseline (iLCS).** The nominal rule fires on 100% of pure-control resamples across all
 three datasets. A size-matched null reduces this to 12.0% / 8.0% / 6.7% (K562 / RPE1 / Norman)
@@ -67,10 +84,10 @@ but does not eliminate structured-control firing.
 ```
 src/           Gate / Recover / Discover modules and the precision-difference readout
 sim/           multi-environment linear-SCM simulator
-experiments/   one runnable script per experiment (E0-E3, baselines, certificate)
+experiments/   one runnable script per experiment (E0-E9, baselines, certificate)
 results/       committed JSON artifacts (source of every number in the paper)
 paper/         figure-generation script and the six manuscript figures
-notes/         track sheet and the Davis-Kahan certificate note
+notes/         track sheet, Davis-Kahan certificate note, theory notes (notes/theory)
 docs/          framework design document
 ```
 
@@ -111,6 +128,9 @@ records external-data hashes.
 | Corrected real-data screens (Figs 3-4, Tables 3-4, 12-13) | `results/e3`, `e3_stability`, `e3_attribution` |
 | Positive control (Fig 6, Table 15)                   | `results/e3_poscontrol` |
 | iLCS baseline (Fig 5, Tables 5, 14)                  | `results/ilcs_baseline/aggregate.json` |
+| Second backbone, split control (E4, E5)              | `results/e4_second_backbone`, `results/e5_split_control` |
+| Null resolution (E6), structured-split null (E7)     | `results/e6_resolution`, `results/e7_structured_null` |
+| Pooled null and BY (E8), alignment reference (E9)    | `results/e8_pooled_null`, `results/e9_alignment_baseline` |
 
 The iLCS detector in `experiments/ilcs_baseline.py` is reimplemented from Algorithm 1 of
 Chen et al. 2024 (arXiv 2410.24059) because the original repository is unavailable; it runs on
@@ -132,10 +152,10 @@ is in [`CITATION.cff`](CITATION.cff) (rendered as a "Cite this repository" butto
 ```bibtex
 @unpublished{goyal2026grd,
   author = {Goyal, Gaurav and Tiwari, Shailendra and Khurana, Manju},
-  title  = {Gate, Recover, Discover: Testing Identifiability Preconditions
+  title  = {Gate, Recover, Discover: Data-Side Admissibility Testing
             Before Causal Representation Learning},
   year   = {2026},
-  note   = {Under review. \url{https://github.com/gaurav3507/grd-framework}}
+  note   = {Preprint. \url{https://github.com/gaurav3507/grd-framework}}
 }
 ```
 

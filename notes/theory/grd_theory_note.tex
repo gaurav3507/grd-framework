@@ -21,9 +21,9 @@
 \newcommand{\Chat}{\widehat C}
 \newcommand{\Bb}{B_{\mathrm{boot}}}
 
-\title{GRD theory package (draft for supervisor review):\\ validity and consistency of the admissibility verdict}
+\title{GRD theory package:\\ validity and consistency of the admissibility verdict}
 \author{Gaurav Goyal, Shailendra Tiwari, Manju Khurana}
-\date{Draft of 5 October 2026, revised 7 October 2026. Superseded by Section 3.5 and Appendix D of the manuscript; cross-references follow the manuscript of 5 October.}
+\date{Draft of 5 October 2026, revised 7 and 8 October 2026. Superseded by Section 3.5 and Appendix D of the manuscript; cross-references follow the manuscript of 5 October.}
 
 \begin{document}
 \maketitle
@@ -32,12 +32,14 @@
 
 \emph{Revised 6 October: Lemma~\ref{lem:pooled} and Corollary~\ref{cor:pooled} close the pooled-null gap; the checks table adds the repository implementation.}
 
+\emph{Revised 8 October, after an external claims check: Theorem~\ref{thm:consistency} now covers Benjamini--Yekutieli as well as BH, through the factor $c_m=\sum_{i\le m}1/i$ ($c_m=1$ for BH); the resolution condition is described as sufficient and not weakenable in general, rather than necessary and sufficient; the centred pooled null is approximately, not exactly, valid; and the pooled Norman screen at $\Bb=19{,}999$ (five seeds) is reported in the Remark. The lower-bound note cites \citet{perry2018optimality} as the direct precedent for the detection bound.}
+
 
 The JMLR novelty check found GRD's empirical side above the journal's norm and its theory below every comparable CRL paper. The manuscript's formal results (Propositions 1 and 2, Lemmas 1 and 2, the attribution proposition) are correct but elementary. This note drafts the two results that would change that assessment.
 
 \begin{itemize}
-  \item \textbf{Theorem 3 (consistency of the verdict).} Under the paper's own model, the gate's certified set equals the set of intervened environments with probability tending to one, so $d_{\mathrm{rec}}$ is a consistent estimator of the number of identifiable latent directions, and each certified direction is recovered at rate $\sqrt{d/n}$. The resolution floor of Proposition 1 appears as a necessary condition inside the theorem, not as a separate remark.
-  \item \textbf{Theorem 2 (finite-sample validity).} With a pooled-permutation null, every gate $p$-value is exactly valid, and Benjamini--Yekutieli control of the false discovery rate holds under the arbitrary dependence created by the shared control sample.
+  \item \textbf{Theorem 3 (consistency of the verdict).} Under the paper's own model, the gate's certified set equals the set of intervened environments with probability tending to one, so $d_{\mathrm{rec}}$ is a consistent estimator of the number of identifiable latent directions, and each certified direction is recovered at rate $\sqrt{d/n}$. The resolution floor of Proposition 1 appears inside the theorem as a condition that is sufficient and cannot be weakened in general, not as a separate remark.
+  \item \textbf{Theorem 2 (finite-sample validity).} With a pooled-permutation null, every gate $p$-value is exactly valid under exchangeability (approximately valid after centring), and Benjamini--Yekutieli control of the false discovery rate holds under the arbitrary dependence created by the shared control sample.
 \end{itemize}
 
 Section~\ref{sec:checks} reports numerical checks of every quantitative claim. Section~\ref{sec:gaps} lists what is not yet proved and what each result costs the paper.
@@ -85,24 +87,26 @@ Because the split is independent of the data and the control rows are i.i.d., th
 \setcounter{theorem}{2}
 \begin{theorem}[Verdict consistency]
 \label{thm:consistency}
-Assume (A1) to (A4), let $\Chat$ be the BH-certified set at level $q$, and fix $\delta\in(0,1)$. Set $t=\log\{4(m+k\Bb)/\delta\}$ and $\bar\varepsilon=\max_e\varepsilon(n_e,t)$, and assume $\min_e n_e\ge cK^2(d+t)$ as in Lemma~\ref{lem:conc}.
+Assume (A1) to (A4), let $\Chat$ be the set certified at level $q$ by BH or by Benjamini--Yekutieli, write $c_m=1$ for BH and $c_m=\sum_{i=1}^m1/i$ for Benjamini--Yekutieli, and fix $\delta\in(0,1)$. Set $t=\log\{4(m+k\Bb)/\delta\}$ and $\bar\varepsilon=\max_e\varepsilon(n_e,t)$, and assume $\min_e n_e\ge cK^2(d+t)$ as in Lemma~\ref{lem:conc}.
 \begin{enumerate}
   \item[(i)] \textbf{Accurate statistics.} With probability at least $1-\delta$, $|T_e-\tau_e|\le2\bar\varepsilon$ for every $e$, and no null draw of any shifted environment exceeds $2\bar\varepsilon$.
   \item[(ii)] \textbf{Sure screening.} If $\gamma>4\bar\varepsilon$ and
   \begin{equation}
-    (\Bb+1)\,k\,q\;\ge\;m,
+    (\Bb+1)\,k\,q\;\ge\;m\,c_m,
     \label{eq:resolution}
   \end{equation}
-  then $P(\Hone\subseteq\Chat)\ge1-\delta$. Conversely, if $(\Bb+1)\,k\,q<m$ and every null $p$-value exceeds $q$, then $\Chat=\emptyset$ however large $\gamma$ is, so condition~\eqref{eq:resolution} cannot be weakened.
+  then $P(\Hone\subseteq\Chat)\ge1-\delta$. Conversely, if $(\Bb+1)\,k\,q<m\,c_m$ and every null $p$-value exceeds $q/c_m$, then $\Chat=\emptyset$ however large $\gamma$ is, so condition~\eqref{eq:resolution} cannot be weakened.
   \item[(iii)] \textbf{Exact recovery.} If, in addition, the null $p$-values are valid, $P(p_e\le u)\le u$ for $e\in\Hzero$ and $u\in[0,1]$, then
   \[
-    P\bigl(\Chat=\Hone\bigr)\;\ge\;1-\delta-m_0\,q .
+    P\bigl(\Chat=\Hone\bigr)\;\ge\;1-\delta-m_0\,q/c_m .
   \]
-  Hence, if $q=q_n\to0$, $\Bb\ge m/(kq_n)$, and $\gamma/\bar\varepsilon\to\infty$, the verdict $d_{\mathrm{rec}}=\min\{|\Chat|,d_\star\}$ converges in probability to $\min\{k,d_\star\}$.
+  Hence, if $q=q_n\to0$, $\Bb\ge m\,c_m/(kq_n)$, and $\gamma/\bar\varepsilon\to\infty$, the verdict $d_{\mathrm{rec}}=\min\{|\Chat|,d_\star\}$ converges in probability to $\min\{k,d_\star\}$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
+Benjamini--Yekutieli at level $q$ is BH at level $q/c_m$, so it suffices to prove the BH case ($c_m=1$) at a generic level and substitute $q/c_m$.
+
 (i) Apply Lemma~\ref{lem:conc} to each of the $m+1$ samples with probability at least $1-2e^{-t}$ each and Weyl's inequality, $|T_e-\tau_e|\le\|\widehat\Omega_e-\Omega_e\|+\|\widehat\Omega_0-\Omega_0\|$; apply Lemma~\ref{lem:null} to the $k\Bb$ draws of shifted environments. A union bound over at most $2(m+1)+4k\Bb\le 4(m+k\Bb)$ failure events of probability $e^{-t}$ gives $1-\delta$.
 
 (ii) On the event of (i), every $e\in\Hone$ has $T_e\ge\gamma-2\bar\varepsilon>2\bar\varepsilon\ge T^{(b)}_e$ for every draw $b$, so $p_e=1/(\Bb+1)$. The $k$ smallest $p$-values are then all equal to $1/(\Bb+1)$, and by \eqref{eq:resolution} $p_{(k)}=1/(\Bb+1)\le kq/m$. The BH rejection count $R$ is the largest $j$ with $p_{(j)}\le jq/m$, so $R\ge k$, and BH rejects every $p$-value at most $p_{(R)}\ge1/(\Bb+1)$, which includes all of $\Hone$. For the converse, by Proposition 1 of the paper any nonempty BH set has at least $m/\{q(\Bb+1)\}>k$ elements, so it must contain a null environment; but a rejected $p$-value is at most $Rq/m\le q$, and every null $p$-value exceeds $q$. Hence $R=0$.
@@ -113,7 +117,7 @@ Assume (A1) to (A4), let $\Chat$ be the BH-certified set at level $q$, and fix $
 Parts (i) and (ii) hold for the paper's disjoint null as it is. Part (iii) needs valid null $p$-values, which the disjoint null provides only approximately; Theorem~\ref{thm:validity} supplies them for the centred pooled-permutation null, and Lemma~\ref{lem:pooled} shows that parts (i) and (ii) also hold for that null, with $\bar\varepsilon$ replaced by a bound larger by a logarithmic factor.
 
 \begin{remark}[What the theorem adds to Proposition 1]
-Proposition 1 shows that a coarse null forces abstention. Theorem~\ref{thm:consistency}(ii) shows that the same inequality, $(\Bb+1)kq\ge m$, is also sufficient: once the statistic separates, the resolution of the null is the only remaining obstacle to certifying every shifted environment. The Norman screen is an instance: with $m=101$, $k=1$, and $q=0.05$, condition~\eqref{eq:resolution} needs $\Bb+1\ge2{,}020$; it fails at 500 draws and holds at 9{,}999.
+Proposition 1 shows that a coarse null forces abstention. Theorem~\ref{thm:consistency}(ii) shows that the same inequality, $(\Bb+1)kq\ge m\,c_m$, is sufficient and cannot be weakened in general: once the statistic separates, the resolution of the null is the only remaining obstacle to certifying every shifted environment. That the smallest Monte Carlo $p$-value limits multiple testing is known \citep{gandy2016framework}; the theorem places it in the verdict. The Norman screen is an instance: with $m=101$, $k=1$, and $q=0.05$, BH needs $\Bb+1\ge2{,}020$, which fails at 500 draws and holds at 9{,}999; Benjamini--Yekutieli, with $c_{101}=5.20$, needs $\Bb+1\ge10{,}499$. At $\Bb=19{,}999$ with the centred pooled null (five seeds), BH selects BAK1 in every seed, and Benjamini--Yekutieli, which then rejects only a $p$-value at the floor $1/20{,}000$, selects it in two seeds: its pooled $p$-value is $5\times10^{-5}$ in two seeds and $10^{-4}$ in three, against the threshold $9.5\times10^{-5}$. Resolution is then met, and the separation condition $\gamma>4\bar\varepsilon$ is what fails in three seeds, so Norman's single direction is borderline under the procedure that carries both guarantees.
 \end{remark}
 
 \begin{corollary}[Link to identifiability]
@@ -231,10 +235,10 @@ Null: $P(p\le0.05)=0.048$, $P(p\le0.20)=0.213$, any BY rejection $0.008$. Mean s
 
 \begin{enumerate}
   \item \textbf{Pooled-null consistency.} Closed by Lemma~\ref{lem:pooled} and Corollary~\ref{cor:pooled} (6 October). The bound is larger than the disjoint one by a factor $\sqrt{\log(2d/\eta)}$ and uses only (A2) and $n_0\ge2n_e$.
-  \item \textbf{Code and reruns.} The centred pooled null and BY are in the gate (commit \texttt{8ebe72d}; default path unchanged). The A100 rerun of the three Perturb-seq panels at $\Bb=9{,}999$ with this null (E8) is running; its BH and BY sets replace the disjoint-null sets as the paper's primary real-data decision.
+  \item \textbf{Code and reruns.} The centred pooled null and BY are in the gate (commit \texttt{8ebe72d}; default path unchanged). The A100 reruns are complete: E8 at $\Bb=9{,}999$ for the three Perturb-seq panels (\texttt{results/e8\_pooled\_null/<dataset>\_s<seed>}) and Norman at $\Bb=19{,}999$ (\texttt{norman\_B19999\_s<seed>}). The paper reports BH and BY sets for both nulls; the BH decisions with the size-matched null remain the primary real-data decision, and the BY results are reported alongside.
   \item \textbf{Assumption (A3).} The dichotomy excludes environments that shift only slightly ($0<\tau_e\le4\bar\varepsilon$). A version with three classes (null, weak, strong) and a guarantee only for the strong class is straightforward and more honest for real data.
   \item \textbf{Gaussianity.} (A1) can be relaxed to sub-Gaussian rows with the same rate; heavy-tailed single-cell data are not covered.
-  \item \textbf{Novelty.} The ingredients (Weyl, covariance concentration, Davis--Kahan, randomization tests, BH and BY) are standard. What is new is the statement: a consistency guarantee for an admissibility verdict that is coupled to an identifiability theorem, with the null resolution as an explicit necessary and sufficient condition. On the rubric used for the JMLR check this moves the theory score from 2 to about 3, not to the 4 or 5 of identifiability papers.
+  \item \textbf{Novelty.} The ingredients (Weyl, covariance concentration, Davis--Kahan, randomization tests, BH and BY) are standard. What is new is the statement: a consistency guarantee for an admissibility verdict that is coupled to an identifiability theorem, with the null resolution as an explicit condition that is sufficient and cannot be weakened in general. On the rubric used for the JMLR check this moves the theory score from 2 to about 3, not to the 4 or 5 of identifiability papers.
 \end{enumerate}
 
 \bibliographystyle{plainnat}
