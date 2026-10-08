@@ -110,6 +110,10 @@ FIG1_SPECS = [
 ]
 
 
+E9_JSON = RESULTS / "e9_alignment_baseline" / "e9_alignment_baseline.json"
+E9_KEYS = {"K562": "k562", "RPE1": "rpe1", "Norman": "norman"}
+
+
 def load_fig1_rows():
     rows = []
     for key, label, path in FIG1_SPECS:
@@ -150,16 +154,24 @@ def make_figure1():
                      fontweight="bold" if r["key"] == "RPE1" else "normal")
     rpe1 = next(r for r in rows if r["key"] == "RPE1")
     # annotation in open upper-right space, clear of the HCP/ABIDE labels
-    axb.annotate("detections align with\nleading control PCs",
+    axb.annotate("detections exceed their\ncontrol reference",
                  xy=(rpe1["raw"], rpe1["align"]), xytext=(0.66, 0.52),
                  textcoords="data", fontsize=7.5, color=rpe1["color"], ha="left",
                  va="center",
                  arrowprops=dict(arrowstyle="->", color=rpe1["color"], lw=0.8,
                                  connectionstyle="arc3,rad=-0.25"))
-    # isotropic reference: 2 of 10 PCs at equal energy = 0.20
-    axb.axhline(0.20, color="#9AA0A6", lw=0.8, ls=(0, (4, 3)), zorder=1)
-    axb.text(0.015, 0.207, "isotropic 2/10 reference", fontsize=6.8,
-             color="#6B7075", va="bottom", ha="left")
+    # control reference (E9): median alignment of random control subsets with
+    # the dataset's perturbation sizes; the coordinates are not whitened, so
+    # the isotropic 2/10 value is not the null.
+    e9 = read_json(E9_JSON)["results"]
+    for r in rows:
+        if r["key"] not in E9_KEYS:
+            continue
+        ref = e9[E9_KEYS[r["key"]]]["random_controls"]["median"]
+        axb.plot([r["raw"] - 0.045, r["raw"] + 0.045], [ref, ref],
+                 color=r["color"], lw=1.1, ls=(0, (2, 1.5)), zorder=2)
+    axb.text(0.015, 0.03, "dashes: random-control reference per dataset",
+             fontsize=6.6, color="#6B7075", va="bottom", ha="left")
     axb.set_xlim(0, 1.05)
     axb.set_ylim(0, 0.80)
     axb.set_xticks([0, 0.25, 0.50, 0.75, 1.0])
@@ -374,10 +386,15 @@ def make_figure3():
     align = d["perturbation_shift_alignment"]["corrected_disjoint_bh"]
     med = align["top2_energy_median"]
     n_sel = align["n_detected"]
-    # isotropic 2-of-10 reference (equal energy across d_proj=10 PCs)
-    ax2.axhline(0.20, color="#9AA0A6", lw=0.8, ls=(0, (4, 3)), zorder=1)
-    ax2.text(0.66, 0.205, "isotropic\n2/10 reference", fontsize=6.6,
-             color="#6B7075", va="bottom", ha="left")
+    # size-matched control reference (E9): median and 5-95% range over
+    # random control subsets with exactly the selected sizes
+    nul = read_json(E9_JSON)["results"]["rpe1"]["selected"]
+    ref = nul["size_matched_null_median"]
+    ax2.axhspan(ref["q05"], ref["q95"], color="#9AA0A6", alpha=0.25, lw=0, zorder=1)
+    ax2.axhline(ref["median"], color="#6B7075", lw=0.9, ls=(0, (4, 3)), zorder=1)
+    ax2.text(0.30, ref["q05"] - 0.01,
+             f"size-matched controls\n{ref['median']:.3f} (p = {nul['p_value_one_sided']:.4f})",
+             fontsize=6.6, color="#6B7075", va="top", ha="left")
     ax2.bar([0], [med], color=CB["RPE1"], width=0.5, alpha=0.92)
     ax2.set_xlim(-0.7, 0.95)
     ax2.set_ylim(0, 0.85)
@@ -394,7 +411,7 @@ def make_figure3():
 
     fig.text(0.5, 0.02,
              "Random splits pass 0/20; structured splits pass 20/20, as expected for PC-tail subsets. "
-             "Alignment with control PCs is an association, not proven causation.",
+             "Alignment beyond size-matched controls is an association, not proven causation.",
              ha="center", fontsize=6.8, color=CB["grey"])
     save(fig, "figure3_rpe1_not_success")
 
