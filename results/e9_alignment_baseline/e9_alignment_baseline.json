@@ -1,13 +1,13 @@
 {
   "provenance": {
-    "code_commit": "8ec6f5200861654a9218d8ddac7c2f006c47168a",
+    "code_commit": "02e3226497bc7b329e97544aba0fd84980fd865d",
     "source_sha256": {
-      "src/gate/precision_readout.py": "0295542cfd6747f2e2b858ad3e8ed7d1b7514efaa79baad62269c7b4232215ed",
+      "src/gate/precision_readout.py": "364f37e5006bbda5382257e5d3afc539e5e92049b6517efdf328cee1c1f0b1ff",
       "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
       "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
       "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
       "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
-      "experiments/e9_alignment_baseline.py": "2d5d3bdd7dcc56aeb879ace9ba13f7bda3a50dbc70b260f68b488e21992656fc"
+      "experiments/e9_alignment_baseline.py": "13c0a23e937462205e1ba2da042125722d5bae1c65a84752a4504baf38bd43a2"
     },
     "numpy_version": "1.24.4",
     "python_version": "3.10.12",
@@ -66,7 +66,22 @@
           "q05": 0.389293,
           "q95": 0.575604
         },
-        "p_value_one_sided": 0.0005
+        "p_value_one_sided": 0.0005,
+        "non_selected": {
+          "n": 98,
+          "mean": 0.587937,
+          "median": 0.658333,
+          "q05": 0.116462,
+          "q95": 0.945756
+        },
+        "selected_vs_non_selected": {
+          "n_selected": 48,
+          "n_non_selected": 98,
+          "median_diff": 0.070438,
+          "mannwhitney_u_p_two_sided": 0.5724372039681922,
+          "permutation_p_two_sided": 0.364164,
+          "n_permutations": 10000
+        }
       }
     },
     "k562": {
