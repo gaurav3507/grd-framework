@@ -340,7 +340,7 @@ def detect_with_pvalues(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
 
 
 def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
-                      readout="precision"):
+                      readout="precision", rule="raw", q=0.05):
     """Count intervention environments whose per-node precision signal exceeds the
     control-vs-control null threshold.
 
@@ -348,12 +348,44 @@ def count_recoverable(Y_int_list, Y_obs, alpha=0.05, B=500, rng=None,
                  intervened latent (matching how the backbone isolates directions).
     Y_obs      : (n, d) projected observational environment.
     readout    : gate statistic, "precision" (default) or "covariance".
+    rule       : "raw" (default, historical): each environment is detected when its
+                 signal exceeds its own (1 - alpha) null quantile.
+                 "bh" (manuscript rule): Benjamini-Hochberg at q across the supplied
+                 environments, through detect_with_pvalues (size-matched null,
+                 shared reference). Both rules draw every environment's null with
+                 _precision_null_values in the same order with the same arguments,
+                 so for one rng the null draws, thresholds, signals and raw
+                 decisions coincide; only the decision rule differs. rule="bh"
+                 results are written to separate *_bh folders.
 
     Returns dict: count (n_recoverable), threshold, per-environment signals, detect
-    flags, and signal/threshold ratios.
+    flags, and signal/threshold ratios. With rule="bh", count and detect are the BH
+    decisions, and the dict also carries rule, q, pvalues, raw_detect and raw_count;
+    the default (raw) dict gains no key.
     """
     if rng is None:
         raise ValueError("count_recoverable needs an explicit rng")
+    if rule not in ("raw", "bh"):
+        raise ValueError(f"rule must be 'raw' or 'bh', got {rule!r}")
+    if rule == "bh":
+        res = detect_with_pvalues(Y_int_list, Y_obs, alpha=alpha, B=B, rng=rng,
+                                  q=q, readout=readout)
+        thresholds = [float(t) for t in res["thresholds"]]
+        signals = [float(v) for v in res["signals"]]
+        ratios = [float(v / t) if t > 0 else float("inf")
+                  for v, t in zip(signals, thresholds)]
+        out = dict(count=int(res["bh_count"]),
+                   threshold=float(max(thresholds)) if thresholds else 0.0,
+                   thresholds=thresholds,
+                   signals=signals, detect=[bool(x) for x in res["bh_detect"]],
+                   ratios=[round(r, 2) for r in ratios],
+                   alpha=float(alpha), B=int(B))
+        if readout != "precision":
+            out["readout"] = readout
+        out.update(rule="bh", q=float(q), pvalues=[float(v) for v in res["pvalues"]],
+                   raw_detect=[bool(x) for x in res["raw_detect"]],
+                   raw_count=int(res["raw_count"]))
+        return out
     stat = _signal_fn(readout)
     signals, thresholds, detect, ratios = [], [], [], []
     for Y in Y_int_list:

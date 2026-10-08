@@ -1,0 +1,2465 @@
+{
+  "description": "Synthetic gate under the historical raw per-environment alpha rule versus the manuscript rule (BH at q=0.05 across the supplied environments), side by side. Same seeds, B=500, same null draws (both rules call _precision_null_values in the same order), so only the decision differs.",
+  "field_definitions": {
+    "gate_count": "environments the gate detects among those supplied (E2: per seed; E2c/E4 starvation: per random subset, BH applied within the subset)",
+    "verdict_counts": "PROCEED / PROCEED_CAPPED / ABSTAIN over seeds (or subsets)",
+    "naive_mcc_mean": "ungated recovery MCC (E2c: random-subset mean)",
+    "certified_recovery_mean": "E2 schema value; not defined for starvation series",
+    "gate_first_restricts": "first level where not every seed PROCEEDs (E2 crossover_gate_leaves_proceed; E2c crossover_gate_first_restricts)",
+    "mcc_first_below_0p90": "first level where mean ungated MCC < 0.90",
+    "decided_pair_errors": "E1 capped: shd_decided + n_committed_uncovered per seed"
+  },
+  "e2": {
+    "A_environment_starvation": {
+      "levels": [
+        {
+          "level": 5,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9991,
+            "certified_recovery_mean": 0.9991
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9991,
+            "certified_recovery_mean": 0.9991
+          }
+        },
+        {
+          "level": 4,
+          "raw": {
+            "gate_count_mean": 4.0,
+            "gate_count_min": 4,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.7993,
+            "certified_recovery_mean": 0.9991
+          },
+          "bh": {
+            "gate_count_mean": 4.0,
+            "gate_count_min": 4,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.7993,
+            "certified_recovery_mean": 0.9991
+          }
+        },
+        {
+          "level": 3,
+          "raw": {
+            "gate_count_mean": 3.0,
+            "gate_count_min": 3,
+            "gate_count_max": 3,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.5994,
+            "certified_recovery_mean": 0.999
+          },
+          "bh": {
+            "gate_count_mean": 3.0,
+            "gate_count_min": 3,
+            "gate_count_max": 3,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.5994,
+            "certified_recovery_mean": 0.999
+          }
+        },
+        {
+          "level": 2,
+          "raw": {
+            "gate_count_mean": 2.0,
+            "gate_count_min": 2,
+            "gate_count_max": 2,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.3996,
+            "certified_recovery_mean": 0.999
+          },
+          "bh": {
+            "gate_count_mean": 2.0,
+            "gate_count_min": 2,
+            "gate_count_max": 2,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.3996,
+            "certified_recovery_mean": 0.999
+          }
+        },
+        {
+          "level": 1,
+          "raw": {
+            "gate_count_mean": 1.0,
+            "gate_count_min": 1,
+            "gate_count_max": 1,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.1998,
+            "certified_recovery_mean": 0.9992
+          },
+          "bh": {
+            "gate_count_mean": 1.0,
+            "gate_count_min": 1,
+            "gate_count_max": 1,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 10,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.1998,
+            "certified_recovery_mean": 0.9992
+          }
+        }
+      ],
+      "gate_first_restricts": {
+        "raw": 4,
+        "bh": 4
+      },
+      "mcc_first_below_0p90": {
+        "raw": 4,
+        "bh": 4
+      },
+      "gate_behavior": {
+        "raw": "TRACKS_TIGHT",
+        "bh": "TRACKS_TIGHT"
+      }
+    },
+    "B_power_starvation": {
+      "levels": [
+        {
+          "level": 4000,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9992,
+            "certified_recovery_mean": 0.9992
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9992,
+            "certified_recovery_mean": 0.9992
+          }
+        },
+        {
+          "level": 400,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9987,
+            "certified_recovery_mean": 0.9987
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9987,
+            "certified_recovery_mean": 0.9987
+          }
+        },
+        {
+          "level": 100,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9972,
+            "certified_recovery_mean": 0.9972
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9972,
+            "certified_recovery_mean": 0.9972
+          }
+        },
+        {
+          "level": 40,
+          "raw": {
+            "gate_count_mean": 4.1,
+            "gate_count_min": 3,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 3,
+              "PROCEED_CAPPED": 7,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9899,
+            "certified_recovery_mean": 0.9922
+          },
+          "bh": {
+            "gate_count_mean": 3.7,
+            "gate_count_min": 1,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 3,
+              "PROCEED_CAPPED": 7,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9899,
+            "certified_recovery_mean": 0.9915
+          }
+        },
+        {
+          "level": 20,
+          "raw": {
+            "gate_count_mean": 1.0,
+            "gate_count_min": 0,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 5,
+              "ABSTAIN": 5
+            },
+            "naive_mcc_mean": 0.9785,
+            "certified_recovery_mean": 0.9619
+          },
+          "bh": {
+            "gate_count_mean": 0.6,
+            "gate_count_min": 0,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 2,
+              "ABSTAIN": 8
+            },
+            "naive_mcc_mean": 0.9785,
+            "certified_recovery_mean": 0.987
+          }
+        }
+      ],
+      "gate_first_restricts": {
+        "raw": 40,
+        "bh": 40
+      },
+      "mcc_first_below_0p90": {
+        "raw": null,
+        "bh": null
+      },
+      "gate_behavior": {
+        "raw": "TRACKS_CONSERVATIVE",
+        "bh": "TRACKS_CONSERVATIVE"
+      }
+    },
+    "C_measurement_contamination": {
+      "levels": [
+        {
+          "level": 0,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9991,
+            "certified_recovery_mean": 0.9991
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9991,
+            "certified_recovery_mean": 0.9991
+          }
+        },
+        {
+          "level": 1,
+          "raw": {
+            "gate_count_mean": 4.3,
+            "gate_count_min": 4,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 3,
+              "PROCEED_CAPPED": 7,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9128,
+            "certified_recovery_mean": 0.9949
+          },
+          "bh": {
+            "gate_count_mean": 4.3,
+            "gate_count_min": 4,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 3,
+              "PROCEED_CAPPED": 7,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9128,
+            "certified_recovery_mean": 0.9949
+          }
+        },
+        {
+          "level": 2,
+          "raw": {
+            "gate_count_mean": 3.7,
+            "gate_count_min": 3,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 1,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.8739,
+            "certified_recovery_mean": 0.9627
+          },
+          "bh": {
+            "gate_count_mean": 3.6,
+            "gate_count_min": 3,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 1,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.8739,
+            "certified_recovery_mean": 0.9694
+          }
+        },
+        {
+          "level": 3,
+          "raw": {
+            "gate_count_mean": 3.6,
+            "gate_count_min": 3,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 1,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.7967,
+            "certified_recovery_mean": 0.8941
+          },
+          "bh": {
+            "gate_count_mean": 3.5,
+            "gate_count_min": 2,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 1,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.7967,
+            "certified_recovery_mean": 0.9033
+          }
+        },
+        {
+          "level": 5,
+          "raw": {
+            "gate_count_mean": 2.7,
+            "gate_count_min": 0,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 1
+            },
+            "naive_mcc_mean": 0.6885,
+            "certified_recovery_mean": 0.7383
+          },
+          "bh": {
+            "gate_count_mean": 2.4,
+            "gate_count_min": 0,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 1
+            },
+            "naive_mcc_mean": 0.6885,
+            "certified_recovery_mean": 0.7221
+          }
+        }
+      ],
+      "gate_first_restricts": {
+        "raw": 1,
+        "bh": 1
+      },
+      "mcc_first_below_0p90": {
+        "raw": 2,
+        "bh": 2
+      },
+      "gate_behavior": {
+        "raw": "FOOLED",
+        "bh": "FOOLED"
+      }
+    },
+    "D_weak_signal_starvation": {
+      "levels": [
+        {
+          "level": 0.1,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9991,
+            "certified_recovery_mean": 0.9991
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9991,
+            "certified_recovery_mean": 0.9991
+          }
+        },
+        {
+          "level": 0.4,
+          "raw": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9933,
+            "certified_recovery_mean": 0.9933
+          },
+          "bh": {
+            "gate_count_mean": 5.0,
+            "gate_count_min": 5,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 10,
+              "PROCEED_CAPPED": 0,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9933,
+            "certified_recovery_mean": 0.9933
+          }
+        },
+        {
+          "level": 0.7,
+          "raw": {
+            "gate_count_mean": 3.6,
+            "gate_count_min": 2,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 2,
+              "PROCEED_CAPPED": 8,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9092,
+            "certified_recovery_mean": 0.9863
+          },
+          "bh": {
+            "gate_count_mean": 3.5,
+            "gate_count_min": 1,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 2,
+              "PROCEED_CAPPED": 8,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.9092,
+            "certified_recovery_mean": 0.9866
+          }
+        },
+        {
+          "level": 0.9,
+          "raw": {
+            "gate_count_mean": 3.0,
+            "gate_count_min": 1,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 1,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 0
+            },
+            "naive_mcc_mean": 0.8551,
+            "certified_recovery_mean": 0.9807
+          },
+          "bh": {
+            "gate_count_mean": 2.5,
+            "gate_count_min": 0,
+            "gate_count_max": 5,
+            "verdict_counts": {
+              "PROCEED": 1,
+              "PROCEED_CAPPED": 6,
+              "ABSTAIN": 3
+            },
+            "naive_mcc_mean": 0.8551,
+            "certified_recovery_mean": 0.9747
+          }
+        },
+        {
+          "level": 1.0,
+          "raw": {
+            "gate_count_mean": 2.6,
+            "gate_count_min": 0,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 9,
+              "ABSTAIN": 1
+            },
+            "naive_mcc_mean": 0.8277,
+            "certified_recovery_mean": 0.9763
+          },
+          "bh": {
+            "gate_count_mean": 2.0,
+            "gate_count_min": 0,
+            "gate_count_max": 4,
+            "verdict_counts": {
+              "PROCEED": 0,
+              "PROCEED_CAPPED": 6,
+              "ABSTAIN": 4
+            },
+            "naive_mcc_mean": 0.8277,
+            "certified_recovery_mean": 0.9672
+          }
+        }
+      ],
+      "gate_first_restricts": {
+        "raw": 0.7,
+        "bh": 0.7
+      },
+      "mcc_first_below_0p90": {
+        "raw": 0.9,
+        "bh": 0.9
+      },
+      "gate_behavior": {
+        "raw": "TRACKS_TIGHT",
+        "bh": "TRACKS_CONSERVATIVE"
+      }
+    }
+  },
+  "e2c": {
+    "series": "random-subset control (primary E2c series)",
+    "levels": [
+      {
+        "m": 5,
+        "raw": {
+          "gate_count_mean": 5.0,
+          "gate_count_min": 5,
+          "gate_count_max": 5,
+          "verdict_counts": {
+            "PROCEED": 10,
+            "PROCEED_CAPPED": 0,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.9991484498730717,
+          "certified_recovery_mean": null
+        },
+        "bh": {
+          "gate_count_mean": 5.0,
+          "gate_count_min": 5,
+          "gate_count_max": 5,
+          "verdict_counts": {
+            "PROCEED": 10,
+            "PROCEED_CAPPED": 0,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.9991484498730717,
+          "certified_recovery_mean": null
+        }
+      },
+      {
+        "m": 4,
+        "raw": {
+          "gate_count_mean": 4.0,
+          "gate_count_min": 4,
+          "gate_count_max": 4,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 50,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.9907619129552302,
+          "certified_recovery_mean": null
+        },
+        "bh": {
+          "gate_count_mean": 4.0,
+          "gate_count_min": 4,
+          "gate_count_max": 4,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 50,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.99076191295523,
+          "certified_recovery_mean": null
+        }
+      },
+      {
+        "m": 3,
+        "raw": {
+          "gate_count_mean": 3.0,
+          "gate_count_min": 3,
+          "gate_count_max": 3,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 100,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.9460789743521196,
+          "certified_recovery_mean": null
+        },
+        "bh": {
+          "gate_count_mean": 3.0,
+          "gate_count_min": 3,
+          "gate_count_max": 3,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 100,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.9460789743521195,
+          "certified_recovery_mean": null
+        }
+      },
+      {
+        "m": 2,
+        "raw": {
+          "gate_count_mean": 2.0,
+          "gate_count_min": 2,
+          "gate_count_max": 2,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 100,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.880612076016096,
+          "certified_recovery_mean": null
+        },
+        "bh": {
+          "gate_count_mean": 2.0,
+          "gate_count_min": 2,
+          "gate_count_max": 2,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 100,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.8806120760160964,
+          "certified_recovery_mean": null
+        }
+      },
+      {
+        "m": 1,
+        "raw": {
+          "gate_count_mean": 1.0,
+          "gate_count_min": 1,
+          "gate_count_max": 1,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 50,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.7986073758563609,
+          "certified_recovery_mean": null
+        },
+        "bh": {
+          "gate_count_mean": 1.0,
+          "gate_count_min": 1,
+          "gate_count_max": 1,
+          "verdict_counts": {
+            "PROCEED": 0,
+            "PROCEED_CAPPED": 50,
+            "ABSTAIN": 0
+          },
+          "naive_mcc_mean": 0.7986073758563611,
+          "certified_recovery_mean": null
+        }
+      }
+    ],
+    "gate_first_restricts": {
+      "raw": 4,
+      "bh": 4
+    },
+    "mcc_first_below_0p90": {
+      "raw": 2,
+      "bh": 2
+    }
+  },
+  "e1_full": {
+    "raw": {
+      "status": "PASS",
+      "mean_mcc": 0.9992,
+      "directions_certified_per_seed": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "shd_decided_per_seed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "bh": {
+      "status": "PASS",
+      "mean_mcc": 0.9992,
+      "directions_certified_per_seed": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "shd_decided_per_seed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "e1_capped": {
+    "raw": {
+      "status": "PASS",
+      "n_recoverable_per_seed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "recover_mcc_mean": 0.999,
+      "decided_pair_errors_per_seed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decided_pair_errors_total": 0
+    },
+    "bh": {
+      "status": "PASS",
+      "n_recoverable_per_seed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "recover_mcc_mean": 0.999,
+      "decided_pair_errors_per_seed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decided_pair_errors_total": 0
+    }
+  },
+  "e4": {
+    "C": {
+      "calibration": {
+        "A_environment_starvation": {
+          "levels": [
+            {
+              "level": 5,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9985,
+                "certified_recovery_mean": 0.9985
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9985,
+                "certified_recovery_mean": 0.9985
+              }
+            },
+            {
+              "level": 4,
+              "raw": {
+                "gate_count_mean": 4.0,
+                "gate_count_min": 4,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7991,
+                "certified_recovery_mean": 0.9989
+              },
+              "bh": {
+                "gate_count_mean": 4.0,
+                "gate_count_min": 4,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7991,
+                "certified_recovery_mean": 0.9989
+              }
+            },
+            {
+              "level": 3,
+              "raw": {
+                "gate_count_mean": 3.0,
+                "gate_count_min": 3,
+                "gate_count_max": 3,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.5992,
+                "certified_recovery_mean": 0.9986
+              },
+              "bh": {
+                "gate_count_mean": 3.0,
+                "gate_count_min": 3,
+                "gate_count_max": 3,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.5992,
+                "certified_recovery_mean": 0.9986
+              }
+            },
+            {
+              "level": 2,
+              "raw": {
+                "gate_count_mean": 2.0,
+                "gate_count_min": 2,
+                "gate_count_max": 2,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.3997,
+                "certified_recovery_mean": 0.9991
+              },
+              "bh": {
+                "gate_count_mean": 2.0,
+                "gate_count_min": 2,
+                "gate_count_max": 2,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.3997,
+                "certified_recovery_mean": 0.9991
+              }
+            },
+            {
+              "level": 1,
+              "raw": {
+                "gate_count_mean": 1.0,
+                "gate_count_min": 1,
+                "gate_count_max": 1,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.1998,
+                "certified_recovery_mean": 0.9992
+              },
+              "bh": {
+                "gate_count_mean": 1.0,
+                "gate_count_min": 1,
+                "gate_count_max": 1,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.1998,
+                "certified_recovery_mean": 0.9992
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 4,
+            "bh": 4
+          },
+          "mcc_first_below_0p90": {
+            "raw": 4,
+            "bh": 4
+          },
+          "gate_behavior": {
+            "raw": "TRACKS_TIGHT",
+            "bh": "TRACKS_TIGHT"
+          }
+        },
+        "B_power_starvation": {
+          "levels": [
+            {
+              "level": 4000,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9986,
+                "certified_recovery_mean": 0.9986
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9986,
+                "certified_recovery_mean": 0.9986
+              }
+            },
+            {
+              "level": 400,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.998,
+                "certified_recovery_mean": 0.998
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.998,
+                "certified_recovery_mean": 0.998
+              }
+            },
+            {
+              "level": 100,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9965,
+                "certified_recovery_mean": 0.9965
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9965,
+                "certified_recovery_mean": 0.9965
+              }
+            },
+            {
+              "level": 40,
+              "raw": {
+                "gate_count_mean": 3.5,
+                "gate_count_min": 1,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 3,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9902,
+                "certified_recovery_mean": 0.99
+              },
+              "bh": {
+                "gate_count_mean": 2.8,
+                "gate_count_min": 0,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 3,
+                  "PROCEED_CAPPED": 5,
+                  "ABSTAIN": 2
+                },
+                "naive_mcc_mean": 0.9902,
+                "certified_recovery_mean": 0.9938
+              }
+            },
+            {
+              "level": 20,
+              "raw": {
+                "gate_count_mean": 0.6,
+                "gate_count_min": 0,
+                "gate_count_max": 3,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 3,
+                  "ABSTAIN": 7
+                },
+                "naive_mcc_mean": 0.959,
+                "certified_recovery_mean": 0.9695
+              },
+              "bh": {
+                "gate_count_mean": 0.2,
+                "gate_count_min": 0,
+                "gate_count_max": 2,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 9
+                },
+                "naive_mcc_mean": 0.959,
+                "certified_recovery_mean": 0.98
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 40,
+            "bh": 40
+          },
+          "mcc_first_below_0p90": {
+            "raw": null,
+            "bh": null
+          },
+          "gate_behavior": {
+            "raw": "TRACKS_CONSERVATIVE",
+            "bh": "TRACKS_CONSERVATIVE"
+          }
+        },
+        "C_measurement_contamination": {
+          "levels": [
+            {
+              "level": 0,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9985,
+                "certified_recovery_mean": 0.9985
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9985,
+                "certified_recovery_mean": 0.9985
+              }
+            },
+            {
+              "level": 1,
+              "raw": {
+                "gate_count_mean": 4.6,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 6,
+                  "PROCEED_CAPPED": 4,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9437,
+                "certified_recovery_mean": 0.9731
+              },
+              "bh": {
+                "gate_count_mean": 4.5,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 5,
+                  "PROCEED_CAPPED": 5,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9437,
+                "certified_recovery_mean": 0.9823
+              }
+            },
+            {
+              "level": 2,
+              "raw": {
+                "gate_count_mean": 4.4,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 4,
+                  "PROCEED_CAPPED": 6,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8765,
+                "certified_recovery_mean": 0.9133
+              },
+              "bh": {
+                "gate_count_mean": 4.3,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 4,
+                  "PROCEED_CAPPED": 6,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8765,
+                "certified_recovery_mean": 0.9233
+              }
+            },
+            {
+              "level": 3,
+              "raw": {
+                "gate_count_mean": 4.3,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 4,
+                  "PROCEED_CAPPED": 6,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7849,
+                "certified_recovery_mean": 0.815
+              },
+              "bh": {
+                "gate_count_mean": 4.3,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 4,
+                  "PROCEED_CAPPED": 6,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7849,
+                "certified_recovery_mean": 0.815
+              }
+            },
+            {
+              "level": 5,
+              "raw": {
+                "gate_count_mean": 3.8,
+                "gate_count_min": 2,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7011,
+                "certified_recovery_mean": 0.721
+              },
+              "bh": {
+                "gate_count_mean": 3.4,
+                "gate_count_min": 0,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 1
+                },
+                "naive_mcc_mean": 0.7011,
+                "certified_recovery_mean": 0.7242
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 1,
+            "bh": 1
+          },
+          "mcc_first_below_0p90": {
+            "raw": 2,
+            "bh": 2
+          },
+          "gate_behavior": {
+            "raw": "FOOLED",
+            "bh": "FOOLED"
+          }
+        },
+        "D_weak_signal_starvation": {
+          "levels": [
+            {
+              "level": 0.1,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9985,
+                "certified_recovery_mean": 0.9985
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9985,
+                "certified_recovery_mean": 0.9985
+              }
+            },
+            {
+              "level": 0.4,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9406,
+                "certified_recovery_mean": 0.9641
+              },
+              "bh": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.9406,
+                "certified_recovery_mean": 0.9641
+              }
+            },
+            {
+              "level": 0.7,
+              "raw": {
+                "gate_count_mean": 3.8,
+                "gate_count_min": 2,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8513,
+                "certified_recovery_mean": 0.9313
+              },
+              "bh": {
+                "gate_count_mean": 3.8,
+                "gate_count_min": 2,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8513,
+                "certified_recovery_mean": 0.9313
+              }
+            },
+            {
+              "level": 0.9,
+              "raw": {
+                "gate_count_mean": 3.3,
+                "gate_count_min": 1,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8074,
+                "certified_recovery_mean": 0.9185
+              },
+              "bh": {
+                "gate_count_mean": 3.2,
+                "gate_count_min": 1,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8074,
+                "certified_recovery_mean": 0.9185
+              }
+            },
+            {
+              "level": 1.0,
+              "raw": {
+                "gate_count_mean": 3.1,
+                "gate_count_min": 1,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7996,
+                "certified_recovery_mean": 0.9168
+              },
+              "bh": {
+                "gate_count_mean": 3.0,
+                "gate_count_min": 1,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7996,
+                "certified_recovery_mean": 0.9164
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 0.7,
+            "bh": 0.7
+          },
+          "mcc_first_below_0p90": {
+            "raw": 0.7,
+            "bh": 0.7
+          },
+          "gate_behavior": {
+            "raw": "TRACKS_TIGHT",
+            "bh": "TRACKS_TIGHT"
+          }
+        }
+      },
+      "starvation": {
+        "series": "random-subset control (primary E2c series)",
+        "levels": [
+          {
+            "m": 5,
+            "raw": {
+              "gate_count_mean": 5.0,
+              "gate_count_min": 5,
+              "gate_count_max": 5,
+              "verdict_counts": {
+                "PROCEED": 10,
+                "PROCEED_CAPPED": 0,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.9985191204585927,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 5.0,
+              "gate_count_min": 5,
+              "gate_count_max": 5,
+              "verdict_counts": {
+                "PROCEED": 10,
+                "PROCEED_CAPPED": 0,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.9985191204585927,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 4,
+            "raw": {
+              "gate_count_mean": 4.0,
+              "gate_count_min": 4,
+              "gate_count_max": 4,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 50,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.9872272338665262,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 4.0,
+              "gate_count_min": 4,
+              "gate_count_max": 4,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 50,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.9872272338665262,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 3,
+            "raw": {
+              "gate_count_mean": 3.0,
+              "gate_count_min": 3,
+              "gate_count_max": 3,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.9519051028669056,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 3.0,
+              "gate_count_min": 3,
+              "gate_count_max": 3,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.9519051028669056,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 2,
+            "raw": {
+              "gate_count_mean": 2.0,
+              "gate_count_min": 2,
+              "gate_count_max": 2,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.8802383212897713,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 2.0,
+              "gate_count_min": 2,
+              "gate_count_max": 2,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.8802383212897713,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 1,
+            "raw": {
+              "gate_count_mean": 1.0,
+              "gate_count_min": 1,
+              "gate_count_max": 1,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 50,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.7986073758563614,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 1.0,
+              "gate_count_min": 1,
+              "gate_count_max": 1,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 50,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.7986073758563614,
+              "certified_recovery_mean": null
+            }
+          }
+        ],
+        "gate_first_restricts": {
+          "raw": 4,
+          "bh": 4
+        },
+        "mcc_first_below_0p90": {
+          "raw": 2,
+          "bh": 2
+        }
+      }
+    },
+    "covneg": {
+      "calibration": {
+        "A_environment_starvation": {
+          "levels": [
+            {
+              "level": 5,
+              "raw": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8947,
+                "certified_recovery_mean": 0.9716
+              },
+              "bh": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8947,
+                "certified_recovery_mean": 0.9716
+              }
+            },
+            {
+              "level": 4,
+              "raw": {
+                "gate_count_mean": 3.9,
+                "gate_count_min": 3,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7453,
+                "certified_recovery_mean": 0.9729
+              },
+              "bh": {
+                "gate_count_mean": 3.9,
+                "gate_count_min": 3,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.7453,
+                "certified_recovery_mean": 0.9729
+              }
+            },
+            {
+              "level": 3,
+              "raw": {
+                "gate_count_mean": 2.9,
+                "gate_count_min": 2,
+                "gate_count_max": 3,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.5676,
+                "certified_recovery_mean": 0.9703
+              },
+              "bh": {
+                "gate_count_mean": 2.9,
+                "gate_count_min": 2,
+                "gate_count_max": 3,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.5676,
+                "certified_recovery_mean": 0.9703
+              }
+            },
+            {
+              "level": 2,
+              "raw": {
+                "gate_count_mean": 1.9,
+                "gate_count_min": 1,
+                "gate_count_max": 2,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.3848,
+                "certified_recovery_mean": 0.9711
+              },
+              "bh": {
+                "gate_count_mean": 1.9,
+                "gate_count_min": 1,
+                "gate_count_max": 2,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.3848,
+                "certified_recovery_mean": 0.9711
+              }
+            },
+            {
+              "level": 1,
+              "raw": {
+                "gate_count_mean": 0.9,
+                "gate_count_min": 0,
+                "gate_count_max": 1,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 1
+                },
+                "naive_mcc_mean": 0.1923,
+                "certified_recovery_mean": 0.9621
+              },
+              "bh": {
+                "gate_count_mean": 0.9,
+                "gate_count_min": 0,
+                "gate_count_max": 1,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 1
+                },
+                "naive_mcc_mean": 0.1923,
+                "certified_recovery_mean": 0.9621
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 5,
+            "bh": 5
+          },
+          "mcc_first_below_0p90": {
+            "raw": 5,
+            "bh": 5
+          },
+          "gate_behavior": {
+            "raw": "TRACKS_CONSERVATIVE",
+            "bh": "TRACKS_CONSERVATIVE"
+          }
+        },
+        "B_power_starvation": {
+          "levels": [
+            {
+              "level": 4000,
+              "raw": {
+                "gate_count_mean": 5.0,
+                "gate_count_min": 5,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 10,
+                  "PROCEED_CAPPED": 0,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8961,
+                "certified_recovery_mean": 0.9645
+              },
+              "bh": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8961,
+                "certified_recovery_mean": 0.9673
+              }
+            },
+            {
+              "level": 400,
+              "raw": {
+                "gate_count_mean": 4.2,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 4,
+                  "PROCEED_CAPPED": 6,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8724,
+                "certified_recovery_mean": 0.9691
+              },
+              "bh": {
+                "gate_count_mean": 4.2,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 4,
+                  "PROCEED_CAPPED": 6,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8724,
+                "certified_recovery_mean": 0.9691
+              }
+            },
+            {
+              "level": 100,
+              "raw": {
+                "gate_count_mean": 3.9,
+                "gate_count_min": 2,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 3,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8585,
+                "certified_recovery_mean": 0.9739
+              },
+              "bh": {
+                "gate_count_mean": 3.9,
+                "gate_count_min": 2,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 3,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8585,
+                "certified_recovery_mean": 0.9739
+              }
+            },
+            {
+              "level": 40,
+              "raw": {
+                "gate_count_mean": 3.2,
+                "gate_count_min": 2,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8006,
+                "certified_recovery_mean": 0.9814
+              },
+              "bh": {
+                "gate_count_mean": 2.6,
+                "gate_count_min": 1,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8006,
+                "certified_recovery_mean": 0.9867
+              }
+            },
+            {
+              "level": 20,
+              "raw": {
+                "gate_count_mean": 2.7,
+                "gate_count_min": 0,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 1
+                },
+                "naive_mcc_mean": 0.8267,
+                "certified_recovery_mean": 0.9859
+              },
+              "bh": {
+                "gate_count_mean": 2.2,
+                "gate_count_min": 0,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 5,
+                  "ABSTAIN": 4
+                },
+                "naive_mcc_mean": 0.8267,
+                "certified_recovery_mean": 0.9898
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 400,
+            "bh": 4000
+          },
+          "mcc_first_below_0p90": {
+            "raw": 4000,
+            "bh": 4000
+          },
+          "gate_behavior": {
+            "raw": "FLAT_OR_SILENT",
+            "bh": "TRACKS_CONSERVATIVE"
+          }
+        },
+        "C_measurement_contamination": {
+          "levels": [
+            {
+              "level": 0,
+              "raw": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8947,
+                "certified_recovery_mean": 0.9716
+              },
+              "bh": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8947,
+                "certified_recovery_mean": 0.9716
+              }
+            },
+            {
+              "level": 1,
+              "raw": {
+                "gate_count_mean": 4.1,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8591,
+                "certified_recovery_mean": 0.9685
+              },
+              "bh": {
+                "gate_count_mean": 4.1,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8591,
+                "certified_recovery_mean": 0.9685
+              }
+            },
+            {
+              "level": 2,
+              "raw": {
+                "gate_count_mean": 3.2,
+                "gate_count_min": 2,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8487,
+                "certified_recovery_mean": 0.9642
+              },
+              "bh": {
+                "gate_count_mean": 3.1,
+                "gate_count_min": 2,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8487,
+                "certified_recovery_mean": 0.9651
+              }
+            },
+            {
+              "level": 3,
+              "raw": {
+                "gate_count_mean": 2.5,
+                "gate_count_min": 1,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8286,
+                "certified_recovery_mean": 0.9595
+              },
+              "bh": {
+                "gate_count_mean": 2.3,
+                "gate_count_min": 1,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 10,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8286,
+                "certified_recovery_mean": 0.9601
+              }
+            },
+            {
+              "level": 5,
+              "raw": {
+                "gate_count_mean": 1.4,
+                "gate_count_min": 0,
+                "gate_count_max": 4,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 3
+                },
+                "naive_mcc_mean": 0.7904,
+                "certified_recovery_mean": 0.9335
+              },
+              "bh": {
+                "gate_count_mean": 0.9,
+                "gate_count_min": 0,
+                "gate_count_max": 3,
+                "verdict_counts": {
+                  "PROCEED": 0,
+                  "PROCEED_CAPPED": 5,
+                  "ABSTAIN": 5
+                },
+                "naive_mcc_mean": 0.7904,
+                "certified_recovery_mean": 0.9123
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 0,
+            "bh": 0
+          },
+          "mcc_first_below_0p90": {
+            "raw": 0,
+            "bh": 0
+          },
+          "gate_behavior": {
+            "raw": "TRACKS_CONSERVATIVE",
+            "bh": "TRACKS_CONSERVATIVE"
+          }
+        },
+        "D_weak_signal_starvation": {
+          "levels": [
+            {
+              "level": 0.1,
+              "raw": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8947,
+                "certified_recovery_mean": 0.9716
+              },
+              "bh": {
+                "gate_count_mean": 4.9,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 9,
+                  "PROCEED_CAPPED": 1,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8947,
+                "certified_recovery_mean": 0.9716
+              }
+            },
+            {
+              "level": 0.4,
+              "raw": {
+                "gate_count_mean": 4.6,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 6,
+                  "PROCEED_CAPPED": 4,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.873,
+                "certified_recovery_mean": 0.9709
+              },
+              "bh": {
+                "gate_count_mean": 4.6,
+                "gate_count_min": 4,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 6,
+                  "PROCEED_CAPPED": 4,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.873,
+                "certified_recovery_mean": 0.9709
+              }
+            },
+            {
+              "level": 0.7,
+              "raw": {
+                "gate_count_mean": 4.2,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 3,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.836,
+                "certified_recovery_mean": 0.971
+              },
+              "bh": {
+                "gate_count_mean": 4.2,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 3,
+                  "PROCEED_CAPPED": 7,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.836,
+                "certified_recovery_mean": 0.971
+              }
+            },
+            {
+              "level": 0.9,
+              "raw": {
+                "gate_count_mean": 3.9,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8061,
+                "certified_recovery_mean": 0.9672
+              },
+              "bh": {
+                "gate_count_mean": 3.9,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 2,
+                  "PROCEED_CAPPED": 8,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8061,
+                "certified_recovery_mean": 0.9672
+              }
+            },
+            {
+              "level": 1.0,
+              "raw": {
+                "gate_count_mean": 3.7,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8012,
+                "certified_recovery_mean": 0.967
+              },
+              "bh": {
+                "gate_count_mean": 3.7,
+                "gate_count_min": 3,
+                "gate_count_max": 5,
+                "verdict_counts": {
+                  "PROCEED": 1,
+                  "PROCEED_CAPPED": 9,
+                  "ABSTAIN": 0
+                },
+                "naive_mcc_mean": 0.8012,
+                "certified_recovery_mean": 0.967
+              }
+            }
+          ],
+          "gate_first_restricts": {
+            "raw": 0.1,
+            "bh": 0.1
+          },
+          "mcc_first_below_0p90": {
+            "raw": 0.1,
+            "bh": 0.1
+          },
+          "gate_behavior": {
+            "raw": "TRACKS_CONSERVATIVE",
+            "bh": "TRACKS_CONSERVATIVE"
+          }
+        }
+      },
+      "starvation": {
+        "series": "random-subset control (primary E2c series)",
+        "levels": [
+          {
+            "m": 5,
+            "raw": {
+              "gate_count_mean": 4.9,
+              "gate_count_min": 4,
+              "gate_count_max": 5,
+              "verdict_counts": {
+                "PROCEED": 9,
+                "PROCEED_CAPPED": 1,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.8947206551252778,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 4.9,
+              "gate_count_min": 4,
+              "gate_count_max": 5,
+              "verdict_counts": {
+                "PROCEED": 9,
+                "PROCEED_CAPPED": 1,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.8947206551252778,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 4,
+            "raw": {
+              "gate_count_mean": 3.92,
+              "gate_count_min": 3,
+              "gate_count_max": 4,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 50,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.8463533543160592,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 3.92,
+              "gate_count_min": 3,
+              "gate_count_max": 4,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 50,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.8463533543160592,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 3,
+            "raw": {
+              "gate_count_mean": 2.94,
+              "gate_count_min": 2,
+              "gate_count_max": 3,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.7904630583276985,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 2.94,
+              "gate_count_min": 2,
+              "gate_count_max": 3,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.7904630583276985,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 2,
+            "raw": {
+              "gate_count_mean": 1.96,
+              "gate_count_min": 1,
+              "gate_count_max": 2,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.7312069756282831,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 1.96,
+              "gate_count_min": 1,
+              "gate_count_max": 2,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 100,
+                "ABSTAIN": 0
+              },
+              "naive_mcc_mean": 0.7312069756282831,
+              "certified_recovery_mean": null
+            }
+          },
+          {
+            "m": 1,
+            "raw": {
+              "gate_count_mean": 0.98,
+              "gate_count_min": 0,
+              "gate_count_max": 1,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 49,
+                "ABSTAIN": 1
+              },
+              "naive_mcc_mean": 0.683094252270448,
+              "certified_recovery_mean": null
+            },
+            "bh": {
+              "gate_count_mean": 0.98,
+              "gate_count_min": 0,
+              "gate_count_max": 1,
+              "verdict_counts": {
+                "PROCEED": 0,
+                "PROCEED_CAPPED": 49,
+                "ABSTAIN": 1
+              },
+              "naive_mcc_mean": 0.683094252270448,
+              "certified_recovery_mean": null
+            }
+          }
+        ],
+        "gate_first_restricts": {
+          "raw": 5,
+          "bh": 5
+        },
+        "mcc_first_below_0p90": {
+          "raw": 5,
+          "bh": 5
+        }
+      }
+    }
+  },
+  "e4_raw_source_note": "The A100 raw E4 JSONs are not committed in this repo. The raw E4 columns come from a Mac rerun of rule=raw with the same code (scratch, not committed); sha256 values below identify those files.",
+  "sources": {
+    "e2_raw": {
+      "path": "results/e2/e2_calibration_report.json",
+      "sha256": "2321d4972603a5a1738f00f95cf77d9d9addd2769096f94bc0979b2c96c56919"
+    },
+    "e2_bh": {
+      "path": "results/e2_bh/e2_calibration_report.json",
+      "sha256": "385d484f550456ac2bfaffca4864f43c7d5d24bd9c8f84331836312d5976236f"
+    },
+    "e2c_raw": {
+      "path": "results/e2c/starvation_report.json",
+      "sha256": "4d4f6481af1e3f771ccfbb5b1be12d4fa94470fa31ded743369cbfd256de785d"
+    },
+    "e2c_bh": {
+      "path": "results/e2c_bh/starvation_report.json",
+      "sha256": "78d563cabf643000b76b8f740d506cbd39979504121fb80b021d678b0e653a7d"
+    },
+    "e1_full_raw": {
+      "path": "results/e1_full/e1_full_report.json",
+      "sha256": "344d030fa4db7df347d319f38b5454958b2d8746b2bf039d50f2197042fc2345"
+    },
+    "e1_full_bh": {
+      "path": "results/e1_full_bh/e1_full_report.json",
+      "sha256": "4633ff3301bbed6e9fc3411fafd8ca5f8dc51ed036e3c3cec0b21db1c15169c8"
+    },
+    "e1_capped_raw": {
+      "path": "results/e1_capped/capped_report.json",
+      "sha256": "8a90260ff34767129759b47948944562463ef6694b5c873d56d50141c5d4ba25"
+    },
+    "e1_capped_bh": {
+      "path": "results/e1_capped_bh/capped_report.json",
+      "sha256": "00d67959816ba1f92f98d228d244093dcd27c21c123ad60abaca70aaa258ef4e"
+    },
+    "e4_cal_raw_mac": {
+      "path": "scratch:e4_calibration_report.json",
+      "sha256": "336c5c6593fc8356831afafc699726057419f524ad57b0b8566d1469d5525e84"
+    },
+    "e4_cal_bh": {
+      "path": "results/e4_second_backbone_bh/e4_calibration_report.json",
+      "sha256": "5fe2fccfa1a740b0b2fbe5467b2cae5eb80d4ed1e559b1b6e9f76d1ec6db3398"
+    },
+    "e4_starv_raw_mac": {
+      "path": "scratch:e4_starvation_report.json",
+      "sha256": "57d57194abcccf5d0542385a0cd54fc9402c3812b013a026874c3894c64ae587"
+    },
+    "e4_starv_bh": {
+      "path": "results/e4_second_backbone_bh/e4_starvation_report.json",
+      "sha256": "2ead25b45f6a9a7c8a7f11b3b835e0ca22a501b51f4b7a32dd6b69abb3c61ef5"
+    },
+    "e4_negctrl_cal_raw_mac": {
+      "path": "scratch:e4_negctrl_calibration_report.json",
+      "sha256": "f1192334047d15a7ce30d4fc4abeb6b78cc260d6c09ef96ee6fba36911e406e3"
+    },
+    "e4_negctrl_cal_bh": {
+      "path": "results/e4_second_backbone_bh/e4_negctrl_calibration_report.json",
+      "sha256": "ac6e05114ad0a0e3d55682ce4ee5963dc0d94cfa1bc7bd0ac64f031fc6cda063"
+    },
+    "e4_negctrl_starv_raw_mac": {
+      "path": "scratch:e4_negctrl_starvation_report.json",
+      "sha256": "2bcb0a575e2c6598157130e1fb43fcc925c674c803c064a3ac46a7a56a48c5b8"
+    },
+    "e4_negctrl_starv_bh": {
+      "path": "results/e4_second_backbone_bh/e4_negctrl_starvation_report.json",
+      "sha256": "5a075639193aaf4fdab5cb4b5a5dda4ecda206da536bfd6d0550b072bfc53c73"
+    }
+  }
+}

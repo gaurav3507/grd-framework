@@ -34,6 +34,10 @@ Parts:
 
 Artifacts: Backbone C writes e4_*.json; the negative control writes e4_negctrl_*.json.
 
+Gate decision rule (--rule, calibration and starvation): raw (default, historical)
+detects each environment at its own alpha-level threshold; bh (manuscript rule) applies
+BH at q=0.05 across the supplied environments, default out-dir results/e4_second_backbone_bh/.
+
 PRE-REGISTERED EXPECTATION (Tier 2 brief): the second backbone's gate restricts before
 its own recovery MCC crosses 0.90 under starvation, abstains under power and
 weak-signal starvation, and is fooled by measurement contamination. A difference is
@@ -66,6 +70,7 @@ warnings.filterwarnings("ignore", message=r".*encountered in matmul",
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 RESULTS = REPO / "results" / "e4_second_backbone"
+RESULTS_BH = REPO / "results" / "e4_second_backbone_bh"
 NULL_TEXT = "size-matched; disjoint split when n_e <= n_0/2, else two-resample"
 BACKBONES = {
     "C": dict(
@@ -266,13 +271,13 @@ def _arm_contract(arm):
     )
 
 
-def run_calibration(backbone, out_dir):
+def run_calibration(backbone, out_dir, rule="raw"):
     spec = BACKBONES[backbone]
     pop = _require_population_check(backbone, out_dir)
     E2 = _load(REPO / "experiments" / "e2_calibration.py", "grd_e2_for_e4")
     started = time.time()
-    report = E2.run(readout=spec["gate_readout"], recovery=spec["recovery"])
-    precision = E2.run(readout="precision")
+    report = E2.run(readout=spec["gate_readout"], recovery=spec["recovery"], rule=rule)
+    precision = E2.run(readout="precision", rule=rule)
     decomposition = population_decomposition(E2)
 
     behaviors = {n: a["gate_behavior"] for n, a in report["arms"].items()}
@@ -320,6 +325,9 @@ def run_calibration(backbone, out_dir):
     report["config"]["readout"] = spec["gate_readout"]
     report["config"]["recovery"] = spec["recovery"]
     report["config"]["backbone"] = _public(spec)
+    if rule != "raw":
+        report["config"]["rule"] = rule
+        report["config"]["q"] = E2.Q
     # "status" keeps its E2 meaning (PASS unless no arm tracks or an arm fails
     # silently). A FAIL is a finding about this readout, so the script still exits
     # 0; the launcher checks the artifact, not the verdict.
@@ -384,7 +392,7 @@ def run_calibration(backbone, out_dir):
 
 
 # ------------------------------------------------------------------ starvation
-def run_starvation(backbone, out_dir, smoke=False):
+def run_starvation(backbone, out_dir, smoke=False, rule="raw"):
     spec = BACKBONES[backbone]
     pop = _require_population_check(backbone, out_dir)
     E2C = _load(REPO / "experiments" / "e2c_starvation.py", "grd_e2c_for_e4")
@@ -394,7 +402,7 @@ def run_starvation(backbone, out_dir, smoke=False):
     rows = []
     for seed in seeds:
         rows.append(E2C.evaluate_seed(seed, B, readout=spec["gate_readout"],
-                                      recovery=spec["recovery"]))
+                                      recovery=spec["recovery"], rule=rule))
         print(f"[seed {seed}] done ({time.time() - started:.1f}s)", flush=True)
     agg = E2C.aggregate(rows)
     wiring_pass = bool(
@@ -404,7 +412,8 @@ def run_starvation(backbone, out_dir, smoke=False):
                          for r in agg["levels"]]).all())
 
     reference = {}
-    ref_path = REPO / "results" / "e2c" / "starvation_report.json"
+    ref_path = (REPO / "results" / ("e2c_bh" if rule == "bh" else "e2c")
+                / "starvation_report.json")
     if ref_path.exists() and not smoke:
         ref = json.loads(ref_path.read_text())["aggregate"]
         reference = dict(
@@ -439,7 +448,8 @@ def run_starvation(backbone, out_dir, smoke=False):
             edge_prob=E2C.EDGE_PROB, starvation_levels=E2C.STARVATION_LEVELS,
             max_random_subsets=E2C.MAX_SUBSETS, mcc_threshold=E2C.MCC_THRESHOLD,
             readout=spec["gate_readout"], recovery=spec["recovery"],
-            backbone=_public(spec)),
+            backbone=_public(spec),
+            **({"rule": rule, "q": E2C.Q} if rule != "raw" else {})),
         estimator=(
             f"{spec['name']} rows for the supplied targets"
             + (" (joint fit refitted on each supplied subset)"
@@ -699,7 +709,9 @@ def parse_args():
         sp = sub.add_parser(part)
         sp.add_argument("--backbone", choices=sorted(BACKBONES), default="C",
                         help="C: second backbone (default); covneg: negative control")
-        sp.add_argument("--out-dir", default=str(RESULTS))
+        sp.add_argument("--out-dir", default=None if part != "real" else str(RESULTS))
+        if part in ("calibration", "starvation"):
+            sp.add_argument("--rule", choices=("raw", "bh"), default="raw")
         if part == "starvation":
             sp.add_argument("--smoke", action="store_true",
                             help="three seeds, B=100; writes a *_starvation_smoke.json")
@@ -720,10 +732,12 @@ def main():
         run_population_check(args.out_dir)
     elif args.part == "attribution":
         run_attribution(args.out_dir)
-    elif args.part == "calibration":
-        run_calibration(args.backbone, args.out_dir)
-    elif args.part == "starvation":
-        run_starvation(args.backbone, args.out_dir, smoke=args.smoke)
+    elif args.part in ("calibration", "starvation"):
+        out_dir = args.out_dir or str(RESULTS_BH if args.rule == "bh" else RESULTS)
+        if args.part == "calibration":
+            run_calibration(args.backbone, out_dir, rule=args.rule)
+        else:
+            run_starvation(args.backbone, out_dir, smoke=args.smoke, rule=args.rule)
     else:
         run_real(args.backbone, args.dataset, args.out_dir, args.seeds, args.B,
                  selftest=args.selftest)

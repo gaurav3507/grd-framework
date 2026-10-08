@@ -13,7 +13,11 @@ correct reference for each dataset:
   3. all powered perturbations: alignment distribution (no detection filter);
   4. for the seed-0 E3 BH set (RPE1: 48 perturbations), the observed median and a
      size-matched permutation reference: n_rep draws of random control subsets with
-     exactly the selected sizes, median alignment per draw, one-sided p-value.
+     exactly the selected sizes, median alignment per draw, one-sided p-value;
+  5. selection-effect check: the non-selected powered perturbations' alignment and a
+     selected-versus-non-selected comparison (median difference, two-sided
+     Mann-Whitney U, and a two-sided label-permutation p-value with its own seeded rng,
+     so items 1-4 are unchanged).
 
 Uses e3_gate_compare.shift_alignment unchanged. Check: the RPE1 observed median
 must reproduce the published 0.728772.
@@ -87,6 +91,29 @@ def run(key, n_random, n_rep, selftest):
             size_matched_null_median=summ(meds),
             p_value_one_sided=round(float((1 + (meds >= obs_med).sum()) / (n_rep + 1)), 6),
         )
+        sel_set = set(sel)
+        non = align_all([Yp[i] for i in range(len(Yp)) if i not in sel_set], Yobs)
+        if non.size:
+            from scipy.stats import mannwhitneyu
+            md = float(np.median(obs) - np.median(non))
+            pooled = np.concatenate([obs, non])
+            k = obs.size
+            prng = np.random.default_rng(9_100)
+            n_perm = 10_000
+            hits = 0
+            for _ in range(n_perm):
+                perm = prng.permutation(pooled.size)
+                d = abs(np.median(pooled[perm[:k]]) - np.median(pooled[perm[k:]]))
+                hits += int(d >= abs(md) - 1e-12)
+            out["selected"]["non_selected"] = summ(non)
+            out["selected"]["selected_vs_non_selected"] = dict(
+                n_selected=int(k), n_non_selected=int(non.size),
+                median_diff=round(md, 6),
+                mannwhitney_u_p_two_sided=float(
+                    mannwhitneyu(obs, non, alternative="two-sided").pvalue),
+                permutation_p_two_sided=round(float((1 + hits) / (n_perm + 1)), 6),
+                n_permutations=n_perm,
+            )
     return out
 
 
@@ -108,6 +135,7 @@ def main():
               "perts_med", res["all_perturbations"]["median"],
               "selected", res.get("selected", {}).get("observed", {}).get("median"),
               "null_med", res.get("selected", {}).get("size_matched_null_median", {}).get("median"),
+              "non_selected_med", res.get("selected", {}).get("non_selected", {}).get("median"),
               "p", res.get("selected", {}).get("p_value_one_sided"), flush=True)
     if a.selftest:
         print("selftest ok (no file written)")

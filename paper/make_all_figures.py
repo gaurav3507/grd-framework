@@ -46,6 +46,23 @@ CB = {
 }
 
 
+# Synthetic-gate result folders. --gate-rule bh (manuscript rule, BH at q=0.05 across
+# the supplied environments) switches figure2 to results/e2_bh + e2c_bh and figure7 to
+# results/e4_second_backbone_bh; raw (default) keeps the historical folders.
+E2_DIR = RESULTS / "e2"
+E2C_DIR = RESULTS / "e2c"
+
+
+def set_gate_rule(rule):
+    global E2_DIR, E2C_DIR, E4_DIR
+    suffix = "_bh" if rule == "bh" else ""
+    E2_DIR = RESULTS / f"e2{suffix}"
+    E2C_DIR = RESULTS / f"e2c{suffix}"
+    E4_DIR = RESULTS / f"e4_second_backbone{suffix}"
+    FIGURE_INPUTS["figure7"] = [E4_DIR / "e4_calibration_report.json",
+                                E4_DIR / "e4_starvation_report.json"]
+
+
 def configure_style():
     # JMLR body text is Computer Modern (LaTeX). Match it via mathtext cm
     # fontset with a Computer Modern / serif family, so figure labels read
@@ -219,8 +236,8 @@ def make_figure1():
 # FIGURE 2 : synthetic precondition-violation calibration
 # --------------------------------------------------------------------------
 def make_figure2():
-    d = read_json(RESULTS / "e2" / "e2_calibration_report.json")
-    e2c = read_json(RESULTS / "e2c" / "starvation_report.json")
+    d = read_json(E2_DIR / "e2_calibration_report.json")
+    e2c = read_json(E2C_DIR / "starvation_report.json")
 
     def arm(name):
         levels = d["arms"][name]["levels"]
@@ -884,11 +901,14 @@ FIGURES = {
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--figure", choices=list(FIGURES) + ["all"], default="all")
+    p.add_argument("--gate-rule", choices=("raw", "bh"), default="raw",
+                   help="synthetic gate decision rule for figure2 and figure7 inputs")
     return p.parse_args()
 
 
 def main():
     args = parse_args()
+    set_gate_rule(args.gate_rule)
     configure_style()
     keys = list(FIGURES) if args.figure == "all" else [args.figure]
     for k in keys:

@@ -36,6 +36,10 @@ checks and reports this invariance instead of claiming an impossible decline.
 The default full run uses 10 seeds and B=500. ``--smoke`` uses three seeds and
 B=100, writes a separate reduced-power report, and cannot establish the paper
 result. Existing experiments and results are never modified.
+
+Gate decision rule (--rule): raw (default, historical) detects each environment at its
+own alpha-level threshold; bh (manuscript rule) applies BH at q=0.05 across the supplied
+environments of each subset and writes results/e2c_bh/ instead.
 """
 
 import argparse
@@ -57,6 +61,8 @@ warnings.filterwarnings(
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 RESULTS = REPO / "results" / "e2c"
+RESULTS_BH = REPO / "results" / "e2c_bh"
+Q = 0.05
 
 FULL_SEEDS = list(range(10))
 SMOKE_SEEDS = list(range(3))
@@ -205,12 +211,16 @@ def evaluate_subset(
     )
 
 
-def evaluate_seed(seed, B, readout="precision", recovery=None):
+def evaluate_seed(seed, B, readout="precision", recovery=None, rule="raw"):
     """readout selects the gate statistic and recovery the supplied-row rule
     (recovery=None uses readout). Per-environment rules (precision, covariance)
     compute each row once; the joint rule "jad" (Backbone C) is refitted on every
     supplied subset, since its rows depend on which environments are supplied. The
     spectral completion of missing rows is the same for every rule.
+
+    rule="raw": per-environment alpha-level detections, read off for each subset.
+    rule="bh": BH at q over the p-values of the supplied subset's environments (the
+    per-environment null draws are the same; only the family changes per subset).
     """
     recovery = readout if recovery is None else recovery
     ds = build_dataset(seed)
@@ -229,7 +239,17 @@ def evaluate_seed(seed, B, readout="precision", recovery=None):
         B=B,
         rng=np.random.default_rng(910_000 + seed),
         readout=readout,
+        rule=rule,
+        q=Q,
     )
+    if rule == "bh":
+        def detect_for(subset):
+            flags = PR.bh_fdr([gate["pvalues"][n] for n in subset], q=Q)
+            return {int(n): bool(f) for n, f in zip(subset, flags)}
+    else:
+        def detect_for(subset):
+            return gate["detect"]
+
     if recovery == "jad":
         def rows_for(subset):
             W = BK.unmixing_rows(Y_obs, [Y_interventions[n] for n in subset],
@@ -253,7 +273,7 @@ def evaluate_seed(seed, B, readout="precision", recovery=None):
             obs.Z,
             Y_interventions,
             rows_for(canonical_subset),
-            gate["detect"],
+            detect_for(canonical_subset),
         )
         control_subsets = subset_control(seed, m)
         controls = [
@@ -263,7 +283,7 @@ def evaluate_seed(seed, B, readout="precision", recovery=None):
                 obs.Z,
                 Y_interventions,
                 rows_for(subset),
-                gate["detect"],
+                detect_for(subset),
             )
             for subset in control_subsets
         ]
@@ -431,6 +451,7 @@ def parse_args():
         action="store_true",
         help="run the non-decisional three-seed/B=100 check",
     )
+    parser.add_argument("--rule", choices=("raw", "bh"), default="raw")
     return parser.parse_args()
 
 
@@ -479,7 +500,7 @@ def main():
     started = time.time()
     seed_rows = []
     for seed in seeds:
-        seed_rows.append(evaluate_seed(seed, B))
+        seed_rows.append(evaluate_seed(seed, B, rule=args.rule))
         print(f"[seed {seed}] done ({time.time() - started:.1f}s)", flush=True)
 
     aggregate_result = aggregate(seed_rows)
@@ -518,6 +539,7 @@ def main():
             starvation_levels=STARVATION_LEVELS,
             max_random_subsets=MAX_SUBSETS,
             mcc_threshold=MCC_THRESHOLD,
+            **({"rule": args.rule, "q": Q} if args.rule != "raw" else {}),
         ),
         estimator=(
             "Backbone precision rows for supplied targets plus absolute-eigenvalue "
@@ -537,9 +559,10 @@ def main():
         wall_seconds=round(time.time() - started, 1),
     )
 
-    RESULTS.mkdir(parents=True, exist_ok=True)
+    out_dir = RESULTS_BH if args.rule == "bh" else RESULTS
+    out_dir.mkdir(parents=True, exist_ok=True)
     filename = "starvation_smoke.json" if args.smoke else "starvation_report.json"
-    output = RESULTS / filename
+    output = out_dir / filename
     output.write_text(json.dumps(report, indent=2) + "\n")
     print_table(report)
     print(f"written {output} ({report['wall_seconds']}s)", flush=True)

@@ -44,7 +44,12 @@ E0 mcc; modifies none of them.
 
 Writes results/e2/e2_calibration_report.json (tracked); prints a per-arm severity
 table; exits non-zero only if the central claim is KILLED (no arm shows tracking).
+
+Gate decision rule (--rule): raw (default, historical) detects each environment at its
+own alpha-level threshold; bh (manuscript rule) applies BH at q=0.05 across the supplied
+environments and writes results/e2_bh/e2_calibration_report.json instead.
 """
+import argparse
 import importlib.util
 import json
 import sys
@@ -59,6 +64,9 @@ warnings.filterwarnings("ignore", message=r".*encountered in matmul",
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 RESULTS = REPO / "results" / "e2"
+RESULTS_BH = REPO / "results" / "e2_bh"
+RULE = "raw"
+Q = 0.05
 
 SEEDS = list(range(10))
 D_LATENT = 5
@@ -117,7 +125,7 @@ def gate_certificate(m_int, precision_count, intended_d):
 
 
 def evaluate(basis_X, obs_X, obs_Z, int_envs, seed, readout="precision",
-             recovery=None):
+             recovery=None, rule=RULE):
     """int_envs: list of (node_index, X). Returns gate + naive + gated metrics.
 
     readout selects the gate statistic and recovery the backbone row rule
@@ -133,7 +141,7 @@ def evaluate(basis_X, obs_X, obs_Z, int_envs, seed, readout="precision",
     # GATE
     gate = PR.count_recoverable(Y_int, Y_obs, alpha=ALPHA, B=B_BOOT,
                                 rng=np.random.default_rng(910_000 + seed),
-                                readout=readout)
+                                readout=readout, rule=rule, q=Q)
     detect = gate["detect"]
     certified = [nodes[k] for k in range(len(nodes)) if detect[k]]
     n_recoverable, verdict = gate_certificate(len(int_envs), gate["count"], D_LATENT)
@@ -272,7 +280,7 @@ def _arm_verdict(arm_rows):
                 silent_failure=bool(silent_failure), degrades=bool(degrades))
 
 
-def run(readout="precision", recovery=None):
+def run(readout="precision", recovery=None, rule=RULE):
     report = {
         "milestone": "E2",
         "code_commit": E0._code_commit(),
@@ -282,6 +290,9 @@ def run(readout="precision", recovery=None):
                        arm_C_basis="detectability-based, NOT P3 (P3 is temporal-only, R1)"),
         "arms": {},
     }
+    if rule != "raw":
+        report["config"]["rule"] = rule
+        report["config"]["q"] = Q
 
     for arm_name, spec in ARMS.items():
         builder = spec["builder"]
@@ -293,7 +304,7 @@ def run(readout="precision", recovery=None):
                 ds, int_envs = builder(seed, lvl)
                 r = evaluate(ds.environments["basis"].X, ds.environments["obs"].X,
                              ds.environments["obs"].Z, int_envs, seed,
-                             readout=readout, recovery=recovery)
+                             readout=readout, recovery=recovery, rule=rule)
                 seed_recs.append(r)
             # aggregate over seeds
             def col(key):
@@ -376,9 +387,13 @@ def _print(report):
 
 
 def main():
-    RESULTS.mkdir(parents=True, exist_ok=True)
-    report = run()
-    (RESULTS / "e2_calibration_report.json").write_text(json.dumps(report, indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--rule", choices=("raw", "bh"), default=RULE)
+    args = parser.parse_args()
+    out_dir = RESULTS_BH if args.rule == "bh" else RESULTS
+    out_dir.mkdir(parents=True, exist_ok=True)
+    report = run(rule=args.rule)
+    (out_dir / "e2_calibration_report.json").write_text(json.dumps(report, indent=2))
     _print(report)
     if report["status"] != "PASS":
         sys.exit(1)

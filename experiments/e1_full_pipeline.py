@@ -19,7 +19,12 @@ Asserts across ALL seeds 0-9 (Lesson 9):
 Read-only in spirit: imports the simulator, precision gate readout, backbone, discover, and
 the E0 mcc; modifies none of them. Writes results/e1_full/e1_full_report.json (tracked),
 prints a PASS/FAIL table, exits non-zero if any seed fails (a), (b), or the (c) bar (Lesson 13).
+
+Gate decision rule (--rule): raw (default, historical) detects each environment at its
+own alpha-level threshold; bh (manuscript rule) applies BH at q=0.05 across the supplied
+environments and writes results/e1_full_bh/e1_full_report.json instead.
 """
+import argparse
 import importlib.util
 import json
 import sys
@@ -34,6 +39,8 @@ warnings.filterwarnings("ignore", message=r".*encountered in matmul",
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 RESULTS = REPO / "results" / "e1_full"
+RESULTS_BH = REPO / "results" / "e1_full_bh"
+Q = 0.05
 
 SEEDS = list(range(10))
 D_LATENT = 5
@@ -67,7 +74,7 @@ def _true_edges(B):
                if abs(B[j, k]) > 1e-9)
 
 
-def run():
+def run(rule="raw"):
     report = {
         "milestone": "M3",
         "code_commit": E0._code_commit(),
@@ -83,6 +90,9 @@ def run():
         "data_fingerprint": {},
         "per_seed": [],
     }
+    if rule != "raw":
+        report["config"]["rule"] = rule
+        report["config"]["q"] = Q
 
     for seed in SEEDS:
         rng_scm = np.random.default_rng(seed)
@@ -103,7 +113,8 @@ def run():
 
         # (1) GATE
         gate = PR.count_recoverable(Y_int, Y_obs, alpha=ALPHA, B=B_BOOT,
-                                    rng=np.random.default_rng(910_000 + seed))
+                                    rng=np.random.default_rng(910_000 + seed),
+                                    rule=rule, q=Q)
         n_recoverable = gate["count"]
 
         # (2) RECOVER
@@ -176,9 +187,13 @@ def _print(report):
 
 
 def main():
-    RESULTS.mkdir(parents=True, exist_ok=True)
-    report = run()
-    (RESULTS / "e1_full_report.json").write_text(json.dumps(report, indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--rule", choices=("raw", "bh"), default="raw")
+    args = parser.parse_args()
+    out_dir = RESULTS_BH if args.rule == "bh" else RESULTS
+    out_dir.mkdir(parents=True, exist_ok=True)
+    report = run(rule=args.rule)
+    (out_dir / "e1_full_report.json").write_text(json.dumps(report, indent=2))
     _print(report)
     if report["status"] != "PASS":
         sys.exit(1)

@@ -33,6 +33,10 @@ PRE-REGISTERED PASS CONDITIONS, for every seed:
 
 ``--smoke`` uses three seeds and B=100. The default uses ten seeds and B=500.
 Existing E1 code and results are never modified.
+
+Gate decision rule (--rule): raw (default, historical) detects each environment at its
+own alpha-level threshold; bh (manuscript rule) applies BH at q=0.05 across the supplied
+environments and writes results/e1_capped_bh/ instead.
 """
 
 import argparse
@@ -53,6 +57,8 @@ warnings.filterwarnings(
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 RESULTS = REPO / "results" / "e1_capped"
+RESULTS_BH = REPO / "results" / "e1_capped_bh"
+Q = 0.05
 
 FULL_SEEDS = list(range(10))
 SMOKE_SEEDS = list(range(3))
@@ -194,7 +200,7 @@ def discover_certified(Y_obs, Y_interventions, W, certified_nodes):
     return Z_obs, local_result, status, mapped_order
 
 
-def evaluate_seed(seed, B_boot):
+def evaluate_seed(seed, B_boot, rule="raw"):
     data = build_data(seed)
     environments = data["environments"]
     mu, projection = BK.fit_pca(environments["basis"]["X"], D_PROJ)
@@ -211,6 +217,8 @@ def evaluate_seed(seed, B_boot):
         alpha=ALPHA,
         B=B_boot,
         rng=np.random.default_rng(910_000 + seed),
+        rule=rule,
+        q=Q,
     )
     certified_nodes = tuple(
         node for node, detected in zip(SUPPLIED_NODES, gate["detect"])
@@ -325,6 +333,7 @@ def parse_args():
         action="store_true",
         help="run the non-decisional three-seed/B=100 check",
     )
+    parser.add_argument("--rule", choices=("raw", "bh"), default="raw")
     return parser.parse_args()
 
 
@@ -359,7 +368,7 @@ def main():
     started = time.time()
     rows = []
     for seed in seeds:
-        rows.append(evaluate_seed(seed, B_boot))
+        rows.append(evaluate_seed(seed, B_boot, rule=args.rule))
         print(f"[seed {seed}] done ({time.time() - started:.1f}s)", flush=True)
 
     all_pass = all(row["seed_pass"] for row in rows)
@@ -392,6 +401,7 @@ def main():
             iv_scale=IV_REDUCING,
             observation_noise_fraction=OBS_NOISE_FRAC,
             recovery_mcc_threshold=RECOVERY_MCC,
+            **({"rule": args.rule, "q": Q} if args.rule != "raw" else {}),
         ),
         pass_conditions=dict(
             gate_n_recoverable=3,
@@ -428,9 +438,10 @@ def main():
         wall_seconds=round(time.time() - started, 1),
     )
 
-    RESULTS.mkdir(parents=True, exist_ok=True)
+    out_dir = RESULTS_BH if args.rule == "bh" else RESULTS
+    out_dir.mkdir(parents=True, exist_ok=True)
     filename = "capped_smoke.json" if args.smoke else "capped_report.json"
-    output = RESULTS / filename
+    output = out_dir / filename
     output.write_text(json.dumps(report, indent=2) + "\n")
     print_table(report)
     print(f"written {output} ({report['wall_seconds']}s)", flush=True)
