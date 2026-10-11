@@ -1,0 +1,142 @@
+{
+  "results": {
+    "experiment": "E12b self-checks",
+    "reps": 200,
+    "B": 199,
+    "alpha": 0.05,
+    "rng": "data SeedSequence([12100, o, rep]); tests SeedSequence([12100+o, rep, k])",
+    "checks": {
+      "depth_oracle": {
+        "design": "n_env = n_REF = 200, d=10, depth ~ N(0,1), Y_1 = depth + 0.5*noise, env depth +0.6, separate BASIS of 200",
+        "rates": {
+          "T1": 0.98,
+          "T1_depthreg": 0.09,
+          "T1_noPC1": 0.05
+        },
+        "criterion": "T1 >= 0.85, T1_depthreg <= 0.10, T1_noPC1 <= 0.10",
+        "passed": true
+      },
+      "real_shift_oracle": {
+        "design": "same sizes, own BASIS, +0.5 SD on coordinate 3, no depth difference",
+        "rates": {
+          "T1": 0.955,
+          "T1_depthreg": 0.95,
+          "T1_noPC1": 0.975
+        },
+        "criterion": "T1_depthreg >= 0.85 and T1_noPC1 >= 0.85",
+        "passed": true
+      },
+      "reproduction_synthetic": {
+        "note": "real-data reproduction runs as a STOP gate inside every A100 run (data not on Mac)",
+        "per_dataset": {
+          "k562": {
+            "gate_n": 5,
+            "gate_max_abs_diff": 0.0,
+            "all_n": 16,
+            "all_max_abs_diff": 0.0,
+            "tol": 1e-08
+          },
+          "norman": {
+            "gate_n": 5,
+            "gate_max_abs_diff": 0.0,
+            "all_n": 16,
+            "all_max_abs_diff": 0.0,
+            "tol": 1e-08
+          },
+          "rpe1": {
+            "gate_n": 5,
+            "gate_max_abs_diff": 0.0,
+            "all_n": 16,
+            "all_max_abs_diff": 0.0,
+            "tol": 1e-08
+          }
+        },
+        "passed": true
+      },
+      "pc1_share_range": {
+        "min": 0.00018301143568244464,
+        "max": 0.22007999442249487,
+        "passed": true
+      },
+      "partial_spearman_identity": {
+        "formula": -0.08431541325861766,
+        "residual_route": -0.08431541325861748,
+        "passed": true
+      },
+      "verdict_rules": {
+        "observed": {
+          "(i)": "S3",
+          "(ii) R3": "S2",
+          "(ii) R4 relevant": "S2",
+          "(iii)": "S1",
+          "(iv) fakes": "S3",
+          "(iv) middle": "S3"
+        },
+        "expected": {
+          "(i)": "S3",
+          "(ii) R3": "S2",
+          "(ii) R4 relevant": "S2",
+          "(iii)": "S1",
+          "(iv) fakes": "S3",
+          "(iv) middle": "S3"
+        },
+        "passed": true
+      },
+      "determinism": {
+        "workers1": {
+          "k562": "9ea68e8785351f9081091ef40db6d8ef616a4f6b0f09abdb61323187ef3382ba",
+          "norman": "bdecacd350e36e831ccc4e6208596160af11dec69626774c70fa5f7edd77ba73",
+          "rpe1": "e63b5ed59424bd30b552884e2a6589d8d56d43ddce7e38e366528d9c9f6a8c29"
+        },
+        "workers4": {
+          "k562": "9ea68e8785351f9081091ef40db6d8ef616a4f6b0f09abdb61323187ef3382ba",
+          "norman": "bdecacd350e36e831ccc4e6208596160af11dec69626774c70fa5f7edd77ba73",
+          "rpe1": "e63b5ed59424bd30b552884e2a6589d8d56d43ddce7e38e366528d9c9f6a8c29"
+        },
+        "aggregate": [
+          "35e4adac2444231572778e62bca8284db62d4fe98790d5d32dc4db69ed02c575",
+          "35e4adac2444231572778e62bca8284db62d4fe98790d5d32dc4db69ed02c575"
+        ],
+        "passed": true
+      },
+      "files": {
+        "files": {
+          "experiments/e12b_confound_check.py": {
+            "sha256": "f849c2f4416e445d508c58eff1f6f32022ffb5f726b2adfa973ec9b3a2bf0d2e",
+            "lines": 578,
+            "dash_hits": [],
+            "py_compile": "ok",
+            "grep_back": true
+          },
+          "notes/e12b_prereg.md": {
+            "sha256": "bddfea81fa6fc61d2fa77bcb79ea68d5a134bdc1c16d62e9703c9398b6408238",
+            "lines": 41,
+            "dash_hits": []
+          }
+        },
+        "passed": true
+      }
+    },
+    "all_pass": true
+  },
+  "results_sha256": "3cf9860e966635412486f296f5ea753eb4b41809e69ff0e6cdf27d6d6a6d47e1",
+  "meta": {
+    "seconds": 12.8,
+    "provenance": {
+      "code_commit": "f858a6dd6aa49b71610e7e2a912e34afb832b30d",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "364f37e5006bbda5382257e5d3afc539e5e92049b6517efdf328cee1c1f0b1ff",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e12b_confound_check.py": "f849c2f4416e445d508c58eff1f6f32022ffb5f726b2adfa973ec9b3a2bf0d2e",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850"
+      },
+      "numpy_version": "2.0.2",
+      "python_version": "3.9.6",
+      "host": "GAURAVs-MacBook-Air-2.local"
+    }
+  }
+}
