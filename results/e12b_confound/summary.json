@@ -1,0 +1,154 @@
+{
+  "results": {
+    "experiment": "E12b",
+    "prereg": "notes/e12b_prereg.md",
+    "seed": 0,
+    "d": 10,
+    "datasets": {
+      "k562": {
+        "depth_source": "X row sum (fallback, not library size)",
+        "depth_fallback": true,
+        "batch_column": null,
+        "n_real": 385,
+        "n_fake": 50,
+        "corr_pc1_depth_basis": -0.8774038373078876,
+        "r4_decision_relevant": true,
+        "e12_T1_bh_count_real": 318,
+        "e12_T1_bh_count_fake": 3,
+        "R3_bh_count_real": 312,
+        "R3_bh_count_fake": 4,
+        "R4_bh_count_real": 309,
+        "R4_bh_count_fake": 5,
+        "retain_R3": 0.9811320754716981,
+        "retain_R4": 0.9716981132075472,
+        "partial_spearman_T1_per_n_vs_absdepth_given_n": 0.6635873327256806,
+        "median_pc1_share_e12_bh_detected": 0.06916660988078635,
+        "median_abs_depth_diff_real": 0.019054041609077643,
+        "median_abs_depth_diff_fake": 0.0037123480324412483,
+        "median_batch_tvd_real": null,
+        "batch_exposed": null,
+        "reproduction": {
+          "gate_n": 5,
+          "gate_max_abs_diff": 0.0,
+          "all_n": 435,
+          "all_max_abs_diff": 0.0,
+          "tol": 1e-08
+        },
+        "e12_summary_T1_bh_count_real": 318
+      },
+      "norman": {
+        "depth_source": "obs[UMI_count]",
+        "depth_fallback": false,
+        "batch_column": "gemgroup",
+        "n_real": 100,
+        "n_fake": 50,
+        "corr_pc1_depth_basis": -0.06938415310732468,
+        "r4_decision_relevant": false,
+        "e12_T1_bh_count_real": 100,
+        "e12_T1_bh_count_fake": 1,
+        "R3_bh_count_real": 100,
+        "R3_bh_count_fake": 1,
+        "R4_bh_count_real": 100,
+        "R4_bh_count_fake": 1,
+        "retain_R3": 1.0,
+        "retain_R4": 1.0,
+        "partial_spearman_T1_per_n_vs_absdepth_given_n": 0.25009797029969993,
+        "median_pc1_share_e12_bh_detected": 0.06218572405889914,
+        "median_abs_depth_diff_real": 0.11427377246478909,
+        "median_abs_depth_diff_fake": 0.04193987418998879,
+        "median_batch_tvd_real": 0.05463113528806959,
+        "batch_exposed": false,
+        "reproduction": {
+          "gate_n": 5,
+          "gate_max_abs_diff": 0.0,
+          "all_n": 150,
+          "all_max_abs_diff": 0.0,
+          "tol": 1e-08
+        },
+        "e12_summary_T1_bh_count_real": 100
+      },
+      "rpe1": {
+        "depth_source": "X row sum (fallback, not library size)",
+        "depth_fallback": true,
+        "batch_column": null,
+        "n_real": 145,
+        "n_fake": 50,
+        "corr_pc1_depth_basis": 0.8328457858929958,
+        "r4_decision_relevant": true,
+        "e12_T1_bh_count_real": 101,
+        "e12_T1_bh_count_fake": 2,
+        "R3_bh_count_real": 102,
+        "R3_bh_count_fake": 2,
+        "R4_bh_count_real": 87,
+        "R4_bh_count_fake": 2,
+        "retain_R3": 1.00990099009901,
+        "retain_R4": 0.8613861386138614,
+        "partial_spearman_T1_per_n_vs_absdepth_given_n": 0.6188818585107945,
+        "median_pc1_share_e12_bh_detected": 0.18749423454876984,
+        "median_abs_depth_diff_real": 0.01275444981631857,
+        "median_abs_depth_diff_fake": 0.004830012570774311,
+        "median_batch_tvd_real": null,
+        "batch_exposed": null,
+        "reproduction": {
+          "gate_n": 5,
+          "gate_max_abs_diff": 0.0,
+          "all_n": 195,
+          "all_max_abs_diff": 0.0,
+          "tol": 1e-08
+        },
+        "e12_summary_T1_bh_count_real": 101
+      }
+    },
+    "batch_flag": {
+      "k562": null,
+      "norman": false,
+      "rpe1": null
+    },
+    "verdict": {
+      "verdict": "S3",
+      "rule": "(i)",
+      "text": "S3, mixed: a decision dataset used the X row-sum depth fallback",
+      "per_dataset": {
+        "k562": {
+          "fallback": true,
+          "meets_ii": false,
+          "meets_iii": false
+        },
+        "norman": {
+          "fallback": false,
+          "meets_ii": false,
+          "meets_iii": true
+        }
+      }
+    },
+    "prediction": {
+      "k562_R3_retains_ge_70": true,
+      "norman_R3_retains_ge_30": true,
+      "k562_median_pc1_share_lt_05": true
+    },
+    "missing_inputs": [],
+    "input_results_sha256": {
+      "k562_seed0_d10.json": "4ec11042fc45541b5b303464ab2273782d4db511704156908c618a40474f8a3b",
+      "norman_seed0_d10.json": "3375d1d0cf27c754165f673d6c0c09052249793ce7eb958a910d8b80d8efc0bf",
+      "rpe1_seed0_d10.json": "04e5046009eb7377e259120f82fdbf989b3703de643a0855e62c8c07a6aca061"
+    }
+  },
+  "results_sha256": "379661f2121bd5c1740c90aaad9ccf2fff821be2eb6ed4943496528b4fd5718c",
+  "meta": {
+    "seconds": 0.03,
+    "provenance": {
+      "code_commit": "b92121cf42c0fa31697d8f684e430af8b779d347",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "364f37e5006bbda5382257e5d3afc539e5e92049b6517efdf328cee1c1f0b1ff",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e12b_confound_check.py": "f849c2f4416e445d508c58eff1f6f32022ffb5f726b2adfa973ec9b3a2bf0d2e"
+      },
+      "numpy_version": "1.24.4",
+      "python_version": "3.10.12",
+      "host": "dgxanode02"
+    }
+  }
+}

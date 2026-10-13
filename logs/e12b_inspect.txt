@@ -1,0 +1,140 @@
+{
+ "k562": {
+  "obs_columns": [
+   "guide_ids"
+  ],
+  "layers": [],
+  "X_type": "csr_matrix",
+  "X_dtype": "float32",
+  "X_shape": [
+   240148,
+   1158
+  ],
+  "X_integer_check": {
+   "n_checked": 1000,
+   "all_integer": false,
+   "min": 0.2541956901550293,
+   "max": 4.7923173904418945
+  },
+  "X_verdict": "not raw counts (non-integer entries)",
+  "X_rowsum_200": {
+   "min": 702.0767211914062,
+   "median": 944.9353637695312,
+   "max": 1090.0806884765625
+  },
+  "layer_checks": {},
+  "raw": null,
+  "count_columns_named": [],
+  "count_columns_similar": [],
+  "count_columns_usable": [],
+  "batch_column": null,
+  "depth_source": "X row sum (fallback, not library size)",
+  "depth_fallback": true,
+  "depth_transform": "log(v)"
+ }
+}
+{
+ "norman": {
+  "obs_columns": [
+   "guide_identity",
+   "read_count",
+   "UMI_count",
+   "gemgroup",
+   "good_coverage",
+   "number_of_cells",
+   "guide_ids",
+   "guide_merged",
+   "split",
+   "batch",
+   "condition",
+   "cell_type",
+   "dose_val",
+   "control",
+   "drug_dose_name",
+   "cov_drug_dose_name"
+  ],
+  "layers": [
+   "counts"
+  ],
+  "X_type": "csr_matrix",
+  "X_dtype": "float32",
+  "X_shape": [
+   108497,
+   5000
+  ],
+  "X_integer_check": {
+   "n_checked": 1000,
+   "all_integer": false,
+   "min": 0.2884019613265991,
+   "max": 6.094223499298096
+  },
+  "X_verdict": "not raw counts (non-integer entries)",
+  "X_rowsum_200": {
+   "min": 459.3290100097656,
+   "median": 574.4459838867188,
+   "max": 696.9637451171875
+  },
+  "layer_checks": {
+   "counts": {
+    "dtype": "float32",
+    "full_gene": false,
+    "integer_check": {
+     "n_checked": 1000,
+     "all_integer": true,
+     "min": 1.0,
+     "max": 497.0
+    }
+   }
+  },
+  "raw": null,
+  "count_columns_named": [
+   "UMI_count"
+  ],
+  "count_columns_similar": [
+   "read_count"
+  ],
+  "count_columns_usable": [
+   "UMI_count",
+   "read_count"
+  ],
+  "batch_column": "gemgroup",
+  "depth_source": "obs[UMI_count]",
+  "depth_fallback": false,
+  "depth_transform": "log(v)"
+ }
+}
+{
+ "rpe1": {
+  "obs_columns": [
+   "guide_ids"
+  ],
+  "layers": [],
+  "X_type": "csr_matrix",
+  "X_dtype": "float32",
+  "X_shape": [
+   139825,
+   651
+  ],
+  "X_integer_check": {
+   "n_checked": 1000,
+   "all_integer": false,
+   "min": 0.25432270765304565,
+   "max": 5.298464775085449
+  },
+  "X_verdict": "not raw counts (non-integer entries)",
+  "X_rowsum_200": {
+   "min": 261.2718200683594,
+   "median": 402.9747314453125,
+   "max": 460.907470703125
+  },
+  "layer_checks": {},
+  "raw": null,
+  "count_columns_named": [],
+  "count_columns_similar": [],
+  "count_columns_usable": [],
+  "batch_column": null,
+  "depth_source": "X row sum (fallback, not library size)",
+  "depth_fallback": true,
+  "depth_transform": "log(v)"
+ }
+}
