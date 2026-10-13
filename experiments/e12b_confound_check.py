@@ -19,6 +19,12 @@ Readouts per environment and fake: R1 depth_diff, R3 T1_depthreg (k=10), R4 T1_n
 (k=11), R2 pc1_share and the marginal diff_1^2 / S_11 (pooled), R5 batch TVD of the
 environment's cells against the full REF composition (null when there is no batch column).
 
+E12c (notes/e12c_deviation.md, post hoc correction for Norman): --depth-source
+counts_layer_rowsum takes depth = log(row sum of layers["counts"]) instead of the
+automatic choice, stops if the median BASIS row sum is below 500, records the BASIS
+row-sum distribution and corr(depth, log obs["UMI_count"]) in BASIS cells, and writes
+under results/e12c_norman_depth/. --depth-source auto (default) is the E12b behaviour.
+
 Modes: --dataset (one run), --smoke (10 envs + 10 fakes, B=199, results/e12b_confound/
 smoke/), --aggregate (summary.json, verdict computed), --inspect (Step 0 h5ad report
 only), --selftest (synthetic, code path only), --oracles (Step 3 self-checks).
@@ -49,6 +55,9 @@ import e12_standard_tests as S  # noqa: E402
 
 T2 = E.T2
 OUT_ROOT = E.REPO / "results" / "e12b_confound"
+E12C_ROOT = E.REPO / "results" / "e12c_norman_depth"
+DEPTH_SOURCES = ("auto", "counts_layer_rowsum")
+COUNTS_MIN_MEDIAN = 500
 E12_ROOT = E.REPO / "results" / "e12_standard_tests"
 DATASETS = ("k562", "norman", "rpe1")
 DECISION = ("k562", "norman")
@@ -83,8 +92,13 @@ def _row_sums(M):
     return np.asarray(M.sum(1), dtype=np.float64).ravel()
 
 
-def inspect_h5ad(key):
-    """Step 0(b) report plus per-cell depth and batch, aligned to obs order."""
+def inspect_h5ad(key, depth_source="auto"):
+    """Step 0(b) report plus per-cell depth and batch, aligned to obs order.
+
+    depth_source="counts_layer_rowsum" (E12c) also returns the per-cell counts-layer row
+    sums and obs["UMI_count"] as a fifth value; with "auto" that value is None."""
+    if depth_source not in DEPTH_SOURCES:
+        raise ValueError(f"depth_source must be one of {DEPTH_SOURCES}, got {depth_source!r}")
     import anndata as ad
     from pandas.api.types import is_numeric_dtype
 
@@ -122,7 +136,19 @@ def inspect_h5ad(key):
     info.update(count_columns_named=named, count_columns_similar=similar, count_columns_usable=usable)
     batch_col = next((lower[n] for n in BATCH_COLUMNS if n in lower), None)
     info["batch_column"] = batch_col
-    if usable:
+    extra = None
+    if depth_source == "counts_layer_rowsum":
+        if "counts" not in A.layers:
+            raise SystemExit(f"STOP: {key} has no layers['counts'] (layers: {list(A.layers.keys())})")
+        counts = A.layers["counts"]
+        lib = _row_sums(counts)
+        if np.min(lib) <= 0:
+            raise SystemExit(f"STOP: {key} layers['counts'] has {int(np.sum(lib <= 0))} cells "
+                             f"with row sum <= 0")
+        source, fallback = f"layers[counts] row sum ({counts.shape[1]} genes)", False
+        umi = np.asarray(obs["UMI_count"], dtype=np.float64) if "UMI_count" in obs.columns else None
+        extra = dict(lib=lib, umi_obs=umi)
+    elif usable:
         lib, source, fallback = np.asarray(obs[usable[0]], dtype=np.float64), f"obs[{usable[0]}]", False
     elif raw_full:
         lib, source, fallback = _row_sums(raw.X), "raw.X row sum (full-gene)", False
@@ -136,15 +162,18 @@ def inspect_h5ad(key):
     batch = obs[batch_col].astype(str).values if batch_col else None
     info.update(depth_source=source, depth_fallback=fallback, depth_transform=transform)
     del A
-    return info, g, depth, batch
+    return info, g, depth, batch, extra
 
 
-def depth_inputs(panel, info, g, depth, batch, ctrl):
+def depth_inputs(panel, info, g, depth, batch, ctrl, extra=None):
     """Per-cell depth and batch in the panel's row order (load_panel's masks)."""
     mask = g == ctrl
     assert mask.sum() == len(panel["Xc"]), "control count differs from load_panel"
     out = dict(depth_ctrl=depth[mask], depth_env={}, batch_ctrl=None if batch is None else batch[mask],
                batch_env=None if batch is None else {}, info=info)
+    if extra is not None:
+        out["lib_ctrl"] = extra["lib"][mask]
+        out["umi_obs_ctrl"] = None if extra["umi_obs"] is None else extra["umi_obs"][mask]
     for label, X in zip(panel["perts"], panel["Xperts"]):
         m = g == label
         assert m.sum() == len(X), f"{label}: cell count differs from load_panel"
@@ -228,6 +257,21 @@ def prepare(panel, dep, seed, B, d, smoke):
     d_basis = dep["depth_ctrl"][basis]
     beta, dbar = fit_depth_beta(Y_basis, d_basis)
     corr = float(np.corrcoef(Y_basis[:, 0], d_basis)[0, 1])
+    override = {}
+    if "lib_ctrl" in dep:
+        lib_b = dep["lib_ctrl"][basis]
+        dist = dict(min=float(lib_b.min()), median=float(np.median(lib_b)), max=float(lib_b.max()))
+        print(f"[depth] counts-layer row sum in BASIS cells: min={dist['min']:.0f} "
+              f"median={dist['median']:.0f} max={dist['max']:.0f}", flush=True)
+        if dist["median"] < COUNTS_MIN_MEDIAN:
+            raise SystemExit(f"STOP: median BASIS counts-layer row sum {dist['median']:.1f} < "
+                             f"{COUNTS_MIN_MEDIAN} (min {dist['min']:.1f}, max {dist['max']:.1f})")
+        umi = dep["umi_obs_ctrl"]
+        umi_b = None if umi is None else umi[basis]
+        corr_umi = (float(np.corrcoef(d_basis, np.log(umi_b))[0, 1])
+                    if umi_b is not None and np.all(umi_b > 0) else None)
+        print(f"[depth] corr(depth_counts, log UMI_count_obs) in BASIS cells: {corr_umi}", flush=True)
+        override = dict(depth_counts_basis=dist, corr_depth_counts_log_umi_obs_basis=corr_umi)
     d_pool = dep["depth_ctrl"][fake_pool]
     b_ref = None
     if dep["batch_ctrl"] is not None:
@@ -247,7 +291,7 @@ def prepare(panel, dep, seed, B, d, smoke):
     shared = dict(shared, B=B, depth_ref=dep["depth_ctrl"][ref], beta=beta, dbar=dbar,
                   batch_ref=b_ref, depth_source=dep["info"]["depth_source"])
     basis_info = dict(corr_pc1_depth_basis=corr, beta=beta.tolist(), basis_depth_mean=dbar,
-                      n_basis=int(len(basis)))
+                      n_basis=int(len(basis)), **override)
     return tasks, shared, design, basis_info
 
 
@@ -369,11 +413,14 @@ def verdict(blocks):
     return out
 
 
-def aggregate(root, seed=0, d=10):
+def aggregate(root, seed=0, d=10, k562_from=None):
+    """k562_from (E12c): load K562 from that folder and the other datasets from root."""
     root = Path(root)
-    blocks, missing, inputs = {}, [], {}
+    blocks, missing, inputs, sources = {}, [], {}, {}
     for ds in DATASETS:
-        path = root / f"{ds}_seed{seed}_d{d}.json"
+        src = Path(k562_from) if (k562_from and ds == "k562") else root
+        path = src / f"{ds}_seed{seed}_d{d}.json"
+        sources[ds] = str(src)
         if not path.exists():
             missing.append(path.name)
             continue
@@ -381,7 +428,7 @@ def aggregate(root, seed=0, d=10):
         inputs[path.name] = doc["results_sha256"]
         blocks[ds] = dataset_block(doc["results"])
         e12_sum = E12_ROOT / "summary.json"
-        if e12_sum.exists() and root.resolve() == OUT_ROOT.resolve():
+        if e12_sum.exists() and src.resolve() in (OUT_ROOT.resolve(), E12C_ROOT.resolve()):
             stored = json.loads(e12_sum.read_text())["results"]["perturbseq"][ds][f"d{d}"]["tests"]["T1"]
             blocks[ds]["e12_summary_T1_bh_count_real"] = stored["per_seed"][str(seed)]["bh_count_real"]
     k, n = blocks.get("k562"), blocks.get("norman")
@@ -394,6 +441,10 @@ def aggregate(root, seed=0, d=10):
                    batch_flag={ds: b["batch_exposed"] for ds, b in blocks.items()},
                    verdict=verdict(blocks), prediction=pred, missing_inputs=missing,
                    input_results_sha256=inputs)
+    if k562_from:
+        results["dataset_sources"] = sources
+        results["prediction_e12c"] = dict(
+            norman_R3_retains_ge_70=None if n is None or n["retain_R3"] is None else n["retain_R3"] >= 0.70)
     return json.loads(json.dumps(results))
 
 
@@ -512,6 +563,12 @@ def oracles():
 
 
 # ------------------------------------------------------------------ main
+def out_path(dataset, seed, d, smoke, depth_source="auto"):
+    """auto keeps the E12b paths; the E12c override writes under results/e12c_norman_depth/."""
+    base = OUT_ROOT if depth_source == "auto" else E12C_ROOT
+    return (base / "smoke" if smoke else base) / f"{dataset}_seed{seed}_d{d}.json"
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dataset", choices=DATASETS)
@@ -521,6 +578,10 @@ def main():
     ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--aggregate", action="store_true")
+    ap.add_argument("--depth-source", choices=DEPTH_SOURCES, default="auto",
+                    help="auto = E12b behaviour; counts_layer_rowsum = E12c Norman override")
+    ap.add_argument("--root", default=str(OUT_ROOT), help="--aggregate input and output folder")
+    ap.add_argument("--k562-from", default=None, help="--aggregate: load K562 from this folder")
     ap.add_argument("--inspect", action="store_true", help="print the Step 0 h5ad report only")
     ap.add_argument("--selftest", action="store_true", help="synthetic panel, code path only")
     ap.add_argument("--oracles", action="store_true", help="Step 3 self-checks")
@@ -537,12 +598,17 @@ def main():
         return
     if args.aggregate:
         t0 = time.time()
-        results = aggregate(OUT_ROOT, args.seed, args.d)
+        results = aggregate(args.root, args.seed, args.d, k562_from=args.k562_from)
         doc = dict(results=results, results_sha256=E.sha256_json(results), meta=dict(
             seconds=round(time.time() - t0, 3), provenance=T2.provenance(__file__)))
-        T2.write_json(OUT_ROOT / "summary.json", doc)
+        T2.write_json(Path(args.root) / "summary.json", doc)
         print(json.dumps(dict(verdict=results["verdict"], batch_flag=results["batch_flag"],
                               prediction=results["prediction"], missing=results["missing_inputs"]), indent=1))
+        nb = results["datasets"].get("norman")
+        if nb is not None:
+            nv = results["verdict"].get("per_dataset", {}).get("norman", {})
+            print(f"norman: depth={nb['depth_source']} meets_ii={nv.get('meets_ii')} "
+                  f"meets_iii={nv.get('meets_iii')} retain_R3={nb['retain_R3']}")
         return
     if args.selftest:
         for ds, doc in _synthetic_runs(args.workers, datasets=(args.dataset or "k562",),
@@ -554,19 +620,19 @@ def main():
         ap.error("--dataset is required (or use --aggregate)")
     if args.inspect:
         for ds in datasets:
-            info = inspect_h5ad(ds)[0]
+            info = inspect_h5ad(ds, args.depth_source)[0]
             print(json.dumps({ds: info}, indent=1), flush=True)
         return
     ds = args.dataset
-    info, g, depth, batch = inspect_h5ad(ds)
+    info, g, depth, batch, extra = inspect_h5ad(ds, args.depth_source)
     print(json.dumps({ds: info}), flush=True)
     panel = E.load_panel_full(ds)
-    dep = depth_inputs(panel, info, g, depth, batch, T2.DATASETS[ds]["ctrl"])
-    del g, depth, batch
+    dep = depth_inputs(panel, info, g, depth, batch, T2.DATASETS[ds]["ctrl"], extra)
+    del g, depth, batch, extra
     e12 = json.loads((E12_ROOT / ds / f"seed{args.seed}_d{args.d}.json").read_text())["results"]
     B = SMOKE_B if args.smoke else args.B
     doc = run(panel, dep, ds, args.seed, B, args.d, args.smoke, args.workers, e12)
-    path = (OUT_ROOT / "smoke" if args.smoke else OUT_ROOT) / f"{ds}_seed{args.seed}_d{args.d}.json"
+    path = out_path(ds, args.seed, args.d, args.smoke, args.depth_source)
     T2.write_json(path, doc)
     r = doc["results"]
     print(f"[{ds}] depth={r['depth_source']} batch={r['batch_column']} corr(PC1,depth)="
