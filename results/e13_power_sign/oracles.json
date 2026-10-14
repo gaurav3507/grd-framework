@@ -1,0 +1,190 @@
+{
+  "results": {
+    "experiment": "E13 self-checks",
+    "alpha": 0.05,
+    "checks": {
+      "step0c_selftest": {
+        "ref_heldout_equal": true,
+        "n_fakes_checked": 50,
+        "fakes_equal": true,
+        "passed": true
+      },
+      "step0d_selftest": {
+        "envs": [
+          {
+            "label": "SELFTEST_K562_00",
+            "target_corrected": true,
+            "own_max_abs_diff": 0.0
+          },
+          {
+            "label": "SELFTEST_K562_01",
+            "target_corrected": false,
+            "own_max_abs_diff": 0.0
+          },
+          {
+            "label": "SELFTEST_K562_02",
+            "target_corrected": true,
+            "own_max_abs_diff": 0.0
+          },
+          {
+            "label": "SELFTEST_K562_03",
+            "target_corrected": false,
+            "own_max_abs_diff": 0.0
+          },
+          {
+            "label": "SELFTEST_K562_04",
+            "target_corrected": true,
+            "own_max_abs_diff": 0.0
+          }
+        ],
+        "max_abs_diff": 0.0,
+        "tol": 1e-08,
+        "compared_to_stored": false,
+        "passed": true
+      },
+      "identity_updown_vs_roy": {
+        "n": 20,
+        "max_abs_diff": 0.0,
+        "passed": true
+      },
+      "decision_rules": {
+        "R": {
+          "R1": "R1",
+          "R2": "R2",
+          "R-dir": "R-dir",
+          "R3": "R3"
+        },
+        "S": {
+          "up 30 vs 10": true,
+          "up 30 vs 11": false,
+          "up 9 vs 0": false,
+          "up, down fakes 4": false,
+          "down 15 vs 5": true,
+          "down 15 vs 5, up fakes 4": false
+        },
+        "passed": true
+      },
+      "planting": {
+        "cov_max_rel_err": 0.0011801409004263963,
+        "mean_max_rel_err": 0.01269907936768111,
+        "a4_counts": {
+          "pi=0.3,delta=0.5": {
+            "changed": 1500,
+            "expected": 1500
+          },
+          "pi=0.3,delta=1.0": {
+            "changed": 1500,
+            "expected": 1500
+          },
+          "pi=0.3,delta=2.0": {
+            "changed": 1500,
+            "expected": 1500
+          },
+          "pi=0.6,delta=0.5": {
+            "changed": 3000,
+            "expected": 3000
+          },
+          "pi=0.6,delta=1.0": {
+            "changed": 3000,
+            "expected": 3000
+          },
+          "pi=0.6,delta=2.0": {
+            "changed": 3000,
+            "expected": 3000
+          }
+        },
+        "passed": true
+      },
+      "power_isotropic": {
+        "rates": {
+          "A1_v05_PC1": {
+            "T0h": 1.0
+          },
+          "A2_v3_random": {
+            "T2": 1.0,
+            "T0h": 0.04
+          },
+          "A3_delta04_random": {
+            "T1": 0.94,
+            "T0h": 0.08
+          }
+        },
+        "criterion": "A1 v=0.5 PC1 T0h >= 0.9; A2 v=3 T2 >= 0.9, T0h <= 0.15; A3 delta=0.4 T1 >= 0.85, T0h <= 0.15 (alpha=0.05, n_e=300, REF 3000, B=199, 100 reps)",
+        "passed": true
+      },
+      "calibration_A0": {
+        "rates": {
+          "T0h": 0.07,
+          "T0m": 0.04666666666666667,
+          "T1": 0.04666666666666667,
+          "T2": 0.05333333333333334,
+          "T3": 0.056666666666666664
+        },
+        "criterion": "every test in [0.02, 0.09] (300 reps)",
+        "passed": true
+      },
+      "anisotropic_recorded": {
+        "rates": {
+          "A1_v05_PC1": 0.04,
+          "A1_v05_PC5": 0.21,
+          "A1_v05_PC10": 1.0,
+          "A1_v05_random (whitened)": 0.26
+        },
+        "spectrum": "geomspace(20, 1, 10)",
+        "gated": false,
+        "passed": true
+      },
+      "determinism_selftest": {
+        "hashes": {
+          "1": [
+            "2dfdc7b79f01035294def0248636eb44400d44862be7f9744f073a7d19ec581e",
+            "e7161386ec658d6a3b7f9b7c5f834c028b6b33bad91793018030988f57083ca0"
+          ],
+          "4": [
+            "2dfdc7b79f01035294def0248636eb44400d44862be7f9744f073a7d19ec581e",
+            "e7161386ec658d6a3b7f9b7c5f834c028b6b33bad91793018030988f57083ca0"
+          ]
+        },
+        "passed": true
+      },
+      "files": {
+        "files": {
+          "experiments/e13_power_sign.py": {
+            "sha256": "03caaff3389e4dcb9d9b82abfd9fbadda6ad9c98c203bc712f4af7bf2b84bb58",
+            "lines": 745,
+            "dash_count": 0,
+            "py_compile": "ok",
+            "grep_back": true
+          },
+          "notes/e13_prereg.md": {
+            "sha256": "f49d54127c62912e9a88cc7d3f03ebeab56cd103c700891ba4e73f81093c5526",
+            "lines": 78,
+            "dash_count": 0
+          }
+        },
+        "passed": true
+      }
+    },
+    "all_pass": true
+  },
+  "results_sha256": "e956aa72caf1df38423333fa05dd6095d0289da1c9428cb2ac170c44195515d0",
+  "meta": {
+    "seconds": 90.9,
+    "provenance": {
+      "code_commit": "bdff9fe3a0e03aa06e032eb11fccdcf5bcecc225",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "364f37e5006bbda5382257e5d3afc539e5e92049b6517efdf328cee1c1f0b1ff",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e13_power_sign.py": "03caaff3389e4dcb9d9b82abfd9fbadda6ad9c98c203bc712f4af7bf2b84bb58",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850"
+      },
+      "numpy_version": "2.0.2",
+      "python_version": "3.9.6",
+      "host": "GAURAVs-MacBook-Air-2.local"
+    }
+  }
+}
