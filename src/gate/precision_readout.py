@@ -55,7 +55,7 @@ from pathlib import Path
 import numpy as np
 
 
-READOUTS = ("precision", "frobenius", "covariance")
+READOUTS = ("precision", "frobenius", "covariance", "geneig", "energy")
 _RANK_READOUT = None
 
 
@@ -105,6 +105,49 @@ def covariance_signal(Y_env, Y_obs):
     return float(np.max(np.linalg.eigvalsh(-delta)))
 
 
+def geneig_signal(Y_env, Y_obs):
+    """Affine-invariant two-sided covariance change: max_i |log lambda_i| over the
+    generalised eigenvalues of cov(Y_env) v = lambda cov(Y_obs) v (scipy.linalg.eigh
+    with b=cov(Y_obs)). Invariant to any common invertible linear map of Y. Responds
+    to variance increases and decreases alike (contrast precision_signal, one-sided).
+    """
+    import scipy.linalg
+    Se = np.cov(np.asarray(Y_env), rowvar=False)
+    S0 = np.cov(np.asarray(Y_obs), rowvar=False)
+    lam = scipy.linalg.eigh(Se, S0, eigvals_only=True)
+    if not np.all(np.isfinite(lam)) or np.any(lam <= 0):
+        return float("nan")  # caller checks; never raise inside a null loop
+    return float(np.max(np.abs(np.log(lam))))
+
+
+ENERGY_MAX_ROWS = 1000
+
+
+def energy_signal(Y_env, Y_obs):
+    """Multivariate energy distance 2 E|X-Y| - E|X-X'| - E|Y-Y'| (Szekely and Rizzo),
+    Euclidean, V-statistic form. Each side is reduced to at most ENERGY_MAX_ROWS rows
+    by an evenly strided index (np.linspace), not a prefix, so callers whose row order
+    carries structure are not silently prefix-sampled. The null draws call this
+    function on resampled rows, so the same reduction applies to them. Bounds the
+    O(n^2) pairwise cost.
+    """
+    from scipy.spatial.distance import cdist
+
+    def _reduce(A):
+        A = np.asarray(A)
+        n = A.shape[0]
+        if n <= ENERGY_MAX_ROWS:
+            return A
+        idx = np.linspace(0, n - 1, ENERGY_MAX_ROWS).round().astype(int)
+        return A[idx]
+
+    X, Y = _reduce(Y_env), _reduce(Y_obs)
+    exy = cdist(X, Y).mean()
+    exx = cdist(X, X).mean()
+    eyy = cdist(Y, Y).mean()
+    return float(2.0 * exy - exx - eyy)
+
+
 def _signal_fn(readout):
     if readout == "precision":
         return precision_signal
@@ -112,6 +155,10 @@ def _signal_fn(readout):
         return frobenius_signal
     if readout == "covariance":
         return covariance_signal
+    if readout == "geneig":
+        return geneig_signal
+    if readout == "energy":
+        return energy_signal
     raise ValueError(f"readout must be one of {READOUTS}, got {readout!r}")
 
 
