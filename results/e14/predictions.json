@@ -1,0 +1,104 @@
+{
+  "prereg": "notes/e14_prereg.md",
+  "predictions": {
+    "H1": {
+      "aurc_G8_ABD": 0.03440130763618407,
+      "aurc_G2_ABD": 0.01100319540219561,
+      "threshold": "|AURC(G8) - AURC(G2)| <= 0.02 on ABD",
+      "held": false
+    },
+    "H2": {
+      "matched_G8_C": null,
+      "matched_G2_C": 0.1595744680851064,
+      "threshold": "matched risk(G8) < matched risk(G2) - 0.02 on C",
+      "held": null,
+      "note": "undefined input: matched_G8_C"
+    },
+    "H3": {
+      "coverage_G9_ABD": 0.6907692307692308,
+      "coverage_G2_ABD": 0.8046153846153846,
+      "matched_G9_ABD": 0.03178358208959715,
+      "matched_G2_ABD": 0.0019120458891179806,
+      "coverage_G9_C": 0.548,
+      "coverage_G2_C": 0.752,
+      "matched_G9_C": 0.15613160808999244,
+      "matched_G2_C": 0.1595744680851064,
+      "threshold": "coverage(G9, q=0.05) >= coverage(G2, q=0.05) and matched risk(G9) >= matched risk(G2), on ABD and on C",
+      "held": false
+    },
+    "H4": {
+      "matched_G5_ABD": 0.0007910349373886214,
+      "matched_G2_ABD": 0.0019120458891179806,
+      "threshold": "matched risk(G5) <= matched risk(G2) + 0.02 on ABD",
+      "held": true,
+      "info_risk_G2_q05_ABD": 0.0019120458891013384
+    },
+    "K1": {
+      "G0-G2_aurc": 0.04899680459780439,
+      "G0-G2_halfwidth": 0.019559264728781854,
+      "G0-G5_aurc": 0.055613495439883816,
+      "G0-G5_halfwidth": 0.022499738493456815,
+      "G0-G8_aurc": 0.025598692363815928,
+      "G0-G8_halfwidth": 0.012545232257939985,
+      "G0-G9_aurc": 0.03679177320186069,
+      "G0-G9_halfwidth": 0.01564670197112481,
+      "threshold": "on ABD, AURC(G0) - AURC(g) <= half-width of its 95% interval for every g in (G2, G5, G8, G9); true means no gate beats certify-all",
+      "triggered": false
+    },
+    "K2": {
+      "matched_G9_ABD": 0.03178358208959715,
+      "matched_G2_ABD": 0.0019120458891179806,
+      "matched_G9_C": 0.15613160808999244,
+      "matched_G2_C": 0.1595744680851064,
+      "threshold": "matched risk(G9) <= matched risk(G2) on both ABD and C",
+      "triggered": false
+    },
+    "K3": {
+      "matched_G8_C": null,
+      "matched_G2_C": 0.1595744680851064,
+      "ci_G8_minus_G2_C_lo": null,
+      "ci_G8_minus_G2_C_hi": null,
+      "aurc_G8_ABD": 0.03440130763618407,
+      "aurc_G2_ABD": 0.01100319540219561,
+      "threshold": "on C, matched risk(G8) < matched risk(G2) - 0.02 with the 95% interval of (G8 - G2) excluding 0, and on ABD AURC(G8) <= AURC(G2) + 0.02",
+      "triggered": null,
+      "note": "undefined input: matched_G8_C, ci_G8_minus_G2_C_lo, ci_G8_minus_G2_C_hi"
+    }
+  },
+  "caveat": {
+    "text": "Every synthetic unit uses the historical two-bootstrap null (n_env equals n_obs in all arms), which resamples rows with replacement while the observed statistic uses distinct rows. This inflates every readout's null at small n, and precision most (reviewer check at n=20: 95% null quantile ratio two-bootstrap/independent is about 1.99 precision, 1.13 geneig, 1.18 energy). Coverage at q=0.05 for G2, G8 and G9 is reported separately at arm B levels 20 and 40, and H3 is not over-read there.",
+    "coverage_q05": {
+      "B_level20": {
+        "G2": 0.12,
+        "G8": 0.92,
+        "G9": 0.0
+      },
+      "B_level40": {
+        "G2": 0.74,
+        "G8": 1.0,
+        "G9": 0.1
+      }
+    }
+  },
+  "units_sha256": "dfbaf5cb6c47c6ea12eea7bad8e8eafd7e7af5ed599927fa038d1b6163094ca1",
+  "provenance": {
+    "code_commit": "2cb9e58495e00cb9e6f328e7fc2c6893766ff0af",
+    "versions": {
+      "python": "3.9.6",
+      "numpy": "2.0.2",
+      "scipy": "1.13.1",
+      "sklearn": "1.6.1",
+      "matplotlib": "3.9.4"
+    },
+    "wall_seconds": null,
+    "e10_units_sha256": "1ed80331cd5b50aacf7fa58d8f8e308bed170b4aeb846f76f164fd82717e98f6",
+    "sha256": {
+      "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+      "experiments/e14_matched_coverage.py": "a550a237cfdd70d477df8d989e1af867a14d8128da605a79b47d5c641ff0f149",
+      "experiments/e10_risk_coverage.py": "6a9c2d86f868047bace9657c04f55d5acc9622e627b2dfacedafb564c9e2a012",
+      "experiments/e2_calibration.py": "dfb7b245eb5b51b30a545729e28e3d0abe10332212de9f29eff2e6293fe83cc7",
+      "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7"
+    },
+    "precision_readout_note": "src/gate/precision_readout.py differs from the hash pinned in the E10/E11 provenance because of the additive geneig and energy readouts (E14 step 1); no existing branch, constant or draw order changed"
+  }
+}
