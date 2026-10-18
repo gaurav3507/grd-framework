@@ -1,0 +1,3762 @@
+{
+  "results": {
+    "experiment": "E12b",
+    "prereg": "notes/e12b_prereg.md",
+    "dataset": "norman",
+    "seed": 0,
+    "d": 10,
+    "B": 9999,
+    "smoke": false,
+    "alpha": 0.05,
+    "q": 0.05,
+    "inspection": {
+      "obs_columns": [
+        "guide_identity",
+        "read_count",
+        "UMI_count",
+        "gemgroup",
+        "good_coverage",
+        "number_of_cells",
+        "guide_ids",
+        "guide_merged",
+        "split",
+        "batch",
+        "condition",
+        "cell_type",
+        "dose_val",
+        "control",
+        "drug_dose_name",
+        "cov_drug_dose_name"
+      ],
+      "layers": [
+        "counts",
+        null
+      ],
+      "X_type": "csr_matrix",
+      "X_dtype": "float32",
+      "X_shape": [
+        108497,
+        5000
+      ],
+      "X_integer_check": {
+        "n_checked": 1000,
+        "all_integer": false,
+        "min": 0.2884019613265991,
+        "max": 6.094223499298096
+      },
+      "X_verdict": "not raw counts (non-integer entries)",
+      "X_rowsum_200": {
+        "min": 459.3290100097656,
+        "median": 574.4459838867188,
+        "max": 696.9637451171875
+      },
+      "layer_checks": {
+        "counts": {
+          "dtype": "float32",
+          "full_gene": false,
+          "integer_check": {
+            "n_checked": 1000,
+            "all_integer": true,
+            "min": 1.0,
+            "max": 497.0
+          }
+        },
+        "None": {
+          "dtype": "float32",
+          "full_gene": false,
+          "integer_check": {
+            "n_checked": 1000,
+            "all_integer": false,
+            "min": 0.26929813623428345,
+            "max": 5.427628517150879
+          }
+        }
+      },
+      "raw": null,
+      "count_columns_named": [
+        "UMI_count"
+      ],
+      "count_columns_similar": [
+        "read_count"
+      ],
+      "count_columns_usable": [
+        "UMI_count",
+        "read_count"
+      ],
+      "batch_column": "gemgroup",
+      "depth_source": "layers[counts] row sum (5000 genes)",
+      "depth_fallback": false,
+      "depth_transform": "log(v)"
+    },
+    "depth_source": "layers[counts] row sum (5000 genes)",
+    "depth_fallback": false,
+    "depth_transform": "log(v)",
+    "batch_column": "gemgroup",
+    "excluded": [
+      "KLF1"
+    ],
+    "fake_n": 516,
+    "n_ref": 3562,
+    "corr_pc1_depth_basis": -0.47249335157047334,
+    "beta": [
+      -3.1214409664296037,
+      -0.6086098893632271,
+      1.9043464842852886,
+      -0.6970419217077088,
+      0.16042405106610827,
+      0.7117890489003252,
+      0.13358874098088094,
+      -0.3531414602156216,
+      -0.33252374362088305,
+      -0.5476976674178252
+    ],
+    "basis_depth_mean": 8.153696685527649,
+    "n_basis": 2672,
+    "depth_counts_basis": {
+      "min": 792.0,
+      "median": 3547.0,
+      "max": 9945.0
+    },
+    "corr_depth_counts_log_umi_obs_basis": 0.3175810522506301,
+    "r4_decision_relevant": false,
+    "reproduction": {
+      "gate_n": 5,
+      "gate_max_abs_diff": 1.3642420526593924e-12,
+      "all_n": 150,
+      "all_max_abs_diff": 3.865352482534945e-12,
+      "tol": 1e-08
+    },
+    "rng": "SeedSequence([seed, i, k]); k 1 REF draw and 3 T1 (E12), 10 R3, 11 R4; fakes i = 100000 + f",
+    "environments": [
+      {
+        "label": "AHR",
+        "index": 0,
+        "is_fake": false,
+        "n_e": 558,
+        "target_corrected": true,
+        "T1_e12": 431.775887781647,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.23641574949005761,
+        "T1_depthreg": {
+          "stat": 551.0261622957511,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 427.42277372392437,
+          "p": 0.0001
+        },
+        "pc1_share": 0.010081883173439344,
+        "pc1_marginal": 0.09780105454690988,
+        "batch_tvd": 0.06067430202113508,
+        "T1_e12_stored": 431.7758877816482,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1937117960769683e-12
+      },
+      {
+        "label": "ARID1A",
+        "index": 1,
+        "is_fake": false,
+        "n_e": 232,
+        "target_corrected": false,
+        "T1_e12": 224.74225572530563,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.26448768190647254,
+        "T1_depthreg": {
+          "stat": 216.29458256118073,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 207.1524999778831,
+          "p": 0.0001
+        },
+        "pc1_share": 0.07826634866974834,
+        "pc1_marginal": 0.5921021451900114,
+        "batch_tvd": 0.07577349029022828,
+        "T1_e12_stored": 224.74225572530537,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.5579538487363607e-13
+      },
+      {
+        "label": "ARRDC3",
+        "index": 2,
+        "is_fake": false,
+        "n_e": 495,
+        "target_corrected": true,
+        "T1_e12": 102.50578927877314,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.10044506118722296,
+        "T1_depthreg": {
+          "stat": 104.17744336367528,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 81.46479039477913,
+          "p": 0.0001
+        },
+        "pc1_share": 0.20526644428610014,
+        "pc1_marginal": 0.1260810746817564,
+        "batch_tvd": 0.038147902381479026,
+        "T1_e12_stored": 102.5057892787732,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.684341886080802e-14
+      },
+      {
+        "label": "ATL1",
+        "index": 3,
+        "is_fake": false,
+        "n_e": 379,
+        "target_corrected": false,
+        "T1_e12": 771.720994467208,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.19951420335620096,
+        "T1_depthreg": {
+          "stat": 771.6101023569178,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 765.3544021104622,
+          "p": 0.0001
+        },
+        "pc1_share": 0.008249862842128995,
+        "pc1_marginal": 0.4034612608875431,
+        "batch_tvd": 0.08940383615383135,
+        "T1_e12_stored": 771.7209944672094,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.3642420526593924e-12
+      },
+      {
+        "label": "BAK1",
+        "index": 4,
+        "is_fake": false,
+        "n_e": 1457,
+        "target_corrected": false,
+        "T1_e12": 41.58160298673775,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.015550893737339422,
+        "T1_depthreg": {
+          "stat": 42.74001612040462,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 32.82305179416948,
+          "p": 0.0003
+        },
+        "pc1_share": 0.21063524644208081,
+        "pc1_marginal": 0.015538302359384167,
+        "batch_tvd": 0.045233045989524906,
+        "T1_e12_stored": 41.581602986737934,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.8474111129762605e-13
+      },
+      {
+        "label": "BCL2L11",
+        "index": 5,
+        "is_fake": false,
+        "n_e": 582,
+        "target_corrected": true,
+        "T1_e12": 40.832459537805924,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.02953151671392895,
+        "T1_depthreg": {
+          "stat": 39.99243467384205,
+          "p": 0.0002
+        },
+        "T1_noPC1": {
+          "stat": 38.12458594670525,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06631669073457375,
+        "pc1_marginal": 0.005822738183742792,
+        "batch_tvd": 0.03230356319377314,
+        "T1_e12_stored": 40.83245953780591,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.4210854715202004e-14
+      },
+      {
+        "label": "BCORL1",
+        "index": 6,
+        "is_fake": false,
+        "n_e": 533,
+        "target_corrected": false,
+        "T1_e12": 67.206196967329,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.09484796702903076,
+        "T1_depthreg": {
+          "stat": 58.82983853933435,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 66.85789320133702,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0051826138318956955,
+        "pc1_marginal": 0.00739703325753528,
+        "batch_tvd": 0.04809575327645472,
+        "T1_e12_stored": 67.20619696732908,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 7.105427357601002e-14
+      },
+      {
+        "label": "BPGM",
+        "index": 7,
+        "is_fake": false,
+        "n_e": 464,
+        "target_corrected": true,
+        "T1_e12": 739.6469841564317,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.12179645282735052,
+        "T1_depthreg": {
+          "stat": 724.9050978746639,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 710.8586913633509,
+          "p": 0.0001
+        },
+        "pc1_share": 0.038921665888915775,
+        "pc1_marginal": 0.07701937574130156,
+        "batch_tvd": 0.046951538267923865,
+        "T1_e12_stored": 739.6469841564308,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 9.094947017729282e-13
+      },
+      {
+        "label": "C19orf26",
+        "index": 8,
+        "is_fake": false,
+        "n_e": 872,
+        "target_corrected": false,
+        "T1_e12": 569.8050791929752,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.05766522561928156,
+        "T1_depthreg": {
+          "stat": 561.404290875033,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 569.8031918932153,
+          "p": 0.0001
+        },
+        "pc1_share": 3.3121848660732465e-06,
+        "pc1_marginal": 0.0018874060306136888,
+        "batch_tvd": 0.03707199851645039,
+        "T1_e12_stored": 569.8050791929763,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1368683772161603e-12
+      },
+      {
+        "label": "C3orf72",
+        "index": 9,
+        "is_fake": false,
+        "n_e": 264,
+        "target_corrected": false,
+        "T1_e12": 215.44359541383108,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.22388892953832595,
+        "T1_depthreg": {
+          "stat": 208.98633875325612,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 193.38037661513835,
+          "p": 0.0001
+        },
+        "pc1_share": 0.10240832992186646,
+        "pc1_marginal": 0.4954419316822591,
+        "batch_tvd": 0.06194596158099807,
+        "T1_e12_stored": 215.44359541383142,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.410605131648481e-13
+      },
+      {
+        "label": "CBFA2T3",
+        "index": 10,
+        "is_fake": false,
+        "n_e": 658,
+        "target_corrected": false,
+        "T1_e12": 443.4773237576678,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.09139589209971177,
+        "T1_depthreg": {
+          "stat": 437.15006587242095,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 401.4779607767941,
+          "p": 0.0001
+        },
+        "pc1_share": 0.09470464605722147,
+        "pc1_marginal": 0.20287815945951151,
+        "batch_tvd": 0.03497318025971543,
+        "T1_e12_stored": 443.4773237576678,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 0.0
+      },
+      {
+        "label": "CBL",
+        "index": 11,
+        "is_fake": false,
+        "n_e": 663,
+        "target_corrected": false,
+        "T1_e12": 630.8374785766181,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.06934029465551994,
+        "T1_depthreg": {
+          "stat": 626.5715688314492,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 594.2343909929348,
+          "p": 0.0001
+        },
+        "pc1_share": 0.05802300723519504,
+        "pc1_marginal": 0.1444172953672222,
+        "batch_tvd": 0.03454767645407405,
+        "T1_e12_stored": 630.8374785766187,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.684341886080801e-13
+      },
+      {
+        "label": "CDKN1A",
+        "index": 12,
+        "is_fake": false,
+        "n_e": 360,
+        "target_corrected": true,
+        "T1_e12": 313.66215398115065,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.10127990905719919,
+        "T1_depthreg": {
+          "stat": 349.0007497482942,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 277.0241792012396,
+          "p": 0.0001
+        },
+        "pc1_share": 0.11680712612243559,
+        "pc1_marginal": 0.6878001564614513,
+        "batch_tvd": 0.04719258843346434,
+        "T1_e12_stored": 313.6621539811516,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 9.663381206337363e-13
+      },
+      {
+        "label": "CDKN1B",
+        "index": 13,
+        "is_fake": false,
+        "n_e": 550,
+        "target_corrected": false,
+        "T1_e12": 301.1026408746775,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.04553196305217888,
+        "T1_depthreg": {
+          "stat": 329.70922917977424,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 264.5085727159378,
+          "p": 0.0001
+        },
+        "pc1_share": 0.12153353438693539,
+        "pc1_marginal": 0.5226647484015807,
+        "batch_tvd": 0.05444847123679241,
+        "T1_e12_stored": 301.1026408746777,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.2737367544323206e-13
+      },
+      {
+        "label": "CDKN1C",
+        "index": 14,
+        "is_fake": false,
+        "n_e": 230,
+        "target_corrected": true,
+        "T1_e12": 190.805004665783,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.06088892799623302,
+        "T1_depthreg": {
+          "stat": 190.805951195289,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 162.90518780938223,
+          "p": 0.0001
+        },
+        "pc1_share": 0.1462216198430986,
+        "pc1_marginal": 0.8232078051510121,
+        "batch_tvd": 0.07980128408563827,
+        "T1_e12_stored": 190.80500466578323,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.2737367544323206e-13
+      },
+      {
+        "label": "CEBPA",
+        "index": 15,
+        "is_fake": false,
+        "n_e": 460,
+        "target_corrected": true,
+        "T1_e12": 824.5891024827047,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.40664920828184137,
+        "T1_depthreg": {
+          "stat": 824.5930911917671,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 820.834915707529,
+          "p": 0.0001
+        },
+        "pc1_share": 0.004552796979577331,
+        "pc1_marginal": 1.0335645174290384,
+        "batch_tvd": 0.09049996338158825,
+        "T1_e12_stored": 824.5891024827017,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.9558577807620168e-12
+      },
+      {
+        "label": "CEBPB",
+        "index": 16,
+        "is_fake": false,
+        "n_e": 488,
+        "target_corrected": true,
+        "T1_e12": 683.9956477560673,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.21376080323107338,
+        "T1_depthreg": {
+          "stat": 711.007068759561,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 663.3124576986846,
+          "p": 0.0001
+        },
+        "pc1_share": 0.030238774362434162,
+        "pc1_marginal": 0.6198114606409326,
+        "batch_tvd": 0.06776217081948802,
+        "T1_e12_stored": 683.9956477560658,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.5916157281026244e-12
+      },
+      {
+        "label": "CEBPE",
+        "index": 17,
+        "is_fake": false,
+        "n_e": 1233,
+        "target_corrected": true,
+        "T1_e12": 1770.2442380837736,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.20491714852226472,
+        "T1_depthreg": {
+          "stat": 1789.7220620563314,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1760.2634161502824,
+          "p": 0.0001
+        },
+        "pc1_share": 0.005638104459695928,
+        "pc1_marginal": 0.6155549526837218,
+        "batch_tvd": 0.02841724374571092,
+        "T1_e12_stored": 1770.2442380837754,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.8189894035458565e-12
+      },
+      {
+        "label": "CELF2",
+        "index": 18,
+        "is_fake": false,
+        "n_e": 475,
+        "target_corrected": false,
+        "T1_e12": 148.564529488832,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.010534857080891413,
+        "T1_depthreg": {
+          "stat": 147.0424037141067,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 145.4594495812103,
+          "p": 0.0001
+        },
+        "pc1_share": 0.020900546841869934,
+        "pc1_marginal": 0.05986207036832615,
+        "batch_tvd": 0.06492922367682259,
+        "T1_e12_stored": 148.56452948883208,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-14
+      },
+      {
+        "label": "CITED1",
+        "index": 19,
+        "is_fake": false,
+        "n_e": 215,
+        "target_corrected": true,
+        "T1_e12": 150.28919467020947,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.04726496134986746,
+        "T1_depthreg": {
+          "stat": 150.40809223316998,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 130.82210358591578,
+          "p": 0.0001
+        },
+        "pc1_share": 0.129530876301598,
+        "pc1_marginal": 0.4759966843485202,
+        "batch_tvd": 0.055262917357638136,
+        "T1_e12_stored": 150.28919467020953,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.684341886080802e-14
+      },
+      {
+        "label": "CKS1B",
+        "index": 20,
+        "is_fake": false,
+        "n_e": 241,
+        "target_corrected": true,
+        "T1_e12": 248.49489417860707,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.1910893546381942,
+        "T1_depthreg": {
+          "stat": 238.70974533757604,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 219.6484994083891,
+          "p": 0.0001
+        },
+        "pc1_share": 0.11608445664676093,
+        "pc1_marginal": 0.39442076420110544,
+        "batch_tvd": 0.06489780322957173,
+        "T1_e12_stored": 248.49489417860664,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.263256414560601e-13
+      },
+      {
+        "label": "CLDN6",
+        "index": 21,
+        "is_fake": false,
+        "n_e": 670,
+        "target_corrected": true,
+        "T1_e12": 1220.5158003026693,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.03160250760112859,
+        "T1_depthreg": {
+          "stat": 1248.230780676948,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1180.8215416113612,
+          "p": 0.0001
+        },
+        "pc1_share": 0.03252252750965164,
+        "pc1_marginal": 0.4768927164350941,
+        "batch_tvd": 0.028684203910263405,
+        "T1_e12_stored": 1220.5158003026665,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.7284841053187847e-12
+      },
+      {
+        "label": "CNN1",
+        "index": 22,
+        "is_fake": false,
+        "n_e": 765,
+        "target_corrected": true,
+        "T1_e12": 1191.4513960040335,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.061499563858742334,
+        "T1_depthreg": {
+          "stat": 1184.855843513201,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1167.4037788497365,
+          "p": 0.0001
+        },
+        "pc1_share": 0.02018346466750514,
+        "pc1_marginal": 0.08847660677728994,
+        "batch_tvd": 0.02886679657826073,
+        "T1_e12_stored": 1191.451396004037,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.410605131648481e-12
+      },
+      {
+        "label": "CNNM4",
+        "index": 23,
+        "is_fake": false,
+        "n_e": 470,
+        "target_corrected": false,
+        "T1_e12": 291.0387786569971,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.08236746263700212,
+        "T1_depthreg": {
+          "stat": 284.7042850914454,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 286.2066959231362,
+          "p": 0.0001
+        },
+        "pc1_share": 0.01660288280537275,
+        "pc1_marginal": 0.024314062778679472,
+        "batch_tvd": 0.04536060305589736,
+        "T1_e12_stored": 291.0387786569983,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1937117960769683e-12
+      },
+      {
+        "label": "COL1A1",
+        "index": 24,
+        "is_fake": false,
+        "n_e": 328,
+        "target_corrected": true,
+        "T1_e12": 398.40289662495906,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.14594848175966568,
+        "T1_depthreg": {
+          "stat": 406.9674552259914,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 398.2865293566776,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0002920843931288194,
+        "pc1_marginal": 0.20682492823472465,
+        "batch_tvd": 0.07015618794593337,
+        "T1_e12_stored": 398.40289662495843,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 6.252776074688882e-13
+      },
+      {
+        "label": "COL2A1",
+        "index": 25,
+        "is_fake": false,
+        "n_e": 598,
+        "target_corrected": true,
+        "T1_e12": 660.7863786174322,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.004769027824012895,
+        "T1_depthreg": {
+          "stat": 649.2986087582043,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 650.9583935816157,
+          "p": 0.0001
+        },
+        "pc1_share": 0.014873165297958535,
+        "pc1_marginal": 0.010768166050576778,
+        "batch_tvd": 0.047616141395893825,
+        "T1_e12_stored": 660.7863786174319,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.410605131648481e-13
+      },
+      {
+        "label": "CSRNP1",
+        "index": 26,
+        "is_fake": false,
+        "n_e": 478,
+        "target_corrected": true,
+        "T1_e12": 186.63028541117205,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.10324073556701663,
+        "T1_depthreg": {
+          "stat": 246.2405414178166,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 186.62987073946573,
+          "p": 0.0001
+        },
+        "pc1_share": 2.221888614755155e-06,
+        "pc1_marginal": 0.004188272883534345,
+        "batch_tvd": 0.07595164204210414,
+        "T1_e12_stored": 186.63028541117205,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 0.0
+      },
+      {
+        "label": "DLX2",
+        "index": 27,
+        "is_fake": false,
+        "n_e": 732,
+        "target_corrected": true,
+        "T1_e12": 506.83369950212307,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.15287286101554365,
+        "T1_depthreg": {
+          "stat": 485.53099678973336,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 440.28293376284284,
+          "p": 0.0001
+        },
+        "pc1_share": 0.13130690758064215,
+        "pc1_marginal": 0.3767525380458115,
+        "batch_tvd": 0.05032707111802481,
+        "T1_e12_stored": 506.8336995021258,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.7284841053187847e-12
+      },
+      {
+        "label": "DUSP9",
+        "index": 28,
+        "is_fake": false,
+        "n_e": 731,
+        "target_corrected": true,
+        "T1_e12": 2294.413476751513,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.23864299071239348,
+        "T1_depthreg": {
+          "stat": 2253.4353719932296,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 2242.320189446671,
+          "p": 0.0001
+        },
+        "pc1_share": 0.022704402599045406,
+        "pc1_marginal": 0.16647458819532224,
+        "batch_tvd": 0.04289233288604215,
+        "T1_e12_stored": 2294.4134767515116,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.3642420526593924e-12
+      },
+      {
+        "label": "EGR1",
+        "index": 29,
+        "is_fake": false,
+        "n_e": 322,
+        "target_corrected": true,
+        "T1_e12": 235.0663044220979,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.04645027058142226,
+        "T1_depthreg": {
+          "stat": 234.53052160344004,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 224.95064169615833,
+          "p": 0.0001
+        },
+        "pc1_share": 0.043033231627172396,
+        "pc1_marginal": 0.08991826343694637,
+        "batch_tvd": 0.039828625833068856,
+        "T1_e12_stored": 235.06630442209723,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 6.536993168992922e-13
+      },
+      {
+        "label": "ELMSAN1",
+        "index": 30,
+        "is_fake": false,
+        "n_e": 937,
+        "target_corrected": false,
+        "T1_e12": 351.43413452604096,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.11317278947693588,
+        "T1_depthreg": {
+          "stat": 350.28938127416615,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 312.8521998691272,
+          "p": 0.0001
+        },
+        "pc1_share": 0.10978425504667322,
+        "pc1_marginal": 0.11660590078217814,
+        "batch_tvd": 0.03338872253485595,
+        "T1_e12_stored": 351.4341345260414,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.547473508864641e-13
+      },
+      {
+        "label": "ETS2",
+        "index": 31,
+        "is_fake": false,
+        "n_e": 1201,
+        "target_corrected": true,
+        "T1_e12": 1576.886712599182,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.13264271204136158,
+        "T1_depthreg": {
+          "stat": 1590.5749497456914,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1552.9317152514689,
+          "p": 0.0001
+        },
+        "pc1_share": 0.015191324244357443,
+        "pc1_marginal": 0.02495492103884194,
+        "batch_tvd": 0.04555580437600896,
+        "T1_e12_stored": 1576.886712599183,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1368683772161603e-12
+      },
+      {
+        "label": "FEV",
+        "index": 32,
+        "is_fake": false,
+        "n_e": 704,
+        "target_corrected": true,
+        "T1_e12": 1400.2503148824492,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.18760596637651528,
+        "T1_depthreg": {
+          "stat": 1435.091484394571,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1395.4553753966602,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0034243445152815463,
+        "pc1_marginal": 0.01735493203359179,
+        "batch_tvd": 0.05582521948854066,
+        "T1_e12_stored": 1400.2503148824512,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.0463630789890885e-12
+      },
+      {
+        "label": "FOSB",
+        "index": 33,
+        "is_fake": false,
+        "n_e": 630,
+        "target_corrected": true,
+        "T1_e12": 355.1769375829187,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.05358887775354759,
+        "T1_depthreg": {
+          "stat": 374.1200793109838,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 353.2159836881459,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0055210620039624235,
+        "pc1_marginal": 0.029092315449207602,
+        "batch_tvd": 0.06230403821644699,
+        "T1_e12_stored": 355.17693758291955,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-13
+      },
+      {
+        "label": "FOXA1",
+        "index": 34,
+        "is_fake": false,
+        "n_e": 851,
+        "target_corrected": true,
+        "T1_e12": 421.96984344743174,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.1367559663188942,
+        "T1_depthreg": {
+          "stat": 382.28302256135817,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 395.2468210556816,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06332922318198608,
+        "pc1_marginal": 0.12061000490125354,
+        "batch_tvd": 0.04078367359865298,
+        "T1_e12_stored": 421.9698434474338,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.0463630789890885e-12
+      },
+      {
+        "label": "FOXA3",
+        "index": 35,
+        "is_fake": false,
+        "n_e": 494,
+        "target_corrected": true,
+        "T1_e12": 299.26472881149436,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.14338157983962674,
+        "T1_depthreg": {
+          "stat": 278.6846210209838,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 251.0055061316173,
+          "p": 0.0001
+        },
+        "pc1_share": 0.16125930667317417,
+        "pc1_marginal": 0.3380005161856521,
+        "batch_tvd": 0.04425367179881204,
+        "T1_e12_stored": 299.2647288114948,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.547473508864641e-13
+      },
+      {
+        "label": "FOXF1",
+        "index": 36,
+        "is_fake": false,
+        "n_e": 874,
+        "target_corrected": true,
+        "T1_e12": 201.064223271106,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.06927830359218312,
+        "T1_depthreg": {
+          "stat": 194.14319488205786,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 195.00172417373835,
+          "p": 0.0001
+        },
+        "pc1_share": 0.03015205290497272,
+        "pc1_marginal": 0.046830666221585986,
+        "batch_tvd": 0.037397034808048873,
+        "T1_e12_stored": 201.0642232711064,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.263256414560601e-13
+      },
+      {
+        "label": "FOXL2",
+        "index": 37,
+        "is_fake": false,
+        "n_e": 652,
+        "target_corrected": true,
+        "T1_e12": 394.9560957707742,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.1979768365395218,
+        "T1_depthreg": {
+          "stat": 385.2099505872953,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 364.5163257479827,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0770712753866653,
+        "pc1_marginal": 0.26156742127645133,
+        "batch_tvd": 0.048866184641564156,
+        "T1_e12_stored": 394.9560957707764,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.2168933355715126e-12
+      },
+      {
+        "label": "FOXO4",
+        "index": 38,
+        "is_fake": false,
+        "n_e": 215,
+        "target_corrected": false,
+        "T1_e12": 216.25986727996897,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.16341005411356058,
+        "T1_depthreg": {
+          "stat": 212.2834120389674,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 206.15280127766522,
+          "p": 0.0001
+        },
+        "pc1_share": 0.046735744960109474,
+        "pc1_marginal": 0.6287901262300286,
+        "batch_tvd": 0.07799511640964707,
+        "T1_e12_stored": 216.25986727996957,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.968558980384842e-13
+      },
+      {
+        "label": "GLB1L2",
+        "index": 39,
+        "is_fake": false,
+        "n_e": 463,
+        "target_corrected": false,
+        "T1_e12": 134.12992032526535,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.013563084266790426,
+        "T1_depthreg": {
+          "stat": 135.07609590173632,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 109.7668364803475,
+          "p": 0.0001
+        },
+        "pc1_share": 0.1816379506215863,
+        "pc1_marginal": 0.19339293727916815,
+        "batch_tvd": 0.05362701809234262,
+        "T1_e12_stored": 134.1299203252652,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.4210854715202004e-13
+      },
+      {
+        "label": "HK2",
+        "index": 40,
+        "is_fake": false,
+        "n_e": 303,
+        "target_corrected": false,
+        "T1_e12": 88.93000823435142,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.16428328762637356,
+        "T1_depthreg": {
+          "stat": 74.83096818497694,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 72.25901861973489,
+          "p": 0.0001
+        },
+        "pc1_share": 0.18746191466309736,
+        "pc1_marginal": 0.10017376888212456,
+        "batch_tvd": 0.0746002449767717,
+        "T1_e12_stored": 88.9300082343515,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-14
+      },
+      {
+        "label": "HNF4A",
+        "index": 41,
+        "is_fake": false,
+        "n_e": 237,
+        "target_corrected": true,
+        "T1_e12": 245.56817630491003,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.149779928333178,
+        "T1_depthreg": {
+          "stat": 239.4186410359584,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 210.16075967542054,
+          "p": 0.0001
+        },
+        "pc1_share": 0.14418568872509696,
+        "pc1_marginal": 0.8972956268920123,
+        "batch_tvd": 0.034389014847298144,
+        "T1_e12_stored": 245.56817630491034,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.126388037344441e-13
+      },
+      {
+        "label": "HOXA13",
+        "index": 42,
+        "is_fake": false,
+        "n_e": 274,
+        "target_corrected": true,
+        "T1_e12": 535.286966784159,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.2529096703632243,
+        "T1_depthreg": {
+          "stat": 530.9307202467459,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 500.68682508558084,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06463849083874623,
+        "pc1_marginal": 0.938350178220351,
+        "batch_tvd": 0.13250982594048288,
+        "T1_e12_stored": 535.2869667841596,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 6.821210263296962e-13
+      },
+      {
+        "label": "HOXB9",
+        "index": 43,
+        "is_fake": false,
+        "n_e": 701,
+        "target_corrected": true,
+        "T1_e12": 335.65886076125923,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.17732922866880063,
+        "T1_depthreg": {
+          "stat": 340.7638855664436,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 306.529727772403,
+          "p": 0.0001
+        },
+        "pc1_share": 0.08678195749932728,
+        "pc1_marginal": 0.2104612764076332,
+        "batch_tvd": 0.04766071730366744,
+        "T1_e12_stored": 335.6588607612585,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 7.389644451905042e-13
+      },
+      {
+        "label": "HOXC13",
+        "index": 44,
+        "is_fake": false,
+        "n_e": 385,
+        "target_corrected": true,
+        "T1_e12": 503.31990450000984,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.2479046708135355,
+        "T1_depthreg": {
+          "stat": 495.1933128505745,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 457.1754300112871,
+          "p": 0.0001
+        },
+        "pc1_share": 0.09168020989466316,
+        "pc1_marginal": 0.6728045742498353,
+        "batch_tvd": 0.06757111501637048,
+        "T1_e12_stored": 503.31990450000984,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 0.0
+      },
+      {
+        "label": "IER5L",
+        "index": 45,
+        "is_fake": false,
+        "n_e": 405,
+        "target_corrected": true,
+        "T1_e12": 538.4616642390125,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.08568638555968278,
+        "T1_depthreg": {
+          "stat": 527.9538316487527,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 501.1517774868509,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06928977349741372,
+        "pc1_marginal": 0.32443591655028964,
+        "batch_tvd": 0.06918987113634316,
+        "T1_e12_stored": 538.461664239012,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.684341886080801e-13
+      },
+      {
+        "label": "IGDCC3",
+        "index": 46,
+        "is_fake": false,
+        "n_e": 613,
+        "target_corrected": true,
+        "T1_e12": 861.2241582820641,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.04320477522973043,
+        "T1_depthreg": {
+          "stat": 862.1445574424033,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 794.7219859350629,
+          "p": 0.0001
+        },
+        "pc1_share": 0.07721819192770567,
+        "pc1_marginal": 0.3829593203242509,
+        "batch_tvd": 0.04722863138457142,
+        "T1_e12_stored": 861.2241582820624,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.7053025658242404e-12
+      },
+      {
+        "label": "IKZF3",
+        "index": 47,
+        "is_fake": false,
+        "n_e": 681,
+        "target_corrected": false,
+        "T1_e12": 1834.6323990047708,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.1273276724777439,
+        "T1_depthreg": {
+          "stat": 1827.4169087144344,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1809.7071866684857,
+          "p": 0.0001
+        },
+        "pc1_share": 0.013585943619989603,
+        "pc1_marginal": 0.4852143847893161,
+        "batch_tvd": 0.04599661461618439,
+        "T1_e12_stored": 1834.632399004767,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.865352482534945e-12
+      },
+      {
+        "label": "IRF1",
+        "index": 48,
+        "is_fake": false,
+        "n_e": 427,
+        "target_corrected": true,
+        "T1_e12": 214.55826563711963,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.06187056662476742,
+        "T1_depthreg": {
+          "stat": 203.35724469228109,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 213.90181884557103,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0030595269289641147,
+        "pc1_marginal": 0.06032164178459969,
+        "batch_tvd": 0.055239603043839014,
+        "T1_e12_stored": 214.55826563711975,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1368683772161603e-13
+      },
+      {
+        "label": "ISL2",
+        "index": 49,
+        "is_fake": false,
+        "n_e": 582,
+        "target_corrected": false,
+        "T1_e12": 162.48229942734383,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.06674783860720801,
+        "T1_depthreg": {
+          "stat": 165.67474528806437,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 161.19119362861565,
+          "p": 0.0001
+        },
+        "pc1_share": 0.007946131998861313,
+        "pc1_marginal": 0.006779608046516154,
+        "batch_tvd": 0.0394118135106923,
+        "T1_e12_stored": 162.48229942734358,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.5579538487363607e-13
+      },
+      {
+        "label": "JUN",
+        "index": 50,
+        "is_fake": false,
+        "n_e": 266,
+        "target_corrected": true,
+        "T1_e12": 154.19256407943115,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.2137028500997724,
+        "T1_depthreg": {
+          "stat": 155.6093918225266,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 128.11098389813867,
+          "p": 0.0001
+        },
+        "pc1_share": 0.16914940313111823,
+        "pc1_marginal": 0.3520776090272593,
+        "batch_tvd": 0.0936556720267823,
+        "T1_e12_stored": 154.1925640794307,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.547473508864641e-13
+      },
+      {
+        "label": "KIAA1804",
+        "index": 51,
+        "is_fake": false,
+        "n_e": 278,
+        "target_corrected": false,
+        "T1_e12": 100.4291682507741,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.01982103720316175,
+        "T1_depthreg": {
+          "stat": 101.14070146752533,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 99.07700234752083,
+          "p": 0.0001
+        },
+        "pc1_share": 0.013463876349915334,
+        "pc1_marginal": 0.0520619161284143,
+        "batch_tvd": 0.06663865987501968,
+        "T1_e12_stored": 100.42916825077394,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.5631940186722204e-13
+      },
+      {
+        "label": "KIF18B",
+        "index": 52,
+        "is_fake": false,
+        "n_e": 254,
+        "target_corrected": false,
+        "T1_e12": 63.1872566465122,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.039728777055918485,
+        "T1_depthreg": {
+          "stat": 60.9143340507089,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 50.52415733047568,
+          "p": 0.0001
+        },
+        "pc1_share": 0.200405904419582,
+        "pc1_marginal": 0.10433496382403962,
+        "batch_tvd": 0.08995654038472592,
+        "T1_e12_stored": 63.18725664651241,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.0605739337042905e-13
+      },
+      {
+        "label": "KIF2C",
+        "index": 53,
+        "is_fake": false,
+        "n_e": 634,
+        "target_corrected": true,
+        "T1_e12": 57.97491438085108,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.04152703038371719,
+        "T1_depthreg": {
+          "stat": 57.84172253939767,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 46.83975239061278,
+          "p": 0.0001
+        },
+        "pc1_share": 0.19206862328573285,
+        "pc1_marginal": 0.051650065168514774,
+        "batch_tvd": 0.03823482005111793,
+        "T1_e12_stored": 57.97491438085118,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 9.947598300641403e-14
+      },
+      {
+        "label": "KMT2A",
+        "index": 55,
+        "is_fake": false,
+        "n_e": 241,
+        "target_corrected": false,
+        "T1_e12": 72.96582972420573,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.11463063281832753,
+        "T1_depthreg": {
+          "stat": 65.62753344253251,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 64.33356962882482,
+          "p": 0.0001
+        },
+        "pc1_share": 0.11830551544481707,
+        "pc1_marginal": 0.10702123775112202,
+        "batch_tvd": 0.07020043287723574,
+        "T1_e12_stored": 72.96582972420589,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.5631940186722204e-13
+      },
+      {
+        "label": "LHX1",
+        "index": 56,
+        "is_fake": false,
+        "n_e": 375,
+        "target_corrected": true,
+        "T1_e12": 182.05531139998106,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.2355995410195515,
+        "T1_depthreg": {
+          "stat": 218.73764230963428,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 176.02425620334347,
+          "p": 0.0001
+        },
+        "pc1_share": 0.03312759814728604,
+        "pc1_marginal": 0.09034855715779326,
+        "batch_tvd": 0.08975407074677147,
+        "T1_e12_stored": 182.05531139998124,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.7053025658242404e-13
+      },
+      {
+        "label": "LYL1",
+        "index": 57,
+        "is_fake": false,
+        "n_e": 432,
+        "target_corrected": true,
+        "T1_e12": 161.40263581024928,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.07544715611044417,
+        "T1_depthreg": {
+          "stat": 148.5060718334012,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 126.81520473386668,
+          "p": 0.0001
+        },
+        "pc1_share": 0.2142928515556885,
+        "pc1_marginal": 0.14052510676648497,
+        "batch_tvd": 0.08390001455694887,
+        "T1_e12_stored": 161.4026358102492,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-14
+      },
+      {
+        "label": "MAML2",
+        "index": 58,
+        "is_fake": false,
+        "n_e": 626,
+        "target_corrected": false,
+        "T1_e12": 131.04683770241206,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.037584031242737126,
+        "T1_depthreg": {
+          "stat": 132.461868492266,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 122.79638759230718,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06295802519737582,
+        "pc1_marginal": 0.03086628213810978,
+        "batch_tvd": 0.059549414928254066,
+        "T1_e12_stored": 131.04683770241198,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-14
+      },
+      {
+        "label": "MAP2K3",
+        "index": 59,
+        "is_fake": false,
+        "n_e": 579,
+        "target_corrected": false,
+        "T1_e12": 203.6413903059561,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.16345766584059618,
+        "T1_depthreg": {
+          "stat": 207.18712625251584,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 157.22111496403238,
+          "p": 0.0001
+        },
+        "pc1_share": 0.2279510824011793,
+        "pc1_marginal": 0.25919468219118874,
+        "batch_tvd": 0.04635477730292602,
+        "T1_e12_stored": 203.64139030595643,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.410605131648481e-13
+      },
+      {
+        "label": "MAP2K6",
+        "index": 60,
+        "is_fake": false,
+        "n_e": 878,
+        "target_corrected": false,
+        "T1_e12": 148.61339073030646,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.11694856107572704,
+        "T1_depthreg": {
+          "stat": 132.86625352665686,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 78.61505483319256,
+          "p": 0.0001
+        },
+        "pc1_share": 0.47100961463252095,
+        "pc1_marginal": 0.17493788176933953,
+        "batch_tvd": 0.06450267887176586,
+        "T1_e12_stored": 148.61339073030663,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.7053025658242404e-13
+      },
+      {
+        "label": "MAP4K3",
+        "index": 61,
+        "is_fake": false,
+        "n_e": 363,
+        "target_corrected": false,
+        "T1_e12": 47.03900356944395,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.023613903546534587,
+        "T1_depthreg": {
+          "stat": 48.175235036311655,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 39.75117573650296,
+          "p": 0.0002
+        },
+        "pc1_share": 0.15493159463256762,
+        "pc1_marginal": 0.04818771327362701,
+        "batch_tvd": 0.07411257179007677,
+        "T1_e12_stored": 47.03900356944397,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.1316282072803006e-14
+      },
+      {
+        "label": "MAP4K5",
+        "index": 62,
+        "is_fake": false,
+        "n_e": 366,
+        "target_corrected": false,
+        "T1_e12": 116.36485624582002,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.07820002560916173,
+        "T1_depthreg": {
+          "stat": 111.83208349985692,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 112.39688727477164,
+          "p": 0.0001
+        },
+        "pc1_share": 0.034099375868828205,
+        "pc1_marginal": 0.04148031748622114,
+        "batch_tvd": 0.08782749299681214,
+        "T1_e12_stored": 116.36485624582018,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.5631940186722204e-13
+      },
+      {
+        "label": "MAP7D1",
+        "index": 63,
+        "is_fake": false,
+        "n_e": 751,
+        "target_corrected": true,
+        "T1_e12": 101.5060602146602,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.029580798374469808,
+        "T1_depthreg": {
+          "stat": 97.73969737079646,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 57.34523834592589,
+          "p": 0.0001
+        },
+        "pc1_share": 0.4350560131616289,
+        "pc1_marginal": 0.1057146091862535,
+        "batch_tvd": 0.05161001875844373,
+        "T1_e12_stored": 101.50606021466044,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.4158453015843406e-13
+      },
+      {
+        "label": "MAPK1",
+        "index": 64,
+        "is_fake": false,
+        "n_e": 765,
+        "target_corrected": false,
+        "T1_e12": 1485.8597531021278,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.12475886491496446,
+        "T1_depthreg": {
+          "stat": 1503.1958602799357,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1456.855417012527,
+          "p": 0.0001
+        },
+        "pc1_share": 0.019520238050089594,
+        "pc1_marginal": 0.07916393425884632,
+        "batch_tvd": 0.05962648581798433,
+        "T1_e12_stored": 1485.8597531021287,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 9.094947017729282e-13
+      },
+      {
+        "label": "MEIS1",
+        "index": 65,
+        "is_fake": false,
+        "n_e": 776,
+        "target_corrected": true,
+        "T1_e12": 252.16335002960122,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0991104638278415,
+        "T1_depthreg": {
+          "stat": 256.22090658609534,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 248.1961299517668,
+          "p": 0.0001
+        },
+        "pc1_share": 0.01573273862902243,
+        "pc1_marginal": 0.018576357663789938,
+        "batch_tvd": 0.04814059632894761,
+        "T1_e12_stored": 252.16335002960096,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.5579538487363607e-13
+      },
+      {
+        "label": "MIDN",
+        "index": 66,
+        "is_fake": false,
+        "n_e": 298,
+        "target_corrected": true,
+        "T1_e12": 262.29992454241284,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.17641073051229483,
+        "T1_depthreg": {
+          "stat": 255.67692329110685,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 240.42463474701407,
+          "p": 0.0001
+        },
+        "pc1_share": 0.08339800262451705,
+        "pc1_marginal": 0.4132882460947346,
+        "batch_tvd": 0.08805663057855288,
+        "T1_e12_stored": 262.29992454241346,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 6.252776074688882e-13
+      },
+      {
+        "label": "NCL",
+        "index": 67,
+        "is_fake": false,
+        "n_e": 237,
+        "target_corrected": true,
+        "T1_e12": 55.353670769627584,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.1564515846698562,
+        "T1_depthreg": {
+          "stat": 35.49615363442758,
+          "p": 0.0003
+        },
+        "T1_noPC1": {
+          "stat": 47.70704693447879,
+          "p": 0.0001
+        },
+        "pc1_share": 0.13814122403864998,
+        "pc1_marginal": 0.06840925597965636,
+        "batch_tvd": 0.07975181060277614,
+        "T1_e12_stored": 55.3536707696278,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.1316282072803006e-13
+      },
+      {
+        "label": "OSR2",
+        "index": 68,
+        "is_fake": false,
+        "n_e": 1003,
+        "target_corrected": true,
+        "T1_e12": 1055.450510422004,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.06799912016276899,
+        "T1_depthreg": {
+          "stat": 1051.7585046319398,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1026.9489747218436,
+          "p": 0.0001
+        },
+        "pc1_share": 0.02700414222999868,
+        "pc1_marginal": 0.009347604007847347,
+        "batch_tvd": 0.06073637593676021,
+        "T1_e12_stored": 1055.4505104220036,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.547473508864641e-13
+      },
+      {
+        "label": "POU3F2",
+        "index": 69,
+        "is_fake": false,
+        "n_e": 359,
+        "target_corrected": true,
+        "T1_e12": 266.71389483932523,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.16559303201842912,
+        "T1_depthreg": {
+          "stat": 263.35640862221214,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 248.2474534600564,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06923689292750745,
+        "pc1_marginal": 0.12311217107000837,
+        "batch_tvd": 0.03734561191406036,
+        "T1_e12_stored": 266.713894839325,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.2737367544323206e-13
+      },
+      {
+        "label": "PRDM1",
+        "index": 70,
+        "is_fake": false,
+        "n_e": 297,
+        "target_corrected": true,
+        "T1_e12": 785.2636926176147,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.2404790723914907,
+        "T1_depthreg": {
+          "stat": 784.9804582985798,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 779.1446575312585,
+          "p": 0.0001
+        },
+        "pc1_share": 0.007792331600049914,
+        "pc1_marginal": 0.1410331041047825,
+        "batch_tvd": 0.05105991602341967,
+        "T1_e12_stored": 785.2636926176165,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.8189894035458565e-12
+      },
+      {
+        "label": "PRTG",
+        "index": 71,
+        "is_fake": false,
+        "n_e": 685,
+        "target_corrected": true,
+        "T1_e12": 1024.7075598583904,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0799716215431836,
+        "T1_depthreg": {
+          "stat": 1017.4100486992542,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 1008.0954266765846,
+          "p": 0.0001
+        },
+        "pc1_share": 0.016211584487677167,
+        "pc1_marginal": 0.23005002555204923,
+        "batch_tvd": 0.0768107804604155,
+        "T1_e12_stored": 1024.7075598583917,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.3642420526593924e-12
+      },
+      {
+        "label": "PTPN1",
+        "index": 72,
+        "is_fake": false,
+        "n_e": 419,
+        "target_corrected": false,
+        "T1_e12": 872.580790212053,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.09505205227995006,
+        "T1_depthreg": {
+          "stat": 873.8859052422031,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 825.3262912314983,
+          "p": 0.0001
+        },
+        "pc1_share": 0.054154869681546584,
+        "pc1_marginal": 0.6394806716127791,
+        "batch_tvd": 0.0880944308726829,
+        "T1_e12_stored": 872.5807902120555,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.5011104298755527e-12
+      },
+      {
+        "label": "PTPN12",
+        "index": 73,
+        "is_fake": false,
+        "n_e": 445,
+        "target_corrected": true,
+        "T1_e12": 507.7562841217031,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.04077106628743543,
+        "T1_depthreg": {
+          "stat": 509.26280352037935,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 476.57323270443334,
+          "p": 0.0001
+        },
+        "pc1_share": 0.061413422920425294,
+        "pc1_marginal": 0.11526173985670046,
+        "batch_tvd": 0.034271240118857606,
+        "T1_e12_stored": 507.75628412170363,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.115907697472721e-13
+      },
+      {
+        "label": "PTPN13",
+        "index": 74,
+        "is_fake": false,
+        "n_e": 270,
+        "target_corrected": false,
+        "T1_e12": 88.8873487640983,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.08182072043923938,
+        "T1_depthreg": {
+          "stat": 90.62895661733981,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 87.8961947835701,
+          "p": 0.0001
+        },
+        "pc1_share": 0.01115067548204946,
+        "pc1_marginal": 0.02259995727807477,
+        "batch_tvd": 0.0733961361698588,
+        "T1_e12_stored": 88.88734876409838,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 7.105427357601002e-14
+      },
+      {
+        "label": "PTPN9",
+        "index": 75,
+        "is_fake": false,
+        "n_e": 445,
+        "target_corrected": false,
+        "T1_e12": 316.1197429979762,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.03641969965214997,
+        "T1_depthreg": {
+          "stat": 316.2816827486331,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 283.46166482095725,
+          "p": 0.0001
+        },
+        "pc1_share": 0.10330920134029085,
+        "pc1_marginal": 0.21714547054882505,
+        "batch_tvd": 0.060314556271252755,
+        "T1_e12_stored": 316.11974299797606,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1368683772161603e-13
+      },
+      {
+        "label": "RHOXF2",
+        "index": 76,
+        "is_fake": false,
+        "n_e": 328,
+        "target_corrected": false,
+        "T1_e12": 517.9886683245741,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.1556012375972795,
+        "T1_depthreg": {
+          "stat": 514.4294605201037,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 504.4185416256822,
+          "p": 0.0001
+        },
+        "pc1_share": 0.026197728886201692,
+        "pc1_marginal": 0.2725638115440493,
+        "batch_tvd": 0.07800838115062794,
+        "T1_e12_stored": 517.9886683245745,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.547473508864641e-13
+      },
+      {
+        "label": "RREB1",
+        "index": 77,
+        "is_fake": false,
+        "n_e": 331,
+        "target_corrected": false,
+        "T1_e12": 163.48083016199564,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.10567919405855619,
+        "T1_depthreg": {
+          "stat": 162.5270009773244,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 161.4452976660079,
+          "p": 0.0001
+        },
+        "pc1_share": 0.01245119989891605,
+        "pc1_marginal": 0.09143943630904725,
+        "batch_tvd": 0.06791561141352749,
+        "T1_e12_stored": 163.48083016199556,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-14
+      },
+      {
+        "label": "RUNX1T1",
+        "index": 78,
+        "is_fake": false,
+        "n_e": 779,
+        "target_corrected": true,
+        "T1_e12": 68.52133035654454,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.00624058531207794,
+        "T1_depthreg": {
+          "stat": 68.00542047813715,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 68.4665175710697,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0007999375550594814,
+        "pc1_marginal": 0.002028207757062177,
+        "batch_tvd": 0.03322476086547562,
+        "T1_e12_stored": 68.5213303565445,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 4.263256414560601e-14
+      },
+      {
+        "label": "S1PR2",
+        "index": 79,
+        "is_fake": false,
+        "n_e": 541,
+        "target_corrected": false,
+        "T1_e12": 472.87856603840385,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.08903808220248166,
+        "T1_depthreg": {
+          "stat": 479.68068550337324,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 463.0750136006328,
+          "p": 0.0001
+        },
+        "pc1_share": 0.020731648972592377,
+        "pc1_marginal": 0.06850649845300623,
+        "batch_tvd": 0.029647511574734747,
+        "T1_e12_stored": 472.87856603840356,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.8421709430404007e-13
+      },
+      {
+        "label": "SAMD1",
+        "index": 80,
+        "is_fake": false,
+        "n_e": 498,
+        "target_corrected": false,
+        "T1_e12": 554.1721171941125,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.11986334781602004,
+        "T1_depthreg": {
+          "stat": 564.1428132077731,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 554.0792201734945,
+          "p": 0.0001
+        },
+        "pc1_share": 0.00016763207266429754,
+        "pc1_marginal": 0.13559078839690972,
+        "batch_tvd": 0.03716268780906898,
+        "T1_e12_stored": 554.1721171941125,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 0.0
+      },
+      {
+        "label": "SET",
+        "index": 81,
+        "is_fake": false,
+        "n_e": 986,
+        "target_corrected": true,
+        "T1_e12": 1023.1612563802693,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.019653441713561648,
+        "T1_depthreg": {
+          "stat": 1088.483667427787,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 688.1742241592499,
+          "p": 0.0001
+        },
+        "pc1_share": 0.32740394549939617,
+        "pc1_marginal": 0.8659708711375993,
+        "batch_tvd": 0.037701316465326484,
+        "T1_e12_stored": 1023.1612563802696,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.410605131648481e-13
+      },
+      {
+        "label": "SGK1",
+        "index": 82,
+        "is_fake": false,
+        "n_e": 483,
+        "target_corrected": true,
+        "T1_e12": 578.2232899541086,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.188261631271617,
+        "T1_depthreg": {
+          "stat": 523.5693766403393,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 507.6606807609112,
+          "p": 0.0001
+        },
+        "pc1_share": 0.12203349539724993,
+        "pc1_marginal": 0.4620506042783677,
+        "batch_tvd": 0.042584306627467546,
+        "T1_e12_stored": 578.2232899541088,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.2737367544323206e-13
+      },
+      {
+        "label": "SLC38A2",
+        "index": 83,
+        "is_fake": false,
+        "n_e": 332,
+        "target_corrected": false,
+        "T1_e12": 79.88221342802635,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.012130064565885945,
+        "T1_depthreg": {
+          "stat": 84.05914684677192,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 75.62012404287445,
+          "p": 0.0001
+        },
+        "pc1_share": 0.053354673114961025,
+        "pc1_marginal": 0.035836455089557885,
+        "batch_tvd": 0.08221995224017914,
+        "T1_e12_stored": 79.88221342802642,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 7.105427357601002e-14
+      },
+      {
+        "label": "SLC4A1",
+        "index": 84,
+        "is_fake": false,
+        "n_e": 1000,
+        "target_corrected": true,
+        "T1_e12": 700.4864007689358,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.03567317381737034,
+        "T1_depthreg": {
+          "stat": 813.0867848682186,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 537.2807322108202,
+          "p": 0.0001
+        },
+        "pc1_share": 0.23298906071404377,
+        "pc1_marginal": 0.346738238042966,
+        "batch_tvd": 0.041090398652442475,
+        "T1_e12_stored": 700.486400768935,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 7.958078640513122e-13
+      },
+      {
+        "label": "SLC6A9",
+        "index": 85,
+        "is_fake": false,
+        "n_e": 558,
+        "target_corrected": false,
+        "T1_e12": 189.47225835569523,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.06921932147547416,
+        "T1_depthreg": {
+          "stat": 204.04854914744138,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 164.04310474339078,
+          "p": 0.0001
+        },
+        "pc1_share": 0.13421043182251216,
+        "pc1_marginal": 0.11066820369189419,
+        "batch_tvd": 0.05410858142197911,
+        "T1_e12_stored": 189.47225835569608,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-13
+      },
+      {
+        "label": "SNAI1",
+        "index": 86,
+        "is_fake": false,
+        "n_e": 467,
+        "target_corrected": false,
+        "T1_e12": 368.53122891443644,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.11439563291465049,
+        "T1_depthreg": {
+          "stat": 363.70207022371784,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 363.09166932996277,
+          "p": 0.0001
+        },
+        "pc1_share": 0.014760104864102569,
+        "pc1_marginal": 0.15950493709246297,
+        "batch_tvd": 0.06913566590960735,
+        "T1_e12_stored": 368.5312289144376,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1368683772161603e-12
+      },
+      {
+        "label": "SPI1",
+        "index": 87,
+        "is_fake": false,
+        "n_e": 613,
+        "target_corrected": true,
+        "T1_e12": 902.6445976721217,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.16936180141259172,
+        "T1_depthreg": {
+          "stat": 910.1596494403472,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 838.7285614209497,
+          "p": 0.0001
+        },
+        "pc1_share": 0.07080974773017909,
+        "pc1_marginal": 1.1203364812356253,
+        "batch_tvd": 0.059840000439659875,
+        "T1_e12_stored": 902.6445976721191,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.6147972675971687e-12
+      },
+      {
+        "label": "STIL",
+        "index": 88,
+        "is_fake": false,
+        "n_e": 309,
+        "target_corrected": false,
+        "T1_e12": 55.19671219856994,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.12418820881985759,
+        "T1_depthreg": {
+          "stat": 47.76786250674699,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 52.052734657125704,
+          "p": 0.0001
+        },
+        "pc1_share": 0.05695950748178244,
+        "pc1_marginal": 0.06909718238931692,
+        "batch_tvd": 0.08912941167919552,
+        "T1_e12_stored": 55.19671219857,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.684341886080802e-14
+      },
+      {
+        "label": "TBX2",
+        "index": 89,
+        "is_fake": false,
+        "n_e": 690,
+        "target_corrected": true,
+        "T1_e12": 315.7389134109688,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.030397241302855704,
+        "T1_depthreg": {
+          "stat": 313.00700574446785,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 259.0311964763857,
+          "p": 0.0001
+        },
+        "pc1_share": 0.1796031927834369,
+        "pc1_marginal": 0.19627156242213545,
+        "batch_tvd": 0.028405308855959446,
+        "T1_e12_stored": 315.7389134109695,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 6.821210263296962e-13
+      },
+      {
+        "label": "TBX3",
+        "index": 90,
+        "is_fake": false,
+        "n_e": 691,
+        "target_corrected": true,
+        "T1_e12": 292.94624399912465,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.013842090045905309,
+        "T1_depthreg": {
+          "stat": 304.02889149820044,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 224.46945142900606,
+          "p": 0.0001
+        },
+        "pc1_share": 0.23375207558668412,
+        "pc1_marginal": 0.3031129407142146,
+        "batch_tvd": 0.06504784788135903,
+        "T1_e12_stored": 292.94624399912516,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 5.115907697472721e-13
+      },
+      {
+        "label": "TGFBR2",
+        "index": 91,
+        "is_fake": false,
+        "n_e": 646,
+        "target_corrected": true,
+        "T1_e12": 109.28365922955844,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.028035998425828268,
+        "T1_depthreg": {
+          "stat": 120.58008132074752,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 108.83442578764951,
+          "p": 0.0001
+        },
+        "pc1_share": 0.004110710101363664,
+        "pc1_marginal": 0.0006018236520998004,
+        "batch_tvd": 0.039020413271842615,
+        "T1_e12_stored": 109.28365922955855,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.1368683772161603e-13
+      },
+      {
+        "label": "TMSB4X",
+        "index": 92,
+        "is_fake": false,
+        "n_e": 543,
+        "target_corrected": true,
+        "T1_e12": 63.57803078672981,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.04150677639466771,
+        "T1_depthreg": {
+          "stat": 81.2509961338352,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 59.003512104993554,
+          "p": 0.0001
+        },
+        "pc1_share": 0.07195124833421335,
+        "pc1_marginal": 0.017580593927213038,
+        "batch_tvd": 0.0639490095472674,
+        "T1_e12_stored": 63.57803078673001,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.9895196601282805e-13
+      },
+      {
+        "label": "TP73",
+        "index": 93,
+        "is_fake": false,
+        "n_e": 248,
+        "target_corrected": false,
+        "T1_e12": 432.3188034578289,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.17456506401423688,
+        "T1_depthreg": {
+          "stat": 460.52838173059666,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 430.7454659975568,
+          "p": 0.0001
+        },
+        "pc1_share": 0.0036392991646165755,
+        "pc1_marginal": 1.003313703800665,
+        "batch_tvd": 0.04182816829979534,
+        "T1_e12_stored": 432.31880345782906,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.7053025658242404e-13
+      },
+      {
+        "label": "TSC22D1",
+        "index": 94,
+        "is_fake": false,
+        "n_e": 441,
+        "target_corrected": true,
+        "T1_e12": 69.28858697615134,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.02932431546579295,
+        "T1_depthreg": {
+          "stat": 73.04629886908525,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 52.03605250529613,
+          "p": 0.0001
+        },
+        "pc1_share": 0.24899532843400912,
+        "pc1_marginal": 0.09737292776954541,
+        "batch_tvd": 0.053268883821542844,
+        "T1_e12_stored": 69.28858697615125,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 8.526512829121202e-14
+      },
+      {
+        "label": "UBASH3A",
+        "index": 95,
+        "is_fake": false,
+        "n_e": 819,
+        "target_corrected": false,
+        "T1_e12": 87.85953391982424,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.03344726074210236,
+        "T1_depthreg": {
+          "stat": 82.89327951747418,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 51.35161943626707,
+          "p": 0.0001
+        },
+        "pc1_share": 0.415525929341627,
+        "pc1_marginal": 0.12244768052533857,
+        "batch_tvd": 0.03900073973066674,
+        "T1_e12_stored": 87.85953391982405,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.9895196601282805e-13
+      },
+      {
+        "label": "UBASH3B",
+        "index": 96,
+        "is_fake": false,
+        "n_e": 1202,
+        "target_corrected": true,
+        "T1_e12": 794.7630429588133,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.04925394782254067,
+        "T1_depthreg": {
+          "stat": 797.5357183518393,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 740.0075581674495,
+          "p": 0.0001
+        },
+        "pc1_share": 0.06889535853040595,
+        "pc1_marginal": 0.15097992461048793,
+        "batch_tvd": 0.06480029073759719,
+        "T1_e12_stored": 794.7630429588141,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 7.958078640513122e-13
+      },
+      {
+        "label": "ZBTB1",
+        "index": 97,
+        "is_fake": false,
+        "n_e": 693,
+        "target_corrected": false,
+        "T1_e12": 658.4937505133756,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.059489434164138544,
+        "T1_depthreg": {
+          "stat": 658.6336318006491,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 646.0443446617822,
+          "p": 0.0001
+        },
+        "pc1_share": 0.01890588307313101,
+        "pc1_marginal": 0.19023133649055443,
+        "batch_tvd": 0.05481379933934678,
+        "T1_e12_stored": 658.4937505133759,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 2.2737367544323206e-13
+      },
+      {
+        "label": "ZBTB25",
+        "index": 98,
+        "is_fake": false,
+        "n_e": 740,
+        "target_corrected": false,
+        "T1_e12": 732.1877380808563,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.020958645958673472,
+        "T1_depthreg": {
+          "stat": 752.349325100444,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 700.3680590992604,
+          "p": 0.0001
+        },
+        "pc1_share": 0.043458360918469774,
+        "pc1_marginal": 0.14528067433795064,
+        "batch_tvd": 0.041963215320879536,
+        "T1_e12_stored": 732.1877380808577,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.3642420526593924e-12
+      },
+      {
+        "label": "ZC3HAV1",
+        "index": 99,
+        "is_fake": false,
+        "n_e": 516,
+        "target_corrected": true,
+        "T1_e12": 175.36109806020065,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.002616722703393748,
+        "T1_depthreg": {
+          "stat": 209.6060253331522,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 172.2891804351423,
+          "p": 0.0001
+        },
+        "pc1_share": 0.017517668736333827,
+        "pc1_marginal": 0.012359164614439424,
+        "batch_tvd": 0.0850721874741566,
+        "T1_e12_stored": 175.3610980602005,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 1.4210854715202004e-13
+      },
+      {
+        "label": "ZNF318",
+        "index": 100,
+        "is_fake": false,
+        "n_e": 650,
+        "target_corrected": false,
+        "T1_e12": 180.01902328986026,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.036903560617894016,
+        "T1_depthreg": {
+          "stat": 210.54092381949414,
+          "p": 0.0001
+        },
+        "T1_noPC1": {
+          "stat": 165.26698640401278,
+          "p": 0.0001
+        },
+        "pc1_share": 0.08194709990229347,
+        "pc1_marginal": 0.045392275628352595,
+        "batch_tvd": 0.06989331836047163,
+        "T1_e12_stored": 180.01902328985992,
+        "T1_e12_p": 0.0001,
+        "T1_repro_absdiff": 3.410605131648481e-13
+      },
+      {
+        "label": "fake_00",
+        "index": 100000,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 1.8748881405214883,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.004859336323981722,
+        "T1_depthreg": {
+          "stat": 1.9900575772229074,
+          "p": 0.9965
+        },
+        "T1_noPC1": {
+          "stat": 1.7597255070527529,
+          "p": 0.9941
+        },
+        "pc1_share": 0.06142373562441101,
+        "pc1_marginal": 0.0006170785522763,
+        "batch_tvd": 0.05426356589147287,
+        "T1_e12_stored": 1.874888140521483,
+        "T1_e12_p": 0.9967,
+        "T1_repro_absdiff": 5.329070518200751e-15
+      },
+      {
+        "label": "fake_01",
+        "index": 100001,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.321599975441187,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.0031316697097256707,
+        "T1_depthreg": {
+          "stat": 8.550101704156294,
+          "p": 0.5754
+        },
+        "T1_noPC1": {
+          "stat": 5.53213599941065,
+          "p": 0.7905
+        },
+        "pc1_share": 0.24440886992364091,
+        "pc1_marginal": 0.008743465833597598,
+        "batch_tvd": 0.03417316288645436,
+        "T1_e12_stored": 7.321599975441181,
+        "T1_e12_p": 0.697,
+        "T1_repro_absdiff": 6.217248937900877e-15
+      },
+      {
+        "label": "fake_02",
+        "index": 100002,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.243764709997457,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.022745254086920852,
+        "T1_depthreg": {
+          "stat": 5.240075715171616,
+          "p": 0.8709
+        },
+        "T1_noPC1": {
+          "stat": 5.852016939130967,
+          "p": 0.7565
+        },
+        "pc1_share": 0.06274223790643928,
+        "pc1_marginal": 0.0010793088488161439,
+        "batch_tvd": 0.029495231752912958,
+        "T1_e12_stored": 6.243764709997452,
+        "T1_e12_p": 0.787,
+        "T1_repro_absdiff": 5.329070518200751e-15
+      },
+      {
+        "label": "fake_03",
+        "index": 100003,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 9.027731191293414,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.035948218998754555,
+        "T1_depthreg": {
+          "stat": 6.152821750996404,
+          "p": 0.8114
+        },
+        "T1_noPC1": {
+          "stat": 7.6989279340851935,
+          "p": 0.5779
+        },
+        "pc1_share": 0.14719127420295303,
+        "pc1_marginal": 0.003705708178711939,
+        "batch_tvd": 0.04029941370800308,
+        "T1_e12_stored": 9.027731191293416,
+        "T1_e12_p": 0.5381,
+        "T1_repro_absdiff": 1.7763568394002505e-15
+      },
+      {
+        "label": "fake_04",
+        "index": 100004,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.04556166459927,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0015939186101263658,
+        "T1_depthreg": {
+          "stat": 7.349235029414158,
+          "p": 0.7015
+        },
+        "T1_noPC1": {
+          "stat": 4.890288120820348,
+          "p": 0.8446
+        },
+        "pc1_share": 0.19109449342710474,
+        "pc1_marginal": 0.005183412111200414,
+        "batch_tvd": 0.05760960874693687,
+        "T1_e12_stored": 6.045561664599271,
+        "T1_e12_p": 0.8137,
+        "T1_repro_absdiff": 8.881784197001252e-16
+      },
+      {
+        "label": "fake_05",
+        "index": 100005,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 5.659533937730181,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.017854873166436747,
+        "T1_depthreg": {
+          "stat": 7.421991485146584,
+          "p": 0.6904
+        },
+        "T1_noPC1": {
+          "stat": 5.4280087262358965,
+          "p": 0.805
+        },
+        "pc1_share": 0.040908882964864855,
+        "pc1_marginal": 0.0009495947813551863,
+        "batch_tvd": 0.06530278695445899,
+        "T1_e12_stored": 5.659533937730194,
+        "T1_e12_p": 0.845,
+        "T1_repro_absdiff": 1.2434497875801753e-14
+      },
+      {
+        "label": "fake_06",
+        "index": 100006,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 10.786425999686232,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.07242415124584589,
+        "T1_depthreg": {
+          "stat": 8.775931690240517,
+          "p": 0.5578
+        },
+        "T1_noPC1": {
+          "stat": 7.777703203688162,
+          "p": 0.5644
+        },
+        "pc1_share": 0.27893602534199846,
+        "pc1_marginal": 0.009332666790307552,
+        "batch_tvd": 0.028952247887912473,
+        "T1_e12_stored": 10.786425999686228,
+        "T1_e12_p": 0.3872,
+        "T1_repro_absdiff": 3.552713678800501e-15
+      },
+      {
+        "label": "fake_07",
+        "index": 100007,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.332896446377214,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.004472112510550019,
+        "T1_depthreg": {
+          "stat": 10.34904216841599,
+          "p": 0.42
+        },
+        "T1_noPC1": {
+          "stat": 8.247521968626742,
+          "p": 0.5185
+        },
+        "pc1_share": 0.010245474463754926,
+        "pc1_marginal": 0.00040814765665187223,
+        "batch_tvd": 0.04750510339544457,
+        "T1_e12_stored": 8.332896446377207,
+        "T1_e12_p": 0.6092,
+        "T1_repro_absdiff": 7.105427357601002e-15
+      },
+      {
+        "label": "fake_08",
+        "index": 100008,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 5.009209849106859,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.019123632027055137,
+        "T1_depthreg": {
+          "stat": 4.389628832551747,
+          "p": 0.9306
+        },
+        "T1_noPC1": {
+          "stat": 4.72397613879701,
+          "p": 0.8617
+        },
+        "pc1_share": 0.05694185688002393,
+        "pc1_marginal": 0.0016979475936738726,
+        "batch_tvd": 0.04954972600533626,
+        "T1_e12_stored": 5.009209849106865,
+        "T1_e12_p": 0.891,
+        "T1_repro_absdiff": 6.217248937900877e-15
+      },
+      {
+        "label": "fake_09",
+        "index": 100009,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.223101910687058,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.01698813380599873,
+        "T1_depthreg": {
+          "stat": 9.72074441468623,
+          "p": 0.4777
+        },
+        "T1_noPC1": {
+          "stat": 7.1559278368038735,
+          "p": 0.6239
+        },
+        "pc1_share": 0.009299892859575472,
+        "pc1_marginal": 0.0001883978357786666,
+        "batch_tvd": 0.0433081319178756,
+        "T1_e12_stored": 7.223101910687027,
+        "T1_e12_p": 0.7121,
+        "T1_repro_absdiff": 3.108624468950438e-14
+      },
+      {
+        "label": "fake_10",
+        "index": 100010,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 11.219461838163694,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.03143848793053827,
+        "T1_depthreg": {
+          "stat": 12.740053331118771,
+          "p": 0.2441
+        },
+        "T1_noPC1": {
+          "stat": 10.64038082878577,
+          "p": 0.3097
+        },
+        "pc1_share": 0.05161397380114478,
+        "pc1_marginal": 0.002915646335940311,
+        "batch_tvd": 0.03609047264623567,
+        "T1_e12_stored": 11.21946183816377,
+        "T1_e12_p": 0.3452,
+        "T1_repro_absdiff": 7.638334409421077e-14
+      },
+      {
+        "label": "fake_11",
+        "index": 100011,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 18.249084101695647,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.007200140527508836,
+        "T1_depthreg": {
+          "stat": 18.806237875243934,
+          "p": 0.0469
+        },
+        "T1_noPC1": {
+          "stat": 16.822906333162894,
+          "p": 0.0551
+        },
+        "pc1_share": 0.0781506491276588,
+        "pc1_marginal": 0.006961246796775633,
+        "batch_tvd": 0.058447479640825424,
+        "T1_e12_stored": 18.249084101695697,
+        "T1_e12_p": 0.0546,
+        "T1_repro_absdiff": 4.973799150320701e-14
+      },
+      {
+        "label": "fake_12",
+        "index": 100012,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.876187243236139,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.004247830098920602,
+        "T1_depthreg": {
+          "stat": 9.108470473754364,
+          "p": 0.5316
+        },
+        "T1_noPC1": {
+          "stat": 7.356398098145298,
+          "p": 0.6132
+        },
+        "pc1_share": 0.17122094244338476,
+        "pc1_marginal": 0.0034343929986142482,
+        "batch_tvd": 0.05709818105845946,
+        "T1_e12_stored": 8.876187243236147,
+        "T1_e12_p": 0.556,
+        "T1_repro_absdiff": 8.881784197001252e-15
+      },
+      {
+        "label": "fake_13",
+        "index": 100013,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 10.67766990747199,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.00769764712389609,
+        "T1_depthreg": {
+          "stat": 10.679880266399286,
+          "p": 0.3825
+        },
+        "T1_noPC1": {
+          "stat": 9.93807052064168,
+          "p": 0.3646
+        },
+        "pc1_share": 0.06926599091743371,
+        "pc1_marginal": 0.0016670779518466392,
+        "batch_tvd": 0.04816016609430293,
+        "T1_e12_stored": 10.677669907471957,
+        "T1_e12_p": 0.3895,
+        "T1_repro_absdiff": 3.375077994860476e-14
+      },
+      {
+        "label": "fake_14",
+        "index": 100014,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.850894060837345,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.017658154929298675,
+        "T1_depthreg": {
+          "stat": 7.153703713009353,
+          "p": 0.7188
+        },
+        "T1_noPC1": {
+          "stat": 6.959191589792734,
+          "p": 0.6546
+        },
+        "pc1_share": 0.1135797355224413,
+        "pc1_marginal": 0.0026690019755138414,
+        "batch_tvd": 0.05906119286699833,
+        "T1_e12_stored": 7.850894060837311,
+        "T1_e12_p": 0.6473,
+        "T1_repro_absdiff": 3.4638958368304884e-14
+      },
+      {
+        "label": "fake_15",
+        "index": 100015,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 9.766919845003066,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.030347856720801758,
+        "T1_depthreg": {
+          "stat": 11.830162235649905,
+          "p": 0.306
+        },
+        "T1_noPC1": {
+          "stat": 9.593961787373825,
+          "p": 0.3895
+        },
+        "pc1_share": 0.017708557085960915,
+        "pc1_marginal": 0.0005742521935516767,
+        "batch_tvd": 0.04117536964252294,
+        "T1_e12_stored": 9.766919845003061,
+        "T1_e12_p": 0.4712,
+        "T1_repro_absdiff": 5.329070518200751e-15
+      },
+      {
+        "label": "fake_16",
+        "index": 100016,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 14.630046258862036,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0008720887243409692,
+        "T1_depthreg": {
+          "stat": 15.878050256891587,
+          "p": 0.1054
+        },
+        "T1_noPC1": {
+          "stat": 13.481907146201813,
+          "p": 0.1471
+        },
+        "pc1_share": 0.07847816010593588,
+        "pc1_marginal": 0.006492359086388961,
+        "batch_tvd": 0.0438043255901005,
+        "T1_e12_stored": 14.630046258862025,
+        "T1_e12_p": 0.1554,
+        "T1_repro_absdiff": 1.0658141036401503e-14
+      },
+      {
+        "label": "fake_17",
+        "index": 100017,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.545749819338219,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.02126547763650244,
+        "T1_depthreg": {
+          "stat": 5.472765987942729,
+          "p": 0.8583
+        },
+        "T1_noPC1": {
+          "stat": 5.466954896048189,
+          "p": 0.7929
+        },
+        "pc1_share": 0.16480845633649616,
+        "pc1_marginal": 0.0036574304462234043,
+        "batch_tvd": 0.04262695376258441,
+        "T1_e12_stored": 6.545749819338211,
+        "T1_e12_p": 0.7743,
+        "T1_repro_absdiff": 7.993605777301127e-15
+      },
+      {
+        "label": "fake_18",
+        "index": 100018,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 17.096098710844416,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.020128306101719673,
+        "T1_depthreg": {
+          "stat": 15.89397257707128,
+          "p": 0.1054
+        },
+        "T1_noPC1": {
+          "stat": 16.313921829057982,
+          "p": 0.0675
+        },
+        "pc1_share": 0.04575177618097646,
+        "pc1_marginal": 0.0015959213893642246,
+        "batch_tvd": 0.04599802393046324,
+        "T1_e12_stored": 17.09609871084441,
+        "T1_e12_p": 0.0751,
+        "T1_repro_absdiff": 7.105427357601002e-15
+      },
+      {
+        "label": "fake_19",
+        "index": 100019,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.276958170179483,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.026084299025566082,
+        "T1_depthreg": {
+          "stat": 7.360728144114142,
+          "p": 0.6974
+        },
+        "T1_noPC1": {
+          "stat": 7.810674380237822,
+          "p": 0.5604
+        },
+        "pc1_share": 0.05633516327551405,
+        "pc1_marginal": 0.0013036017188474943,
+        "batch_tvd": 0.035281981640834126,
+        "T1_e12_stored": 8.276958170179485,
+        "T1_e12_p": 0.6075,
+        "T1_repro_absdiff": 1.7763568394002505e-15
+      },
+      {
+        "label": "fake_20",
+        "index": 100020,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 2.8401667339135837,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.014906810655960001,
+        "T1_depthreg": {
+          "stat": 2.5797181457764164,
+          "p": 0.9898
+        },
+        "T1_noPC1": {
+          "stat": 2.741982753227031,
+          "p": 0.9724
+        },
+        "pc1_share": 0.03456979462302932,
+        "pc1_marginal": 0.00023945682350425034,
+        "batch_tvd": 0.030724834493294863,
+        "T1_e12_stored": 2.8401667339135956,
+        "T1_e12_p": 0.9865,
+        "T1_repro_absdiff": 1.199040866595169e-14
+      },
+      {
+        "label": "fake_21",
+        "index": 100021,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.131037722692303,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.022802896728926214,
+        "T1_depthreg": {
+          "stat": 10.02635560280677,
+          "p": 0.4499
+        },
+        "T1_noPC1": {
+          "stat": 6.812228922812252,
+          "p": 0.6609
+        },
+        "pc1_share": 0.16219440185346665,
+        "pc1_marginal": 0.005467027425203823,
+        "batch_tvd": 0.06375435801679225,
+        "T1_e12_stored": 8.131037722692325,
+        "T1_e12_p": 0.627,
+        "T1_repro_absdiff": 2.1316282072803006e-14
+      },
+      {
+        "label": "fake_22",
+        "index": 100022,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.476231315453114,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.0011018867070813343,
+        "T1_depthreg": {
+          "stat": 7.546660525817769,
+          "p": 0.6809
+        },
+        "T1_noPC1": {
+          "stat": 6.807119849752866,
+          "p": 0.6563
+        },
+        "pc1_share": 0.08949849696560576,
+        "pc1_marginal": 0.0030458347759530287,
+        "batch_tvd": 0.03058228762693202,
+        "T1_e12_stored": 7.476231315453154,
+        "T1_e12_p": 0.6885,
+        "T1_repro_absdiff": 3.9968028886505635e-14
+      },
+      {
+        "label": "fake_23",
+        "index": 100023,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 5.079236615866922,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.008321126212797125,
+        "T1_depthreg": {
+          "stat": 5.170903343069303,
+          "p": 0.8775
+        },
+        "T1_noPC1": {
+          "stat": 5.071589296344161,
+          "p": 0.8353
+        },
+        "pc1_share": 0.0015056041096552484,
+        "pc1_marginal": 1.3172200699433892e-06,
+        "batch_tvd": 0.04128636033236271,
+        "T1_e12_stored": 5.079236615866906,
+        "T1_e12_p": 0.8873,
+        "T1_repro_absdiff": 1.5987211554602254e-14
+      },
+      {
+        "label": "fake_24",
+        "index": 100024,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 18.27319554860966,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0018822555401794006,
+        "T1_depthreg": {
+          "stat": 18.218107582503784,
+          "p": 0.0531
+        },
+        "T1_noPC1": {
+          "stat": 16.520718116440364,
+          "p": 0.0613
+        },
+        "pc1_share": 0.09590426740125572,
+        "pc1_marginal": 0.008801843550278507,
+        "batch_tvd": 0.04089462848586935,
+        "T1_e12_stored": 18.273195548609685,
+        "T1_e12_p": 0.0517,
+        "T1_repro_absdiff": 2.4868995751603507e-14
+      },
+      {
+        "label": "fake_25",
+        "index": 100025,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.429229550551685,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.01173194745459405,
+        "T1_depthreg": {
+          "stat": 5.964115341411481,
+          "p": 0.8165
+        },
+        "T1_noPC1": {
+          "stat": 6.17991952670844,
+          "p": 0.7359
+        },
+        "pc1_share": 0.038777589427002504,
+        "pc1_marginal": 0.0010392299338815528,
+        "batch_tvd": 0.046737961862728446,
+        "T1_e12_stored": 6.429229550551696,
+        "T1_e12_p": 0.7775,
+        "T1_repro_absdiff": 1.0658141036401503e-14
+      },
+      {
+        "label": "fake_26",
+        "index": 100026,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 5.818659042343577,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.015036988632941117,
+        "T1_depthreg": {
+          "stat": 5.521582107851743,
+          "p": 0.8599
+        },
+        "T1_noPC1": {
+          "stat": 5.098213656142441,
+          "p": 0.8297
+        },
+        "pc1_share": 0.12381639497319,
+        "pc1_marginal": 0.001366566178873289,
+        "batch_tvd": 0.05218303452898599,
+        "T1_e12_stored": 5.818659042343602,
+        "T1_e12_p": 0.833,
+        "T1_repro_absdiff": 2.4868995751603507e-14
+      },
+      {
+        "label": "fake_27",
+        "index": 100027,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.6838112983168845,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.012633973074118288,
+        "T1_depthreg": {
+          "stat": 8.028128809497685,
+          "p": 0.6329
+        },
+        "T1_noPC1": {
+          "stat": 6.107029989822094,
+          "p": 0.7385
+        },
+        "pc1_share": 0.20520822899960847,
+        "pc1_marginal": 0.007992468134923774,
+        "batch_tvd": 0.05374996191495939,
+        "T1_e12_stored": 7.6838112983168765,
+        "T1_e12_p": 0.6712,
+        "T1_repro_absdiff": 7.993605777301127e-15
+      },
+      {
+        "label": "fake_28",
+        "index": 100028,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 9.272708934718386,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.003979934323792733,
+        "T1_depthreg": {
+          "stat": 9.259290537153646,
+          "p": 0.5075
+        },
+        "T1_noPC1": {
+          "stat": 7.769737438724872,
+          "p": 0.566
+        },
+        "pc1_share": 0.1620854818774876,
+        "pc1_marginal": 0.009712740213462826,
+        "batch_tvd": 0.03791529016448384,
+        "T1_e12_stored": 9.272708934718425,
+        "T1_e12_p": 0.5121,
+        "T1_repro_absdiff": 3.907985046680551e-14
+      },
+      {
+        "label": "fake_29",
+        "index": 100029,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 10.018977540397518,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.019031895020210854,
+        "T1_depthreg": {
+          "stat": 9.580909194420306,
+          "p": 0.4822
+        },
+        "T1_noPC1": {
+          "stat": 8.992881626326161,
+          "p": 0.449
+        },
+        "pc1_share": 0.10241523248595336,
+        "pc1_marginal": 0.004687425534910034,
+        "batch_tvd": 0.04957475331775111,
+        "T1_e12_stored": 10.018977540397529,
+        "T1_e12_p": 0.4534,
+        "T1_repro_absdiff": 1.0658141036401503e-14
+      },
+      {
+        "label": "fake_30",
+        "index": 100030,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.768833454643587,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0421453131549967,
+        "T1_depthreg": {
+          "stat": 4.608236700843893,
+          "p": 0.9137
+        },
+        "T1_noPC1": {
+          "stat": 4.884107893985184,
+          "p": 0.8479
+        },
+        "pc1_share": 0.3713202989226323,
+        "pc1_marginal": 0.011263299578846407,
+        "batch_tvd": 0.0704714710401351,
+        "T1_e12_stored": 7.768833454643562,
+        "T1_e12_p": 0.6552,
+        "T1_repro_absdiff": 2.4868995751603507e-14
+      },
+      {
+        "label": "fake_31",
+        "index": 100031,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 2.708881805737042,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.019967831083793186,
+        "T1_depthreg": {
+          "stat": 3.0440954142586962,
+          "p": 0.9808
+        },
+        "T1_noPC1": {
+          "stat": 2.5570174295047114,
+          "p": 0.9806
+        },
+        "pc1_share": 0.05606164724895061,
+        "pc1_marginal": 0.00026908505484680127,
+        "batch_tvd": 0.036314630313951324,
+        "T1_e12_stored": 2.7088818057370627,
+        "T1_e12_p": 0.9882,
+        "T1_repro_absdiff": 2.0872192862952943e-14
+      },
+      {
+        "label": "fake_32",
+        "index": 100032,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.295352964145661,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.02431752393766473,
+        "T1_depthreg": {
+          "stat": 5.643756990124867,
+          "p": 0.8506
+        },
+        "T1_noPC1": {
+          "stat": 6.2764968617672245,
+          "p": 0.7174
+        },
+        "pc1_share": 0.00299524148778142,
+        "pc1_marginal": 1.3834942013828992e-05,
+        "batch_tvd": 0.03737665887555551,
+        "T1_e12_stored": 6.295352964145659,
+        "T1_e12_p": 0.7968,
+        "T1_repro_absdiff": 2.6645352591003757e-15
+      },
+      {
+        "label": "fake_33",
+        "index": 100033,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 25.794030300918017,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.03162750449275897,
+        "T1_depthreg": {
+          "stat": 23.777541501441565,
+          "p": 0.0087
+        },
+        "T1_noPC1": {
+          "stat": 25.58864607098436,
+          "p": 0.002
+        },
+        "pc1_share": 0.00796247145318531,
+        "pc1_marginal": 0.001285776226522032,
+        "batch_tvd": 0.0383723106520594,
+        "T1_e12_stored": 25.79403030091792,
+        "T1_e12_p": 0.0039,
+        "T1_repro_absdiff": 9.592326932761353e-14
+      },
+      {
+        "label": "fake_34",
+        "index": 100034,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 11.457044217132973,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0016633943011576946,
+        "T1_depthreg": {
+          "stat": 11.648627957346395,
+          "p": 0.3182
+        },
+        "T1_noPC1": {
+          "stat": 10.95728818600813,
+          "p": 0.2843
+        },
+        "pc1_share": 0.043619979259354076,
+        "pc1_marginal": 0.0031919606578587425,
+        "batch_tvd": 0.04232771415762419,
+        "T1_e12_stored": 11.457044217132955,
+        "T1_e12_p": 0.3299,
+        "T1_repro_absdiff": 1.7763568394002505e-14
+      },
+      {
+        "label": "fake_35",
+        "index": 100035,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.181390448882391,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.06322346383315747,
+        "T1_depthreg": {
+          "stat": 16.295611912632353,
+          "p": 0.0966
+        },
+        "T1_noPC1": {
+          "stat": 5.497315166849117,
+          "p": 0.7934
+        },
+        "pc1_share": 0.11066689407347766,
+        "pc1_marginal": 0.002443462436897395,
+        "batch_tvd": 0.04533425607946064,
+        "T1_e12_stored": 6.181390448882395,
+        "T1_e12_p": 0.8128,
+        "T1_repro_absdiff": 3.552713678800501e-15
+      },
+      {
+        "label": "fake_36",
+        "index": 100036,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 10.60680366037288,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.0338459857439215,
+        "T1_depthreg": {
+          "stat": 7.871297612858402,
+          "p": 0.6492
+        },
+        "T1_noPC1": {
+          "stat": 9.707834856521115,
+          "p": 0.3821
+        },
+        "pc1_share": 0.08475397797833478,
+        "pc1_marginal": 0.003402508306840885,
+        "batch_tvd": 0.042128583802323406,
+        "T1_e12_stored": 10.606803660372874,
+        "T1_e12_p": 0.4001,
+        "T1_repro_absdiff": 5.329070518200751e-15
+      },
+      {
+        "label": "fake_37",
+        "index": 100037,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.082956909593031,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.01950092128667613,
+        "T1_depthreg": {
+          "stat": 7.285795456558052,
+          "p": 0.7065
+        },
+        "T1_noPC1": {
+          "stat": 7.6846823670140525,
+          "p": 0.5713
+        },
+        "pc1_share": 0.04927337198919097,
+        "pc1_marginal": 0.0014110139124128324,
+        "batch_tvd": 0.03979451488363387,
+        "T1_e12_stored": 8.08295690959305,
+        "T1_e12_p": 0.6212,
+        "T1_repro_absdiff": 1.7763568394002505e-14
+      },
+      {
+        "label": "fake_38",
+        "index": 100038,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 10.44371008795724,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.029493112555861956,
+        "T1_depthreg": {
+          "stat": 8.786383563448238,
+          "p": 0.5693
+        },
+        "T1_noPC1": {
+          "stat": 9.74338170107334,
+          "p": 0.3739
+        },
+        "pc1_share": 0.06705743275002034,
+        "pc1_marginal": 0.003050473416295259,
+        "batch_tvd": 0.03662039878301973,
+        "T1_e12_stored": 10.443710087957271,
+        "T1_e12_p": 0.4172,
+        "T1_repro_absdiff": 3.019806626980426e-14
+      },
+      {
+        "label": "fake_39",
+        "index": 100039,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 9.980382447692246,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.0022202451098873865,
+        "T1_depthreg": {
+          "stat": 10.227340542981207,
+          "p": 0.4237
+        },
+        "T1_noPC1": {
+          "stat": 9.966880046181917,
+          "p": 0.3699
+        },
+        "pc1_share": 0.0013528941983031845,
+        "pc1_marginal": 0.00016037544378361154,
+        "batch_tvd": 0.03336684816908888,
+        "T1_e12_stored": 9.980382447692337,
+        "T1_e12_p": 0.4573,
+        "T1_repro_absdiff": 9.059419880941277e-14
+      },
+      {
+        "label": "fake_40",
+        "index": 100040,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 3.4393895480850185,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.01596236135366702,
+        "T1_depthreg": {
+          "stat": 6.722851883839514,
+          "p": 0.7537
+        },
+        "T1_noPC1": {
+          "stat": 3.3991338181706747,
+          "p": 0.9498
+        },
+        "pc1_share": 0.011704324081800315,
+        "pc1_marginal": 0.0002810919212449206,
+        "batch_tvd": 0.028206869235557035,
+        "T1_e12_stored": 3.4393895480850265,
+        "T1_e12_p": 0.9716,
+        "T1_repro_absdiff": 7.993605777301127e-15
+      },
+      {
+        "label": "fake_41",
+        "index": 100041,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 4.058867711628353,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.006623874548658648,
+        "T1_depthreg": {
+          "stat": 4.008523168752876,
+          "p": 0.9475
+        },
+        "T1_noPC1": {
+          "stat": 4.029517347363599,
+          "p": 0.9087
+        },
+        "pc1_share": 0.007231170451963178,
+        "pc1_marginal": 0.00019009713565683583,
+        "batch_tvd": 0.03650723180514389,
+        "T1_e12_stored": 4.058867711628327,
+        "T1_e12_p": 0.9478,
+        "T1_repro_absdiff": 2.5757174171303632e-14
+      },
+      {
+        "label": "fake_42",
+        "index": 100042,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.907477967375992,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.001053884983104325,
+        "T1_depthreg": {
+          "stat": 8.031976252752491,
+          "p": 0.6459
+        },
+        "T1_noPC1": {
+          "stat": 7.831503221950809,
+          "p": 0.5619
+        },
+        "pc1_share": 0.009607961696337654,
+        "pc1_marginal": 8.020209888465082e-06,
+        "batch_tvd": 0.05457151064857736,
+        "T1_e12_stored": 7.9074779673759865,
+        "T1_e12_p": 0.6473,
+        "T1_repro_absdiff": 5.329070518200751e-15
+      },
+      {
+        "label": "fake_43",
+        "index": 100043,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.580973639621833,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.028706750008373305,
+        "T1_depthreg": {
+          "stat": 9.33443627282384,
+          "p": 0.5119
+        },
+        "T1_noPC1": {
+          "stat": 8.580296330277065,
+          "p": 0.4834
+        },
+        "pc1_share": 7.893152609636865e-05,
+        "pc1_marginal": 5.544556187582176e-05,
+        "batch_tvd": 0.02816660790688969,
+        "T1_e12_stored": 8.580973639621813,
+        "T1_e12_p": 0.5736,
+        "T1_repro_absdiff": 1.9539925233402755e-14
+      },
+      {
+        "label": "fake_44",
+        "index": 100044,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 15.849069370613606,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.030090104141656582,
+        "T1_depthreg": {
+          "stat": 14.4893620879204,
+          "p": 0.1602
+        },
+        "T1_noPC1": {
+          "stat": 15.75718761973719,
+          "p": 0.0724
+        },
+        "pc1_share": 0.0057972962782772385,
+        "pc1_marginal": 2.560626734029882e-05,
+        "batch_tvd": 0.05277607301881618,
+        "T1_e12_stored": 15.849069370613615,
+        "T1_e12_p": 0.109,
+        "T1_repro_absdiff": 8.881784197001252e-15
+      },
+      {
+        "label": "fake_45",
+        "index": 100045,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.603346077926199,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.010606916286537427,
+        "T1_depthreg": {
+          "stat": 6.579155270916977,
+          "p": 0.7666
+        },
+        "T1_noPC1": {
+          "stat": 4.971844271470363,
+          "p": 0.8406
+        },
+        "pc1_share": 0.24707198247713447,
+        "pc1_marginal": 0.0066609357635239305,
+        "batch_tvd": 0.055032883712225054,
+        "T1_e12_stored": 6.603346077926183,
+        "T1_e12_p": 0.7644,
+        "T1_repro_absdiff": 1.5987211554602254e-14
+      },
+      {
+        "label": "fake_46",
+        "index": 100046,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 3.483689928544111,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.01701627105601844,
+        "T1_depthreg": {
+          "stat": 3.236991558941592,
+          "p": 0.9747
+        },
+        "T1_noPC1": {
+          "stat": 3.112885611424097,
+          "p": 0.9625
+        },
+        "pc1_share": 0.10644010366186032,
+        "pc1_marginal": 0.001378689284179941,
+        "batch_tvd": 0.07506779137232372,
+        "T1_e12_stored": 3.4836899285441096,
+        "T1_e12_p": 0.9676,
+        "T1_repro_absdiff": 1.3322676295501878e-15
+      },
+      {
+        "label": "fake_47",
+        "index": 100047,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 7.249979810357772,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.031238920270167725,
+        "T1_depthreg": {
+          "stat": 9.13830010828075,
+          "p": 0.5303
+        },
+        "T1_noPC1": {
+          "stat": 6.11381158493395,
+          "p": 0.7374
+        },
+        "pc1_share": 0.15671329509092163,
+        "pc1_marginal": 0.003932067867877307,
+        "batch_tvd": 0.04606984143565367,
+        "T1_e12_stored": 7.249979810357751,
+        "T1_e12_p": 0.7051,
+        "T1_repro_absdiff": 2.042810365310288e-14
+      },
+      {
+        "label": "fake_48",
+        "index": 100048,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 8.929913823166967,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": 0.011359437702253672,
+        "T1_depthreg": {
+          "stat": 8.83373123376128,
+          "p": 0.5529
+        },
+        "T1_noPC1": {
+          "stat": 6.501704120078414,
+          "p": 0.6875
+        },
+        "pc1_share": 0.2719186042746598,
+        "pc1_marginal": 0.009575396920601772,
+        "batch_tvd": 0.029972926976831224,
+        "T1_e12_stored": 8.929913823166968,
+        "T1_e12_p": 0.5481,
+        "T1_repro_absdiff": 1.7763568394002505e-15
+      },
+      {
+        "label": "fake_49",
+        "index": 100049,
+        "is_fake": true,
+        "n_e": 516,
+        "target_corrected": false,
+        "T1_e12": 6.11480180917713,
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_diff": -0.0181485445390539,
+        "T1_depthreg": {
+          "stat": 5.495571722177581,
+          "p": 0.8614
+        },
+        "T1_noPC1": {
+          "stat": 2.955219977936625,
+          "p": 0.9682
+        },
+        "pc1_share": 0.5167104233040859,
+        "pc1_marginal": 0.012300051347850456,
+        "batch_tvd": 0.051422421860378056,
+        "T1_e12_stored": 6.114801809177138,
+        "T1_e12_p": 0.8138,
+        "T1_repro_absdiff": 7.993605777301127e-15
+      }
+    ]
+  },
+  "results_sha256": "2a6af8043b7d1122896319889580b2a1445d3fb8f46e276319f0b89d8c080c34",
+  "meta": {
+    "workers": 24,
+    "argv": [
+      "--dataset",
+      "norman",
+      "--depth-source",
+      "counts_layer_rowsum",
+      "--workers",
+      "24"
+    ],
+    "seconds": 101.537,
+    "provenance": {
+      "code_commit": "fbb81c8aef2b5cd6d711aae60c9cd84d38cb9983",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e12b_confound_check.py": "51a0df12c4fbcc6a1c2c8ac3c8dabb878d6e7d7029917b6dfc5f32d674ff5f06",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}
