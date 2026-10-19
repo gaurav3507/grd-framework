@@ -1,0 +1,136 @@
+{
+  "results": {
+    "experiment": "E12d",
+    "prereg": "notes/e12b_prereg.md + notes/e12b_amendment_2.md",
+    "seed": 0,
+    "d": 10,
+    "datasets": {
+      "k562": {
+        "depth_source": "raw obs[UMI_count] (figshare 35773219), aligned external vector (amendment 2)",
+        "depth_fallback": false,
+        "batch_column": null,
+        "n_real": 385,
+        "n_fake": 50,
+        "corr_pc1_depth_basis": -0.47643431479394355,
+        "r4_decision_relevant": false,
+        "e12_T1_bh_count_real": 318,
+        "e12_T1_bh_count_fake": 3,
+        "R3_bh_count_real": 318,
+        "R3_bh_count_fake": 1,
+        "R4_bh_count_real": 309,
+        "R4_bh_count_fake": 5,
+        "retain_R3": 1.0,
+        "retain_R4": 0.9716981132075472,
+        "partial_spearman_T1_per_n_vs_absdepth_given_n": 0.5066759216119595,
+        "median_pc1_share_e12_bh_detected": 0.06916661201229327,
+        "median_abs_depth_diff_real": 0.05821318149082444,
+        "median_abs_depth_diff_fake": 0.017384827390388047,
+        "median_batch_tvd_real": null,
+        "batch_exposed": null,
+        "reproduction": {
+          "gate_n": 5,
+          "gate_max_abs_diff": 4.327195426867547e-06,
+          "all_n": 435,
+          "all_max_abs_diff": 1.9261653960711556e-05,
+          "tol": 0.0025
+        },
+        "e12_summary_T1_bh_count_real": 318
+      },
+      "norman": {
+        "depth_source": "layers[counts] row sum (5000 genes)",
+        "depth_fallback": false,
+        "batch_column": "gemgroup",
+        "n_real": 100,
+        "n_fake": 50,
+        "corr_pc1_depth_basis": -0.47249335157047334,
+        "r4_decision_relevant": false,
+        "e12_T1_bh_count_real": 100,
+        "e12_T1_bh_count_fake": 1,
+        "R3_bh_count_real": 100,
+        "R3_bh_count_fake": 1,
+        "R4_bh_count_real": 100,
+        "R4_bh_count_fake": 1,
+        "retain_R3": 1.0,
+        "retain_R4": 1.0,
+        "partial_spearman_T1_per_n_vs_absdepth_given_n": 0.4933602827943169,
+        "median_pc1_share_e12_bh_detected": 0.06218572405890056,
+        "median_abs_depth_diff_real": 0.09021698715109672,
+        "median_abs_depth_diff_fake": 0.017337212992658557,
+        "median_batch_tvd_real": 0.05463113528806959,
+        "batch_exposed": false,
+        "reproduction": {
+          "gate_n": 5,
+          "gate_max_abs_diff": 1.3642420526593924e-12,
+          "all_n": 150,
+          "all_max_abs_diff": 3.865352482534945e-12,
+          "tol": 1e-08
+        },
+        "e12_summary_T1_bh_count_real": 100
+      }
+    },
+    "batch_flag": {
+      "k562": null,
+      "norman": false
+    },
+    "verdict": {
+      "verdict": "S1",
+      "rule": "(iii)",
+      "text": "S1, survives: the mean-shift headline stands; D1 confirmed",
+      "per_dataset": {
+        "k562": {
+          "fallback": false,
+          "meets_ii": false,
+          "meets_iii": true
+        },
+        "norman": {
+          "fallback": false,
+          "meets_ii": false,
+          "meets_iii": true
+        }
+      }
+    },
+    "prediction": {
+      "k562_R3_retains_ge_70": true,
+      "norman_R3_retains_ge_30": true,
+      "k562_median_pc1_share_lt_05": true
+    },
+    "missing_inputs": [
+      "rpe1_seed0_d10.json"
+    ],
+    "input_results_sha256": {
+      "k562_seed0_d10.json": "02a3a09049b051f9c902e34c2679f455c0d9f8db56d52979464e2408978ee1ae",
+      "norman_seed0_d10.json": "2a6af8043b7d1122896319889580b2a1445d3fb8f46e276319f0b89d8c080c34"
+    },
+    "dataset_sources": {
+      "k562": "/home/home/grd-framework/results/e12d_k562_depth",
+      "norman": "/home/home/grd-framework/results/e12c_norman_depth",
+      "rpe1": "/home/home/grd-framework/results/e12c_norman_depth"
+    },
+    "prediction_e12c": {
+      "norman_R3_retains_ge_70": true
+    },
+    "prediction_e12d": {
+      "k562_R3_retains_ge_70": true,
+      "k562_R4_retains_ge_70": true,
+      "k562_corr_pc1_depth_abs_gt_05": false
+    }
+  },
+  "results_sha256": "b7111eb619d9ec600f0cce44576b8f6433eee4ccac6d9705a4e4a648840e1b82",
+  "meta": {
+    "seconds": 0.019,
+    "provenance": {
+      "code_commit": "f19d64fbfcd3e44ef653b1336765c3806728e841",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e12d_k562_depth.py": "d4a524be726dd766f384e795104e8199d6a8ce719fc1fa6302cd1e09b6d2a6d2"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}

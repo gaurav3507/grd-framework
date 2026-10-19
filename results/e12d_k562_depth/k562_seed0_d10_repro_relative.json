@@ -1,0 +1,10 @@
+{
+ "n": 435,
+ "max_rel_diff": 1.8369740635086095e-07,
+ "worst_label": "ENSG00000105732",
+ "rel_tol": 1e-06,
+ "abs_tol": 0.0025,
+ "max_abs_diff": 1.9261653960711556e-05,
+ "passed": true,
+ "output": "/home/home/grd-framework/results/e12d_k562_depth/k562_seed0_d10.json"
+}

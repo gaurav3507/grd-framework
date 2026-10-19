@@ -1,0 +1,32 @@
+{
+ "verdict": {
+  "verdict": "S1",
+  "rule": "(iii)",
+  "text": "S1, survives: the mean-shift headline stands; D1 confirmed",
+  "per_dataset": {
+   "k562": {
+    "fallback": false,
+    "meets_ii": false,
+    "meets_iii": true
+   },
+   "norman": {
+    "fallback": false,
+    "meets_ii": false,
+    "meets_iii": true
+   }
+  }
+ },
+ "prediction_e12d": {
+  "k562_R3_retains_ge_70": true,
+  "k562_R4_retains_ge_70": true,
+  "k562_corr_pc1_depth_abs_gt_05": false
+ },
+ "missing": [
+  "rpe1_seed0_d10.json"
+ ],
+ "sources": {
+  "k562": "/home/home/grd-framework/results/e12d_k562_depth",
+  "norman": "/home/home/grd-framework/results/e12c_norman_depth",
+  "rpe1": "/home/home/grd-framework/results/e12c_norman_depth"
+ }
+}

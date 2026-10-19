@@ -1,0 +1,10 @@
+{
+ "n": 20,
+ "max_rel_diff": 1.529626171309175e-07,
+ "worst_label": "ENSG00000008128",
+ "rel_tol": 1e-06,
+ "abs_tol": 0.0025,
+ "max_abs_diff": 4.327195426867547e-06,
+ "passed": true,
+ "output": "/home/home/grd-framework/results/e12d_k562_depth/smoke/k562_seed0_d10.json"
+}
