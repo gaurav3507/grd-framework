@@ -1,0 +1,3 @@
+[rpe1] step0c {"ref_heldout_equal": true, "n_fakes_checked": 50, "fakes_equal": true}
+[rpe1] part A smoke=False -> /home/home/grd-framework/results/e13_power_sign/rpe1_partA.json
+results_sha256=47c5bddba393cc28e493b532bc893e5a6a38d3d36eb24c5c7d6c90f496ac1e3a seconds=1563.1

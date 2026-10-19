@@ -1,0 +1,7 @@
+k562 A exit=0 wall=30.359356807 seconds=0.9
+k562 B exit=0 wall=35.115550935 seconds=6.0
+norman A exit=0 wall=97.060700311 seconds=0.9
+norman B exit=0 wall=162.682337587 seconds=67.5
+rpe1 A exit=0 wall=11.043057597 seconds=0.9
+rpe1 B exit=0 wall=11.278732805 seconds=2.3
+SMOKE_DONE

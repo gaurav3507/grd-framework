@@ -1,0 +1,3 @@
+[k562] step0c {"ref_heldout_equal": true, "n_fakes_checked": 50, "fakes_equal": true}
+[k562] part B smoke=False -> /home/home/grd-framework/results/e13_power_sign/k562_partB.json
+results_sha256=570020753bb51675fafcf0fe88e69663bbb962aabbd32f20bf93bb3396f94ce4 seconds=56.6

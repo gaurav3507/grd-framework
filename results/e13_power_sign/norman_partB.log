@@ -1,0 +1,3 @@
+[norman] step0c {"ref_heldout_equal": true, "n_fakes_checked": 50, "fakes_equal": true}
+[norman] part B smoke=False -> /home/home/grd-framework/results/e13_power_sign/norman_partB.json
+results_sha256=cf832de0e448210e6620ae2595734adbf252edb1b1f0b9ca4fba26c7b86adb61 seconds=26.3
