@@ -25,3 +25,9 @@ Not allowed
 
 Reporting
 - E12b's K562 block is reported as "fallback depth, superseded by E12d". E12d carries the K562 depth result, labelled "raw UMI_count, amendment 2". E12c carries Norman. The global verdict comes from the E12d aggregate.
+
+Amendment 2a (19 Oct 2026, after the E12d smoke run stopped; written before any full run)
+- The 1e-6 absolute tolerance stopped the smoke run: ENSG00000006712 has a stored T1 of 354.2 and reproduced to 4.3e-6 absolute, 1.2e-8 relative. Relative differences over the 5 gate environments were 2.6e-9 to 1.5e-7, the same float32-level noise as E13 amendment 1; an absolute bound is the wrong shape for Hotelling's T1, which reaches 2388.8 in K562.
+- Change: the absolute gate becomes 2.5e-3 (1e-6 times the largest stored K562 T1), and the wrapper adds a relative check after the run, |diff| / |stored T1| <= 1e-6 on every one of the 435 environments, STOP otherwise. Both tolerances and the observed maxima are recorded (reproduction block and k562_seed0_d10_repro_relative.json).
+- Why this cannot change a result: R3 and R4 retention are computed from the stored E12 p-values (T1_e12_p), not from the recomputed statistics; the gate only confirms the code path reproduces E12 on this data.
+- Nothing else changes.

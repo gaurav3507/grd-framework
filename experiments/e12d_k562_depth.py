@@ -8,10 +8,13 @@ raw figshare obs["UMI_count"], aligned row for row to causalbench_k562.h5ad by t
 build (experiments/verify_causalbench_data.py, saved as
 $GRD_DATA_ROOT/build/k562_umi_count_aligned.npy). Everything else (seed, d, B, REF draws,
 fakes, R1 to R5, BH families, S1 to S3 rules) is e12b_confound_check.py's own code, with
-one more change: the reproduction tolerance against the stored E12 T1 statistics is 1e-6
-instead of 1e-8, because causalbench_k562.h5ad is the rebuilt file (E13 amendment 1:
-statistics differ from the A100 file by about 3e-8, every p-value is unchanged). The
-tolerance used is recorded in the output's reproduction block.
+one more change (amendment 2a): the reproduction gate against the stored E12 T1 statistics
+uses an absolute tolerance of 2.5e-3 (1e-6 times the largest stored K562 T1, 2388.83)
+instead of 1e-8, and this wrapper then checks |diff| / |stored T1| <= 1e-6 on every
+environment and STOPs if that fails. Reason: causalbench_k562.h5ad is the rebuilt file
+(E13 amendment 1); float32-level differences scale with the statistic, and T1 reaches the
+thousands. The stored E12 p-values, not the recomputed statistics, feed R3/R4 (e12b line
+"bh(lambda e: e['T1_e12_p'])"), so no E12 result can change through this gate.
 
 Outputs go under results/e12d_k562_depth/ (smoke under smoke/). --aggregate combines K562
 from here, Norman from results/e12c_norman_depth/ and writes summary.json here; RPE1 is
@@ -38,7 +41,8 @@ T2 = M.T2
 OUT_ROOT = E.REPO / "results" / "e12d_k562_depth"
 E12C_ROOT = E.REPO / "results" / "e12c_norman_depth"
 UMI_FILE = "k562_umi_count_aligned.npy"
-REPRO_TOL = 1e-6  # rebuilt K562 file, as E13 amendment 1; e12b's own value is 1e-8
+REPRO_TOL = 2.5e-3  # absolute, amendment 2a: 1e-6 x the largest stored K562 T1 (2388.83)
+REL_TOL = 1e-6  # amendment 2a: relative bound checked on every environment after the run
 SOURCE = "raw obs[UMI_count] (figshare 35773219), aligned external vector (amendment 2)"
 _inspect_orig = M.inspect_h5ad
 
@@ -87,6 +91,26 @@ def aggregate_e12d():
     return doc
 
 
+def relative_check(path):
+    """Amendment 2a: |T1_repro_absdiff| / |T1_e12_stored| <= REL_TOL for every environment."""
+    doc = json.loads(Path(path).read_text())
+    envs = doc["results"]["environments"]
+    rel = [(e["label"], e["T1_repro_absdiff"] / abs(e["T1_e12_stored"])) for e in envs]
+    worst = max(rel, key=lambda x: x[1])
+    out = dict(n=len(rel), max_rel_diff=worst[1], worst_label=worst[0], rel_tol=REL_TOL,
+               abs_tol=REPRO_TOL, max_abs_diff=doc["results"]["reproduction"]["all_max_abs_diff"],
+               passed=bool(worst[1] <= REL_TOL), output=str(path))
+    side = Path(path).with_name(Path(path).stem + "_repro_relative.json")
+    side.write_text(json.dumps(out, indent=1) + "\n")
+    print(f"[repro] relative check: {json.dumps(out)}", flush=True)
+    if not out["passed"]:
+        raise SystemExit(f"STOP: relative reproduction check failed: {out}")
+
+
+def _flag(argv, name, default):
+    return argv[argv.index(name) + 1] if name in argv else default
+
+
 def main():
     argv = sys.argv[1:]
     if "--depth-source" in argv:
@@ -102,6 +126,9 @@ def main():
     if "--dataset" in argv and argv[argv.index("--dataset") + 1] != "k562":
         raise SystemExit("STOP: E12d runs K562 only")
     M.main()
+    if "--dataset" in argv and "--inspect" not in argv and "--selftest" not in argv:
+        relative_check(M.out_path("k562", int(_flag(argv, "--seed", 0)), int(_flag(argv, "--d", 10)),
+                                  "--smoke" in argv, "auto"))
 
 
 if __name__ == "__main__":
