@@ -1,0 +1,31 @@
+[selftest] linear builder vs E2 builders (8 systems, every environment): bit-identical (max |dX| 0.0, max |dZ| 0.0)
+[selftest] poly and mlp Z vs linear Z: max |dZ| 0.0; arm C Zc and gain vs replay of default_rng(seed + 7): max diff 0.0
+[selftest] unit_rows on E14.projected() vs results/e10_risk_coverage/units.json: 39 units, 0 mismatches (decision fields and pvalue exact; floats within 1e-09; excluded ['corr_all', 'target', 'corr_target']); max abs diff per float field {'best_match_corr': 4.440892098500626e-16, 'boot_angle_median': 1.5718537582642966e-12, 'boot_angle_p90': 1.98641103565933e-12, 'signal': 4.052314039881821e-15, 'threshold': 8.153200337090993e-17}
+  poly A level=5 seed=0 units=5 failed=0 r2_obs=0.7356304818358814 (5s)
+  poly A level=4 seed=0 units=9 failed=0 r2_obs=0.6661186842628023 (7s)
+  poly B level=4000 seed=0 units=14 failed=0 r2_obs=0.7226651393195559 (9s)
+  poly B level=400 seed=0 units=19 failed=0 r2_obs=0.7939127904949932 (10s)
+  poly C level=0 seed=0 units=24 failed=0 r2_obs=0.7425197182798873 (12s)
+  poly C level=1 seed=0 units=29 failed=0 r2_obs=0.7811665224455995 (14s)
+  poly D level=0.1 seed=0 units=34 failed=0 r2_obs=0.9123546798196743 (17s)
+  poly D level=0.4 seed=0 units=39 failed=0 r2_obs=0.811268053100662 (19s)
+  poly A level=5 seed=0 units=5 failed=0 r2_obs=0.7356304818358814 (5s)
+  poly A level=4 seed=0 units=9 failed=0 r2_obs=0.6661186842628023 (5s)
+  poly B level=4000 seed=0 units=14 failed=0 r2_obs=0.7226651393195559 (5s)
+  poly B level=400 seed=0 units=19 failed=0 r2_obs=0.7939127904949932 (5s)
+  poly C level=0 seed=0 units=24 failed=0 r2_obs=0.7425197182798873 (6s)
+  poly C level=1 seed=0 units=29 failed=0 r2_obs=0.7811665224455995 (8s)
+  poly D level=0.1 seed=0 units=34 failed=0 r2_obs=0.9123546798196743 (8s)
+  poly D level=0.4 seed=0 units=39 failed=0 r2_obs=0.811268053100662 (8s)
+[selftest] poly data pass 39 units: workers 1 vs 4 units identical True, diagnostics identical True; failed systems 0
+  mlp A level=5 seed=0 units=5 failed=0 r2_obs=0.94345231027379 (5s)
+  mlp A level=4 seed=0 units=9 failed=0 r2_obs=0.9841999637106248 (5s)
+  mlp B level=4000 seed=0 units=14 failed=0 r2_obs=0.9601343292056 (5s)
+  mlp B level=400 seed=0 units=19 failed=0 r2_obs=0.967346225092436 (5s)
+  mlp C level=0 seed=0 units=24 failed=0 r2_obs=0.9821206171984656 (7s)
+  mlp C level=1 seed=0 units=29 failed=0 r2_obs=0.9681280499334725 (8s)
+  mlp D level=0.1 seed=0 units=34 failed=0 r2_obs=0.9768112230600596 (8s)
+  mlp D level=0.4 seed=0 units=39 failed=0 r2_obs=0.9780610935332005 (9s)
+[selftest] poly end to end: units 39, failed 0, affine R^2 obs median 0.7618 (300 steps), G2 ABD cov 1.0, predictions {H1: undetermined, H2: failed, H3: undetermined, H4: undetermined, H5: held, H6: held}
+[selftest] mlp end to end: units 39, failed 0, affine R^2 obs median 0.9725 (300 steps), G2 ABD cov 0.4827586206896552, predictions {H7: failed}
+[selftest] passed (nothing written) 47.0s; versions {'python': '3.14.4', 'numpy': '2.5.4', 'scipy': '1.18.1', 'torch': '2.14.1+cpu', 'venv': '/home/home/grd-framework/.venv'}
