@@ -1,0 +1,14 @@
+{
+ "predictions": {
+  "H7": "held"
+ },
+ "failed": 0,
+ "affine_r2": {
+  "obs_median": 0.994640095782638,
+  "obs_n": 200,
+  "int_median": 0.9612546977740395,
+  "int_n": 790,
+  "recon_basis_median": 0.01344600273296237,
+  "recon_obs_median": 0.016647753305733204
+ }
+}

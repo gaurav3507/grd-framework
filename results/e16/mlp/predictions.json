@@ -1,0 +1,644 @@
+{
+  "results": {
+    "experiment": "E16",
+    "mixing": "mlp",
+    "prereg": "notes/e16_prereg.md",
+    "n_units": 900,
+    "n_systems": 200,
+    "n_failed_systems": 0,
+    "failed_fraction": 0.0,
+    "too_many_failed": false,
+    "n_readout_placeholder_units": 0,
+    "e16": {
+      "ABD": {
+        "target_coverage": 0.7676923076923077,
+        "G0": {
+          "coverage": 1.0,
+          "risk": 0.13076923076923078
+        },
+        "gates": {
+          "G0": {
+            "aurc": 0.13076923076923078,
+            "aurc_ci": {
+              "lo": 0.09661837958012044,
+              "hi": 0.16569443907250186,
+              "median": 0.12998258513931887,
+              "n_defined": 1000
+            },
+            "matched_risk": null,
+            "matched_ci": {
+              "lo": null,
+              "hi": null,
+              "median": null,
+              "n_defined": 0
+            }
+          },
+          "G2": {
+            "aurc": 0.03901694611588037,
+            "aurc_ci": {
+              "lo": 0.02389447160071828,
+              "hi": 0.05878564185104135,
+              "median": 0.03888530734128705,
+              "n_defined": 1000
+            },
+            "matched_risk": 0.03006012024052176,
+            "matched_ci": {
+              "lo": 0.012419178291406643,
+              "hi": 0.05448538948639675,
+              "median": 0.029440656419727932,
+              "n_defined": 1000
+            },
+            "coverage_q05": 0.7676923076923077,
+            "risk_q05": 0.03006012024048096
+          },
+          "G5": {
+            "aurc": 0.020628324541582192,
+            "aurc_ci": {
+              "lo": 0.011988251157591622,
+              "hi": 0.03281992935192857,
+              "median": 0.02021846980670886,
+              "n_defined": 1000
+            },
+            "matched_risk": 0.027773189746383736,
+            "matched_ci": {
+              "lo": 0.011259591136341191,
+              "hi": 0.05204862063533896,
+              "median": 0.027056286391191453,
+              "n_defined": 1000
+            }
+          },
+          "G8": {
+            "aurc": 0.07592577230123745,
+            "aurc_ci": {
+              "lo": 0.052676018048792295,
+              "hi": 0.10254144713560681,
+              "median": 0.07591204026543902,
+              "n_defined": 1000
+            },
+            "matched_risk": null,
+            "matched_ci": {
+              "lo": null,
+              "hi": null,
+              "median": null,
+              "n_defined": 0
+            },
+            "coverage_q05": 0.9,
+            "risk_q05": 0.07008547008547009
+          },
+          "G9": {
+            "aurc": 0.06629615335168679,
+            "aurc_ci": {
+              "lo": 0.04452037438122919,
+              "hi": 0.0921701088488634,
+              "median": 0.06575006691377784,
+              "n_defined": 1000
+            },
+            "matched_risk": 0.05804430341915863,
+            "matched_ci": {
+              "lo": 0.030274289942417317,
+              "hi": 0.08703641118245392,
+              "median": 0.056320488655064296,
+              "n_defined": 1000
+            },
+            "coverage_q05": 0.7292307692307692,
+            "risk_q05": 0.04219409282700422
+          }
+        }
+      },
+      "C": {
+        "target_coverage": 0.712,
+        "G0": {
+          "coverage": 1.0,
+          "risk": 0.392
+        },
+        "gates": {
+          "G0": {
+            "aurc": 0.392,
+            "aurc_ci": {
+              "lo": 0.3045359848484849,
+              "hi": 0.4800454545454545,
+              "median": 0.3923076923076923,
+              "n_defined": 1000
+            },
+            "matched_risk": null,
+            "matched_ci": {
+              "lo": null,
+              "hi": null,
+              "median": null,
+              "n_defined": 0
+            }
+          },
+          "G2": {
+            "aurc": 0.20904963119133296,
+            "aurc_ci": {
+              "lo": 0.1418723742933734,
+              "hi": 0.27806974688211994,
+              "median": 0.20987925078848313,
+              "n_defined": 1000
+            },
+            "matched_risk": 0.21348314606741572,
+            "matched_ci": {
+              "lo": 0.13558503234257624,
+              "hi": 0.29787745499175083,
+              "median": 0.21348314606716456,
+              "n_defined": 1000
+            },
+            "coverage_q05": 0.712,
+            "risk_q05": 0.21348314606741572
+          },
+          "G5": {
+            "aurc": 0.11471220493323848,
+            "aurc_ci": {
+              "lo": 0.06707141944287617,
+              "hi": 0.17765275124435115,
+              "median": 0.11507972002172688,
+              "n_defined": 1000
+            },
+            "matched_risk": 0.20782245033742033,
+            "matched_ci": {
+              "lo": 0.13180686596900398,
+              "hi": 0.28923402469322446,
+              "median": 0.20954388045499442,
+              "n_defined": 1000
+            }
+          },
+          "G8": {
+            "aurc": 0.36275134750953836,
+            "aurc_ci": {
+              "lo": 0.27760997162926565,
+              "hi": 0.4512550031040491,
+              "median": 0.36272819041866194,
+              "n_defined": 1000
+            },
+            "matched_risk": null,
+            "matched_ci": {
+              "lo": null,
+              "hi": null,
+              "median": null,
+              "n_defined": 0
+            },
+            "coverage_q05": 0.976,
+            "risk_q05": 0.3770491803278688
+          },
+          "G9": {
+            "aurc": 0.2024020267394718,
+            "aurc_ci": {
+              "lo": 0.14743360655061946,
+              "hi": 0.2663736191635372,
+              "median": 0.20201408323157785,
+              "n_defined": 1000
+            },
+            "matched_risk": 0.18496761372612597,
+            "matched_ci": {
+              "lo": 0.11122969521903472,
+              "hi": 0.26733243945476043,
+              "median": 0.18441370127258352,
+              "n_defined": 1000
+            },
+            "coverage_q05": 0.596,
+            "risk_q05": 0.053691275167785234
+          }
+        }
+      }
+    },
+    "point_only_G1_G3_G4": {
+      "G1": {
+        "ABD": {
+          "aurc": 0.05183175122265578,
+          "matched_risk": 0.030513217432756024
+        },
+        "C": {
+          "aurc": 0.23949810330590632,
+          "matched_risk": 0.21325966850828731
+        }
+      },
+      "G3": {
+        "ABD": {
+          "aurc": 0.055183566433552156,
+          "matched_risk": 0.08381333333330543
+        },
+        "C": {
+          "aurc": 0.392,
+          "matched_risk": null
+        }
+      },
+      "G4": {
+        "ABD": {
+          "aurc": 0.10460077312283164,
+          "matched_risk": 0.08333151758775605
+        },
+        "C": {
+          "aurc": 0.11459255119878359,
+          "matched_risk": 0.21254077081807893
+        }
+      }
+    },
+    "caveat_arm_B": {
+      "B_level20": {
+        "G2": {
+          "knob": 0.05,
+          "n_units": 50,
+          "n_certified": 0,
+          "coverage": 0.0,
+          "risk": null,
+          "recall": 0.0
+        },
+        "G8": {
+          "knob": 0.05,
+          "n_units": 50,
+          "n_certified": 8,
+          "coverage": 0.16,
+          "risk": 0.25,
+          "recall": 0.2727272727272727
+        },
+        "G9": {
+          "knob": 0.05,
+          "n_units": 50,
+          "n_certified": 0,
+          "coverage": 0.0,
+          "risk": null,
+          "recall": 0.0
+        }
+      },
+      "B_level40": {
+        "G2": {
+          "knob": 0.05,
+          "n_units": 50,
+          "n_certified": 25,
+          "coverage": 0.5,
+          "risk": 0.24,
+          "recall": 0.5
+        },
+        "G8": {
+          "knob": 0.05,
+          "n_units": 50,
+          "n_certified": 44,
+          "coverage": 0.88,
+          "risk": 0.22727272727272727,
+          "recall": 0.8947368421052632
+        },
+        "G9": {
+          "knob": 0.05,
+          "n_units": 50,
+          "n_certified": 5,
+          "coverage": 0.1,
+          "risk": 0.6,
+          "recall": 0.05263157894736842
+        }
+      }
+    },
+    "affine_r2": {
+      "obs_median": 0.994640095782638,
+      "obs_n": 200,
+      "int_median": 0.9612546977740395,
+      "int_n": 790,
+      "recon_basis_median": 0.01344600273296237,
+      "recon_obs_median": 0.016647753305733204
+    },
+    "ci_diff": {
+      "ABD": {
+        "G8-G2_matched": {
+          "lo": null,
+          "hi": null,
+          "median": null,
+          "n_defined": 0
+        },
+        "G9-G2_matched": {
+          "lo": 0.008060429587695395,
+          "hi": 0.04499849733782969,
+          "median": 0.02605294883544114,
+          "n_defined": 1000
+        },
+        "G8-G2_aurc": {
+          "lo": 0.021074907556982846,
+          "hi": 0.05405137637991008,
+          "median": 0.03613173589861075,
+          "n_defined": 1000
+        },
+        "G9-G2_aurc": {
+          "lo": 0.012213436400169917,
+          "hi": 0.043612290572384145,
+          "median": 0.02654188124937074,
+          "n_defined": 1000
+        },
+        "G0-G2_aurc": {
+          "lo": 0.0650863621355892,
+          "hi": 0.12006533188674441,
+          "median": 0.09050065308592295,
+          "n_defined": 1000
+        },
+        "G0-G5_aurc": {
+          "lo": 0.08305597218560269,
+          "hi": 0.1364190792263705,
+          "median": 0.10959799713334423,
+          "n_defined": 1000
+        },
+        "G0-G8_aurc": {
+          "lo": 0.035790174471420425,
+          "hi": 0.07718044557706258,
+          "median": 0.05412596425805766,
+          "n_defined": 1000
+        },
+        "G0-G9_aurc": {
+          "lo": 0.04452019126012746,
+          "hi": 0.08567101197671625,
+          "median": 0.06366617538725425,
+          "n_defined": 1000
+        },
+        "G0-G2_risk_q05": {
+          "lo": 0.06980967037408956,
+          "hi": 0.13192151190742377,
+          "median": 0.09987623719310765,
+          "n_defined": 1000
+        }
+      },
+      "C": {
+        "G8-G2_matched": {
+          "lo": null,
+          "hi": null,
+          "median": null,
+          "n_defined": 0
+        },
+        "G9-G2_matched": {
+          "lo": -0.05128780127430535,
+          "hi": -0.00708791379485178,
+          "median": -0.027358700393754584,
+          "n_defined": 1000
+        },
+        "G8-G2_aurc": {
+          "lo": 0.11040540338422475,
+          "hi": 0.19562290497844034,
+          "median": 0.15380175833759147,
+          "n_defined": 1000
+        },
+        "G9-G2_aurc": {
+          "lo": -0.048984023165414704,
+          "hi": 0.033096816293641314,
+          "median": -0.007495917444228714,
+          "n_defined": 1000
+        },
+        "G0-G2_aurc": {
+          "lo": 0.13740000777025843,
+          "hi": 0.22671664685239598,
+          "median": 0.18270469494819508,
+          "n_defined": 1000
+        },
+        "G0-G5_aurc": {
+          "lo": 0.2349498054620904,
+          "hi": 0.3083449222456364,
+          "median": 0.2772122368073837,
+          "n_defined": 1000
+        },
+        "G0-G8_aurc": {
+          "lo": 0.018413540566339603,
+          "hi": 0.0407291361660006,
+          "median": 0.029128703315900784,
+          "n_defined": 1000
+        },
+        "G0-G9_aurc": {
+          "lo": 0.15354344412024967,
+          "hi": 0.2241438274609725,
+          "median": 0.18961640307862432,
+          "n_defined": 1000
+        },
+        "G0-G2_risk_q05": {
+          "lo": 0.13091686814941106,
+          "hi": 0.2325208333333333,
+          "median": 0.17715495855159236,
+          "n_defined": 1000
+        }
+      }
+    },
+    "predictions": {
+      "H7": {
+        "verdict": "held",
+        "risk_G2_q05": 0.03006012024048096,
+        "risk_G0": 0.13076923076923078,
+        "note": "exploratory, outside the theory's assumptions; point estimates only"
+      }
+    },
+    "linear_backbone": {
+      "source": "results/e14/curves.json (linear backbone, E10 units)",
+      "scopes": {
+        "ABD": {
+          "target_coverage": 0.8046153846153846,
+          "gates": {
+            "G0": {
+              "aurc": 0.06,
+              "matched_risk": null,
+              "aurc_ci": {
+                "lo": 0.03696748555881683,
+                "hi": 0.08737171486859474,
+                "median": 0.05993690851735016,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": null,
+                "hi": null,
+                "median": null,
+                "n_defined": 0
+              },
+              "coverage": 1.0,
+              "risk": 0.06
+            },
+            "G2": {
+              "aurc": 0.01100319540219561,
+              "matched_risk": 0.0019120458891179806,
+              "coverage_q05": 0.8046153846153846,
+              "risk_q05": 0.0019120458891013384,
+              "aurc_ci": {
+                "lo": 0.005192912835862158,
+                "hi": 0.01886294607244267,
+                "median": 0.010668356177135744,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": 0.0,
+                "hi": 0.00639658848613574,
+                "median": 0.0018744158919600687,
+                "n_defined": 1000
+              }
+            },
+            "G5": {
+              "aurc": 0.004386504560116181,
+              "matched_risk": 0.0007910349373886214,
+              "aurc_ci": {
+                "lo": 0.0019492449744940156,
+                "hi": 0.00864767705181213,
+                "median": 0.004487988701030744,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": 0.0,
+                "hi": 0.004041557400944262,
+                "median": 0.000562597553813458,
+                "n_defined": 1000
+              }
+            },
+            "G8": {
+              "aurc": 0.03440130763618407,
+              "matched_risk": null,
+              "coverage_q05": 0.9676923076923077,
+              "risk_q05": 0.034976152623211444,
+              "aurc_ci": {
+                "lo": 0.017014742950670573,
+                "hi": 0.05589951305892255,
+                "median": 0.034477348165273466,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": null,
+                "hi": null,
+                "median": null,
+                "n_defined": 0
+              }
+            },
+            "G9": {
+              "aurc": 0.02320822679813931,
+              "matched_risk": 0.03178358208959715,
+              "coverage_q05": 0.6907692307692308,
+              "risk_q05": 0.0066815144766146995,
+              "aurc_ci": {
+                "lo": 0.011829766322864485,
+                "hi": 0.036327368502521544,
+                "median": 0.022830809052866503,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": 0.014306001814287787,
+                "hi": 0.04881716546981287,
+                "median": 0.03005877002025973,
+                "n_defined": 1000
+              }
+            }
+          }
+        },
+        "C": {
+          "target_coverage": 0.752,
+          "gates": {
+            "G0": {
+              "aurc": 0.284,
+              "matched_risk": null,
+              "aurc_ci": {
+                "lo": 0.20325000000000001,
+                "hi": 0.3714906832298136,
+                "median": 0.2836786469344609,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": null,
+                "hi": null,
+                "median": null,
+                "n_defined": 0
+              },
+              "coverage": 1.0,
+              "risk": 0.284
+            },
+            "G2": {
+              "aurc": 0.15607943067434607,
+              "matched_risk": 0.1595744680851064,
+              "coverage_q05": 0.752,
+              "risk_q05": 0.1595744680851064,
+              "aurc_ci": {
+                "lo": 0.099600902987856,
+                "hi": 0.21903904581066164,
+                "median": 0.15598207816481385,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": 0.0947819264760607,
+                "hi": 0.23385939156675634,
+                "median": 0.1590891695370225,
+                "n_defined": 1000
+              }
+            },
+            "G5": {
+              "aurc": 0.10627402586072733,
+              "matched_risk": 0.19885515181682425,
+              "aurc_ci": {
+                "lo": 0.06149893289187855,
+                "hi": 0.1621370875514173,
+                "median": 0.10612265671223392,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": 0.13212499914075912,
+                "hi": 0.2785599749908885,
+                "median": 0.19666195737173314,
+                "n_defined": 1000
+              }
+            },
+            "G8": {
+              "aurc": 0.27083542792732623,
+              "matched_risk": null,
+              "coverage_q05": 0.956,
+              "risk_q05": 0.26778242677824265,
+              "aurc_ci": {
+                "lo": 0.18906200166103998,
+                "hi": 0.36111664364729607,
+                "median": 0.2706971001260484,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": null,
+                "hi": null,
+                "median": null,
+                "n_defined": 0
+              }
+            },
+            "G9": {
+              "aurc": 0.12325262345344543,
+              "matched_risk": 0.15613160808999244,
+              "coverage_q05": 0.548,
+              "risk_q05": 0.051094890510948905,
+              "aurc_ci": {
+                "lo": 0.07488584284930559,
+                "hi": 0.18121560742949802,
+                "median": 0.1229271705974834,
+                "n_defined": 1000
+              },
+              "matched_ci": {
+                "lo": 0.10013861902037721,
+                "hi": 0.22187590048443534,
+                "median": 0.15657881546919672,
+                "n_defined": 1000
+              }
+            }
+          }
+        }
+      }
+    },
+    "bootstrap": {
+      "draws": 1000,
+      "rng": "default_rng(120000)",
+      "min_defined": 900
+    }
+  },
+  "meta": {
+    "seconds": 5.2,
+    "units_sha256": "2137dd7e981b2af668fd9e5fa28d33b5507d9098f6733642ab223ab1688e0545",
+    "versions": {
+      "python": "3.14.4",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.14.1+cpu",
+      "venv": "/home/home/grd-framework/.venv"
+    },
+    "provenance": {
+      "code_commit": "b29139e89e3d2f47d7b82c9811e6ca5132319a34",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "37d98a08a53de4d130607dceb9ec9dba4082fe9b4157a1cfde53b44fecbb4c03",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e16_neural_backbone.py": "8578f61c6813015d399e2b13e7971b1659eee093be9fb8a57d2cd46ca03a9c10",
+        "experiments/e14_matched_coverage.py": "a550a237cfdd70d477df8d989e1af867a14d8128da605a79b47d5c641ff0f149",
+        "experiments/e10_risk_coverage.py": "6a9c2d86f868047bace9657c04f55d5acc9622e627b2dfacedafb564c9e2a012"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}

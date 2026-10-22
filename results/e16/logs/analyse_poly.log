@@ -1,0 +1,19 @@
+{
+ "predictions": {
+  "H1": "held",
+  "H2": "failed",
+  "H3": "held",
+  "H4": "failed",
+  "H5": "held",
+  "H6": "held"
+ },
+ "failed": 0,
+ "affine_r2": {
+  "obs_median": 0.964350338253021,
+  "obs_n": 200,
+  "int_median": 0.8174873736942561,
+  "int_n": 790,
+  "recon_basis_median": 0.016163406893610954,
+  "recon_obs_median": 0.027238929644227028
+ }
+}
