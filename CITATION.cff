@@ -27,7 +27,7 @@ keywords:
   - causal discovery
 preferred-citation:
   type: unpublished
-  title: "Gate, Recover, Discover: Data-Side Admissibility Testing Before Causal Representation Learning"
+  title: "GRD: A calibrated test of the intervention assumption in causal representation learning"
   year: 2026
   notes: "Under review."
   authors:

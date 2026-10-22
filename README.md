@@ -79,7 +79,7 @@ src/           Gate / Recover / Discover modules and the precision-difference re
 sim/           multi-environment linear-SCM simulator
 experiments/   one runnable script per experiment (E0-E15, D4, baselines, certificate)
 results/       committed JSON artifacts (source of every number in the paper)
-paper/         figure-generation script and the six manuscript figures
+paper/         figure scripts and generated figures; figures 1, 3, 4 and 8 use the superseded in-sample construction (see the artifact map)
 notes/         track sheet, Davis-Kahan certificate note, theory notes (notes/theory)
 docs/          framework design document
 ```
