@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or its committed artifacts, please cite the paper below."
-title: "Gate, Recover, Discover: Data-Side Admissibility Testing Before Causal Representation Learning"
+title: "GRD: A calibrated test of the intervention assumption in causal representation learning"
 type: software
 authors:
   - family-names: Goyal
