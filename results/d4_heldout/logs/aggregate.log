@@ -1,0 +1,24 @@
+{
+ "predictions": {
+  "P2": {
+   "verdict": "held",
+   "rpe1_seeds_exceeding_q95": 3
+  },
+  "P3": {
+   "verdict": "held"
+  },
+  "P4": {
+   "verdict": "failed",
+   "rule": "failed if any determined part fails; else undetermined if any part is undetermined (missing input or empty Jaccard union); else held"
+  },
+  "P5": {
+   "rpe1_T0h_pairwise_jaccard": {
+    "0-1": 0.7142857142857143,
+    "0-2": 0.8,
+    "1-2": 0.5714285714285714
+   },
+   "rpe1_T0h_n_common_all_seeds": 8
+  }
+ },
+ "missing": []
+}

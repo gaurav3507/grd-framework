@@ -1,0 +1,3887 @@
+{
+  "primary_decision": "held-out T0h BH q=0.05 (E12, D4)",
+  "dataset": "k562",
+  "seed": 0,
+  "decisions": [
+    {
+      "environment": "ENSG00000004897",
+      "bh_detect": false,
+      "pvalue": 1.0
+    },
+    {
+      "environment": "ENSG00000005448",
+      "bh_detect": false,
+      "pvalue": 0.6051
+    },
+    {
+      "environment": "ENSG00000006712",
+      "bh_detect": false,
+      "pvalue": 0.8841
+    },
+    {
+      "environment": "ENSG00000006715",
+      "bh_detect": false,
+      "pvalue": 0.8002
+    },
+    {
+      "environment": "ENSG00000008128",
+      "bh_detect": false,
+      "pvalue": 0.0003
+    },
+    {
+      "environment": "ENSG00000008988",
+      "bh_detect": false,
+      "pvalue": 0.6767
+    },
+    {
+      "environment": "ENSG00000010244",
+      "bh_detect": false,
+      "pvalue": 0.1721
+    },
+    {
+      "environment": "ENSG00000010256",
+      "bh_detect": false,
+      "pvalue": 0.3845
+    },
+    {
+      "environment": "ENSG00000012174",
+      "bh_detect": false,
+      "pvalue": 0.0894
+    },
+    {
+      "environment": "ENSG00000013275",
+      "bh_detect": false,
+      "pvalue": 0.998
+    },
+    {
+      "environment": "ENSG00000013561",
+      "bh_detect": false,
+      "pvalue": 0.2492
+    },
+    {
+      "environment": "ENSG00000014138",
+      "bh_detect": false,
+      "pvalue": 0.3099
+    },
+    {
+      "environment": "ENSG00000028203",
+      "bh_detect": false,
+      "pvalue": 0.9559
+    },
+    {
+      "environment": "ENSG00000029364",
+      "bh_detect": false,
+      "pvalue": 0.3088
+    },
+    {
+      "environment": "ENSG00000030066",
+      "bh_detect": false,
+      "pvalue": 0.1788
+    },
+    {
+      "environment": "ENSG00000033327",
+      "bh_detect": false,
+      "pvalue": 0.8699
+    },
+    {
+      "environment": "ENSG00000034510",
+      "bh_detect": false,
+      "pvalue": 0.1959
+    },
+    {
+      "environment": "ENSG00000037897",
+      "bh_detect": false,
+      "pvalue": 0.7339
+    },
+    {
+      "environment": "ENSG00000041357",
+      "bh_detect": false,
+      "pvalue": 0.1879
+    },
+    {
+      "environment": "ENSG00000044574",
+      "bh_detect": false,
+      "pvalue": 0.2606
+    },
+    {
+      "environment": "ENSG00000047315",
+      "bh_detect": false,
+      "pvalue": 0.9361
+    },
+    {
+      "environment": "ENSG00000050820",
+      "bh_detect": false,
+      "pvalue": 0.6186
+    },
+    {
+      "environment": "ENSG00000051180",
+      "bh_detect": false,
+      "pvalue": 0.704
+    },
+    {
+      "environment": "ENSG00000052749",
+      "bh_detect": false,
+      "pvalue": 0.0864
+    },
+    {
+      "environment": "ENSG00000055130",
+      "bh_detect": false,
+      "pvalue": 0.4824
+    },
+    {
+      "environment": "ENSG00000058600",
+      "bh_detect": false,
+      "pvalue": 0.4021
+    },
+    {
+      "environment": "ENSG00000060688",
+      "bh_detect": false,
+      "pvalue": 0.8632
+    },
+    {
+      "environment": "ENSG00000061794",
+      "bh_detect": false,
+      "pvalue": 0.2935
+    },
+    {
+      "environment": "ENSG00000062485",
+      "bh_detect": false,
+      "pvalue": 0.3643
+    },
+    {
+      "environment": "ENSG00000062822",
+      "bh_detect": false,
+      "pvalue": 0.0018
+    },
+    {
+      "environment": "ENSG00000063177",
+      "bh_detect": false,
+      "pvalue": 0.0472
+    },
+    {
+      "environment": "ENSG00000065183",
+      "bh_detect": false,
+      "pvalue": 0.3216
+    },
+    {
+      "environment": "ENSG00000065328",
+      "bh_detect": false,
+      "pvalue": 0.9784
+    },
+    {
+      "environment": "ENSG00000067334",
+      "bh_detect": false,
+      "pvalue": 0.2551
+    },
+    {
+      "environment": "ENSG00000067704",
+      "bh_detect": false,
+      "pvalue": 0.2216
+    },
+    {
+      "environment": "ENSG00000068120",
+      "bh_detect": false,
+      "pvalue": 0.1444
+    },
+    {
+      "environment": "ENSG00000071082",
+      "bh_detect": false,
+      "pvalue": 0.1617
+    },
+    {
+      "environment": "ENSG00000072756",
+      "bh_detect": false,
+      "pvalue": 0.348
+    },
+    {
+      "environment": "ENSG00000073050",
+      "bh_detect": false,
+      "pvalue": 0.7082
+    },
+    {
+      "environment": "ENSG00000073536",
+      "bh_detect": false,
+      "pvalue": 0.0424
+    },
+    {
+      "environment": "ENSG00000077380",
+      "bh_detect": false,
+      "pvalue": 0.9886
+    },
+    {
+      "environment": "ENSG00000080986",
+      "bh_detect": false,
+      "pvalue": 1.0
+    },
+    {
+      "environment": "ENSG00000082898",
+      "bh_detect": false,
+      "pvalue": 0.5797
+    },
+    {
+      "environment": "ENSG00000083896",
+      "bh_detect": false,
+      "pvalue": 0.9599
+    },
+    {
+      "environment": "ENSG00000084463",
+      "bh_detect": false,
+      "pvalue": 0.9938
+    },
+    {
+      "environment": "ENSG00000085840",
+      "bh_detect": false,
+      "pvalue": 0.9204
+    },
+    {
+      "environment": "ENSG00000086061",
+      "bh_detect": false,
+      "pvalue": 0.9821
+    },
+    {
+      "environment": "ENSG00000086827",
+      "bh_detect": false,
+      "pvalue": 0.6643
+    },
+    {
+      "environment": "ENSG00000087087",
+      "bh_detect": false,
+      "pvalue": 0.8826
+    },
+    {
+      "environment": "ENSG00000087365",
+      "bh_detect": false,
+      "pvalue": 0.2176
+    },
+    {
+      "environment": "ENSG00000088038",
+      "bh_detect": false,
+      "pvalue": 0.7588
+    },
+    {
+      "environment": "ENSG00000088325",
+      "bh_detect": false,
+      "pvalue": 0.9259
+    },
+    {
+      "environment": "ENSG00000089009",
+      "bh_detect": false,
+      "pvalue": 0.0879
+    },
+    {
+      "environment": "ENSG00000089289",
+      "bh_detect": false,
+      "pvalue": 0.9989
+    },
+    {
+      "environment": "ENSG00000089737",
+      "bh_detect": false,
+      "pvalue": 0.029
+    },
+    {
+      "environment": "ENSG00000090061",
+      "bh_detect": false,
+      "pvalue": 0.3608
+    },
+    {
+      "environment": "ENSG00000091140",
+      "bh_detect": false,
+      "pvalue": 0.2033
+    },
+    {
+      "environment": "ENSG00000092199",
+      "bh_detect": false,
+      "pvalue": 0.4479
+    },
+    {
+      "environment": "ENSG00000094914",
+      "bh_detect": false,
+      "pvalue": 0.6339
+    },
+    {
+      "environment": "ENSG00000095139",
+      "bh_detect": false,
+      "pvalue": 0.5979
+    },
+    {
+      "environment": "ENSG00000099783",
+      "bh_detect": false,
+      "pvalue": 0.7398
+    },
+    {
+      "environment": "ENSG00000099817",
+      "bh_detect": false,
+      "pvalue": 0.9896
+    },
+    {
+      "environment": "ENSG00000099821",
+      "bh_detect": false,
+      "pvalue": 0.6663
+    },
+    {
+      "environment": "ENSG00000099995",
+      "bh_detect": false,
+      "pvalue": 0.3441
+    },
+    {
+      "environment": "ENSG00000100084",
+      "bh_detect": false,
+      "pvalue": 0.2061
+    },
+    {
+      "environment": "ENSG00000100142",
+      "bh_detect": false,
+      "pvalue": 0.8672
+    },
+    {
+      "environment": "ENSG00000100316",
+      "bh_detect": false,
+      "pvalue": 0.8579
+    },
+    {
+      "environment": "ENSG00000100410",
+      "bh_detect": false,
+      "pvalue": 0.2333
+    },
+    {
+      "environment": "ENSG00000100567",
+      "bh_detect": false,
+      "pvalue": 0.8977
+    },
+    {
+      "environment": "ENSG00000100575",
+      "bh_detect": false,
+      "pvalue": 0.317
+    },
+    {
+      "environment": "ENSG00000100603",
+      "bh_detect": false,
+      "pvalue": 0.9002
+    },
+    {
+      "environment": "ENSG00000100764",
+      "bh_detect": false,
+      "pvalue": 0.9915
+    },
+    {
+      "environment": "ENSG00000100804",
+      "bh_detect": false,
+      "pvalue": 0.7901
+    },
+    {
+      "environment": "ENSG00000101158",
+      "bh_detect": false,
+      "pvalue": 0.168
+    },
+    {
+      "environment": "ENSG00000101161",
+      "bh_detect": false,
+      "pvalue": 0.8485
+    },
+    {
+      "environment": "ENSG00000101166",
+      "bh_detect": false,
+      "pvalue": 0.9344
+    },
+    {
+      "environment": "ENSG00000101343",
+      "bh_detect": false,
+      "pvalue": 0.9694
+    },
+    {
+      "environment": "ENSG00000101639",
+      "bh_detect": false,
+      "pvalue": 0.589
+    },
+    {
+      "environment": "ENSG00000101868",
+      "bh_detect": false,
+      "pvalue": 0.2852
+    },
+    {
+      "environment": "ENSG00000102967",
+      "bh_detect": false,
+      "pvalue": 0.1533
+    },
+    {
+      "environment": "ENSG00000103035",
+      "bh_detect": false,
+      "pvalue": 0.9845
+    },
+    {
+      "environment": "ENSG00000103257",
+      "bh_detect": false,
+      "pvalue": 0.7014
+    },
+    {
+      "environment": "ENSG00000103502",
+      "bh_detect": false,
+      "pvalue": 0.6344
+    },
+    {
+      "environment": "ENSG00000103510",
+      "bh_detect": false,
+      "pvalue": 0.406
+    },
+    {
+      "environment": "ENSG00000104299",
+      "bh_detect": false,
+      "pvalue": 0.9703
+    },
+    {
+      "environment": "ENSG00000104408",
+      "bh_detect": false,
+      "pvalue": 0.1592
+    },
+    {
+      "environment": "ENSG00000104897",
+      "bh_detect": false,
+      "pvalue": 0.9849
+    },
+    {
+      "environment": "ENSG00000105011",
+      "bh_detect": false,
+      "pvalue": 0.0135
+    },
+    {
+      "environment": "ENSG00000105058",
+      "bh_detect": false,
+      "pvalue": 0.9579
+    },
+    {
+      "environment": "ENSG00000105229",
+      "bh_detect": false,
+      "pvalue": 0.4288
+    },
+    {
+      "environment": "ENSG00000105258",
+      "bh_detect": false,
+      "pvalue": 0.9931
+    },
+    {
+      "environment": "ENSG00000105281",
+      "bh_detect": false,
+      "pvalue": 0.3906
+    },
+    {
+      "environment": "ENSG00000105372",
+      "bh_detect": false,
+      "pvalue": 0.0395
+    },
+    {
+      "environment": "ENSG00000105568",
+      "bh_detect": false,
+      "pvalue": 0.0954
+    },
+    {
+      "environment": "ENSG00000105732",
+      "bh_detect": false,
+      "pvalue": 0.5437
+    },
+    {
+      "environment": "ENSG00000105819",
+      "bh_detect": false,
+      "pvalue": 0.5338
+    },
+    {
+      "environment": "ENSG00000106105",
+      "bh_detect": false,
+      "pvalue": 0.7378
+    },
+    {
+      "environment": "ENSG00000106246",
+      "bh_detect": false,
+      "pvalue": 0.2657
+    },
+    {
+      "environment": "ENSG00000106355",
+      "bh_detect": false,
+      "pvalue": 0.9975
+    },
+    {
+      "environment": "ENSG00000106399",
+      "bh_detect": false,
+      "pvalue": 0.8182
+    },
+    {
+      "environment": "ENSG00000107581",
+      "bh_detect": false,
+      "pvalue": 0.0095
+    },
+    {
+      "environment": "ENSG00000108298",
+      "bh_detect": false,
+      "pvalue": 0.1098
+    },
+    {
+      "environment": "ENSG00000108312",
+      "bh_detect": false,
+      "pvalue": 0.2582
+    },
+    {
+      "environment": "ENSG00000108424",
+      "bh_detect": false,
+      "pvalue": 0.9278
+    },
+    {
+      "environment": "ENSG00000108506",
+      "bh_detect": false,
+      "pvalue": 0.0445
+    },
+    {
+      "environment": "ENSG00000108518",
+      "bh_detect": false,
+      "pvalue": 0.7019
+    },
+    {
+      "environment": "ENSG00000108561",
+      "bh_detect": false,
+      "pvalue": 0.5506
+    },
+    {
+      "environment": "ENSG00000108592",
+      "bh_detect": false,
+      "pvalue": 0.9935
+    },
+    {
+      "environment": "ENSG00000108784",
+      "bh_detect": false,
+      "pvalue": 0.903
+    },
+    {
+      "environment": "ENSG00000109111",
+      "bh_detect": false,
+      "pvalue": 0.8522
+    },
+    {
+      "environment": "ENSG00000109475",
+      "bh_detect": false,
+      "pvalue": 0.1474
+    },
+    {
+      "environment": "ENSG00000109606",
+      "bh_detect": false,
+      "pvalue": 0.345
+    },
+    {
+      "environment": "ENSG00000109971",
+      "bh_detect": false,
+      "pvalue": 0.3725
+    },
+    {
+      "environment": "ENSG00000110025",
+      "bh_detect": false,
+      "pvalue": 0.9996
+    },
+    {
+      "environment": "ENSG00000110104",
+      "bh_detect": false,
+      "pvalue": 0.7405
+    },
+    {
+      "environment": "ENSG00000110172",
+      "bh_detect": false,
+      "pvalue": 0.2045
+    },
+    {
+      "environment": "ENSG00000110200",
+      "bh_detect": false,
+      "pvalue": 0.2781
+    },
+    {
+      "environment": "ENSG00000110321",
+      "bh_detect": false,
+      "pvalue": 0.2267
+    },
+    {
+      "environment": "ENSG00000110713",
+      "bh_detect": false,
+      "pvalue": 0.5535
+    },
+    {
+      "environment": "ENSG00000110768",
+      "bh_detect": false,
+      "pvalue": 0.9249
+    },
+    {
+      "environment": "ENSG00000111231",
+      "bh_detect": false,
+      "pvalue": 0.9459
+    },
+    {
+      "environment": "ENSG00000111481",
+      "bh_detect": false,
+      "pvalue": 0.6494
+    },
+    {
+      "environment": "ENSG00000111581",
+      "bh_detect": false,
+      "pvalue": 0.5396
+    },
+    {
+      "environment": "ENSG00000111615",
+      "bh_detect": false,
+      "pvalue": 0.0198
+    },
+    {
+      "environment": "ENSG00000111711",
+      "bh_detect": false,
+      "pvalue": 0.7064
+    },
+    {
+      "environment": "ENSG00000112029",
+      "bh_detect": false,
+      "pvalue": 0.1413
+    },
+    {
+      "environment": "ENSG00000112306",
+      "bh_detect": false,
+      "pvalue": 0.1056
+    },
+    {
+      "environment": "ENSG00000112739",
+      "bh_detect": false,
+      "pvalue": 0.6879
+    },
+    {
+      "environment": "ENSG00000112972",
+      "bh_detect": false,
+      "pvalue": 0.8955
+    },
+    {
+      "environment": "ENSG00000113013",
+      "bh_detect": false,
+      "pvalue": 0.0943
+    },
+    {
+      "environment": "ENSG00000113141",
+      "bh_detect": false,
+      "pvalue": 0.8456
+    },
+    {
+      "environment": "ENSG00000113643",
+      "bh_detect": false,
+      "pvalue": 0.3066
+    },
+    {
+      "environment": "ENSG00000113810",
+      "bh_detect": false,
+      "pvalue": 0.5337
+    },
+    {
+      "environment": "ENSG00000113812",
+      "bh_detect": false,
+      "pvalue": 0.247
+    },
+    {
+      "environment": "ENSG00000114391",
+      "bh_detect": false,
+      "pvalue": 0.0194
+    },
+    {
+      "environment": "ENSG00000114503",
+      "bh_detect": false,
+      "pvalue": 0.8997
+    },
+    {
+      "environment": "ENSG00000114867",
+      "bh_detect": false,
+      "pvalue": 0.0238
+    },
+    {
+      "environment": "ENSG00000115053",
+      "bh_detect": false,
+      "pvalue": 0.4988
+    },
+    {
+      "environment": "ENSG00000115073",
+      "bh_detect": false,
+      "pvalue": 0.2024
+    },
+    {
+      "environment": "ENSG00000115211",
+      "bh_detect": false,
+      "pvalue": 0.2879
+    },
+    {
+      "environment": "ENSG00000115484",
+      "bh_detect": false,
+      "pvalue": 0.9998
+    },
+    {
+      "environment": "ENSG00000116560",
+      "bh_detect": false,
+      "pvalue": 0.4129
+    },
+    {
+      "environment": "ENSG00000116580",
+      "bh_detect": false,
+      "pvalue": 0.4222
+    },
+    {
+      "environment": "ENSG00000116670",
+      "bh_detect": false,
+      "pvalue": 0.6532
+    },
+    {
+      "environment": "ENSG00000116752",
+      "bh_detect": false,
+      "pvalue": 0.7939
+    },
+    {
+      "environment": "ENSG00000116754",
+      "bh_detect": false,
+      "pvalue": 0.1251
+    },
+    {
+      "environment": "ENSG00000116922",
+      "bh_detect": false,
+      "pvalue": 0.4942
+    },
+    {
+      "environment": "ENSG00000117748",
+      "bh_detect": false,
+      "pvalue": 0.9741
+    },
+    {
+      "environment": "ENSG00000118412",
+      "bh_detect": false,
+      "pvalue": 0.2224
+    },
+    {
+      "environment": "ENSG00000119203",
+      "bh_detect": false,
+      "pvalue": 0.1963
+    },
+    {
+      "environment": "ENSG00000119285",
+      "bh_detect": false,
+      "pvalue": 0.4847
+    },
+    {
+      "environment": "ENSG00000119523",
+      "bh_detect": false,
+      "pvalue": 0.4771
+    },
+    {
+      "environment": "ENSG00000119616",
+      "bh_detect": false,
+      "pvalue": 0.1778
+    },
+    {
+      "environment": "ENSG00000119718",
+      "bh_detect": false,
+      "pvalue": 0.5807
+    },
+    {
+      "environment": "ENSG00000119720",
+      "bh_detect": false,
+      "pvalue": 0.2731
+    },
+    {
+      "environment": "ENSG00000122026",
+      "bh_detect": false,
+      "pvalue": 0.0009
+    },
+    {
+      "environment": "ENSG00000122218",
+      "bh_detect": false,
+      "pvalue": 0.6422
+    },
+    {
+      "environment": "ENSG00000122406",
+      "bh_detect": false,
+      "pvalue": 0.2483
+    },
+    {
+      "environment": "ENSG00000122484",
+      "bh_detect": false,
+      "pvalue": 0.9694
+    },
+    {
+      "environment": "ENSG00000124193",
+      "bh_detect": false,
+      "pvalue": 0.3359
+    },
+    {
+      "environment": "ENSG00000124207",
+      "bh_detect": false,
+      "pvalue": 0.181
+    },
+    {
+      "environment": "ENSG00000124571",
+      "bh_detect": false,
+      "pvalue": 0.6082
+    },
+    {
+      "environment": "ENSG00000124784",
+      "bh_detect": false,
+      "pvalue": 0.0774
+    },
+    {
+      "environment": "ENSG00000125107",
+      "bh_detect": false,
+      "pvalue": 0.8305
+    },
+    {
+      "environment": "ENSG00000125686",
+      "bh_detect": false,
+      "pvalue": 0.9507
+    },
+    {
+      "environment": "ENSG00000125691",
+      "bh_detect": false,
+      "pvalue": 0.0903
+    },
+    {
+      "environment": "ENSG00000125835",
+      "bh_detect": false,
+      "pvalue": 0.9209
+    },
+    {
+      "environment": "ENSG00000125971",
+      "bh_detect": false,
+      "pvalue": 0.9076
+    },
+    {
+      "environment": "ENSG00000126088",
+      "bh_detect": false,
+      "pvalue": 0.8351
+    },
+    {
+      "environment": "ENSG00000126226",
+      "bh_detect": false,
+      "pvalue": 0.0581
+    },
+    {
+      "environment": "ENSG00000126561",
+      "bh_detect": false,
+      "pvalue": 0.9683
+    },
+    {
+      "environment": "ENSG00000126653",
+      "bh_detect": false,
+      "pvalue": 0.9377
+    },
+    {
+      "environment": "ENSG00000126698",
+      "bh_detect": false,
+      "pvalue": 0.9746
+    },
+    {
+      "environment": "ENSG00000126756",
+      "bh_detect": false,
+      "pvalue": 0.5191
+    },
+    {
+      "environment": "ENSG00000127337",
+      "bh_detect": false,
+      "pvalue": 0.8691
+    },
+    {
+      "environment": "ENSG00000127554",
+      "bh_detect": false,
+      "pvalue": 0.1728
+    },
+    {
+      "environment": "ENSG00000130255",
+      "bh_detect": false,
+      "pvalue": 0.0714
+    },
+    {
+      "environment": "ENSG00000130640",
+      "bh_detect": false,
+      "pvalue": 0.5458
+    },
+    {
+      "environment": "ENSG00000130713",
+      "bh_detect": false,
+      "pvalue": 0.9414
+    },
+    {
+      "environment": "ENSG00000130935",
+      "bh_detect": false,
+      "pvalue": 0.1174
+    },
+    {
+      "environment": "ENSG00000130985",
+      "bh_detect": false,
+      "pvalue": 0.8402
+    },
+    {
+      "environment": "ENSG00000132383",
+      "bh_detect": false,
+      "pvalue": 0.9422
+    },
+    {
+      "environment": "ENSG00000132603",
+      "bh_detect": false,
+      "pvalue": 0.6347
+    },
+    {
+      "environment": "ENSG00000133119",
+      "bh_detect": false,
+      "pvalue": 0.8777
+    },
+    {
+      "environment": "ENSG00000133398",
+      "bh_detect": false,
+      "pvalue": 0.9528
+    },
+    {
+      "environment": "ENSG00000133997",
+      "bh_detect": false,
+      "pvalue": 0.9976
+    },
+    {
+      "environment": "ENSG00000134001",
+      "bh_detect": false,
+      "pvalue": 0.0859
+    },
+    {
+      "environment": "ENSG00000134419",
+      "bh_detect": false,
+      "pvalue": 0.9002
+    },
+    {
+      "environment": "ENSG00000134597",
+      "bh_detect": false,
+      "pvalue": 0.954
+    },
+    {
+      "environment": "ENSG00000134697",
+      "bh_detect": false,
+      "pvalue": 0.1394
+    },
+    {
+      "environment": "ENSG00000134884",
+      "bh_detect": false,
+      "pvalue": 0.011
+    },
+    {
+      "environment": "ENSG00000134987",
+      "bh_detect": false,
+      "pvalue": 0.5162
+    },
+    {
+      "environment": "ENSG00000135521",
+      "bh_detect": false,
+      "pvalue": 0.031
+    },
+    {
+      "environment": "ENSG00000135775",
+      "bh_detect": false,
+      "pvalue": 0.1057
+    },
+    {
+      "environment": "ENSG00000136273",
+      "bh_detect": false,
+      "pvalue": 0.0438
+    },
+    {
+      "environment": "ENSG00000136527",
+      "bh_detect": false,
+      "pvalue": 0.485
+    },
+    {
+      "environment": "ENSG00000136710",
+      "bh_detect": false,
+      "pvalue": 0.4868
+    },
+    {
+      "environment": "ENSG00000136819",
+      "bh_detect": false,
+      "pvalue": 0.5931
+    },
+    {
+      "environment": "ENSG00000136930",
+      "bh_detect": false,
+      "pvalue": 0.9998
+    },
+    {
+      "environment": "ENSG00000137054",
+      "bh_detect": false,
+      "pvalue": 0.8781
+    },
+    {
+      "environment": "ENSG00000137100",
+      "bh_detect": false,
+      "pvalue": 0.1683
+    },
+    {
+      "environment": "ENSG00000137497",
+      "bh_detect": false,
+      "pvalue": 0.3224
+    },
+    {
+      "environment": "ENSG00000138071",
+      "bh_detect": false,
+      "pvalue": 0.5477
+    },
+    {
+      "environment": "ENSG00000138160",
+      "bh_detect": false,
+      "pvalue": 0.6652
+    },
+    {
+      "environment": "ENSG00000138326",
+      "bh_detect": false,
+      "pvalue": 0.2675
+    },
+    {
+      "environment": "ENSG00000138442",
+      "bh_detect": false,
+      "pvalue": 0.2607
+    },
+    {
+      "environment": "ENSG00000138663",
+      "bh_detect": false,
+      "pvalue": 0.8198
+    },
+    {
+      "environment": "ENSG00000138750",
+      "bh_detect": false,
+      "pvalue": 0.5545
+    },
+    {
+      "environment": "ENSG00000138867",
+      "bh_detect": false,
+      "pvalue": 0.5941
+    },
+    {
+      "environment": "ENSG00000139726",
+      "bh_detect": false,
+      "pvalue": 0.8233
+    },
+    {
+      "environment": "ENSG00000142507",
+      "bh_detect": false,
+      "pvalue": 0.9745
+    },
+    {
+      "environment": "ENSG00000142534",
+      "bh_detect": false,
+      "pvalue": 0.0308
+    },
+    {
+      "environment": "ENSG00000142676",
+      "bh_detect": false,
+      "pvalue": 0.0054
+    },
+    {
+      "environment": "ENSG00000143228",
+      "bh_detect": false,
+      "pvalue": 1.0
+    },
+    {
+      "environment": "ENSG00000143368",
+      "bh_detect": false,
+      "pvalue": 0.9857
+    },
+    {
+      "environment": "ENSG00000143952",
+      "bh_detect": false,
+      "pvalue": 0.4635
+    },
+    {
+      "environment": "ENSG00000143977",
+      "bh_detect": false,
+      "pvalue": 0.9459
+    },
+    {
+      "environment": "ENSG00000144021",
+      "bh_detect": false,
+      "pvalue": 0.9814
+    },
+    {
+      "environment": "ENSG00000144231",
+      "bh_detect": false,
+      "pvalue": 0.4253
+    },
+    {
+      "environment": "ENSG00000144713",
+      "bh_detect": false,
+      "pvalue": 0.2123
+    },
+    {
+      "environment": "ENSG00000145191",
+      "bh_detect": false,
+      "pvalue": 0.6268
+    },
+    {
+      "environment": "ENSG00000145592",
+      "bh_detect": false,
+      "pvalue": 0.1434
+    },
+    {
+      "environment": "ENSG00000145604",
+      "bh_detect": false,
+      "pvalue": 0.3427
+    },
+    {
+      "environment": "ENSG00000145734",
+      "bh_detect": false,
+      "pvalue": 0.9608
+    },
+    {
+      "environment": "ENSG00000145833",
+      "bh_detect": false,
+      "pvalue": 0.3381
+    },
+    {
+      "environment": "ENSG00000146007",
+      "bh_detect": false,
+      "pvalue": 0.3449
+    },
+    {
+      "environment": "ENSG00000147403",
+      "bh_detect": false,
+      "pvalue": 0.6782
+    },
+    {
+      "environment": "ENSG00000147416",
+      "bh_detect": false,
+      "pvalue": 0.5643
+    },
+    {
+      "environment": "ENSG00000147457",
+      "bh_detect": false,
+      "pvalue": 0.295
+    },
+    {
+      "environment": "ENSG00000147604",
+      "bh_detect": false,
+      "pvalue": 0.8865
+    },
+    {
+      "environment": "ENSG00000147677",
+      "bh_detect": false,
+      "pvalue": 0.0218
+    },
+    {
+      "environment": "ENSG00000148297",
+      "bh_detect": false,
+      "pvalue": 0.9952
+    },
+    {
+      "environment": "ENSG00000149016",
+      "bh_detect": false,
+      "pvalue": 0.6559
+    },
+    {
+      "environment": "ENSG00000149100",
+      "bh_detect": false,
+      "pvalue": 0.5372
+    },
+    {
+      "environment": "ENSG00000149136",
+      "bh_detect": false,
+      "pvalue": 0.1817
+    },
+    {
+      "environment": "ENSG00000149273",
+      "bh_detect": false,
+      "pvalue": 0.3665
+    },
+    {
+      "environment": "ENSG00000149554",
+      "bh_detect": false,
+      "pvalue": 0.6378
+    },
+    {
+      "environment": "ENSG00000149636",
+      "bh_detect": false,
+      "pvalue": 0.9999
+    },
+    {
+      "environment": "ENSG00000150990",
+      "bh_detect": false,
+      "pvalue": 0.2706
+    },
+    {
+      "environment": "ENSG00000151247",
+      "bh_detect": false,
+      "pvalue": 0.2493
+    },
+    {
+      "environment": "ENSG00000151849",
+      "bh_detect": false,
+      "pvalue": 0.9041
+    },
+    {
+      "environment": "ENSG00000152684",
+      "bh_detect": false,
+      "pvalue": 0.3289
+    },
+    {
+      "environment": "ENSG00000153207",
+      "bh_detect": false,
+      "pvalue": 0.0715
+    },
+    {
+      "environment": "ENSG00000154473",
+      "bh_detect": false,
+      "pvalue": 0.9725
+    },
+    {
+      "environment": "ENSG00000155115",
+      "bh_detect": false,
+      "pvalue": 0.4468
+    },
+    {
+      "environment": "ENSG00000155438",
+      "bh_detect": false,
+      "pvalue": 0.9072
+    },
+    {
+      "environment": "ENSG00000155463",
+      "bh_detect": false,
+      "pvalue": 0.07
+    },
+    {
+      "environment": "ENSG00000155561",
+      "bh_detect": false,
+      "pvalue": 0.6962
+    },
+    {
+      "environment": "ENSG00000155868",
+      "bh_detect": false,
+      "pvalue": 0.5967
+    },
+    {
+      "environment": "ENSG00000156482",
+      "bh_detect": false,
+      "pvalue": 0.5671
+    },
+    {
+      "environment": "ENSG00000156603",
+      "bh_detect": false,
+      "pvalue": 0.9298
+    },
+    {
+      "environment": "ENSG00000157349",
+      "bh_detect": false,
+      "pvalue": 0.8999
+    },
+    {
+      "environment": "ENSG00000157778",
+      "bh_detect": false,
+      "pvalue": 0.7116
+    },
+    {
+      "environment": "ENSG00000158526",
+      "bh_detect": false,
+      "pvalue": 0.0023
+    },
+    {
+      "environment": "ENSG00000159140",
+      "bh_detect": false,
+      "pvalue": 0.5922
+    },
+    {
+      "environment": "ENSG00000159147",
+      "bh_detect": false,
+      "pvalue": 0.6422
+    },
+    {
+      "environment": "ENSG00000159352",
+      "bh_detect": false,
+      "pvalue": 0.2783
+    },
+    {
+      "environment": "ENSG00000160193",
+      "bh_detect": false,
+      "pvalue": 0.5762
+    },
+    {
+      "environment": "ENSG00000160783",
+      "bh_detect": false,
+      "pvalue": 0.9993
+    },
+    {
+      "environment": "ENSG00000161016",
+      "bh_detect": false,
+      "pvalue": 0.7851
+    },
+    {
+      "environment": "ENSG00000161057",
+      "bh_detect": false,
+      "pvalue": 0.9704
+    },
+    {
+      "environment": "ENSG00000161203",
+      "bh_detect": false,
+      "pvalue": 0.4096
+    },
+    {
+      "environment": "ENSG00000161920",
+      "bh_detect": false,
+      "pvalue": 0.4233
+    },
+    {
+      "environment": "ENSG00000161970",
+      "bh_detect": false,
+      "pvalue": 0.3857
+    },
+    {
+      "environment": "ENSG00000162231",
+      "bh_detect": false,
+      "pvalue": 0.521
+    },
+    {
+      "environment": "ENSG00000162385",
+      "bh_detect": false,
+      "pvalue": 0.2898
+    },
+    {
+      "environment": "ENSG00000162923",
+      "bh_detect": false,
+      "pvalue": 0.5249
+    },
+    {
+      "environment": "ENSG00000163041",
+      "bh_detect": false,
+      "pvalue": 0.0503
+    },
+    {
+      "environment": "ENSG00000163466",
+      "bh_detect": false,
+      "pvalue": 0.9335
+    },
+    {
+      "environment": "ENSG00000163468",
+      "bh_detect": false,
+      "pvalue": 0.8868
+    },
+    {
+      "environment": "ENSG00000163636",
+      "bh_detect": false,
+      "pvalue": 0.776
+    },
+    {
+      "environment": "ENSG00000163682",
+      "bh_detect": false,
+      "pvalue": 0.7732
+    },
+    {
+      "environment": "ENSG00000163714",
+      "bh_detect": false,
+      "pvalue": 0.3236
+    },
+    {
+      "environment": "ENSG00000163872",
+      "bh_detect": false,
+      "pvalue": 0.4221
+    },
+    {
+      "environment": "ENSG00000163930",
+      "bh_detect": false,
+      "pvalue": 0.6565
+    },
+    {
+      "environment": "ENSG00000163931",
+      "bh_detect": false,
+      "pvalue": 0.4594
+    },
+    {
+      "environment": "ENSG00000164151",
+      "bh_detect": false,
+      "pvalue": 0.0818
+    },
+    {
+      "environment": "ENSG00000164163",
+      "bh_detect": false,
+      "pvalue": 0.7215
+    },
+    {
+      "environment": "ENSG00000164167",
+      "bh_detect": false,
+      "pvalue": 0.8367
+    },
+    {
+      "environment": "ENSG00000164609",
+      "bh_detect": false,
+      "pvalue": 0.9266
+    },
+    {
+      "environment": "ENSG00000164758",
+      "bh_detect": false,
+      "pvalue": 0.9739
+    },
+    {
+      "environment": "ENSG00000164880",
+      "bh_detect": false,
+      "pvalue": 0.5977
+    },
+    {
+      "environment": "ENSG00000164902",
+      "bh_detect": false,
+      "pvalue": 0.2403
+    },
+    {
+      "environment": "ENSG00000164941",
+      "bh_detect": false,
+      "pvalue": 0.7734
+    },
+    {
+      "environment": "ENSG00000164975",
+      "bh_detect": false,
+      "pvalue": 0.9114
+    },
+    {
+      "environment": "ENSG00000165280",
+      "bh_detect": false,
+      "pvalue": 0.7761
+    },
+    {
+      "environment": "ENSG00000165494",
+      "bh_detect": false,
+      "pvalue": 0.2336
+    },
+    {
+      "environment": "ENSG00000165630",
+      "bh_detect": false,
+      "pvalue": 0.9157
+    },
+    {
+      "environment": "ENSG00000165898",
+      "bh_detect": false,
+      "pvalue": 0.2383
+    },
+    {
+      "environment": "ENSG00000166441",
+      "bh_detect": false,
+      "pvalue": 0.0269
+    },
+    {
+      "environment": "ENSG00000167085",
+      "bh_detect": false,
+      "pvalue": 0.0725
+    },
+    {
+      "environment": "ENSG00000167522",
+      "bh_detect": false,
+      "pvalue": 0.3368
+    },
+    {
+      "environment": "ENSG00000167526",
+      "bh_detect": false,
+      "pvalue": 0.4438
+    },
+    {
+      "environment": "ENSG00000167658",
+      "bh_detect": false,
+      "pvalue": 0.7713
+    },
+    {
+      "environment": "ENSG00000168028",
+      "bh_detect": false,
+      "pvalue": 0.994
+    },
+    {
+      "environment": "ENSG00000168090",
+      "bh_detect": false,
+      "pvalue": 0.8891
+    },
+    {
+      "environment": "ENSG00000168118",
+      "bh_detect": false,
+      "pvalue": 0.2885
+    },
+    {
+      "environment": "ENSG00000168827",
+      "bh_detect": false,
+      "pvalue": 0.5011
+    },
+    {
+      "environment": "ENSG00000168883",
+      "bh_detect": false,
+      "pvalue": 0.9594
+    },
+    {
+      "environment": "ENSG00000169375",
+      "bh_detect": false,
+      "pvalue": 0.3483
+    },
+    {
+      "environment": "ENSG00000169679",
+      "bh_detect": false,
+      "pvalue": 0.9008
+    },
+    {
+      "environment": "ENSG00000169727",
+      "bh_detect": false,
+      "pvalue": 0.9979
+    },
+    {
+      "environment": "ENSG00000169750",
+      "bh_detect": false,
+      "pvalue": 0.4744
+    },
+    {
+      "environment": "ENSG00000169756",
+      "bh_detect": false,
+      "pvalue": 0.6345
+    },
+    {
+      "environment": "ENSG00000170248",
+      "bh_detect": false,
+      "pvalue": 0.0486
+    },
+    {
+      "environment": "ENSG00000170312",
+      "bh_detect": false,
+      "pvalue": 0.9943
+    },
+    {
+      "environment": "ENSG00000170322",
+      "bh_detect": false,
+      "pvalue": 0.876
+    },
+    {
+      "environment": "ENSG00000170421",
+      "bh_detect": false,
+      "pvalue": 0.0012
+    },
+    {
+      "environment": "ENSG00000170445",
+      "bh_detect": false,
+      "pvalue": 0.5387
+    },
+    {
+      "environment": "ENSG00000170889",
+      "bh_detect": false,
+      "pvalue": 0.751
+    },
+    {
+      "environment": "ENSG00000170892",
+      "bh_detect": false,
+      "pvalue": 0.2125
+    },
+    {
+      "environment": "ENSG00000171159",
+      "bh_detect": false,
+      "pvalue": 0.6283
+    },
+    {
+      "environment": "ENSG00000171490",
+      "bh_detect": false,
+      "pvalue": 0.307
+    },
+    {
+      "environment": "ENSG00000171848",
+      "bh_detect": false,
+      "pvalue": 0.6914
+    },
+    {
+      "environment": "ENSG00000171863",
+      "bh_detect": false,
+      "pvalue": 0.4913
+    },
+    {
+      "environment": "ENSG00000172053",
+      "bh_detect": false,
+      "pvalue": 0.5885
+    },
+    {
+      "environment": "ENSG00000172171",
+      "bh_detect": false,
+      "pvalue": 0.8644
+    },
+    {
+      "environment": "ENSG00000172336",
+      "bh_detect": false,
+      "pvalue": 0.7344
+    },
+    {
+      "environment": "ENSG00000172531",
+      "bh_detect": false,
+      "pvalue": 0.2435
+    },
+    {
+      "environment": "ENSG00000173113",
+      "bh_detect": false,
+      "pvalue": 0.0292
+    },
+    {
+      "environment": "ENSG00000173692",
+      "bh_detect": false,
+      "pvalue": 0.9752
+    },
+    {
+      "environment": "ENSG00000173933",
+      "bh_detect": false,
+      "pvalue": 0.8956
+    },
+    {
+      "environment": "ENSG00000174444",
+      "bh_detect": false,
+      "pvalue": 0.1206
+    },
+    {
+      "environment": "ENSG00000174780",
+      "bh_detect": false,
+      "pvalue": 0.6014
+    },
+    {
+      "environment": "ENSG00000174953",
+      "bh_detect": false,
+      "pvalue": 0.3804
+    },
+    {
+      "environment": "ENSG00000175216",
+      "bh_detect": false,
+      "pvalue": 0.9951
+    },
+    {
+      "environment": "ENSG00000175467",
+      "bh_detect": false,
+      "pvalue": 0.952
+    },
+    {
+      "environment": "ENSG00000175550",
+      "bh_detect": false,
+      "pvalue": 0.3817
+    },
+    {
+      "environment": "ENSG00000175792",
+      "bh_detect": false,
+      "pvalue": 0.5704
+    },
+    {
+      "environment": "ENSG00000176108",
+      "bh_detect": false,
+      "pvalue": 0.5086
+    },
+    {
+      "environment": "ENSG00000177600",
+      "bh_detect": false,
+      "pvalue": 0.018
+    },
+    {
+      "environment": "ENSG00000178966",
+      "bh_detect": false,
+      "pvalue": 0.6354
+    },
+    {
+      "environment": "ENSG00000179988",
+      "bh_detect": false,
+      "pvalue": 0.3225
+    },
+    {
+      "environment": "ENSG00000180104",
+      "bh_detect": false,
+      "pvalue": 0.1816
+    },
+    {
+      "environment": "ENSG00000180198",
+      "bh_detect": false,
+      "pvalue": 0.5447
+    },
+    {
+      "environment": "ENSG00000180992",
+      "bh_detect": false,
+      "pvalue": 0.121
+    },
+    {
+      "environment": "ENSG00000181222",
+      "bh_detect": false,
+      "pvalue": 0.6475
+    },
+    {
+      "environment": "ENSG00000181789",
+      "bh_detect": false,
+      "pvalue": 0.3744
+    },
+    {
+      "environment": "ENSG00000182774",
+      "bh_detect": false,
+      "pvalue": 0.9821
+    },
+    {
+      "environment": "ENSG00000183011",
+      "bh_detect": false,
+      "pvalue": 0.9209
+    },
+    {
+      "environment": "ENSG00000183048",
+      "bh_detect": false,
+      "pvalue": 0.7484
+    },
+    {
+      "environment": "ENSG00000183258",
+      "bh_detect": false,
+      "pvalue": 0.9674
+    },
+    {
+      "environment": "ENSG00000183684",
+      "bh_detect": false,
+      "pvalue": 0.9691
+    },
+    {
+      "environment": "ENSG00000184634",
+      "bh_detect": false,
+      "pvalue": 0.9886
+    },
+    {
+      "environment": "ENSG00000185651",
+      "bh_detect": false,
+      "pvalue": 0.5804
+    },
+    {
+      "environment": "ENSG00000186716",
+      "bh_detect": false,
+      "pvalue": 0.1762
+    },
+    {
+      "environment": "ENSG00000187555",
+      "bh_detect": false,
+      "pvalue": 0.5971
+    },
+    {
+      "environment": "ENSG00000188846",
+      "bh_detect": false,
+      "pvalue": 0.1442
+    },
+    {
+      "environment": "ENSG00000189091",
+      "bh_detect": false,
+      "pvalue": 0.8733
+    },
+    {
+      "environment": "ENSG00000189308",
+      "bh_detect": false,
+      "pvalue": 0.7516
+    },
+    {
+      "environment": "ENSG00000189403",
+      "bh_detect": false,
+      "pvalue": 0.5462
+    },
+    {
+      "environment": "ENSG00000196235",
+      "bh_detect": false,
+      "pvalue": 0.4888
+    },
+    {
+      "environment": "ENSG00000196367",
+      "bh_detect": false,
+      "pvalue": 0.2106
+    },
+    {
+      "environment": "ENSG00000196531",
+      "bh_detect": false,
+      "pvalue": 0.6761
+    },
+    {
+      "environment": "ENSG00000197102",
+      "bh_detect": false,
+      "pvalue": 0.9996
+    },
+    {
+      "environment": "ENSG00000197170",
+      "bh_detect": false,
+      "pvalue": 0.9997
+    },
+    {
+      "environment": "ENSG00000197756",
+      "bh_detect": false,
+      "pvalue": 0.2055
+    },
+    {
+      "environment": "ENSG00000197958",
+      "bh_detect": false,
+      "pvalue": 0.8952
+    },
+    {
+      "environment": "ENSG00000198042",
+      "bh_detect": false,
+      "pvalue": 0.1754
+    },
+    {
+      "environment": "ENSG00000198258",
+      "bh_detect": false,
+      "pvalue": 0.8661
+    },
+    {
+      "environment": "ENSG00000198301",
+      "bh_detect": false,
+      "pvalue": 0.5412
+    },
+    {
+      "environment": "ENSG00000198612",
+      "bh_detect": false,
+      "pvalue": 0.8309
+    },
+    {
+      "environment": "ENSG00000198730",
+      "bh_detect": false,
+      "pvalue": 0.1494
+    },
+    {
+      "environment": "ENSG00000198736",
+      "bh_detect": false,
+      "pvalue": 0.8873
+    },
+    {
+      "environment": "ENSG00000198755",
+      "bh_detect": false,
+      "pvalue": 0.4902
+    },
+    {
+      "environment": "ENSG00000198856",
+      "bh_detect": false,
+      "pvalue": 0.0939
+    },
+    {
+      "environment": "ENSG00000204152",
+      "bh_detect": false,
+      "pvalue": 0.1668
+    },
+    {
+      "environment": "ENSG00000204392",
+      "bh_detect": false,
+      "pvalue": 0.7636
+    },
+    {
+      "environment": "ENSG00000204394",
+      "bh_detect": false,
+      "pvalue": 0.6401
+    },
+    {
+      "environment": "ENSG00000204560",
+      "bh_detect": false,
+      "pvalue": 0.9046
+    },
+    {
+      "environment": "ENSG00000204574",
+      "bh_detect": false,
+      "pvalue": 0.3585
+    },
+    {
+      "environment": "ENSG00000204604",
+      "bh_detect": false,
+      "pvalue": 0.3575
+    },
+    {
+      "environment": "ENSG00000204899",
+      "bh_detect": false,
+      "pvalue": 0.2644
+    },
+    {
+      "environment": "ENSG00000205981",
+      "bh_detect": false,
+      "pvalue": 0.7354
+    },
+    {
+      "environment": "ENSG00000213741",
+      "bh_detect": false,
+      "pvalue": 0.3772
+    },
+    {
+      "environment": "ENSG00000214114",
+      "bh_detect": false,
+      "pvalue": 0.8552
+    },
+    {
+      "environment": "ENSG00000214517",
+      "bh_detect": false,
+      "pvalue": 0.2661
+    },
+    {
+      "environment": "ENSG00000215021",
+      "bh_detect": false,
+      "pvalue": 0.376
+    },
+    {
+      "environment": "ENSG00000233927",
+      "bh_detect": false,
+      "pvalue": 0.0523
+    },
+    {
+      "environment": "ENSG00000239306",
+      "bh_detect": false,
+      "pvalue": 0.4595
+    },
+    {
+      "environment": "ENSG00000241553",
+      "bh_detect": false,
+      "pvalue": 0.3573
+    },
+    {
+      "environment": "ENSG00000249915",
+      "bh_detect": false,
+      "pvalue": 0.2808
+    },
+    {
+      "environment": "ENSG00000261236",
+      "bh_detect": false,
+      "pvalue": 0.0661
+    },
+    {
+      "environment": "ENSG00000269858",
+      "bh_detect": false,
+      "pvalue": 0.2879
+    },
+    {
+      "environment": "ENSG00000275700",
+      "bh_detect": false,
+      "pvalue": 0.2465
+    }
+  ],
+  "results": {
+    "primary_decision": "held-out T0h BH q=0.05 (E12, D4)",
+    "dataset": "k562",
+    "seed": 0,
+    "decisions": [
+      {
+        "environment": "ENSG00000004897",
+        "bh_detect": false,
+        "pvalue": 1.0
+      },
+      {
+        "environment": "ENSG00000005448",
+        "bh_detect": false,
+        "pvalue": 0.6051
+      },
+      {
+        "environment": "ENSG00000006712",
+        "bh_detect": false,
+        "pvalue": 0.8841
+      },
+      {
+        "environment": "ENSG00000006715",
+        "bh_detect": false,
+        "pvalue": 0.8002
+      },
+      {
+        "environment": "ENSG00000008128",
+        "bh_detect": false,
+        "pvalue": 0.0003
+      },
+      {
+        "environment": "ENSG00000008988",
+        "bh_detect": false,
+        "pvalue": 0.6767
+      },
+      {
+        "environment": "ENSG00000010244",
+        "bh_detect": false,
+        "pvalue": 0.1721
+      },
+      {
+        "environment": "ENSG00000010256",
+        "bh_detect": false,
+        "pvalue": 0.3845
+      },
+      {
+        "environment": "ENSG00000012174",
+        "bh_detect": false,
+        "pvalue": 0.0894
+      },
+      {
+        "environment": "ENSG00000013275",
+        "bh_detect": false,
+        "pvalue": 0.998
+      },
+      {
+        "environment": "ENSG00000013561",
+        "bh_detect": false,
+        "pvalue": 0.2492
+      },
+      {
+        "environment": "ENSG00000014138",
+        "bh_detect": false,
+        "pvalue": 0.3099
+      },
+      {
+        "environment": "ENSG00000028203",
+        "bh_detect": false,
+        "pvalue": 0.9559
+      },
+      {
+        "environment": "ENSG00000029364",
+        "bh_detect": false,
+        "pvalue": 0.3088
+      },
+      {
+        "environment": "ENSG00000030066",
+        "bh_detect": false,
+        "pvalue": 0.1788
+      },
+      {
+        "environment": "ENSG00000033327",
+        "bh_detect": false,
+        "pvalue": 0.8699
+      },
+      {
+        "environment": "ENSG00000034510",
+        "bh_detect": false,
+        "pvalue": 0.1959
+      },
+      {
+        "environment": "ENSG00000037897",
+        "bh_detect": false,
+        "pvalue": 0.7339
+      },
+      {
+        "environment": "ENSG00000041357",
+        "bh_detect": false,
+        "pvalue": 0.1879
+      },
+      {
+        "environment": "ENSG00000044574",
+        "bh_detect": false,
+        "pvalue": 0.2606
+      },
+      {
+        "environment": "ENSG00000047315",
+        "bh_detect": false,
+        "pvalue": 0.9361
+      },
+      {
+        "environment": "ENSG00000050820",
+        "bh_detect": false,
+        "pvalue": 0.6186
+      },
+      {
+        "environment": "ENSG00000051180",
+        "bh_detect": false,
+        "pvalue": 0.704
+      },
+      {
+        "environment": "ENSG00000052749",
+        "bh_detect": false,
+        "pvalue": 0.0864
+      },
+      {
+        "environment": "ENSG00000055130",
+        "bh_detect": false,
+        "pvalue": 0.4824
+      },
+      {
+        "environment": "ENSG00000058600",
+        "bh_detect": false,
+        "pvalue": 0.4021
+      },
+      {
+        "environment": "ENSG00000060688",
+        "bh_detect": false,
+        "pvalue": 0.8632
+      },
+      {
+        "environment": "ENSG00000061794",
+        "bh_detect": false,
+        "pvalue": 0.2935
+      },
+      {
+        "environment": "ENSG00000062485",
+        "bh_detect": false,
+        "pvalue": 0.3643
+      },
+      {
+        "environment": "ENSG00000062822",
+        "bh_detect": false,
+        "pvalue": 0.0018
+      },
+      {
+        "environment": "ENSG00000063177",
+        "bh_detect": false,
+        "pvalue": 0.0472
+      },
+      {
+        "environment": "ENSG00000065183",
+        "bh_detect": false,
+        "pvalue": 0.3216
+      },
+      {
+        "environment": "ENSG00000065328",
+        "bh_detect": false,
+        "pvalue": 0.9784
+      },
+      {
+        "environment": "ENSG00000067334",
+        "bh_detect": false,
+        "pvalue": 0.2551
+      },
+      {
+        "environment": "ENSG00000067704",
+        "bh_detect": false,
+        "pvalue": 0.2216
+      },
+      {
+        "environment": "ENSG00000068120",
+        "bh_detect": false,
+        "pvalue": 0.1444
+      },
+      {
+        "environment": "ENSG00000071082",
+        "bh_detect": false,
+        "pvalue": 0.1617
+      },
+      {
+        "environment": "ENSG00000072756",
+        "bh_detect": false,
+        "pvalue": 0.348
+      },
+      {
+        "environment": "ENSG00000073050",
+        "bh_detect": false,
+        "pvalue": 0.7082
+      },
+      {
+        "environment": "ENSG00000073536",
+        "bh_detect": false,
+        "pvalue": 0.0424
+      },
+      {
+        "environment": "ENSG00000077380",
+        "bh_detect": false,
+        "pvalue": 0.9886
+      },
+      {
+        "environment": "ENSG00000080986",
+        "bh_detect": false,
+        "pvalue": 1.0
+      },
+      {
+        "environment": "ENSG00000082898",
+        "bh_detect": false,
+        "pvalue": 0.5797
+      },
+      {
+        "environment": "ENSG00000083896",
+        "bh_detect": false,
+        "pvalue": 0.9599
+      },
+      {
+        "environment": "ENSG00000084463",
+        "bh_detect": false,
+        "pvalue": 0.9938
+      },
+      {
+        "environment": "ENSG00000085840",
+        "bh_detect": false,
+        "pvalue": 0.9204
+      },
+      {
+        "environment": "ENSG00000086061",
+        "bh_detect": false,
+        "pvalue": 0.9821
+      },
+      {
+        "environment": "ENSG00000086827",
+        "bh_detect": false,
+        "pvalue": 0.6643
+      },
+      {
+        "environment": "ENSG00000087087",
+        "bh_detect": false,
+        "pvalue": 0.8826
+      },
+      {
+        "environment": "ENSG00000087365",
+        "bh_detect": false,
+        "pvalue": 0.2176
+      },
+      {
+        "environment": "ENSG00000088038",
+        "bh_detect": false,
+        "pvalue": 0.7588
+      },
+      {
+        "environment": "ENSG00000088325",
+        "bh_detect": false,
+        "pvalue": 0.9259
+      },
+      {
+        "environment": "ENSG00000089009",
+        "bh_detect": false,
+        "pvalue": 0.0879
+      },
+      {
+        "environment": "ENSG00000089289",
+        "bh_detect": false,
+        "pvalue": 0.9989
+      },
+      {
+        "environment": "ENSG00000089737",
+        "bh_detect": false,
+        "pvalue": 0.029
+      },
+      {
+        "environment": "ENSG00000090061",
+        "bh_detect": false,
+        "pvalue": 0.3608
+      },
+      {
+        "environment": "ENSG00000091140",
+        "bh_detect": false,
+        "pvalue": 0.2033
+      },
+      {
+        "environment": "ENSG00000092199",
+        "bh_detect": false,
+        "pvalue": 0.4479
+      },
+      {
+        "environment": "ENSG00000094914",
+        "bh_detect": false,
+        "pvalue": 0.6339
+      },
+      {
+        "environment": "ENSG00000095139",
+        "bh_detect": false,
+        "pvalue": 0.5979
+      },
+      {
+        "environment": "ENSG00000099783",
+        "bh_detect": false,
+        "pvalue": 0.7398
+      },
+      {
+        "environment": "ENSG00000099817",
+        "bh_detect": false,
+        "pvalue": 0.9896
+      },
+      {
+        "environment": "ENSG00000099821",
+        "bh_detect": false,
+        "pvalue": 0.6663
+      },
+      {
+        "environment": "ENSG00000099995",
+        "bh_detect": false,
+        "pvalue": 0.3441
+      },
+      {
+        "environment": "ENSG00000100084",
+        "bh_detect": false,
+        "pvalue": 0.2061
+      },
+      {
+        "environment": "ENSG00000100142",
+        "bh_detect": false,
+        "pvalue": 0.8672
+      },
+      {
+        "environment": "ENSG00000100316",
+        "bh_detect": false,
+        "pvalue": 0.8579
+      },
+      {
+        "environment": "ENSG00000100410",
+        "bh_detect": false,
+        "pvalue": 0.2333
+      },
+      {
+        "environment": "ENSG00000100567",
+        "bh_detect": false,
+        "pvalue": 0.8977
+      },
+      {
+        "environment": "ENSG00000100575",
+        "bh_detect": false,
+        "pvalue": 0.317
+      },
+      {
+        "environment": "ENSG00000100603",
+        "bh_detect": false,
+        "pvalue": 0.9002
+      },
+      {
+        "environment": "ENSG00000100764",
+        "bh_detect": false,
+        "pvalue": 0.9915
+      },
+      {
+        "environment": "ENSG00000100804",
+        "bh_detect": false,
+        "pvalue": 0.7901
+      },
+      {
+        "environment": "ENSG00000101158",
+        "bh_detect": false,
+        "pvalue": 0.168
+      },
+      {
+        "environment": "ENSG00000101161",
+        "bh_detect": false,
+        "pvalue": 0.8485
+      },
+      {
+        "environment": "ENSG00000101166",
+        "bh_detect": false,
+        "pvalue": 0.9344
+      },
+      {
+        "environment": "ENSG00000101343",
+        "bh_detect": false,
+        "pvalue": 0.9694
+      },
+      {
+        "environment": "ENSG00000101639",
+        "bh_detect": false,
+        "pvalue": 0.589
+      },
+      {
+        "environment": "ENSG00000101868",
+        "bh_detect": false,
+        "pvalue": 0.2852
+      },
+      {
+        "environment": "ENSG00000102967",
+        "bh_detect": false,
+        "pvalue": 0.1533
+      },
+      {
+        "environment": "ENSG00000103035",
+        "bh_detect": false,
+        "pvalue": 0.9845
+      },
+      {
+        "environment": "ENSG00000103257",
+        "bh_detect": false,
+        "pvalue": 0.7014
+      },
+      {
+        "environment": "ENSG00000103502",
+        "bh_detect": false,
+        "pvalue": 0.6344
+      },
+      {
+        "environment": "ENSG00000103510",
+        "bh_detect": false,
+        "pvalue": 0.406
+      },
+      {
+        "environment": "ENSG00000104299",
+        "bh_detect": false,
+        "pvalue": 0.9703
+      },
+      {
+        "environment": "ENSG00000104408",
+        "bh_detect": false,
+        "pvalue": 0.1592
+      },
+      {
+        "environment": "ENSG00000104897",
+        "bh_detect": false,
+        "pvalue": 0.9849
+      },
+      {
+        "environment": "ENSG00000105011",
+        "bh_detect": false,
+        "pvalue": 0.0135
+      },
+      {
+        "environment": "ENSG00000105058",
+        "bh_detect": false,
+        "pvalue": 0.9579
+      },
+      {
+        "environment": "ENSG00000105229",
+        "bh_detect": false,
+        "pvalue": 0.4288
+      },
+      {
+        "environment": "ENSG00000105258",
+        "bh_detect": false,
+        "pvalue": 0.9931
+      },
+      {
+        "environment": "ENSG00000105281",
+        "bh_detect": false,
+        "pvalue": 0.3906
+      },
+      {
+        "environment": "ENSG00000105372",
+        "bh_detect": false,
+        "pvalue": 0.0395
+      },
+      {
+        "environment": "ENSG00000105568",
+        "bh_detect": false,
+        "pvalue": 0.0954
+      },
+      {
+        "environment": "ENSG00000105732",
+        "bh_detect": false,
+        "pvalue": 0.5437
+      },
+      {
+        "environment": "ENSG00000105819",
+        "bh_detect": false,
+        "pvalue": 0.5338
+      },
+      {
+        "environment": "ENSG00000106105",
+        "bh_detect": false,
+        "pvalue": 0.7378
+      },
+      {
+        "environment": "ENSG00000106246",
+        "bh_detect": false,
+        "pvalue": 0.2657
+      },
+      {
+        "environment": "ENSG00000106355",
+        "bh_detect": false,
+        "pvalue": 0.9975
+      },
+      {
+        "environment": "ENSG00000106399",
+        "bh_detect": false,
+        "pvalue": 0.8182
+      },
+      {
+        "environment": "ENSG00000107581",
+        "bh_detect": false,
+        "pvalue": 0.0095
+      },
+      {
+        "environment": "ENSG00000108298",
+        "bh_detect": false,
+        "pvalue": 0.1098
+      },
+      {
+        "environment": "ENSG00000108312",
+        "bh_detect": false,
+        "pvalue": 0.2582
+      },
+      {
+        "environment": "ENSG00000108424",
+        "bh_detect": false,
+        "pvalue": 0.9278
+      },
+      {
+        "environment": "ENSG00000108506",
+        "bh_detect": false,
+        "pvalue": 0.0445
+      },
+      {
+        "environment": "ENSG00000108518",
+        "bh_detect": false,
+        "pvalue": 0.7019
+      },
+      {
+        "environment": "ENSG00000108561",
+        "bh_detect": false,
+        "pvalue": 0.5506
+      },
+      {
+        "environment": "ENSG00000108592",
+        "bh_detect": false,
+        "pvalue": 0.9935
+      },
+      {
+        "environment": "ENSG00000108784",
+        "bh_detect": false,
+        "pvalue": 0.903
+      },
+      {
+        "environment": "ENSG00000109111",
+        "bh_detect": false,
+        "pvalue": 0.8522
+      },
+      {
+        "environment": "ENSG00000109475",
+        "bh_detect": false,
+        "pvalue": 0.1474
+      },
+      {
+        "environment": "ENSG00000109606",
+        "bh_detect": false,
+        "pvalue": 0.345
+      },
+      {
+        "environment": "ENSG00000109971",
+        "bh_detect": false,
+        "pvalue": 0.3725
+      },
+      {
+        "environment": "ENSG00000110025",
+        "bh_detect": false,
+        "pvalue": 0.9996
+      },
+      {
+        "environment": "ENSG00000110104",
+        "bh_detect": false,
+        "pvalue": 0.7405
+      },
+      {
+        "environment": "ENSG00000110172",
+        "bh_detect": false,
+        "pvalue": 0.2045
+      },
+      {
+        "environment": "ENSG00000110200",
+        "bh_detect": false,
+        "pvalue": 0.2781
+      },
+      {
+        "environment": "ENSG00000110321",
+        "bh_detect": false,
+        "pvalue": 0.2267
+      },
+      {
+        "environment": "ENSG00000110713",
+        "bh_detect": false,
+        "pvalue": 0.5535
+      },
+      {
+        "environment": "ENSG00000110768",
+        "bh_detect": false,
+        "pvalue": 0.9249
+      },
+      {
+        "environment": "ENSG00000111231",
+        "bh_detect": false,
+        "pvalue": 0.9459
+      },
+      {
+        "environment": "ENSG00000111481",
+        "bh_detect": false,
+        "pvalue": 0.6494
+      },
+      {
+        "environment": "ENSG00000111581",
+        "bh_detect": false,
+        "pvalue": 0.5396
+      },
+      {
+        "environment": "ENSG00000111615",
+        "bh_detect": false,
+        "pvalue": 0.0198
+      },
+      {
+        "environment": "ENSG00000111711",
+        "bh_detect": false,
+        "pvalue": 0.7064
+      },
+      {
+        "environment": "ENSG00000112029",
+        "bh_detect": false,
+        "pvalue": 0.1413
+      },
+      {
+        "environment": "ENSG00000112306",
+        "bh_detect": false,
+        "pvalue": 0.1056
+      },
+      {
+        "environment": "ENSG00000112739",
+        "bh_detect": false,
+        "pvalue": 0.6879
+      },
+      {
+        "environment": "ENSG00000112972",
+        "bh_detect": false,
+        "pvalue": 0.8955
+      },
+      {
+        "environment": "ENSG00000113013",
+        "bh_detect": false,
+        "pvalue": 0.0943
+      },
+      {
+        "environment": "ENSG00000113141",
+        "bh_detect": false,
+        "pvalue": 0.8456
+      },
+      {
+        "environment": "ENSG00000113643",
+        "bh_detect": false,
+        "pvalue": 0.3066
+      },
+      {
+        "environment": "ENSG00000113810",
+        "bh_detect": false,
+        "pvalue": 0.5337
+      },
+      {
+        "environment": "ENSG00000113812",
+        "bh_detect": false,
+        "pvalue": 0.247
+      },
+      {
+        "environment": "ENSG00000114391",
+        "bh_detect": false,
+        "pvalue": 0.0194
+      },
+      {
+        "environment": "ENSG00000114503",
+        "bh_detect": false,
+        "pvalue": 0.8997
+      },
+      {
+        "environment": "ENSG00000114867",
+        "bh_detect": false,
+        "pvalue": 0.0238
+      },
+      {
+        "environment": "ENSG00000115053",
+        "bh_detect": false,
+        "pvalue": 0.4988
+      },
+      {
+        "environment": "ENSG00000115073",
+        "bh_detect": false,
+        "pvalue": 0.2024
+      },
+      {
+        "environment": "ENSG00000115211",
+        "bh_detect": false,
+        "pvalue": 0.2879
+      },
+      {
+        "environment": "ENSG00000115484",
+        "bh_detect": false,
+        "pvalue": 0.9998
+      },
+      {
+        "environment": "ENSG00000116560",
+        "bh_detect": false,
+        "pvalue": 0.4129
+      },
+      {
+        "environment": "ENSG00000116580",
+        "bh_detect": false,
+        "pvalue": 0.4222
+      },
+      {
+        "environment": "ENSG00000116670",
+        "bh_detect": false,
+        "pvalue": 0.6532
+      },
+      {
+        "environment": "ENSG00000116752",
+        "bh_detect": false,
+        "pvalue": 0.7939
+      },
+      {
+        "environment": "ENSG00000116754",
+        "bh_detect": false,
+        "pvalue": 0.1251
+      },
+      {
+        "environment": "ENSG00000116922",
+        "bh_detect": false,
+        "pvalue": 0.4942
+      },
+      {
+        "environment": "ENSG00000117748",
+        "bh_detect": false,
+        "pvalue": 0.9741
+      },
+      {
+        "environment": "ENSG00000118412",
+        "bh_detect": false,
+        "pvalue": 0.2224
+      },
+      {
+        "environment": "ENSG00000119203",
+        "bh_detect": false,
+        "pvalue": 0.1963
+      },
+      {
+        "environment": "ENSG00000119285",
+        "bh_detect": false,
+        "pvalue": 0.4847
+      },
+      {
+        "environment": "ENSG00000119523",
+        "bh_detect": false,
+        "pvalue": 0.4771
+      },
+      {
+        "environment": "ENSG00000119616",
+        "bh_detect": false,
+        "pvalue": 0.1778
+      },
+      {
+        "environment": "ENSG00000119718",
+        "bh_detect": false,
+        "pvalue": 0.5807
+      },
+      {
+        "environment": "ENSG00000119720",
+        "bh_detect": false,
+        "pvalue": 0.2731
+      },
+      {
+        "environment": "ENSG00000122026",
+        "bh_detect": false,
+        "pvalue": 0.0009
+      },
+      {
+        "environment": "ENSG00000122218",
+        "bh_detect": false,
+        "pvalue": 0.6422
+      },
+      {
+        "environment": "ENSG00000122406",
+        "bh_detect": false,
+        "pvalue": 0.2483
+      },
+      {
+        "environment": "ENSG00000122484",
+        "bh_detect": false,
+        "pvalue": 0.9694
+      },
+      {
+        "environment": "ENSG00000124193",
+        "bh_detect": false,
+        "pvalue": 0.3359
+      },
+      {
+        "environment": "ENSG00000124207",
+        "bh_detect": false,
+        "pvalue": 0.181
+      },
+      {
+        "environment": "ENSG00000124571",
+        "bh_detect": false,
+        "pvalue": 0.6082
+      },
+      {
+        "environment": "ENSG00000124784",
+        "bh_detect": false,
+        "pvalue": 0.0774
+      },
+      {
+        "environment": "ENSG00000125107",
+        "bh_detect": false,
+        "pvalue": 0.8305
+      },
+      {
+        "environment": "ENSG00000125686",
+        "bh_detect": false,
+        "pvalue": 0.9507
+      },
+      {
+        "environment": "ENSG00000125691",
+        "bh_detect": false,
+        "pvalue": 0.0903
+      },
+      {
+        "environment": "ENSG00000125835",
+        "bh_detect": false,
+        "pvalue": 0.9209
+      },
+      {
+        "environment": "ENSG00000125971",
+        "bh_detect": false,
+        "pvalue": 0.9076
+      },
+      {
+        "environment": "ENSG00000126088",
+        "bh_detect": false,
+        "pvalue": 0.8351
+      },
+      {
+        "environment": "ENSG00000126226",
+        "bh_detect": false,
+        "pvalue": 0.0581
+      },
+      {
+        "environment": "ENSG00000126561",
+        "bh_detect": false,
+        "pvalue": 0.9683
+      },
+      {
+        "environment": "ENSG00000126653",
+        "bh_detect": false,
+        "pvalue": 0.9377
+      },
+      {
+        "environment": "ENSG00000126698",
+        "bh_detect": false,
+        "pvalue": 0.9746
+      },
+      {
+        "environment": "ENSG00000126756",
+        "bh_detect": false,
+        "pvalue": 0.5191
+      },
+      {
+        "environment": "ENSG00000127337",
+        "bh_detect": false,
+        "pvalue": 0.8691
+      },
+      {
+        "environment": "ENSG00000127554",
+        "bh_detect": false,
+        "pvalue": 0.1728
+      },
+      {
+        "environment": "ENSG00000130255",
+        "bh_detect": false,
+        "pvalue": 0.0714
+      },
+      {
+        "environment": "ENSG00000130640",
+        "bh_detect": false,
+        "pvalue": 0.5458
+      },
+      {
+        "environment": "ENSG00000130713",
+        "bh_detect": false,
+        "pvalue": 0.9414
+      },
+      {
+        "environment": "ENSG00000130935",
+        "bh_detect": false,
+        "pvalue": 0.1174
+      },
+      {
+        "environment": "ENSG00000130985",
+        "bh_detect": false,
+        "pvalue": 0.8402
+      },
+      {
+        "environment": "ENSG00000132383",
+        "bh_detect": false,
+        "pvalue": 0.9422
+      },
+      {
+        "environment": "ENSG00000132603",
+        "bh_detect": false,
+        "pvalue": 0.6347
+      },
+      {
+        "environment": "ENSG00000133119",
+        "bh_detect": false,
+        "pvalue": 0.8777
+      },
+      {
+        "environment": "ENSG00000133398",
+        "bh_detect": false,
+        "pvalue": 0.9528
+      },
+      {
+        "environment": "ENSG00000133997",
+        "bh_detect": false,
+        "pvalue": 0.9976
+      },
+      {
+        "environment": "ENSG00000134001",
+        "bh_detect": false,
+        "pvalue": 0.0859
+      },
+      {
+        "environment": "ENSG00000134419",
+        "bh_detect": false,
+        "pvalue": 0.9002
+      },
+      {
+        "environment": "ENSG00000134597",
+        "bh_detect": false,
+        "pvalue": 0.954
+      },
+      {
+        "environment": "ENSG00000134697",
+        "bh_detect": false,
+        "pvalue": 0.1394
+      },
+      {
+        "environment": "ENSG00000134884",
+        "bh_detect": false,
+        "pvalue": 0.011
+      },
+      {
+        "environment": "ENSG00000134987",
+        "bh_detect": false,
+        "pvalue": 0.5162
+      },
+      {
+        "environment": "ENSG00000135521",
+        "bh_detect": false,
+        "pvalue": 0.031
+      },
+      {
+        "environment": "ENSG00000135775",
+        "bh_detect": false,
+        "pvalue": 0.1057
+      },
+      {
+        "environment": "ENSG00000136273",
+        "bh_detect": false,
+        "pvalue": 0.0438
+      },
+      {
+        "environment": "ENSG00000136527",
+        "bh_detect": false,
+        "pvalue": 0.485
+      },
+      {
+        "environment": "ENSG00000136710",
+        "bh_detect": false,
+        "pvalue": 0.4868
+      },
+      {
+        "environment": "ENSG00000136819",
+        "bh_detect": false,
+        "pvalue": 0.5931
+      },
+      {
+        "environment": "ENSG00000136930",
+        "bh_detect": false,
+        "pvalue": 0.9998
+      },
+      {
+        "environment": "ENSG00000137054",
+        "bh_detect": false,
+        "pvalue": 0.8781
+      },
+      {
+        "environment": "ENSG00000137100",
+        "bh_detect": false,
+        "pvalue": 0.1683
+      },
+      {
+        "environment": "ENSG00000137497",
+        "bh_detect": false,
+        "pvalue": 0.3224
+      },
+      {
+        "environment": "ENSG00000138071",
+        "bh_detect": false,
+        "pvalue": 0.5477
+      },
+      {
+        "environment": "ENSG00000138160",
+        "bh_detect": false,
+        "pvalue": 0.6652
+      },
+      {
+        "environment": "ENSG00000138326",
+        "bh_detect": false,
+        "pvalue": 0.2675
+      },
+      {
+        "environment": "ENSG00000138442",
+        "bh_detect": false,
+        "pvalue": 0.2607
+      },
+      {
+        "environment": "ENSG00000138663",
+        "bh_detect": false,
+        "pvalue": 0.8198
+      },
+      {
+        "environment": "ENSG00000138750",
+        "bh_detect": false,
+        "pvalue": 0.5545
+      },
+      {
+        "environment": "ENSG00000138867",
+        "bh_detect": false,
+        "pvalue": 0.5941
+      },
+      {
+        "environment": "ENSG00000139726",
+        "bh_detect": false,
+        "pvalue": 0.8233
+      },
+      {
+        "environment": "ENSG00000142507",
+        "bh_detect": false,
+        "pvalue": 0.9745
+      },
+      {
+        "environment": "ENSG00000142534",
+        "bh_detect": false,
+        "pvalue": 0.0308
+      },
+      {
+        "environment": "ENSG00000142676",
+        "bh_detect": false,
+        "pvalue": 0.0054
+      },
+      {
+        "environment": "ENSG00000143228",
+        "bh_detect": false,
+        "pvalue": 1.0
+      },
+      {
+        "environment": "ENSG00000143368",
+        "bh_detect": false,
+        "pvalue": 0.9857
+      },
+      {
+        "environment": "ENSG00000143952",
+        "bh_detect": false,
+        "pvalue": 0.4635
+      },
+      {
+        "environment": "ENSG00000143977",
+        "bh_detect": false,
+        "pvalue": 0.9459
+      },
+      {
+        "environment": "ENSG00000144021",
+        "bh_detect": false,
+        "pvalue": 0.9814
+      },
+      {
+        "environment": "ENSG00000144231",
+        "bh_detect": false,
+        "pvalue": 0.4253
+      },
+      {
+        "environment": "ENSG00000144713",
+        "bh_detect": false,
+        "pvalue": 0.2123
+      },
+      {
+        "environment": "ENSG00000145191",
+        "bh_detect": false,
+        "pvalue": 0.6268
+      },
+      {
+        "environment": "ENSG00000145592",
+        "bh_detect": false,
+        "pvalue": 0.1434
+      },
+      {
+        "environment": "ENSG00000145604",
+        "bh_detect": false,
+        "pvalue": 0.3427
+      },
+      {
+        "environment": "ENSG00000145734",
+        "bh_detect": false,
+        "pvalue": 0.9608
+      },
+      {
+        "environment": "ENSG00000145833",
+        "bh_detect": false,
+        "pvalue": 0.3381
+      },
+      {
+        "environment": "ENSG00000146007",
+        "bh_detect": false,
+        "pvalue": 0.3449
+      },
+      {
+        "environment": "ENSG00000147403",
+        "bh_detect": false,
+        "pvalue": 0.6782
+      },
+      {
+        "environment": "ENSG00000147416",
+        "bh_detect": false,
+        "pvalue": 0.5643
+      },
+      {
+        "environment": "ENSG00000147457",
+        "bh_detect": false,
+        "pvalue": 0.295
+      },
+      {
+        "environment": "ENSG00000147604",
+        "bh_detect": false,
+        "pvalue": 0.8865
+      },
+      {
+        "environment": "ENSG00000147677",
+        "bh_detect": false,
+        "pvalue": 0.0218
+      },
+      {
+        "environment": "ENSG00000148297",
+        "bh_detect": false,
+        "pvalue": 0.9952
+      },
+      {
+        "environment": "ENSG00000149016",
+        "bh_detect": false,
+        "pvalue": 0.6559
+      },
+      {
+        "environment": "ENSG00000149100",
+        "bh_detect": false,
+        "pvalue": 0.5372
+      },
+      {
+        "environment": "ENSG00000149136",
+        "bh_detect": false,
+        "pvalue": 0.1817
+      },
+      {
+        "environment": "ENSG00000149273",
+        "bh_detect": false,
+        "pvalue": 0.3665
+      },
+      {
+        "environment": "ENSG00000149554",
+        "bh_detect": false,
+        "pvalue": 0.6378
+      },
+      {
+        "environment": "ENSG00000149636",
+        "bh_detect": false,
+        "pvalue": 0.9999
+      },
+      {
+        "environment": "ENSG00000150990",
+        "bh_detect": false,
+        "pvalue": 0.2706
+      },
+      {
+        "environment": "ENSG00000151247",
+        "bh_detect": false,
+        "pvalue": 0.2493
+      },
+      {
+        "environment": "ENSG00000151849",
+        "bh_detect": false,
+        "pvalue": 0.9041
+      },
+      {
+        "environment": "ENSG00000152684",
+        "bh_detect": false,
+        "pvalue": 0.3289
+      },
+      {
+        "environment": "ENSG00000153207",
+        "bh_detect": false,
+        "pvalue": 0.0715
+      },
+      {
+        "environment": "ENSG00000154473",
+        "bh_detect": false,
+        "pvalue": 0.9725
+      },
+      {
+        "environment": "ENSG00000155115",
+        "bh_detect": false,
+        "pvalue": 0.4468
+      },
+      {
+        "environment": "ENSG00000155438",
+        "bh_detect": false,
+        "pvalue": 0.9072
+      },
+      {
+        "environment": "ENSG00000155463",
+        "bh_detect": false,
+        "pvalue": 0.07
+      },
+      {
+        "environment": "ENSG00000155561",
+        "bh_detect": false,
+        "pvalue": 0.6962
+      },
+      {
+        "environment": "ENSG00000155868",
+        "bh_detect": false,
+        "pvalue": 0.5967
+      },
+      {
+        "environment": "ENSG00000156482",
+        "bh_detect": false,
+        "pvalue": 0.5671
+      },
+      {
+        "environment": "ENSG00000156603",
+        "bh_detect": false,
+        "pvalue": 0.9298
+      },
+      {
+        "environment": "ENSG00000157349",
+        "bh_detect": false,
+        "pvalue": 0.8999
+      },
+      {
+        "environment": "ENSG00000157778",
+        "bh_detect": false,
+        "pvalue": 0.7116
+      },
+      {
+        "environment": "ENSG00000158526",
+        "bh_detect": false,
+        "pvalue": 0.0023
+      },
+      {
+        "environment": "ENSG00000159140",
+        "bh_detect": false,
+        "pvalue": 0.5922
+      },
+      {
+        "environment": "ENSG00000159147",
+        "bh_detect": false,
+        "pvalue": 0.6422
+      },
+      {
+        "environment": "ENSG00000159352",
+        "bh_detect": false,
+        "pvalue": 0.2783
+      },
+      {
+        "environment": "ENSG00000160193",
+        "bh_detect": false,
+        "pvalue": 0.5762
+      },
+      {
+        "environment": "ENSG00000160783",
+        "bh_detect": false,
+        "pvalue": 0.9993
+      },
+      {
+        "environment": "ENSG00000161016",
+        "bh_detect": false,
+        "pvalue": 0.7851
+      },
+      {
+        "environment": "ENSG00000161057",
+        "bh_detect": false,
+        "pvalue": 0.9704
+      },
+      {
+        "environment": "ENSG00000161203",
+        "bh_detect": false,
+        "pvalue": 0.4096
+      },
+      {
+        "environment": "ENSG00000161920",
+        "bh_detect": false,
+        "pvalue": 0.4233
+      },
+      {
+        "environment": "ENSG00000161970",
+        "bh_detect": false,
+        "pvalue": 0.3857
+      },
+      {
+        "environment": "ENSG00000162231",
+        "bh_detect": false,
+        "pvalue": 0.521
+      },
+      {
+        "environment": "ENSG00000162385",
+        "bh_detect": false,
+        "pvalue": 0.2898
+      },
+      {
+        "environment": "ENSG00000162923",
+        "bh_detect": false,
+        "pvalue": 0.5249
+      },
+      {
+        "environment": "ENSG00000163041",
+        "bh_detect": false,
+        "pvalue": 0.0503
+      },
+      {
+        "environment": "ENSG00000163466",
+        "bh_detect": false,
+        "pvalue": 0.9335
+      },
+      {
+        "environment": "ENSG00000163468",
+        "bh_detect": false,
+        "pvalue": 0.8868
+      },
+      {
+        "environment": "ENSG00000163636",
+        "bh_detect": false,
+        "pvalue": 0.776
+      },
+      {
+        "environment": "ENSG00000163682",
+        "bh_detect": false,
+        "pvalue": 0.7732
+      },
+      {
+        "environment": "ENSG00000163714",
+        "bh_detect": false,
+        "pvalue": 0.3236
+      },
+      {
+        "environment": "ENSG00000163872",
+        "bh_detect": false,
+        "pvalue": 0.4221
+      },
+      {
+        "environment": "ENSG00000163930",
+        "bh_detect": false,
+        "pvalue": 0.6565
+      },
+      {
+        "environment": "ENSG00000163931",
+        "bh_detect": false,
+        "pvalue": 0.4594
+      },
+      {
+        "environment": "ENSG00000164151",
+        "bh_detect": false,
+        "pvalue": 0.0818
+      },
+      {
+        "environment": "ENSG00000164163",
+        "bh_detect": false,
+        "pvalue": 0.7215
+      },
+      {
+        "environment": "ENSG00000164167",
+        "bh_detect": false,
+        "pvalue": 0.8367
+      },
+      {
+        "environment": "ENSG00000164609",
+        "bh_detect": false,
+        "pvalue": 0.9266
+      },
+      {
+        "environment": "ENSG00000164758",
+        "bh_detect": false,
+        "pvalue": 0.9739
+      },
+      {
+        "environment": "ENSG00000164880",
+        "bh_detect": false,
+        "pvalue": 0.5977
+      },
+      {
+        "environment": "ENSG00000164902",
+        "bh_detect": false,
+        "pvalue": 0.2403
+      },
+      {
+        "environment": "ENSG00000164941",
+        "bh_detect": false,
+        "pvalue": 0.7734
+      },
+      {
+        "environment": "ENSG00000164975",
+        "bh_detect": false,
+        "pvalue": 0.9114
+      },
+      {
+        "environment": "ENSG00000165280",
+        "bh_detect": false,
+        "pvalue": 0.7761
+      },
+      {
+        "environment": "ENSG00000165494",
+        "bh_detect": false,
+        "pvalue": 0.2336
+      },
+      {
+        "environment": "ENSG00000165630",
+        "bh_detect": false,
+        "pvalue": 0.9157
+      },
+      {
+        "environment": "ENSG00000165898",
+        "bh_detect": false,
+        "pvalue": 0.2383
+      },
+      {
+        "environment": "ENSG00000166441",
+        "bh_detect": false,
+        "pvalue": 0.0269
+      },
+      {
+        "environment": "ENSG00000167085",
+        "bh_detect": false,
+        "pvalue": 0.0725
+      },
+      {
+        "environment": "ENSG00000167522",
+        "bh_detect": false,
+        "pvalue": 0.3368
+      },
+      {
+        "environment": "ENSG00000167526",
+        "bh_detect": false,
+        "pvalue": 0.4438
+      },
+      {
+        "environment": "ENSG00000167658",
+        "bh_detect": false,
+        "pvalue": 0.7713
+      },
+      {
+        "environment": "ENSG00000168028",
+        "bh_detect": false,
+        "pvalue": 0.994
+      },
+      {
+        "environment": "ENSG00000168090",
+        "bh_detect": false,
+        "pvalue": 0.8891
+      },
+      {
+        "environment": "ENSG00000168118",
+        "bh_detect": false,
+        "pvalue": 0.2885
+      },
+      {
+        "environment": "ENSG00000168827",
+        "bh_detect": false,
+        "pvalue": 0.5011
+      },
+      {
+        "environment": "ENSG00000168883",
+        "bh_detect": false,
+        "pvalue": 0.9594
+      },
+      {
+        "environment": "ENSG00000169375",
+        "bh_detect": false,
+        "pvalue": 0.3483
+      },
+      {
+        "environment": "ENSG00000169679",
+        "bh_detect": false,
+        "pvalue": 0.9008
+      },
+      {
+        "environment": "ENSG00000169727",
+        "bh_detect": false,
+        "pvalue": 0.9979
+      },
+      {
+        "environment": "ENSG00000169750",
+        "bh_detect": false,
+        "pvalue": 0.4744
+      },
+      {
+        "environment": "ENSG00000169756",
+        "bh_detect": false,
+        "pvalue": 0.6345
+      },
+      {
+        "environment": "ENSG00000170248",
+        "bh_detect": false,
+        "pvalue": 0.0486
+      },
+      {
+        "environment": "ENSG00000170312",
+        "bh_detect": false,
+        "pvalue": 0.9943
+      },
+      {
+        "environment": "ENSG00000170322",
+        "bh_detect": false,
+        "pvalue": 0.876
+      },
+      {
+        "environment": "ENSG00000170421",
+        "bh_detect": false,
+        "pvalue": 0.0012
+      },
+      {
+        "environment": "ENSG00000170445",
+        "bh_detect": false,
+        "pvalue": 0.5387
+      },
+      {
+        "environment": "ENSG00000170889",
+        "bh_detect": false,
+        "pvalue": 0.751
+      },
+      {
+        "environment": "ENSG00000170892",
+        "bh_detect": false,
+        "pvalue": 0.2125
+      },
+      {
+        "environment": "ENSG00000171159",
+        "bh_detect": false,
+        "pvalue": 0.6283
+      },
+      {
+        "environment": "ENSG00000171490",
+        "bh_detect": false,
+        "pvalue": 0.307
+      },
+      {
+        "environment": "ENSG00000171848",
+        "bh_detect": false,
+        "pvalue": 0.6914
+      },
+      {
+        "environment": "ENSG00000171863",
+        "bh_detect": false,
+        "pvalue": 0.4913
+      },
+      {
+        "environment": "ENSG00000172053",
+        "bh_detect": false,
+        "pvalue": 0.5885
+      },
+      {
+        "environment": "ENSG00000172171",
+        "bh_detect": false,
+        "pvalue": 0.8644
+      },
+      {
+        "environment": "ENSG00000172336",
+        "bh_detect": false,
+        "pvalue": 0.7344
+      },
+      {
+        "environment": "ENSG00000172531",
+        "bh_detect": false,
+        "pvalue": 0.2435
+      },
+      {
+        "environment": "ENSG00000173113",
+        "bh_detect": false,
+        "pvalue": 0.0292
+      },
+      {
+        "environment": "ENSG00000173692",
+        "bh_detect": false,
+        "pvalue": 0.9752
+      },
+      {
+        "environment": "ENSG00000173933",
+        "bh_detect": false,
+        "pvalue": 0.8956
+      },
+      {
+        "environment": "ENSG00000174444",
+        "bh_detect": false,
+        "pvalue": 0.1206
+      },
+      {
+        "environment": "ENSG00000174780",
+        "bh_detect": false,
+        "pvalue": 0.6014
+      },
+      {
+        "environment": "ENSG00000174953",
+        "bh_detect": false,
+        "pvalue": 0.3804
+      },
+      {
+        "environment": "ENSG00000175216",
+        "bh_detect": false,
+        "pvalue": 0.9951
+      },
+      {
+        "environment": "ENSG00000175467",
+        "bh_detect": false,
+        "pvalue": 0.952
+      },
+      {
+        "environment": "ENSG00000175550",
+        "bh_detect": false,
+        "pvalue": 0.3817
+      },
+      {
+        "environment": "ENSG00000175792",
+        "bh_detect": false,
+        "pvalue": 0.5704
+      },
+      {
+        "environment": "ENSG00000176108",
+        "bh_detect": false,
+        "pvalue": 0.5086
+      },
+      {
+        "environment": "ENSG00000177600",
+        "bh_detect": false,
+        "pvalue": 0.018
+      },
+      {
+        "environment": "ENSG00000178966",
+        "bh_detect": false,
+        "pvalue": 0.6354
+      },
+      {
+        "environment": "ENSG00000179988",
+        "bh_detect": false,
+        "pvalue": 0.3225
+      },
+      {
+        "environment": "ENSG00000180104",
+        "bh_detect": false,
+        "pvalue": 0.1816
+      },
+      {
+        "environment": "ENSG00000180198",
+        "bh_detect": false,
+        "pvalue": 0.5447
+      },
+      {
+        "environment": "ENSG00000180992",
+        "bh_detect": false,
+        "pvalue": 0.121
+      },
+      {
+        "environment": "ENSG00000181222",
+        "bh_detect": false,
+        "pvalue": 0.6475
+      },
+      {
+        "environment": "ENSG00000181789",
+        "bh_detect": false,
+        "pvalue": 0.3744
+      },
+      {
+        "environment": "ENSG00000182774",
+        "bh_detect": false,
+        "pvalue": 0.9821
+      },
+      {
+        "environment": "ENSG00000183011",
+        "bh_detect": false,
+        "pvalue": 0.9209
+      },
+      {
+        "environment": "ENSG00000183048",
+        "bh_detect": false,
+        "pvalue": 0.7484
+      },
+      {
+        "environment": "ENSG00000183258",
+        "bh_detect": false,
+        "pvalue": 0.9674
+      },
+      {
+        "environment": "ENSG00000183684",
+        "bh_detect": false,
+        "pvalue": 0.9691
+      },
+      {
+        "environment": "ENSG00000184634",
+        "bh_detect": false,
+        "pvalue": 0.9886
+      },
+      {
+        "environment": "ENSG00000185651",
+        "bh_detect": false,
+        "pvalue": 0.5804
+      },
+      {
+        "environment": "ENSG00000186716",
+        "bh_detect": false,
+        "pvalue": 0.1762
+      },
+      {
+        "environment": "ENSG00000187555",
+        "bh_detect": false,
+        "pvalue": 0.5971
+      },
+      {
+        "environment": "ENSG00000188846",
+        "bh_detect": false,
+        "pvalue": 0.1442
+      },
+      {
+        "environment": "ENSG00000189091",
+        "bh_detect": false,
+        "pvalue": 0.8733
+      },
+      {
+        "environment": "ENSG00000189308",
+        "bh_detect": false,
+        "pvalue": 0.7516
+      },
+      {
+        "environment": "ENSG00000189403",
+        "bh_detect": false,
+        "pvalue": 0.5462
+      },
+      {
+        "environment": "ENSG00000196235",
+        "bh_detect": false,
+        "pvalue": 0.4888
+      },
+      {
+        "environment": "ENSG00000196367",
+        "bh_detect": false,
+        "pvalue": 0.2106
+      },
+      {
+        "environment": "ENSG00000196531",
+        "bh_detect": false,
+        "pvalue": 0.6761
+      },
+      {
+        "environment": "ENSG00000197102",
+        "bh_detect": false,
+        "pvalue": 0.9996
+      },
+      {
+        "environment": "ENSG00000197170",
+        "bh_detect": false,
+        "pvalue": 0.9997
+      },
+      {
+        "environment": "ENSG00000197756",
+        "bh_detect": false,
+        "pvalue": 0.2055
+      },
+      {
+        "environment": "ENSG00000197958",
+        "bh_detect": false,
+        "pvalue": 0.8952
+      },
+      {
+        "environment": "ENSG00000198042",
+        "bh_detect": false,
+        "pvalue": 0.1754
+      },
+      {
+        "environment": "ENSG00000198258",
+        "bh_detect": false,
+        "pvalue": 0.8661
+      },
+      {
+        "environment": "ENSG00000198301",
+        "bh_detect": false,
+        "pvalue": 0.5412
+      },
+      {
+        "environment": "ENSG00000198612",
+        "bh_detect": false,
+        "pvalue": 0.8309
+      },
+      {
+        "environment": "ENSG00000198730",
+        "bh_detect": false,
+        "pvalue": 0.1494
+      },
+      {
+        "environment": "ENSG00000198736",
+        "bh_detect": false,
+        "pvalue": 0.8873
+      },
+      {
+        "environment": "ENSG00000198755",
+        "bh_detect": false,
+        "pvalue": 0.4902
+      },
+      {
+        "environment": "ENSG00000198856",
+        "bh_detect": false,
+        "pvalue": 0.0939
+      },
+      {
+        "environment": "ENSG00000204152",
+        "bh_detect": false,
+        "pvalue": 0.1668
+      },
+      {
+        "environment": "ENSG00000204392",
+        "bh_detect": false,
+        "pvalue": 0.7636
+      },
+      {
+        "environment": "ENSG00000204394",
+        "bh_detect": false,
+        "pvalue": 0.6401
+      },
+      {
+        "environment": "ENSG00000204560",
+        "bh_detect": false,
+        "pvalue": 0.9046
+      },
+      {
+        "environment": "ENSG00000204574",
+        "bh_detect": false,
+        "pvalue": 0.3585
+      },
+      {
+        "environment": "ENSG00000204604",
+        "bh_detect": false,
+        "pvalue": 0.3575
+      },
+      {
+        "environment": "ENSG00000204899",
+        "bh_detect": false,
+        "pvalue": 0.2644
+      },
+      {
+        "environment": "ENSG00000205981",
+        "bh_detect": false,
+        "pvalue": 0.7354
+      },
+      {
+        "environment": "ENSG00000213741",
+        "bh_detect": false,
+        "pvalue": 0.3772
+      },
+      {
+        "environment": "ENSG00000214114",
+        "bh_detect": false,
+        "pvalue": 0.8552
+      },
+      {
+        "environment": "ENSG00000214517",
+        "bh_detect": false,
+        "pvalue": 0.2661
+      },
+      {
+        "environment": "ENSG00000215021",
+        "bh_detect": false,
+        "pvalue": 0.376
+      },
+      {
+        "environment": "ENSG00000233927",
+        "bh_detect": false,
+        "pvalue": 0.0523
+      },
+      {
+        "environment": "ENSG00000239306",
+        "bh_detect": false,
+        "pvalue": 0.4595
+      },
+      {
+        "environment": "ENSG00000241553",
+        "bh_detect": false,
+        "pvalue": 0.3573
+      },
+      {
+        "environment": "ENSG00000249915",
+        "bh_detect": false,
+        "pvalue": 0.2808
+      },
+      {
+        "environment": "ENSG00000261236",
+        "bh_detect": false,
+        "pvalue": 0.0661
+      },
+      {
+        "environment": "ENSG00000269858",
+        "bh_detect": false,
+        "pvalue": 0.2879
+      },
+      {
+        "environment": "ENSG00000275700",
+        "bh_detect": false,
+        "pvalue": 0.2465
+      }
+    ]
+  },
+  "results_sha256": "e1d5f9068ae74ac761c8011db2d0cb4e721a048454505fbd6a3b551be8d04221",
+  "meta": {
+    "seconds": 0.139,
+    "argv": [],
+    "provenance": {
+      "code_commit": "8645d1a104c2ad492393b8cc7ba335f05e40afdc",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/d4_decisions_export.py": "5ebd95e71733e50db634216dd2f190fc170e5a168da180ff92c3b58b8f51e842",
+        "experiments/d4_common.py": "7ad5f49a490d9d6281f507d35bdfaad30620d72e4f099ed2e8ed32b4e8117514",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850",
+        "experiments/e12_aggregate.py": "da1f6be29a1498f1ab3c31868360ca5c99cdcf4a9bfeee2b139ab294656c1a11"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}

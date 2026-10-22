@@ -1,0 +1,45 @@
+{
+  "results": {
+    "experiment": "D4-C",
+    "dataset": "k562",
+    "seed": "0",
+    "d_subspace": 10,
+    "B": 500,
+    "alpha": 0.05,
+    "q": 0.05,
+    "gate_path": "results/d4_heldout/decisions/k562_seed0.json",
+    "limitation": "full-space statistic without target correction (D4 prereg)",
+    "n_upstream": 0,
+    "n_environments": 385,
+    "ran": false,
+    "note": "no held-out T0h BH-detected environment; reported as 0 upstream, no run"
+  },
+  "results_sha256": "e081f4de31160162084d9b483db1980cc9cd4fbb6f46fc8cef3e1f7d0d6cafab",
+  "meta": {
+    "seconds": 0.001,
+    "threads": 1,
+    "argv": [
+      "--dataset",
+      "k562",
+      "--seed",
+      "0",
+      "--threads",
+      "1"
+    ],
+    "provenance": {
+      "code_commit": "8645d1a104c2ad492393b8cc7ba335f05e40afdc",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/d4_attribution.py": "253f40be1d33cd06f333196dd17c6692f5ceccbc3ccd68ba94746d124279e02e",
+        "experiments/e3_attribution_panel.py": "4c13c6f41124a9d2e74f8c15e881cf490c19e7af267aca0f572a5fd6fad7f375"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}

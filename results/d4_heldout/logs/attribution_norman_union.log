@@ -1,0 +1,5 @@
+[Norman] upstream BH selected 3/100
+[Norman] null n=1457 backend=feature_scatter disjoint=True
+[Norman] null n=427 backend=feature_scatter disjoint=True
+[Norman] null n=516 backend=feature_scatter disjoint=True
+[norman union] upstream 3 raw 2 bh 0 seconds 62684.599 -> /home/home/grd-framework/results/d4_heldout/attribution/norman_union.json

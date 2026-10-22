@@ -1,0 +1,10 @@
+[RPE1] upstream BH selected 8/145
+[RPE1] null n=240 backend=feature_scatter disjoint=True
+[RPE1] null n=237 backend=feature_scatter disjoint=True
+[RPE1] null n=210 backend=feature_scatter disjoint=True
+[RPE1] null n=276 backend=feature_scatter disjoint=True
+[RPE1] null n=495 backend=feature_scatter disjoint=True
+[RPE1] null n=242 backend=feature_scatter disjoint=True
+[RPE1] null n=280 backend=feature_scatter disjoint=True
+[RPE1] null n=348 backend=feature_scatter disjoint=True
+[rpe1 seed2] upstream 8 raw 0 bh 0 seconds 1323.155 -> /home/home/grd-framework/results/d4_heldout/attribution/rpe1_seed2.json

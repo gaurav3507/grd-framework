@@ -1,0 +1,26 @@
+[Norman] upstream BH selected 1/100
+[Norman] null n=1457 backend=feature_scatter disjoint=True
+[norman seed0] upstream 1 raw 1 bh 0 seconds 9109.818 -> /home/home/grd-framework/results/d4_heldout/attribution/norman_seed0.json
+	Command being timed: ".venv/bin/python -u experiments/d4_attribution.py --dataset norman --seed 0 --threads 4"
+	User time (seconds): 34769.50
+	System time (seconds): 197.22
+	Percent of CPU this job got: 383%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31:50
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2024616
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 89
+	Minor (reclaiming a frame) page faults: 2938633
+	Voluntary context switches: 5704
+	Involuntary context switches: 42601
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

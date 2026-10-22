@@ -1,0 +1,1037 @@
+{
+  "primary_decision": "held-out T0h BH q=0.05 (E12, D4)",
+  "dataset": "norman",
+  "seed": 1,
+  "decisions": [
+    {
+      "environment": "AHR",
+      "bh_detect": false,
+      "pvalue": 0.8373
+    },
+    {
+      "environment": "ARID1A",
+      "bh_detect": false,
+      "pvalue": 0.1611
+    },
+    {
+      "environment": "ARRDC3",
+      "bh_detect": false,
+      "pvalue": 0.8178
+    },
+    {
+      "environment": "ATL1",
+      "bh_detect": false,
+      "pvalue": 0.3065
+    },
+    {
+      "environment": "BAK1",
+      "bh_detect": true,
+      "pvalue": 0.0001
+    },
+    {
+      "environment": "BCL2L11",
+      "bh_detect": false,
+      "pvalue": 0.1854
+    },
+    {
+      "environment": "BCORL1",
+      "bh_detect": false,
+      "pvalue": 0.1468
+    },
+    {
+      "environment": "BPGM",
+      "bh_detect": false,
+      "pvalue": 0.604
+    },
+    {
+      "environment": "C19orf26",
+      "bh_detect": false,
+      "pvalue": 0.9088
+    },
+    {
+      "environment": "C3orf72",
+      "bh_detect": false,
+      "pvalue": 0.5513
+    },
+    {
+      "environment": "CBFA2T3",
+      "bh_detect": false,
+      "pvalue": 0.7822
+    },
+    {
+      "environment": "CBL",
+      "bh_detect": false,
+      "pvalue": 0.7252
+    },
+    {
+      "environment": "CDKN1A",
+      "bh_detect": false,
+      "pvalue": 0.0645
+    },
+    {
+      "environment": "CDKN1B",
+      "bh_detect": false,
+      "pvalue": 0.0408
+    },
+    {
+      "environment": "CDKN1C",
+      "bh_detect": false,
+      "pvalue": 0.4381
+    },
+    {
+      "environment": "CEBPA",
+      "bh_detect": false,
+      "pvalue": 0.1498
+    },
+    {
+      "environment": "CEBPB",
+      "bh_detect": false,
+      "pvalue": 0.1462
+    },
+    {
+      "environment": "CEBPE",
+      "bh_detect": false,
+      "pvalue": 0.138
+    },
+    {
+      "environment": "CELF2",
+      "bh_detect": false,
+      "pvalue": 0.476
+    },
+    {
+      "environment": "CITED1",
+      "bh_detect": false,
+      "pvalue": 0.805
+    },
+    {
+      "environment": "CKS1B",
+      "bh_detect": false,
+      "pvalue": 0.3999
+    },
+    {
+      "environment": "CLDN6",
+      "bh_detect": false,
+      "pvalue": 0.4529
+    },
+    {
+      "environment": "CNN1",
+      "bh_detect": false,
+      "pvalue": 0.3732
+    },
+    {
+      "environment": "CNNM4",
+      "bh_detect": false,
+      "pvalue": 0.2864
+    },
+    {
+      "environment": "COL1A1",
+      "bh_detect": false,
+      "pvalue": 0.553
+    },
+    {
+      "environment": "COL2A1",
+      "bh_detect": false,
+      "pvalue": 0.2717
+    },
+    {
+      "environment": "CSRNP1",
+      "bh_detect": false,
+      "pvalue": 0.1174
+    },
+    {
+      "environment": "DLX2",
+      "bh_detect": false,
+      "pvalue": 0.3213
+    },
+    {
+      "environment": "DUSP9",
+      "bh_detect": false,
+      "pvalue": 0.1331
+    },
+    {
+      "environment": "EGR1",
+      "bh_detect": false,
+      "pvalue": 0.1715
+    },
+    {
+      "environment": "ELMSAN1",
+      "bh_detect": false,
+      "pvalue": 0.0832
+    },
+    {
+      "environment": "ETS2",
+      "bh_detect": false,
+      "pvalue": 0.2638
+    },
+    {
+      "environment": "FEV",
+      "bh_detect": false,
+      "pvalue": 0.9534
+    },
+    {
+      "environment": "FOSB",
+      "bh_detect": false,
+      "pvalue": 0.6171
+    },
+    {
+      "environment": "FOXA1",
+      "bh_detect": false,
+      "pvalue": 0.8906
+    },
+    {
+      "environment": "FOXA3",
+      "bh_detect": false,
+      "pvalue": 0.9721
+    },
+    {
+      "environment": "FOXF1",
+      "bh_detect": false,
+      "pvalue": 0.0287
+    },
+    {
+      "environment": "FOXL2",
+      "bh_detect": false,
+      "pvalue": 0.6388
+    },
+    {
+      "environment": "FOXO4",
+      "bh_detect": false,
+      "pvalue": 0.28
+    },
+    {
+      "environment": "GLB1L2",
+      "bh_detect": false,
+      "pvalue": 0.0229
+    },
+    {
+      "environment": "HK2",
+      "bh_detect": false,
+      "pvalue": 0.5947
+    },
+    {
+      "environment": "HNF4A",
+      "bh_detect": false,
+      "pvalue": 0.2929
+    },
+    {
+      "environment": "HOXA13",
+      "bh_detect": false,
+      "pvalue": 0.9207
+    },
+    {
+      "environment": "HOXB9",
+      "bh_detect": false,
+      "pvalue": 0.3917
+    },
+    {
+      "environment": "HOXC13",
+      "bh_detect": false,
+      "pvalue": 0.1764
+    },
+    {
+      "environment": "IER5L",
+      "bh_detect": false,
+      "pvalue": 0.2068
+    },
+    {
+      "environment": "IGDCC3",
+      "bh_detect": false,
+      "pvalue": 0.0264
+    },
+    {
+      "environment": "IKZF3",
+      "bh_detect": false,
+      "pvalue": 0.2677
+    },
+    {
+      "environment": "IRF1",
+      "bh_detect": true,
+      "pvalue": 0.0006
+    },
+    {
+      "environment": "ISL2",
+      "bh_detect": false,
+      "pvalue": 0.2021
+    },
+    {
+      "environment": "JUN",
+      "bh_detect": false,
+      "pvalue": 0.8186
+    },
+    {
+      "environment": "KIAA1804",
+      "bh_detect": false,
+      "pvalue": 0.3029
+    },
+    {
+      "environment": "KIF18B",
+      "bh_detect": false,
+      "pvalue": 0.998
+    },
+    {
+      "environment": "KIF2C",
+      "bh_detect": false,
+      "pvalue": 0.4712
+    },
+    {
+      "environment": "KMT2A",
+      "bh_detect": false,
+      "pvalue": 0.7792
+    },
+    {
+      "environment": "LHX1",
+      "bh_detect": false,
+      "pvalue": 0.4732
+    },
+    {
+      "environment": "LYL1",
+      "bh_detect": false,
+      "pvalue": 0.0965
+    },
+    {
+      "environment": "MAML2",
+      "bh_detect": false,
+      "pvalue": 0.101
+    },
+    {
+      "environment": "MAP2K3",
+      "bh_detect": false,
+      "pvalue": 0.075
+    },
+    {
+      "environment": "MAP2K6",
+      "bh_detect": false,
+      "pvalue": 0.8386
+    },
+    {
+      "environment": "MAP4K3",
+      "bh_detect": false,
+      "pvalue": 0.9079
+    },
+    {
+      "environment": "MAP4K5",
+      "bh_detect": false,
+      "pvalue": 0.994
+    },
+    {
+      "environment": "MAP7D1",
+      "bh_detect": false,
+      "pvalue": 0.4823
+    },
+    {
+      "environment": "MAPK1",
+      "bh_detect": false,
+      "pvalue": 0.7963
+    },
+    {
+      "environment": "MEIS1",
+      "bh_detect": false,
+      "pvalue": 0.729
+    },
+    {
+      "environment": "MIDN",
+      "bh_detect": false,
+      "pvalue": 0.9116
+    },
+    {
+      "environment": "NCL",
+      "bh_detect": false,
+      "pvalue": 0.8216
+    },
+    {
+      "environment": "OSR2",
+      "bh_detect": false,
+      "pvalue": 0.699
+    },
+    {
+      "environment": "POU3F2",
+      "bh_detect": false,
+      "pvalue": 0.8658
+    },
+    {
+      "environment": "PRDM1",
+      "bh_detect": false,
+      "pvalue": 0.7062
+    },
+    {
+      "environment": "PRTG",
+      "bh_detect": false,
+      "pvalue": 0.1174
+    },
+    {
+      "environment": "PTPN1",
+      "bh_detect": false,
+      "pvalue": 0.268
+    },
+    {
+      "environment": "PTPN12",
+      "bh_detect": false,
+      "pvalue": 0.7234
+    },
+    {
+      "environment": "PTPN13",
+      "bh_detect": false,
+      "pvalue": 0.3685
+    },
+    {
+      "environment": "PTPN9",
+      "bh_detect": false,
+      "pvalue": 0.5544
+    },
+    {
+      "environment": "RHOXF2",
+      "bh_detect": false,
+      "pvalue": 0.7609
+    },
+    {
+      "environment": "RREB1",
+      "bh_detect": false,
+      "pvalue": 0.9603
+    },
+    {
+      "environment": "RUNX1T1",
+      "bh_detect": false,
+      "pvalue": 0.4745
+    },
+    {
+      "environment": "S1PR2",
+      "bh_detect": false,
+      "pvalue": 0.9725
+    },
+    {
+      "environment": "SAMD1",
+      "bh_detect": false,
+      "pvalue": 0.9739
+    },
+    {
+      "environment": "SET",
+      "bh_detect": false,
+      "pvalue": 0.074
+    },
+    {
+      "environment": "SGK1",
+      "bh_detect": false,
+      "pvalue": 0.9298
+    },
+    {
+      "environment": "SLC38A2",
+      "bh_detect": false,
+      "pvalue": 0.2272
+    },
+    {
+      "environment": "SLC4A1",
+      "bh_detect": false,
+      "pvalue": 0.5915
+    },
+    {
+      "environment": "SLC6A9",
+      "bh_detect": false,
+      "pvalue": 0.8257
+    },
+    {
+      "environment": "SNAI1",
+      "bh_detect": false,
+      "pvalue": 0.7249
+    },
+    {
+      "environment": "SPI1",
+      "bh_detect": false,
+      "pvalue": 0.0466
+    },
+    {
+      "environment": "STIL",
+      "bh_detect": false,
+      "pvalue": 0.9746
+    },
+    {
+      "environment": "TBX2",
+      "bh_detect": false,
+      "pvalue": 0.3808
+    },
+    {
+      "environment": "TBX3",
+      "bh_detect": false,
+      "pvalue": 0.3482
+    },
+    {
+      "environment": "TGFBR2",
+      "bh_detect": false,
+      "pvalue": 0.2288
+    },
+    {
+      "environment": "TMSB4X",
+      "bh_detect": false,
+      "pvalue": 0.5193
+    },
+    {
+      "environment": "TP73",
+      "bh_detect": false,
+      "pvalue": 0.1884
+    },
+    {
+      "environment": "TSC22D1",
+      "bh_detect": false,
+      "pvalue": 0.231
+    },
+    {
+      "environment": "UBASH3A",
+      "bh_detect": false,
+      "pvalue": 0.8576
+    },
+    {
+      "environment": "UBASH3B",
+      "bh_detect": false,
+      "pvalue": 0.0935
+    },
+    {
+      "environment": "ZBTB1",
+      "bh_detect": false,
+      "pvalue": 0.6523
+    },
+    {
+      "environment": "ZBTB25",
+      "bh_detect": false,
+      "pvalue": 0.0031
+    },
+    {
+      "environment": "ZC3HAV1",
+      "bh_detect": true,
+      "pvalue": 0.0005
+    },
+    {
+      "environment": "ZNF318",
+      "bh_detect": false,
+      "pvalue": 0.4392
+    }
+  ],
+  "results": {
+    "primary_decision": "held-out T0h BH q=0.05 (E12, D4)",
+    "dataset": "norman",
+    "seed": 1,
+    "decisions": [
+      {
+        "environment": "AHR",
+        "bh_detect": false,
+        "pvalue": 0.8373
+      },
+      {
+        "environment": "ARID1A",
+        "bh_detect": false,
+        "pvalue": 0.1611
+      },
+      {
+        "environment": "ARRDC3",
+        "bh_detect": false,
+        "pvalue": 0.8178
+      },
+      {
+        "environment": "ATL1",
+        "bh_detect": false,
+        "pvalue": 0.3065
+      },
+      {
+        "environment": "BAK1",
+        "bh_detect": true,
+        "pvalue": 0.0001
+      },
+      {
+        "environment": "BCL2L11",
+        "bh_detect": false,
+        "pvalue": 0.1854
+      },
+      {
+        "environment": "BCORL1",
+        "bh_detect": false,
+        "pvalue": 0.1468
+      },
+      {
+        "environment": "BPGM",
+        "bh_detect": false,
+        "pvalue": 0.604
+      },
+      {
+        "environment": "C19orf26",
+        "bh_detect": false,
+        "pvalue": 0.9088
+      },
+      {
+        "environment": "C3orf72",
+        "bh_detect": false,
+        "pvalue": 0.5513
+      },
+      {
+        "environment": "CBFA2T3",
+        "bh_detect": false,
+        "pvalue": 0.7822
+      },
+      {
+        "environment": "CBL",
+        "bh_detect": false,
+        "pvalue": 0.7252
+      },
+      {
+        "environment": "CDKN1A",
+        "bh_detect": false,
+        "pvalue": 0.0645
+      },
+      {
+        "environment": "CDKN1B",
+        "bh_detect": false,
+        "pvalue": 0.0408
+      },
+      {
+        "environment": "CDKN1C",
+        "bh_detect": false,
+        "pvalue": 0.4381
+      },
+      {
+        "environment": "CEBPA",
+        "bh_detect": false,
+        "pvalue": 0.1498
+      },
+      {
+        "environment": "CEBPB",
+        "bh_detect": false,
+        "pvalue": 0.1462
+      },
+      {
+        "environment": "CEBPE",
+        "bh_detect": false,
+        "pvalue": 0.138
+      },
+      {
+        "environment": "CELF2",
+        "bh_detect": false,
+        "pvalue": 0.476
+      },
+      {
+        "environment": "CITED1",
+        "bh_detect": false,
+        "pvalue": 0.805
+      },
+      {
+        "environment": "CKS1B",
+        "bh_detect": false,
+        "pvalue": 0.3999
+      },
+      {
+        "environment": "CLDN6",
+        "bh_detect": false,
+        "pvalue": 0.4529
+      },
+      {
+        "environment": "CNN1",
+        "bh_detect": false,
+        "pvalue": 0.3732
+      },
+      {
+        "environment": "CNNM4",
+        "bh_detect": false,
+        "pvalue": 0.2864
+      },
+      {
+        "environment": "COL1A1",
+        "bh_detect": false,
+        "pvalue": 0.553
+      },
+      {
+        "environment": "COL2A1",
+        "bh_detect": false,
+        "pvalue": 0.2717
+      },
+      {
+        "environment": "CSRNP1",
+        "bh_detect": false,
+        "pvalue": 0.1174
+      },
+      {
+        "environment": "DLX2",
+        "bh_detect": false,
+        "pvalue": 0.3213
+      },
+      {
+        "environment": "DUSP9",
+        "bh_detect": false,
+        "pvalue": 0.1331
+      },
+      {
+        "environment": "EGR1",
+        "bh_detect": false,
+        "pvalue": 0.1715
+      },
+      {
+        "environment": "ELMSAN1",
+        "bh_detect": false,
+        "pvalue": 0.0832
+      },
+      {
+        "environment": "ETS2",
+        "bh_detect": false,
+        "pvalue": 0.2638
+      },
+      {
+        "environment": "FEV",
+        "bh_detect": false,
+        "pvalue": 0.9534
+      },
+      {
+        "environment": "FOSB",
+        "bh_detect": false,
+        "pvalue": 0.6171
+      },
+      {
+        "environment": "FOXA1",
+        "bh_detect": false,
+        "pvalue": 0.8906
+      },
+      {
+        "environment": "FOXA3",
+        "bh_detect": false,
+        "pvalue": 0.9721
+      },
+      {
+        "environment": "FOXF1",
+        "bh_detect": false,
+        "pvalue": 0.0287
+      },
+      {
+        "environment": "FOXL2",
+        "bh_detect": false,
+        "pvalue": 0.6388
+      },
+      {
+        "environment": "FOXO4",
+        "bh_detect": false,
+        "pvalue": 0.28
+      },
+      {
+        "environment": "GLB1L2",
+        "bh_detect": false,
+        "pvalue": 0.0229
+      },
+      {
+        "environment": "HK2",
+        "bh_detect": false,
+        "pvalue": 0.5947
+      },
+      {
+        "environment": "HNF4A",
+        "bh_detect": false,
+        "pvalue": 0.2929
+      },
+      {
+        "environment": "HOXA13",
+        "bh_detect": false,
+        "pvalue": 0.9207
+      },
+      {
+        "environment": "HOXB9",
+        "bh_detect": false,
+        "pvalue": 0.3917
+      },
+      {
+        "environment": "HOXC13",
+        "bh_detect": false,
+        "pvalue": 0.1764
+      },
+      {
+        "environment": "IER5L",
+        "bh_detect": false,
+        "pvalue": 0.2068
+      },
+      {
+        "environment": "IGDCC3",
+        "bh_detect": false,
+        "pvalue": 0.0264
+      },
+      {
+        "environment": "IKZF3",
+        "bh_detect": false,
+        "pvalue": 0.2677
+      },
+      {
+        "environment": "IRF1",
+        "bh_detect": true,
+        "pvalue": 0.0006
+      },
+      {
+        "environment": "ISL2",
+        "bh_detect": false,
+        "pvalue": 0.2021
+      },
+      {
+        "environment": "JUN",
+        "bh_detect": false,
+        "pvalue": 0.8186
+      },
+      {
+        "environment": "KIAA1804",
+        "bh_detect": false,
+        "pvalue": 0.3029
+      },
+      {
+        "environment": "KIF18B",
+        "bh_detect": false,
+        "pvalue": 0.998
+      },
+      {
+        "environment": "KIF2C",
+        "bh_detect": false,
+        "pvalue": 0.4712
+      },
+      {
+        "environment": "KMT2A",
+        "bh_detect": false,
+        "pvalue": 0.7792
+      },
+      {
+        "environment": "LHX1",
+        "bh_detect": false,
+        "pvalue": 0.4732
+      },
+      {
+        "environment": "LYL1",
+        "bh_detect": false,
+        "pvalue": 0.0965
+      },
+      {
+        "environment": "MAML2",
+        "bh_detect": false,
+        "pvalue": 0.101
+      },
+      {
+        "environment": "MAP2K3",
+        "bh_detect": false,
+        "pvalue": 0.075
+      },
+      {
+        "environment": "MAP2K6",
+        "bh_detect": false,
+        "pvalue": 0.8386
+      },
+      {
+        "environment": "MAP4K3",
+        "bh_detect": false,
+        "pvalue": 0.9079
+      },
+      {
+        "environment": "MAP4K5",
+        "bh_detect": false,
+        "pvalue": 0.994
+      },
+      {
+        "environment": "MAP7D1",
+        "bh_detect": false,
+        "pvalue": 0.4823
+      },
+      {
+        "environment": "MAPK1",
+        "bh_detect": false,
+        "pvalue": 0.7963
+      },
+      {
+        "environment": "MEIS1",
+        "bh_detect": false,
+        "pvalue": 0.729
+      },
+      {
+        "environment": "MIDN",
+        "bh_detect": false,
+        "pvalue": 0.9116
+      },
+      {
+        "environment": "NCL",
+        "bh_detect": false,
+        "pvalue": 0.8216
+      },
+      {
+        "environment": "OSR2",
+        "bh_detect": false,
+        "pvalue": 0.699
+      },
+      {
+        "environment": "POU3F2",
+        "bh_detect": false,
+        "pvalue": 0.8658
+      },
+      {
+        "environment": "PRDM1",
+        "bh_detect": false,
+        "pvalue": 0.7062
+      },
+      {
+        "environment": "PRTG",
+        "bh_detect": false,
+        "pvalue": 0.1174
+      },
+      {
+        "environment": "PTPN1",
+        "bh_detect": false,
+        "pvalue": 0.268
+      },
+      {
+        "environment": "PTPN12",
+        "bh_detect": false,
+        "pvalue": 0.7234
+      },
+      {
+        "environment": "PTPN13",
+        "bh_detect": false,
+        "pvalue": 0.3685
+      },
+      {
+        "environment": "PTPN9",
+        "bh_detect": false,
+        "pvalue": 0.5544
+      },
+      {
+        "environment": "RHOXF2",
+        "bh_detect": false,
+        "pvalue": 0.7609
+      },
+      {
+        "environment": "RREB1",
+        "bh_detect": false,
+        "pvalue": 0.9603
+      },
+      {
+        "environment": "RUNX1T1",
+        "bh_detect": false,
+        "pvalue": 0.4745
+      },
+      {
+        "environment": "S1PR2",
+        "bh_detect": false,
+        "pvalue": 0.9725
+      },
+      {
+        "environment": "SAMD1",
+        "bh_detect": false,
+        "pvalue": 0.9739
+      },
+      {
+        "environment": "SET",
+        "bh_detect": false,
+        "pvalue": 0.074
+      },
+      {
+        "environment": "SGK1",
+        "bh_detect": false,
+        "pvalue": 0.9298
+      },
+      {
+        "environment": "SLC38A2",
+        "bh_detect": false,
+        "pvalue": 0.2272
+      },
+      {
+        "environment": "SLC4A1",
+        "bh_detect": false,
+        "pvalue": 0.5915
+      },
+      {
+        "environment": "SLC6A9",
+        "bh_detect": false,
+        "pvalue": 0.8257
+      },
+      {
+        "environment": "SNAI1",
+        "bh_detect": false,
+        "pvalue": 0.7249
+      },
+      {
+        "environment": "SPI1",
+        "bh_detect": false,
+        "pvalue": 0.0466
+      },
+      {
+        "environment": "STIL",
+        "bh_detect": false,
+        "pvalue": 0.9746
+      },
+      {
+        "environment": "TBX2",
+        "bh_detect": false,
+        "pvalue": 0.3808
+      },
+      {
+        "environment": "TBX3",
+        "bh_detect": false,
+        "pvalue": 0.3482
+      },
+      {
+        "environment": "TGFBR2",
+        "bh_detect": false,
+        "pvalue": 0.2288
+      },
+      {
+        "environment": "TMSB4X",
+        "bh_detect": false,
+        "pvalue": 0.5193
+      },
+      {
+        "environment": "TP73",
+        "bh_detect": false,
+        "pvalue": 0.1884
+      },
+      {
+        "environment": "TSC22D1",
+        "bh_detect": false,
+        "pvalue": 0.231
+      },
+      {
+        "environment": "UBASH3A",
+        "bh_detect": false,
+        "pvalue": 0.8576
+      },
+      {
+        "environment": "UBASH3B",
+        "bh_detect": false,
+        "pvalue": 0.0935
+      },
+      {
+        "environment": "ZBTB1",
+        "bh_detect": false,
+        "pvalue": 0.6523
+      },
+      {
+        "environment": "ZBTB25",
+        "bh_detect": false,
+        "pvalue": 0.0031
+      },
+      {
+        "environment": "ZC3HAV1",
+        "bh_detect": true,
+        "pvalue": 0.0005
+      },
+      {
+        "environment": "ZNF318",
+        "bh_detect": false,
+        "pvalue": 0.4392
+      }
+    ]
+  },
+  "results_sha256": "e00bff7b827d58aa3070d37e1f2b9a6bb9de4b379834ca14ee6d56d95012494b",
+  "meta": {
+    "seconds": 0.093,
+    "argv": [],
+    "provenance": {
+      "code_commit": "8645d1a104c2ad492393b8cc7ba335f05e40afdc",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/d4_decisions_export.py": "5ebd95e71733e50db634216dd2f190fc170e5a168da180ff92c3b58b8f51e842",
+        "experiments/d4_common.py": "7ad5f49a490d9d6281f507d35bdfaad30620d72e4f099ed2e8ed32b4e8117514",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850",
+        "experiments/e12_aggregate.py": "da1f6be29a1498f1ab3c31868360ca5c99cdcf4a9bfeee2b139ab294656c1a11"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}

@@ -1,0 +1,2361 @@
+{
+  "primary_decision": "held-out T0h BH q=0.05 (E12, D4)",
+  "dataset": "rpe1",
+  "seed": 2,
+  "test": "T0h",
+  "n_detected": 8,
+  "per_perturbation": [
+    {
+      "environment": "ENSG00000005448",
+      "n_samples": 246,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2288
+      }
+    },
+    {
+      "environment": "ENSG00000006715",
+      "n_samples": 272,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6997
+      }
+    },
+    {
+      "environment": "ENSG00000013810",
+      "n_samples": 594,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.7671
+      }
+    },
+    {
+      "environment": "ENSG00000035141",
+      "n_samples": 528,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4137
+      }
+    },
+    {
+      "environment": "ENSG00000037637",
+      "n_samples": 883,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.34
+      }
+    },
+    {
+      "environment": "ENSG00000050820",
+      "n_samples": 922,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5279
+      }
+    },
+    {
+      "environment": "ENSG00000060688",
+      "n_samples": 229,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5551
+      }
+    },
+    {
+      "environment": "ENSG00000063046",
+      "n_samples": 397,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6764
+      }
+    },
+    {
+      "environment": "ENSG00000064102",
+      "n_samples": 305,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5952
+      }
+    },
+    {
+      "environment": "ENSG00000064666",
+      "n_samples": 236,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5051
+      }
+    },
+    {
+      "environment": "ENSG00000067225",
+      "n_samples": 232,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4933
+      }
+    },
+    {
+      "environment": "ENSG00000071655",
+      "n_samples": 203,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.386
+      }
+    },
+    {
+      "environment": "ENSG00000072274",
+      "n_samples": 315,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1277
+      }
+    },
+    {
+      "environment": "ENSG00000072506",
+      "n_samples": 848,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6558
+      }
+    },
+    {
+      "environment": "ENSG00000072756",
+      "n_samples": 354,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4083
+      }
+    },
+    {
+      "environment": "ENSG00000075624",
+      "n_samples": 235,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0646
+      }
+    },
+    {
+      "environment": "ENSG00000075856",
+      "n_samples": 240,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0001
+      }
+    },
+    {
+      "environment": "ENSG00000083896",
+      "n_samples": 205,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0145
+      }
+    },
+    {
+      "environment": "ENSG00000090061",
+      "n_samples": 349,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6679
+      }
+    },
+    {
+      "environment": "ENSG00000099821",
+      "n_samples": 212,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9442
+      }
+    },
+    {
+      "environment": "ENSG00000100084",
+      "n_samples": 244,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5209
+      }
+    },
+    {
+      "environment": "ENSG00000100209",
+      "n_samples": 237,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0005
+      }
+    },
+    {
+      "environment": "ENSG00000101057",
+      "n_samples": 894,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0183
+      }
+    },
+    {
+      "environment": "ENSG00000101181",
+      "n_samples": 215,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9299
+      }
+    },
+    {
+      "environment": "ENSG00000102901",
+      "n_samples": 316,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0859
+      }
+    },
+    {
+      "environment": "ENSG00000103257",
+      "n_samples": 253,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9338
+      }
+    },
+    {
+      "environment": "ENSG00000104859",
+      "n_samples": 344,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4722
+      }
+    },
+    {
+      "environment": "ENSG00000104866",
+      "n_samples": 359,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9696
+      }
+    },
+    {
+      "environment": "ENSG00000105281",
+      "n_samples": 1962,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1582
+      }
+    },
+    {
+      "environment": "ENSG00000105568",
+      "n_samples": 296,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1555
+      }
+    },
+    {
+      "environment": "ENSG00000106976",
+      "n_samples": 319,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.7233
+      }
+    },
+    {
+      "environment": "ENSG00000108091",
+      "n_samples": 1086,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6699
+      }
+    },
+    {
+      "environment": "ENSG00000108312",
+      "n_samples": 297,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5688
+      }
+    },
+    {
+      "environment": "ENSG00000108424",
+      "n_samples": 210,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0006
+      }
+    },
+    {
+      "environment": "ENSG00000108654",
+      "n_samples": 203,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8433
+      }
+    },
+    {
+      "environment": "ENSG00000108784",
+      "n_samples": 259,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0099
+      }
+    },
+    {
+      "environment": "ENSG00000109670",
+      "n_samples": 203,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3015
+      }
+    },
+    {
+      "environment": "ENSG00000110025",
+      "n_samples": 311,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4436
+      }
+    },
+    {
+      "environment": "ENSG00000110200",
+      "n_samples": 532,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9461
+      }
+    },
+    {
+      "environment": "ENSG00000112130",
+      "n_samples": 213,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5756
+      }
+    },
+    {
+      "environment": "ENSG00000112972",
+      "n_samples": 259,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9925
+      }
+    },
+    {
+      "environment": "ENSG00000113141",
+      "n_samples": 465,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.409
+      }
+    },
+    {
+      "environment": "ENSG00000116670",
+      "n_samples": 234,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8795
+      }
+    },
+    {
+      "environment": "ENSG00000116688",
+      "n_samples": 224,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3448
+      }
+    },
+    {
+      "environment": "ENSG00000116754",
+      "n_samples": 317,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3245
+      }
+    },
+    {
+      "environment": "ENSG00000116809",
+      "n_samples": 285,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1298
+      }
+    },
+    {
+      "environment": "ENSG00000116922",
+      "n_samples": 214,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8226
+      }
+    },
+    {
+      "environment": "ENSG00000119414",
+      "n_samples": 1581,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5337
+      }
+    },
+    {
+      "environment": "ENSG00000119729",
+      "n_samples": 347,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.424
+      }
+    },
+    {
+      "environment": "ENSG00000119777",
+      "n_samples": 705,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2455
+      }
+    },
+    {
+      "environment": "ENSG00000120948",
+      "n_samples": 1675,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0552
+      }
+    },
+    {
+      "environment": "ENSG00000120963",
+      "n_samples": 208,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5828
+      }
+    },
+    {
+      "environment": "ENSG00000123374",
+      "n_samples": 206,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0067
+      }
+    },
+    {
+      "environment": "ENSG00000123416",
+      "n_samples": 207,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2021
+      }
+    },
+    {
+      "environment": "ENSG00000124207",
+      "n_samples": 276,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0001
+      }
+    },
+    {
+      "environment": "ENSG00000125484",
+      "n_samples": 942,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4967
+      }
+    },
+    {
+      "environment": "ENSG00000125971",
+      "n_samples": 242,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9883
+      }
+    },
+    {
+      "environment": "ENSG00000126088",
+      "n_samples": 250,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9799
+      }
+    },
+    {
+      "environment": "ENSG00000130725",
+      "n_samples": 279,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2139
+      }
+    },
+    {
+      "environment": "ENSG00000132294",
+      "n_samples": 219,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.939
+      }
+    },
+    {
+      "environment": "ENSG00000132313",
+      "n_samples": 1491,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0725
+      }
+    },
+    {
+      "environment": "ENSG00000133059",
+      "n_samples": 269,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6234
+      }
+    },
+    {
+      "environment": "ENSG00000133112",
+      "n_samples": 583,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.7988
+      }
+    },
+    {
+      "environment": "ENSG00000134265",
+      "n_samples": 226,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9567
+      }
+    },
+    {
+      "environment": "ENSG00000134717",
+      "n_samples": 277,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.549
+      }
+    },
+    {
+      "environment": "ENSG00000134852",
+      "n_samples": 718,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0116
+      }
+    },
+    {
+      "environment": "ENSG00000135040",
+      "n_samples": 316,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3643
+      }
+    },
+    {
+      "environment": "ENSG00000136273",
+      "n_samples": 230,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8317
+      }
+    },
+    {
+      "environment": "ENSG00000137513",
+      "n_samples": 224,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1189
+      }
+    },
+    {
+      "environment": "ENSG00000137845",
+      "n_samples": 384,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3621
+      }
+    },
+    {
+      "environment": "ENSG00000138614",
+      "n_samples": 355,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0929
+      }
+    },
+    {
+      "environment": "ENSG00000143314",
+      "n_samples": 217,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6417
+      }
+    },
+    {
+      "environment": "ENSG00000143384",
+      "n_samples": 247,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.708
+      }
+    },
+    {
+      "environment": "ENSG00000143952",
+      "n_samples": 232,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9956
+      }
+    },
+    {
+      "environment": "ENSG00000145833",
+      "n_samples": 225,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6617
+      }
+    },
+    {
+      "environment": "ENSG00000146007",
+      "n_samples": 214,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.01
+      }
+    },
+    {
+      "environment": "ENSG00000146457",
+      "n_samples": 384,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9027
+      }
+    },
+    {
+      "environment": "ENSG00000146576",
+      "n_samples": 380,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6825
+      }
+    },
+    {
+      "environment": "ENSG00000147050",
+      "n_samples": 213,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3299
+      }
+    },
+    {
+      "environment": "ENSG00000148396",
+      "n_samples": 225,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.7326
+      }
+    },
+    {
+      "environment": "ENSG00000149084",
+      "n_samples": 335,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1931
+      }
+    },
+    {
+      "environment": "ENSG00000149357",
+      "n_samples": 371,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3317
+      }
+    },
+    {
+      "environment": "ENSG00000151239",
+      "n_samples": 686,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4798
+      }
+    },
+    {
+      "environment": "ENSG00000152253",
+      "n_samples": 495,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0001
+      }
+    },
+    {
+      "environment": "ENSG00000153786",
+      "n_samples": 405,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5715
+      }
+    },
+    {
+      "environment": "ENSG00000153814",
+      "n_samples": 237,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.7378
+      }
+    },
+    {
+      "environment": "ENSG00000154719",
+      "n_samples": 286,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6948
+      }
+    },
+    {
+      "environment": "ENSG00000156603",
+      "n_samples": 201,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0379
+      }
+    },
+    {
+      "environment": "ENSG00000157216",
+      "n_samples": 447,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3535
+      }
+    },
+    {
+      "environment": "ENSG00000157349",
+      "n_samples": 369,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1216
+      }
+    },
+    {
+      "environment": "ENSG00000157778",
+      "n_samples": 266,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4277
+      }
+    },
+    {
+      "environment": "ENSG00000160075",
+      "n_samples": 255,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3675
+      }
+    },
+    {
+      "environment": "ENSG00000160256",
+      "n_samples": 208,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9202
+      }
+    },
+    {
+      "environment": "ENSG00000160783",
+      "n_samples": 338,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2093
+      }
+    },
+    {
+      "environment": "ENSG00000161203",
+      "n_samples": 224,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4386
+      }
+    },
+    {
+      "environment": "ENSG00000163754",
+      "n_samples": 294,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1316
+      }
+    },
+    {
+      "environment": "ENSG00000163931",
+      "n_samples": 257,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8495
+      }
+    },
+    {
+      "environment": "ENSG00000164032",
+      "n_samples": 274,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8629
+      }
+    },
+    {
+      "environment": "ENSG00000165138",
+      "n_samples": 264,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3554
+      }
+    },
+    {
+      "environment": "ENSG00000165819",
+      "n_samples": 216,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2912
+      }
+    },
+    {
+      "environment": "ENSG00000166902",
+      "n_samples": 261,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2995
+      }
+    },
+    {
+      "environment": "ENSG00000167535",
+      "n_samples": 244,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1527
+      }
+    },
+    {
+      "environment": "ENSG00000167578",
+      "n_samples": 230,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9203
+      }
+    },
+    {
+      "environment": "ENSG00000167721",
+      "n_samples": 207,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3844
+      }
+    },
+    {
+      "environment": "ENSG00000167863",
+      "n_samples": 207,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5816
+      }
+    },
+    {
+      "environment": "ENSG00000168056",
+      "n_samples": 234,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5331
+      }
+    },
+    {
+      "environment": "ENSG00000168538",
+      "n_samples": 235,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0347
+      }
+    },
+    {
+      "environment": "ENSG00000168827",
+      "n_samples": 1699,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2418
+      }
+    },
+    {
+      "environment": "ENSG00000168872",
+      "n_samples": 400,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.497
+      }
+    },
+    {
+      "environment": "ENSG00000168917",
+      "n_samples": 393,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1332
+      }
+    },
+    {
+      "environment": "ENSG00000169249",
+      "n_samples": 217,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0226
+      }
+    },
+    {
+      "environment": "ENSG00000169564",
+      "n_samples": 205,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2338
+      }
+    },
+    {
+      "environment": "ENSG00000169727",
+      "n_samples": 242,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0002
+      }
+    },
+    {
+      "environment": "ENSG00000170248",
+      "n_samples": 213,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8366
+      }
+    },
+    {
+      "environment": "ENSG00000170421",
+      "n_samples": 216,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6421
+      }
+    },
+    {
+      "environment": "ENSG00000171421",
+      "n_samples": 1686,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.6328
+      }
+    },
+    {
+      "environment": "ENSG00000171453",
+      "n_samples": 233,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2069
+      }
+    },
+    {
+      "environment": "ENSG00000171490",
+      "n_samples": 228,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4454
+      }
+    },
+    {
+      "environment": "ENSG00000171552",
+      "n_samples": 414,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0339
+      }
+    },
+    {
+      "environment": "ENSG00000171848",
+      "n_samples": 229,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1208
+      }
+    },
+    {
+      "environment": "ENSG00000171862",
+      "n_samples": 206,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.1594
+      }
+    },
+    {
+      "environment": "ENSG00000178202",
+      "n_samples": 784,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8908
+      }
+    },
+    {
+      "environment": "ENSG00000179988",
+      "n_samples": 287,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2226
+      }
+    },
+    {
+      "environment": "ENSG00000182154",
+      "n_samples": 218,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2364
+      }
+    },
+    {
+      "environment": "ENSG00000182180",
+      "n_samples": 228,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.357
+      }
+    },
+    {
+      "environment": "ENSG00000182220",
+      "n_samples": 283,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9928
+      }
+    },
+    {
+      "environment": "ENSG00000182512",
+      "n_samples": 257,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3095
+      }
+    },
+    {
+      "environment": "ENSG00000183048",
+      "n_samples": 224,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5206
+      }
+    },
+    {
+      "environment": "ENSG00000185883",
+      "n_samples": 251,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8945
+      }
+    },
+    {
+      "environment": "ENSG00000186395",
+      "n_samples": 201,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.9741
+      }
+    },
+    {
+      "environment": "ENSG00000187531",
+      "n_samples": 255,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3501
+      }
+    },
+    {
+      "environment": "ENSG00000196230",
+      "n_samples": 277,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8668
+      }
+    },
+    {
+      "environment": "ENSG00000196449",
+      "n_samples": 281,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8248
+      }
+    },
+    {
+      "environment": "ENSG00000197111",
+      "n_samples": 344,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.8914
+      }
+    },
+    {
+      "environment": "ENSG00000197265",
+      "n_samples": 280,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0004
+      }
+    },
+    {
+      "environment": "ENSG00000198952",
+      "n_samples": 468,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0087
+      }
+    },
+    {
+      "environment": "ENSG00000204152",
+      "n_samples": 348,
+      "corrected_disjoint": {
+        "bh_detect": true,
+        "pvalue": 0.0004
+      }
+    },
+    {
+      "environment": "ENSG00000204316",
+      "n_samples": 265,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.0518
+      }
+    },
+    {
+      "environment": "ENSG00000213465",
+      "n_samples": 215,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.3334
+      }
+    },
+    {
+      "environment": "ENSG00000215712",
+      "n_samples": 610,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5549
+      }
+    },
+    {
+      "environment": "ENSG00000241468",
+      "n_samples": 232,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.794
+      }
+    },
+    {
+      "environment": "ENSG00000243927",
+      "n_samples": 213,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.5342
+      }
+    },
+    {
+      "environment": "ENSG00000250312",
+      "n_samples": 435,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.469
+      }
+    },
+    {
+      "environment": "ENSG00000264364",
+      "n_samples": 219,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.2035
+      }
+    },
+    {
+      "environment": "ENSG00000266472",
+      "n_samples": 251,
+      "corrected_disjoint": {
+        "bh_detect": false,
+        "pvalue": 0.4854
+      }
+    }
+  ],
+  "results": {
+    "primary_decision": "held-out T0h BH q=0.05 (E12, D4)",
+    "dataset": "rpe1",
+    "seed": 2,
+    "test": "T0h",
+    "n_detected": 8,
+    "per_perturbation": [
+      {
+        "environment": "ENSG00000005448",
+        "n_samples": 246,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2288
+        }
+      },
+      {
+        "environment": "ENSG00000006715",
+        "n_samples": 272,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6997
+        }
+      },
+      {
+        "environment": "ENSG00000013810",
+        "n_samples": 594,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.7671
+        }
+      },
+      {
+        "environment": "ENSG00000035141",
+        "n_samples": 528,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4137
+        }
+      },
+      {
+        "environment": "ENSG00000037637",
+        "n_samples": 883,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.34
+        }
+      },
+      {
+        "environment": "ENSG00000050820",
+        "n_samples": 922,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5279
+        }
+      },
+      {
+        "environment": "ENSG00000060688",
+        "n_samples": 229,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5551
+        }
+      },
+      {
+        "environment": "ENSG00000063046",
+        "n_samples": 397,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6764
+        }
+      },
+      {
+        "environment": "ENSG00000064102",
+        "n_samples": 305,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5952
+        }
+      },
+      {
+        "environment": "ENSG00000064666",
+        "n_samples": 236,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5051
+        }
+      },
+      {
+        "environment": "ENSG00000067225",
+        "n_samples": 232,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4933
+        }
+      },
+      {
+        "environment": "ENSG00000071655",
+        "n_samples": 203,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.386
+        }
+      },
+      {
+        "environment": "ENSG00000072274",
+        "n_samples": 315,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1277
+        }
+      },
+      {
+        "environment": "ENSG00000072506",
+        "n_samples": 848,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6558
+        }
+      },
+      {
+        "environment": "ENSG00000072756",
+        "n_samples": 354,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4083
+        }
+      },
+      {
+        "environment": "ENSG00000075624",
+        "n_samples": 235,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0646
+        }
+      },
+      {
+        "environment": "ENSG00000075856",
+        "n_samples": 240,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0001
+        }
+      },
+      {
+        "environment": "ENSG00000083896",
+        "n_samples": 205,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0145
+        }
+      },
+      {
+        "environment": "ENSG00000090061",
+        "n_samples": 349,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6679
+        }
+      },
+      {
+        "environment": "ENSG00000099821",
+        "n_samples": 212,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9442
+        }
+      },
+      {
+        "environment": "ENSG00000100084",
+        "n_samples": 244,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5209
+        }
+      },
+      {
+        "environment": "ENSG00000100209",
+        "n_samples": 237,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0005
+        }
+      },
+      {
+        "environment": "ENSG00000101057",
+        "n_samples": 894,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0183
+        }
+      },
+      {
+        "environment": "ENSG00000101181",
+        "n_samples": 215,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9299
+        }
+      },
+      {
+        "environment": "ENSG00000102901",
+        "n_samples": 316,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0859
+        }
+      },
+      {
+        "environment": "ENSG00000103257",
+        "n_samples": 253,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9338
+        }
+      },
+      {
+        "environment": "ENSG00000104859",
+        "n_samples": 344,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4722
+        }
+      },
+      {
+        "environment": "ENSG00000104866",
+        "n_samples": 359,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9696
+        }
+      },
+      {
+        "environment": "ENSG00000105281",
+        "n_samples": 1962,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1582
+        }
+      },
+      {
+        "environment": "ENSG00000105568",
+        "n_samples": 296,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1555
+        }
+      },
+      {
+        "environment": "ENSG00000106976",
+        "n_samples": 319,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.7233
+        }
+      },
+      {
+        "environment": "ENSG00000108091",
+        "n_samples": 1086,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6699
+        }
+      },
+      {
+        "environment": "ENSG00000108312",
+        "n_samples": 297,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5688
+        }
+      },
+      {
+        "environment": "ENSG00000108424",
+        "n_samples": 210,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0006
+        }
+      },
+      {
+        "environment": "ENSG00000108654",
+        "n_samples": 203,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8433
+        }
+      },
+      {
+        "environment": "ENSG00000108784",
+        "n_samples": 259,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0099
+        }
+      },
+      {
+        "environment": "ENSG00000109670",
+        "n_samples": 203,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3015
+        }
+      },
+      {
+        "environment": "ENSG00000110025",
+        "n_samples": 311,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4436
+        }
+      },
+      {
+        "environment": "ENSG00000110200",
+        "n_samples": 532,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9461
+        }
+      },
+      {
+        "environment": "ENSG00000112130",
+        "n_samples": 213,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5756
+        }
+      },
+      {
+        "environment": "ENSG00000112972",
+        "n_samples": 259,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9925
+        }
+      },
+      {
+        "environment": "ENSG00000113141",
+        "n_samples": 465,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.409
+        }
+      },
+      {
+        "environment": "ENSG00000116670",
+        "n_samples": 234,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8795
+        }
+      },
+      {
+        "environment": "ENSG00000116688",
+        "n_samples": 224,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3448
+        }
+      },
+      {
+        "environment": "ENSG00000116754",
+        "n_samples": 317,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3245
+        }
+      },
+      {
+        "environment": "ENSG00000116809",
+        "n_samples": 285,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1298
+        }
+      },
+      {
+        "environment": "ENSG00000116922",
+        "n_samples": 214,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8226
+        }
+      },
+      {
+        "environment": "ENSG00000119414",
+        "n_samples": 1581,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5337
+        }
+      },
+      {
+        "environment": "ENSG00000119729",
+        "n_samples": 347,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.424
+        }
+      },
+      {
+        "environment": "ENSG00000119777",
+        "n_samples": 705,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2455
+        }
+      },
+      {
+        "environment": "ENSG00000120948",
+        "n_samples": 1675,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0552
+        }
+      },
+      {
+        "environment": "ENSG00000120963",
+        "n_samples": 208,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5828
+        }
+      },
+      {
+        "environment": "ENSG00000123374",
+        "n_samples": 206,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0067
+        }
+      },
+      {
+        "environment": "ENSG00000123416",
+        "n_samples": 207,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2021
+        }
+      },
+      {
+        "environment": "ENSG00000124207",
+        "n_samples": 276,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0001
+        }
+      },
+      {
+        "environment": "ENSG00000125484",
+        "n_samples": 942,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4967
+        }
+      },
+      {
+        "environment": "ENSG00000125971",
+        "n_samples": 242,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9883
+        }
+      },
+      {
+        "environment": "ENSG00000126088",
+        "n_samples": 250,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9799
+        }
+      },
+      {
+        "environment": "ENSG00000130725",
+        "n_samples": 279,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2139
+        }
+      },
+      {
+        "environment": "ENSG00000132294",
+        "n_samples": 219,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.939
+        }
+      },
+      {
+        "environment": "ENSG00000132313",
+        "n_samples": 1491,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0725
+        }
+      },
+      {
+        "environment": "ENSG00000133059",
+        "n_samples": 269,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6234
+        }
+      },
+      {
+        "environment": "ENSG00000133112",
+        "n_samples": 583,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.7988
+        }
+      },
+      {
+        "environment": "ENSG00000134265",
+        "n_samples": 226,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9567
+        }
+      },
+      {
+        "environment": "ENSG00000134717",
+        "n_samples": 277,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.549
+        }
+      },
+      {
+        "environment": "ENSG00000134852",
+        "n_samples": 718,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0116
+        }
+      },
+      {
+        "environment": "ENSG00000135040",
+        "n_samples": 316,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3643
+        }
+      },
+      {
+        "environment": "ENSG00000136273",
+        "n_samples": 230,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8317
+        }
+      },
+      {
+        "environment": "ENSG00000137513",
+        "n_samples": 224,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1189
+        }
+      },
+      {
+        "environment": "ENSG00000137845",
+        "n_samples": 384,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3621
+        }
+      },
+      {
+        "environment": "ENSG00000138614",
+        "n_samples": 355,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0929
+        }
+      },
+      {
+        "environment": "ENSG00000143314",
+        "n_samples": 217,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6417
+        }
+      },
+      {
+        "environment": "ENSG00000143384",
+        "n_samples": 247,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.708
+        }
+      },
+      {
+        "environment": "ENSG00000143952",
+        "n_samples": 232,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9956
+        }
+      },
+      {
+        "environment": "ENSG00000145833",
+        "n_samples": 225,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6617
+        }
+      },
+      {
+        "environment": "ENSG00000146007",
+        "n_samples": 214,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.01
+        }
+      },
+      {
+        "environment": "ENSG00000146457",
+        "n_samples": 384,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9027
+        }
+      },
+      {
+        "environment": "ENSG00000146576",
+        "n_samples": 380,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6825
+        }
+      },
+      {
+        "environment": "ENSG00000147050",
+        "n_samples": 213,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3299
+        }
+      },
+      {
+        "environment": "ENSG00000148396",
+        "n_samples": 225,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.7326
+        }
+      },
+      {
+        "environment": "ENSG00000149084",
+        "n_samples": 335,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1931
+        }
+      },
+      {
+        "environment": "ENSG00000149357",
+        "n_samples": 371,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3317
+        }
+      },
+      {
+        "environment": "ENSG00000151239",
+        "n_samples": 686,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4798
+        }
+      },
+      {
+        "environment": "ENSG00000152253",
+        "n_samples": 495,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0001
+        }
+      },
+      {
+        "environment": "ENSG00000153786",
+        "n_samples": 405,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5715
+        }
+      },
+      {
+        "environment": "ENSG00000153814",
+        "n_samples": 237,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.7378
+        }
+      },
+      {
+        "environment": "ENSG00000154719",
+        "n_samples": 286,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6948
+        }
+      },
+      {
+        "environment": "ENSG00000156603",
+        "n_samples": 201,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0379
+        }
+      },
+      {
+        "environment": "ENSG00000157216",
+        "n_samples": 447,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3535
+        }
+      },
+      {
+        "environment": "ENSG00000157349",
+        "n_samples": 369,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1216
+        }
+      },
+      {
+        "environment": "ENSG00000157778",
+        "n_samples": 266,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4277
+        }
+      },
+      {
+        "environment": "ENSG00000160075",
+        "n_samples": 255,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3675
+        }
+      },
+      {
+        "environment": "ENSG00000160256",
+        "n_samples": 208,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9202
+        }
+      },
+      {
+        "environment": "ENSG00000160783",
+        "n_samples": 338,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2093
+        }
+      },
+      {
+        "environment": "ENSG00000161203",
+        "n_samples": 224,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4386
+        }
+      },
+      {
+        "environment": "ENSG00000163754",
+        "n_samples": 294,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1316
+        }
+      },
+      {
+        "environment": "ENSG00000163931",
+        "n_samples": 257,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8495
+        }
+      },
+      {
+        "environment": "ENSG00000164032",
+        "n_samples": 274,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8629
+        }
+      },
+      {
+        "environment": "ENSG00000165138",
+        "n_samples": 264,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3554
+        }
+      },
+      {
+        "environment": "ENSG00000165819",
+        "n_samples": 216,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2912
+        }
+      },
+      {
+        "environment": "ENSG00000166902",
+        "n_samples": 261,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2995
+        }
+      },
+      {
+        "environment": "ENSG00000167535",
+        "n_samples": 244,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1527
+        }
+      },
+      {
+        "environment": "ENSG00000167578",
+        "n_samples": 230,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9203
+        }
+      },
+      {
+        "environment": "ENSG00000167721",
+        "n_samples": 207,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3844
+        }
+      },
+      {
+        "environment": "ENSG00000167863",
+        "n_samples": 207,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5816
+        }
+      },
+      {
+        "environment": "ENSG00000168056",
+        "n_samples": 234,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5331
+        }
+      },
+      {
+        "environment": "ENSG00000168538",
+        "n_samples": 235,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0347
+        }
+      },
+      {
+        "environment": "ENSG00000168827",
+        "n_samples": 1699,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2418
+        }
+      },
+      {
+        "environment": "ENSG00000168872",
+        "n_samples": 400,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.497
+        }
+      },
+      {
+        "environment": "ENSG00000168917",
+        "n_samples": 393,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1332
+        }
+      },
+      {
+        "environment": "ENSG00000169249",
+        "n_samples": 217,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0226
+        }
+      },
+      {
+        "environment": "ENSG00000169564",
+        "n_samples": 205,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2338
+        }
+      },
+      {
+        "environment": "ENSG00000169727",
+        "n_samples": 242,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0002
+        }
+      },
+      {
+        "environment": "ENSG00000170248",
+        "n_samples": 213,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8366
+        }
+      },
+      {
+        "environment": "ENSG00000170421",
+        "n_samples": 216,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6421
+        }
+      },
+      {
+        "environment": "ENSG00000171421",
+        "n_samples": 1686,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.6328
+        }
+      },
+      {
+        "environment": "ENSG00000171453",
+        "n_samples": 233,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2069
+        }
+      },
+      {
+        "environment": "ENSG00000171490",
+        "n_samples": 228,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4454
+        }
+      },
+      {
+        "environment": "ENSG00000171552",
+        "n_samples": 414,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0339
+        }
+      },
+      {
+        "environment": "ENSG00000171848",
+        "n_samples": 229,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1208
+        }
+      },
+      {
+        "environment": "ENSG00000171862",
+        "n_samples": 206,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.1594
+        }
+      },
+      {
+        "environment": "ENSG00000178202",
+        "n_samples": 784,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8908
+        }
+      },
+      {
+        "environment": "ENSG00000179988",
+        "n_samples": 287,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2226
+        }
+      },
+      {
+        "environment": "ENSG00000182154",
+        "n_samples": 218,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2364
+        }
+      },
+      {
+        "environment": "ENSG00000182180",
+        "n_samples": 228,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.357
+        }
+      },
+      {
+        "environment": "ENSG00000182220",
+        "n_samples": 283,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9928
+        }
+      },
+      {
+        "environment": "ENSG00000182512",
+        "n_samples": 257,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3095
+        }
+      },
+      {
+        "environment": "ENSG00000183048",
+        "n_samples": 224,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5206
+        }
+      },
+      {
+        "environment": "ENSG00000185883",
+        "n_samples": 251,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8945
+        }
+      },
+      {
+        "environment": "ENSG00000186395",
+        "n_samples": 201,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.9741
+        }
+      },
+      {
+        "environment": "ENSG00000187531",
+        "n_samples": 255,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3501
+        }
+      },
+      {
+        "environment": "ENSG00000196230",
+        "n_samples": 277,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8668
+        }
+      },
+      {
+        "environment": "ENSG00000196449",
+        "n_samples": 281,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8248
+        }
+      },
+      {
+        "environment": "ENSG00000197111",
+        "n_samples": 344,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.8914
+        }
+      },
+      {
+        "environment": "ENSG00000197265",
+        "n_samples": 280,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0004
+        }
+      },
+      {
+        "environment": "ENSG00000198952",
+        "n_samples": 468,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0087
+        }
+      },
+      {
+        "environment": "ENSG00000204152",
+        "n_samples": 348,
+        "corrected_disjoint": {
+          "bh_detect": true,
+          "pvalue": 0.0004
+        }
+      },
+      {
+        "environment": "ENSG00000204316",
+        "n_samples": 265,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.0518
+        }
+      },
+      {
+        "environment": "ENSG00000213465",
+        "n_samples": 215,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.3334
+        }
+      },
+      {
+        "environment": "ENSG00000215712",
+        "n_samples": 610,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5549
+        }
+      },
+      {
+        "environment": "ENSG00000241468",
+        "n_samples": 232,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.794
+        }
+      },
+      {
+        "environment": "ENSG00000243927",
+        "n_samples": 213,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.5342
+        }
+      },
+      {
+        "environment": "ENSG00000250312",
+        "n_samples": 435,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.469
+        }
+      },
+      {
+        "environment": "ENSG00000264364",
+        "n_samples": 219,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.2035
+        }
+      },
+      {
+        "environment": "ENSG00000266472",
+        "n_samples": 251,
+        "corrected_disjoint": {
+          "bh_detect": false,
+          "pvalue": 0.4854
+        }
+      }
+    ]
+  },
+  "results_sha256": "4dee96406876b70b96d2e8f0bb458e1b1c42af3f909e32c22a5357f443312a4e",
+  "meta": {
+    "seconds": 0.044,
+    "argv": [],
+    "provenance": {
+      "code_commit": "8645d1a104c2ad492393b8cc7ba335f05e40afdc",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "c3f7617dffd82be6b26dd3e567dfd8b401fc64561522bc63361ece0ea4eecc87",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/d4_decisions_export.py": "5ebd95e71733e50db634216dd2f190fc170e5a168da180ff92c3b58b8f51e842",
+        "experiments/d4_common.py": "7ad5f49a490d9d6281f507d35bdfaad30620d72e4f099ed2e8ed32b4e8117514",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850",
+        "experiments/e12_aggregate.py": "da1f6be29a1498f1ab3c31868360ca5c99cdcf4a9bfeee2b139ab294656c1a11"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    }
+  }
+}

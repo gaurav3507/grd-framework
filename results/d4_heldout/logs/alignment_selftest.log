@@ -1,0 +1,2 @@
+[d4_alignment] selftest: n 3 corrected [True, False, True] obs 0.136449 base {'n_rep': 20, 'median': 0.2783295, 'mean': 0.280612, 'q05': 0.0912693, 'q95': 0.44767250000000014} p 0.8571428571428571 direct_max_abs_diff 0.0
+[d4_alignment] selftest passed

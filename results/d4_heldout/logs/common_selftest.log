@@ -1,0 +1,19 @@
+[d4_common] k562 seed 0 T0h: real 0/385 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] k562 seed 0 T1: real 318/385 fake 3/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] k562 seed 1 T0h: real 0/385 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] k562 seed 1 T1: real 316/385 fake 2/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] k562 seed 2 T0h: real 0/385 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] k562 seed 2 T1: real 310/385 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] norman seed 0 T0h: real 1/100 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] norman seed 0 T1: real 100/100 fake 1/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] norman seed 1 T0h: real 3/100 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] norman seed 1 T1: real 100/100 fake 1/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] norman seed 2 T0h: real 1/100 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] norman seed 2 T1: real 100/100 fake 2/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] rpe1 seed 0 T0h: real 10/145 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] rpe1 seed 0 T1: real 101/145 fake 2/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] rpe1 seed 1 T0h: real 14/145 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] rpe1 seed 1 T1: real 93/145 fake 1/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] rpe1 seed 2 T0h: real 8/145 fake 0/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] rpe1 seed 2 T1: real 92/145 fake 1/50 checks {'labels_equal': True, 'count_equal': True, 'fake_count_equal': True, 'n_real_equal': True}
+[d4_common] selftest: 18 BH families recomputed, all assertions passed
