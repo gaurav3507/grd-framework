@@ -55,7 +55,7 @@ from pathlib import Path
 import numpy as np
 
 
-READOUTS = ("precision", "frobenius", "covariance", "geneig", "energy")
+READOUTS = ("precision", "frobenius", "covariance", "geneig", "energy", "geneig_down")
 _RANK_READOUT = None
 
 
@@ -120,6 +120,22 @@ def geneig_signal(Y_env, Y_obs):
     return float(np.max(np.abs(np.log(lam))))
 
 
+def geneig_down_signal(Y_env, Y_obs):
+    """Affine-invariant one-sided covariance decrease: -log(lambda_min) over the
+    generalised eigenvalues of cov(Y_env) v = lambda cov(Y_obs) v (scipy.linalg.eigh
+    with b=cov(Y_obs)). lambda_min < 1 in population exactly when cov(Y_env) is not
+    Loewner-above cov(Y_obs), the precondition precision_signal tests (E15). Invariant
+    to any common invertible linear map of Y. Same NaN guard as geneig_signal.
+    """
+    import scipy.linalg
+    Se = np.cov(np.asarray(Y_env), rowvar=False)
+    S0 = np.cov(np.asarray(Y_obs), rowvar=False)
+    lam = scipy.linalg.eigh(Se, S0, eigvals_only=True)
+    if not np.all(np.isfinite(lam)) or np.any(lam <= 0):
+        return float("nan")  # caller checks; never raise inside a null loop
+    return float(-np.log(lam.min()))
+
+
 ENERGY_MAX_ROWS = 1000
 
 
@@ -159,6 +175,8 @@ def _signal_fn(readout):
         return geneig_signal
     if readout == "energy":
         return energy_signal
+    if readout == "geneig_down":
+        return geneig_down_signal
     raise ValueError(f"readout must be one of {READOUTS}, got {readout!r}")
 
 
