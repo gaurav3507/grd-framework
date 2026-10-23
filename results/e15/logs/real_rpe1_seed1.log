@@ -1,0 +1,1 @@
+[real rpe1 seed 1] G10 26/145 fake 0; T0h 14 fake 0; overlap {'n_both': 11, 'n_G10_only': 15, 'n_T0h_only': 3} 154.9s -> /home/home/grd-framework/results/e15/real/rpe1_seed1.json

@@ -1,0 +1,133 @@
+{
+  "results": {
+    "experiment": "E15",
+    "arm": "C",
+    "dataset": "k562",
+    "seed": 0,
+    "B": 99,
+    "smoke": true,
+    "readout": "geneig_down",
+    "rebuilt_file": true,
+    "sizes": {
+      "0": 200,
+      "1": 270
+    },
+    "n_ref": 4276,
+    "n_pool": 3208,
+    "directions": {
+      "0": "PC1",
+      "1": "PC5",
+      "2": "PC10",
+      "3": "random (whitened)"
+    },
+    "alphas": [
+      0.01,
+      0.05,
+      0.001
+    ],
+    "step0c": {
+      "ref_heldout_equal": true,
+      "n_fakes_checked": 50,
+      "fakes_equal": true
+    },
+    "reproduction_vs_e13": {
+      "sizes_equal": true,
+      "ref_eigenvalues_max_abs_diff": 0.0,
+      "directions_max_abs_diff": 0.0,
+      "tol": 1e-06
+    },
+    "rng": "E13 replicate_a: i = 1000000 + 10000*s + 1000*q + r; k 1 cells, 2 REF rows, 3 labels; G10 null stream k = 10 (T0h's); A0 q=4",
+    "arms": "A0, A1, A2, A3 (A4 not run)",
+    "cells": [
+      {
+        "arm": "A1",
+        "level": "v=0.5",
+        "q": 0,
+        "s": 1,
+        "r": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "p": {
+          "G10": [
+            0.01,
+            0.43,
+            0.05,
+            0.01,
+            0.01
+          ]
+        },
+        "n_reps": 5,
+        "power": {
+          "G10": {
+            "0.01": 0.6,
+            "0.05": 0.8,
+            "0.001": 0.0
+          }
+        }
+      },
+      {
+        "arm": "A0",
+        "level": "null",
+        "q": 4,
+        "s": 1,
+        "r": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "p": {
+          "G10": [
+            0.86,
+            0.62,
+            0.54,
+            0.69,
+            0.27
+          ]
+        },
+        "n_reps": 5,
+        "power": {
+          "G10": {
+            "0.01": 0.0,
+            "0.05": 0.0,
+            "0.001": 0.0
+          }
+        }
+      }
+    ]
+  },
+  "results_sha256": "7b0284c1d155df053b23d06c31aab0ded5b266edf9795cb1ae19b3001e7de07c",
+  "meta": {
+    "seconds": 23.873,
+    "argv": [
+      "--smoke",
+      "--workers",
+      "16"
+    ],
+    "provenance": {
+      "code_commit": "fd07aa050c0595e2a3042b3474f9e3f9502b8d8d",
+      "source_sha256": {
+        "src/gate/precision_readout.py": "37d98a08a53de4d130607dceb9ec9dba4082fe9b4157a1cfde53b44fecbb4c03",
+        "src/gate/rank_readout.py": "0fcda99992ab989f4a9f03e059681a508de491b4482ccb9cbddc83dc5fdbdad5",
+        "src/recover/backbone.py": "9decaed2279beca46a0633a1456201e04f6c2df2a04b991543da843373a57ec7",
+        "experiments/e3_gate_compare.py": "76125f7cd3798fecbe08bd6b8573f0dc11993cac858e9056217185625341508e",
+        "experiments/tier2_common.py": "537584f53d3febd2425a358a75f785dce8931c37c68e29d83cdda9535be67b44",
+        "experiments/e15_onesided_gate.py": "40b88bcfcd17865ad1901e5d8e917f1442947df03ce4f603c4623628850f88db",
+        "experiments/e12_common.py": "13a5dd21c211a32e9ecabe7bb74f2ba9228b9eadb80f5052d2a14b95182e503b",
+        "experiments/e12_standard_tests.py": "27ee22375faf86cac207af1e497824e6f07c6fbba549d100a625190c40f21850",
+        "experiments/e13_power_sign.py": "03caaff3389e4dcb9d9b82abfd9fbadda6ad9c98c203bc712f4af7bf2b84bb58",
+        "experiments/e14_matched_coverage.py": "a550a237cfdd70d477df8d989e1af867a14d8128da605a79b47d5c641ff0f149",
+        "experiments/e10_risk_coverage.py": "6a9c2d86f868047bace9657c04f55d5acc9622e627b2dfacedafb564c9e2a012"
+      },
+      "numpy_version": "2.5.4",
+      "python_version": "3.14.4",
+      "host": "DESKTOP-FJ1LVH4"
+    },
+    "workers": 16
+  }
+}

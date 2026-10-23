@@ -1,0 +1,1 @@
+[real norman seed 0] G10 1/100 fake 0; T0h 1 fake 0; overlap {'n_both': 1, 'n_G10_only': 0, 'n_T0h_only': 0} 149.8s -> /home/home/grd-framework/results/e15/real/norman_seed0.json

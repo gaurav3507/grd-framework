@@ -1,0 +1,4 @@
+[real k562 seed 0] G10 0/10 fake 0; T0h 1 fake 0; overlap {'n_both': 0, 'n_G10_only': 0, 'n_T0h_only': 1} 24.4s -> /home/home/grd-framework/results/e15/smoke/real/k562_seed0.json
+[planted k562] 2 cells, repro {'sizes_equal': True, 'ref_eigenvalues_max_abs_diff': 0.0, 'directions_max_abs_diff': 0.0, 'tol': 1e-06}, 23.9s -> /home/home/grd-framework/results/e15/smoke/planted/k562.json
+[synthetic] 10 units, failed 0, regression {'n_units': 10, 'n_equal': 10, 'identical': True, 'max_abs_diff': 0.0}, 2.8s
+[smoke] timings {"real_k562_seed0": 24.4, "planted_k562": 23.9, "synthetic_2_systems": 2.8}

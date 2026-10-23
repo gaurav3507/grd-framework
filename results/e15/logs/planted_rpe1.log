@@ -1,0 +1,1 @@
+[planted rpe1] 130 cells, repro {'sizes_equal': True, 'ref_eigenvalues_max_abs_diff': 0.0, 'directions_max_abs_diff': 0.0, 'tol': 1e-06}, 900.7s -> /home/home/grd-framework/results/e15/planted/rpe1.json

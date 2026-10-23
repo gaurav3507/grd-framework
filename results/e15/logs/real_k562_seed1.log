@@ -1,0 +1,1 @@
+[real k562 seed 1] G10 4/385 fake 0; T0h 0 fake 0; overlap {'n_both': 0, 'n_G10_only': 4, 'n_T0h_only': 0} 295.9s -> /home/home/grd-framework/results/e15/real/k562_seed1.json

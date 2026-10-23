@@ -1,0 +1,2 @@
+[synthetic] 900 units, failed 0, regression {'n_units': 900, 'n_equal': 900, 'identical': True, 'max_abs_diff': 0.0}, 29.3s
+[synthetic] P5 undetermined e14 consistency 2.7755575615628914e-17 35.5s

@@ -1,0 +1,5 @@
+[selftest] geneig_down vs direct -log(min eig): diff 0.0; invariance under a random invertible map (cond 44.9): diff 2.043e-14
+[selftest] stored-value regression (2 systems, B=500): precision vs E10 max diff 0.0, geneig vs E14 max diff 0.0
+[selftest] real path: 6 envs, corrected [True, False, True, False, False, False], p [0.02, 0.48, 0.02, 0.52, 0.88, 0.42], disjoint True
+[selftest] planted path: 7 cells, tests ['G10']
+[selftest] passed (nothing written)
