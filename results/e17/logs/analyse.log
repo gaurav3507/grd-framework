@@ -1,0 +1,23 @@
+{
+ "predictions": {
+  "P1": "failed",
+  "P2": "held",
+  "P3": "held",
+  "P4": "held",
+  "P5": "held",
+  "P6": "held"
+ },
+ "failed": 0,
+ "restart_selection": {
+  "histogram": {
+   "0": 40,
+   "1": 30,
+   "2": 47,
+   "3": 43,
+   "4": 40
+  },
+  "selected_equals_best_by_affine_r2": 142,
+  "n_compared": 200,
+  "n_failed_restarts": 0
+ }
+}
