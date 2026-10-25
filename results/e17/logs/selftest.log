@@ -1,0 +1,21 @@
+[selftest] 8 systems seed 10: poly Z vs linear Z max |dZ| 0.0; arm C Zc and gain vs replay max diff 0.0
+[selftest] equivalence with E16.run_system (1 restart, no split, E16 model seed, n_boot=10): 8 systems, 0 mismatches
+  A level=5 seed=10 units=5 failed=0 sel_r=0 r2=0.8472205730828714 (3s)
+  A level=4 seed=10 units=9 failed=0 sel_r=0 r2=0.7108151111562978 (5s)
+  B level=4000 seed=10 units=14 failed=0 sel_r=1 r2=0.76639648162589 (8s)
+  B level=400 seed=10 units=19 failed=0 sel_r=1 r2=0.7302581749031574 (10s)
+  C level=0 seed=10 units=24 failed=0 sel_r=1 r2=0.5938643895836169 (13s)
+  C level=1 seed=10 units=29 failed=0 sel_r=0 r2=0.4949346980815795 (15s)
+  D level=0.1 seed=10 units=34 failed=0 sel_r=1 r2=0.8450339805783292 (18s)
+  D level=0.4 seed=10 units=39 failed=0 sel_r=0 r2=0.7972150197888372 (21s)
+  A level=5 seed=10 units=5 failed=0 sel_r=0 r2=0.8472205730828714 (6s)
+  A level=4 seed=10 units=9 failed=0 sel_r=0 r2=0.7108151111562978 (6s)
+  B level=4000 seed=10 units=14 failed=0 sel_r=1 r2=0.76639648162589 (6s)
+  B level=400 seed=10 units=19 failed=0 sel_r=1 r2=0.7302581749031574 (6s)
+  C level=0 seed=10 units=24 failed=0 sel_r=1 r2=0.5938643895836169 (8s)
+  C level=1 seed=10 units=29 failed=0 sel_r=0 r2=0.4949346980815795 (9s)
+  D level=0.1 seed=10 units=34 failed=0 sel_r=1 r2=0.8450339805783292 (10s)
+  D level=0.4 seed=10 units=39 failed=0 sel_r=0 r2=0.7972150197888372 (10s)
+[selftest] data pass 39 units, 2 restarts: workers 1 vs 4 identical True; selected r [0, 0, 1, 1, 1, 0, 1, 0]; failed systems 0
+[selftest] analysis end to end: units 39, predictions {'P1': 'failed', 'P2': 'undetermined', 'P3': 'failed', 'P4': 'held', 'P5': 'undetermined', 'P6': 'held'}, G2a ABD {'coverage': 0.0, 'risk': None, 'n_certified': 0, 'n_units': 29}
+[selftest] passed (nothing written) 66.6s; versions {'python': '3.14.4', 'numpy': '2.5.4', 'scipy': '1.18.1', 'torch': '2.14.1+cpu', 'venv': '/home/home/grd-framework/.venv'}
